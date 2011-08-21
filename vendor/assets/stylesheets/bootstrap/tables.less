@@ -1,0 +1,152 @@
+/*
+ * Tables.less
+ * Tables for, you guessed it, tabular data
+ * ---------------------------------------- */
+
+
+// BASELINE STYLES
+// ---------------
+
+table {
+  width: 100%;
+  margin-bottom: @baseline;
+  padding: 0;
+  text-align: left;
+  border-collapse: separate;
+  font-size: 13px;
+  th, td {
+    padding: 10px 10px 9px;
+    line-height: @baseline * .75;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    padding-top: 9px;
+    font-weight: bold;
+    border-bottom-width: 2px;
+  }
+}
+
+
+// ZEBRA-STRIPING
+// --------------
+
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+table.zebra-striped {
+  tbody {
+    tr:nth-child(odd) td {
+      background-color: #f9f9f9;
+    }
+    tr:hover td {
+      background-color: #f5f5f5;
+    }
+  }
+
+  // Tablesorting styles w/ jQuery plugin
+  th.header {
+    cursor: pointer;
+    &:after {
+      content: "";
+      float: right;
+      margin-top: 7px;
+      border-width: 0 4px 4px;
+      border-style: solid;
+      border-color: #000 transparent;
+      visibility: hidden;
+    }
+  }
+
+  // Style the sorted column headers (THs)
+  th.headerSortUp,
+  th.headerSortDown {
+    background-color: rgba(141,192,219,.25);
+    text-shadow: 0 1px 1px rgba(255,255,255,.75);
+    .border-radius(3px 3px 0 0);
+  }
+
+  // Style the ascending (reverse alphabetical) column header
+  th.header:hover {
+    &:after {
+      visibility:visible;
+    }
+  }
+  th.actions:hover {
+    background-image: none;
+  }
+
+  // Style the descending (alphabetical) column header
+  th.headerSortDown,
+  th.headerSortDown:hover {
+    &:after {
+      visibility:visible;
+      .opacity(60);
+    }
+  }
+
+  // Style the ascending (reverse alphabetical) column header
+  th.headerSortUp {
+    &:after {
+      border-bottom: none;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid #000;
+      visibility:visible;
+      .box-shadow(none); //can't add boxshadow to downward facing arrow :(
+      .opacity(60);
+    }
+  }
+
+  // Blue Table Headings
+  th.blue {
+    color: @blue;
+    border-bottom-color: @blue;
+  }
+  th.headerSortUp.blue, th.headerSortDown.blue {
+    background-color: lighten(@blue, 40%);
+  }
+
+  // Green Table Headings
+  th.green {
+    color: @green;
+    border-bottom-color: @green;
+  }
+  th.headerSortUp.green, th.headerSortDown.green { // backround color is 20% of border color
+    background-color: lighten(@green, 40%);
+  }
+
+  // Red Table Headings
+  th.red {
+    color: @red;
+    border-bottom-color: @red;
+  }
+  th.headerSortUp.red, th.headerSortDown.red {
+    background-color: lighten(@red, 50%);
+  }
+
+  // Yellow Table Headings
+  th.yellow {
+    color: @yellow;
+    border-bottom-color: @yellow;
+  }
+  th.headerSortUp.yellow, th.headerSortDown.yellow {
+    background-color: lighten(@yellow, 40%);
+  }
+
+  // Orange Table Headings
+  th.orange {
+    color: @orange;
+    border-bottom-color: @orange;
+  }
+  th.headerSortUp.orange, th.headerSortDown.orange {
+    background-color: lighten(@orange, 40%);
+  }
+
+  // Purple Table Headings
+  th.purple {
+    color: @purple;
+    border-bottom-color: @purple;
+  }
+  th.headerSortUp.purple, th.headerSortDown.purple {
+    background-color: lighten(@purple, 40%);
+  }
+}
