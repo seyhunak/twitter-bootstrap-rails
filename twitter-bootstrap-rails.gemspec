@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "twitter-bootstrap-rails"
   s.version     = Twitter::Bootstrap::Rails::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Seyhun Akyürek"]
+  s.authors     = ["Seyhun Akyurek"]
   s.email       = ["seyhunak@gmail.com"]
   s.homepage    = "https://github.com/seyhunak/twitter-bootstrap-rails"
   s.summary     = %q{Bootstrap CSS toolkit for Rails 3 projects}
