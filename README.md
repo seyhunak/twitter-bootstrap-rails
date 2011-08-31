@@ -4,7 +4,10 @@ It includes base CSS and HTML for typography, forms, buttons, tables, grids, nav
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3 projects
 
 ## Rails 3.1
-Include Bootstrap in Gemfile, gem 'twitter-bootstrap-rails' and run bundle install.
+Include Bootstrap in Gemfile, gem 'twitter-bootstrap-rails' 
+or 
+gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git' 
+and run bundle install.
 
 Add necessary stylesheet file to app/assets/stylesheets/application.css
 
