@@ -9,6 +9,15 @@
 
 .row {
   .clearfix();
+  margin-left: -1 * @gridGutterWidth;
+
+  // Find all .span# classes within .row and give them the necessary properties for grid columns (supported by all browsers back to IE7)
+  // Credit to @dhg for the idea
+  [class^="span"] {
+    display: inline;
+    float: left;
+    margin-left: @gridGutterWidth;
+  }
 
   // Default columns
   .span1     { .columns(1); }
@@ -37,10 +46,16 @@
   .offset6   { .offset(6); }
   .offset7   { .offset(7); }
   .offset8   { .offset(8); }
-  .offset9   { .offset(8); }
+  .offset9   { .offset(9); }
   .offset10  { .offset(10); }
   .offset11  { .offset(11); }
   .offset12  { .offset(12); }
+
+  // Unique column sizes for 16-column grid
+  .span-one-third     { width: 300px; }
+  .span-two-thirds    { width: 620px; }
+  .offset-one-third   { margin-left: 340px; }
+  .offset-two-thirds  { margin-left: 660px; }
 }
 
 
@@ -54,24 +69,24 @@ body {
   margin: 0;
   #font > .sans-serif(normal,@basefont,@baseline);
   color: @gray;
-  text-rendering: optimizeLegibility;
 }
 
 // Container (centered, fixed-width layouts)
-div.container {
+.container {
   width: 940px;
   margin: 0 auto;
 }
 
 // Fluid layouts (left aligned, with sidebar, min- & max-width content)
-div.container-fluid {
-  padding: 20px;
+.container-fluid {
+  padding: 0 20px;
   .clearfix();
-  div.sidebar {
+  > .sidebar {
     float: left;
     width: 220px;
   }
-  div.content {
+  // TODO in v2: rename this and .popover .content to be more specific
+  > .content {
     min-width: 700px;
     max-width: 1180px;
     margin-left: 240px;
@@ -87,51 +102,9 @@ a {
   color: @linkColor;
   text-decoration: none;
   line-height: inherit;
+  font-weight: inherit;
   &:hover {
     color: @linkColorHover;
     text-decoration: underline;
-  }
-}
-
-// Buttons
-.btn {
-  .button();
-  .transition(.1s linear all);
-  &.primary {
-    #gradient > .vertical(@blue, @blueDark);
-    color: #fff;
-    text-shadow: 0 -1px 0 rgba(0,0,0,.25);
-    &:hover {
-      color: #fff;
-    }
-  }
-  &.large {
-    font-size: 16px;
-    line-height: 28px;
-    .border-radius(6px);
-  }
-  &.small {
-    padding-right: 9px;
-    padding-left: 9px;
-    font-size: 11px;
-  }
-  &:disabled,
-  &.disabled {
-    background-image: none;
-    .opacity(65);
-    cursor: default;
-  }
-  &:active {
-    @shadow: inset 0 3px 7px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.05);
-    .box-shadow(@shadow);
-  }
-}
-
-// Help Firefox not be a jerk about adding extra padding to buttons
-button.btn,
-input[type=submit].btn {
-  &::-moz-focus-inner {
-  	padding: 0;
-  	border: 0;
   }
 }
