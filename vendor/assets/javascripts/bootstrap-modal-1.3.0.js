@@ -18,7 +18,7 @@
  * ========================================================= */
 
 
-(function( $ ){
+!function( $ ){
 
  /* CSS TRANSITION SUPPORT (https://gist.github.com/373874)
   * ======================================================= */
@@ -38,11 +38,11 @@
     if ( $.support.transition ) {
       transitionEnd = "TransitionEnd"
       if ( $.browser.webkit ) {
-        transitionEnd = "webkitTransitionEnd"
+      	transitionEnd = "webkitTransitionEnd"
       } else if ( $.browser.mozilla ) {
-        transitionEnd = "transitionend"
+      	transitionEnd = "transitionend"
       } else if ( $.browser.opera ) {
-        transitionEnd = "oTransitionEnd"
+      	transitionEnd = "oTransitionEnd"
       }
     }
 
@@ -85,11 +85,13 @@
             .appendTo(document.body)
             .show()
 
-          setTimeout(function () {
-            that.$element
-              .addClass('in')
-              .trigger('shown')
-          }, 0)
+          if ($.support.transition && that.$element.hasClass('fade')) {
+            that.$element[0].offsetWidth // force reflow
+          }
+
+          that.$element
+            .addClass('in')
+            .trigger('shown')
         })
 
         return this
@@ -132,6 +134,8 @@
     var that = this
       , animate = this.$element.hasClass('fade') ? 'fade' : ''
     if ( this.isShown && this.settings.backdrop ) {
+      var doAnimate = $.support.transition && animate
+
       this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
         .appendTo(document.body)
 
@@ -139,12 +143,15 @@
         this.$backdrop.click($.proxy(this.hide, this))
       }
 
-      setTimeout(function () {
-        that.$backdrop && that.$backdrop.addClass('in')
-        $.support.transition && that.$backdrop.hasClass('fade') ?
-          that.$backdrop.one(transitionEnd, callback) :
-          callback()
-      }, 0)
+      if ( doAnimate ) {
+        this.$backdrop[0].offsetWidth // force reflow
+      }
+
+      this.$backdrop.addClass('in')
+
+      doAnimate ?
+        this.$backdrop.one(transitionEnd, callback) :
+        callback()
 
     } else if ( !this.isShown && this.$backdrop ) {
       this.$backdrop.removeClass('in')
@@ -165,13 +172,13 @@
   function escape() {
     var that = this
     if ( this.isShown && this.settings.keyboard ) {
-      $('body').bind('keyup.modal', function ( e ) {
+      $(document).bind('keyup.modal', function ( e ) {
         if ( e.which == 27 ) {
           that.hide()
         }
       })
     } else if ( !this.isShown ) {
-      $('body').unbind('keyup.modal')
+      $(document).unbind('keyup.modal')
     }
   }
 
@@ -228,4 +235,4 @@
     })
   })
 
-})( window.jQuery || window.ender )
+}( window.jQuery || window.ender );

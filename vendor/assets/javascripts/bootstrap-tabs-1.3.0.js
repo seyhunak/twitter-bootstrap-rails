@@ -18,7 +18,7 @@
  * ======================================================== */
 
 
-(function( $ ){
+!function( $ ){
 
   function activate ( element, container ) {
     container.find('.active').removeClass('active')
@@ -28,7 +28,7 @@
   function tab( e ) {
     var $this = $(this)
       , href = $this.attr('href')
-      , $ul = $(e.liveFired)
+      , $ul = $this.closest('ul')
       , $controlled
 
     if (/^#\w+/.test(href)) {
@@ -59,4 +59,4 @@
     $('body').tabs('ul[data-tabs] li > a, ul[data-pills] > li > a')
   })
 
-})( window.jQuery || window.ender )
+}( window.jQuery || window.ender );
