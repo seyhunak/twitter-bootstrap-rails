@@ -18,7 +18,7 @@
  * ========================================================== */
 
 
-(function( $ ){
+!function( $ ){
 
   /* CSS TRANSITION SUPPORT (https://gist.github.com/373874)
    * ======================================================= */
@@ -38,11 +38,11 @@
      if ( $.support.transition ) {
        transitionEnd = "TransitionEnd"
        if ( $.browser.webkit ) {
-        transitionEnd = "webkitTransitionEnd"
+       	transitionEnd = "webkitTransitionEnd"
        } else if ( $.browser.mozilla ) {
-        transitionEnd = "transitionend"
+       	transitionEnd = "transitionend"
        } else if ( $.browser.opera ) {
-        transitionEnd = "oTransitionEnd"
+       	transitionEnd = "oTransitionEnd"
        }
      }
 
@@ -101,4 +101,4 @@
     new Alert($('body'), '.alert-message[data-alert] .close')
   })
 
-})( window.jQuery || window.ender )
+}( window.jQuery || window.ender );
