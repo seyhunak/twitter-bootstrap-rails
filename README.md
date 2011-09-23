@@ -51,6 +51,7 @@ Seyhun Akyürek - seyhunak [at] gmail com
   <li>Daniel Morris</li>
   <li>Bradly Feeley</li>
   <li>Guilherme Moreira</li>
+  <li>Alex Behar</li>
 </ul>
 
 ## Thanks
