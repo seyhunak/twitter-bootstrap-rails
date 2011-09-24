@@ -34,10 +34,10 @@ Add necessary javascripts files to app/assets/javascripts/application.js
     //= require bootstrap-alerts-1.3.0
     //= require bootstrap-dropdown-1.3.0
     //= require bootstrap-modal-1.3.0
+    //= require bootstrap-twipsy-1.3.0
     //= require bootstrap-popover-1.3.0
     //= require bootstrap-scrollspy-1.3.0
     //= require bootstrap-tabs-1.3.0
-    //= require bootstrap-twipsy-1.3.0
         
 Not tested on Rails 3
 
