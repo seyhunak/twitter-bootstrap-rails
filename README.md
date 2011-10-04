@@ -2,10 +2,12 @@
 Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites.
 It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
+
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline
 
 
 ## Installing Gem
+
 Include Bootstrap in Gemfile;
 
     gem 'twitter-bootstrap-rails'
@@ -27,10 +29,13 @@ a CSS preprocessor for faster and easier web development.
 ## Installing Less
 
 Include Less in Gemfile;
+
     gem 'less'
 
 Include less-rails in Gemfile;
+
     gem 'less-rails', :git => 'git://github.com/metaskills/less-rails.git'
+
 
 ## Using stylesheets with Less
 
@@ -41,12 +46,12 @@ You have to require Bootstrap LESS (bootstrap.less) in your application.css
     */
 
     /* Your stylesheets goes here... */
+    
 
 Now, you can override LESS files provided by Twitter Bootstrap
 
-i.e
      @import "bootstrap";
-
+     
      // Baseline grid
      @basefont:          13px;
      @baseline:          18px;
@@ -61,6 +66,32 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
     $(document).ready(function(){
       /* Your javascripts goes here... */
     });
+
+
+## Using with coffeescript
+
+Using Twitter Bootstrap with the CoffeeScript is easy.
+Just create a application.js.coffee file to /app/assets/javascripts/ folder and put lines below.
+
+    $ ->
+	  $("body > .topbar").scrollSpy()
+  	$ ->
+	  $(".tabs").tabs()
+	$ ->
+	  $("a[rel=twipsy]").twipsy live: true
+	$ ->
+	  $("a[rel=popover]").popover offset: 10
+	$ ->
+	  $(".topbar-wrapper").dropdown()
+	$ ->
+	  $(".alert-message").alert()
+	$ ->
+	  domModal = $(".modal").modal(
+		backdrop: true
+		closeOnEscape: true
+	  )
+	  $(".open-modal").click ->
+		domModal.toggle()
 
 
 ## Changelog
