@@ -27,29 +27,29 @@ a CSS preprocessor for faster and easier web development.
 ## Installing Less
 
 Include Less in Gemfile;
-   gem 'less'
+    gem 'less'
 
 Include less-rails in Gemfile;
-   gem 'less-rails', :git => 'git://github.com/metaskills/less-rails.git'
+    gem 'less-rails', :git => 'git://github.com/metaskills/less-rails.git'
 
 ## Using stylesheets with Less
 
 You have to require Bootstrap LESS (bootstrap.less) in your application.css
 
-	/*
-	 *= require bootstrap
-	*/
+    /*
+     *= require bootstrap
+    */
 
     /* Your stylesheets goes here... */
 
 Now, you can override LESS files provided by Twitter Bootstrap
 
 i.e
-	@import "bootstrap";
+     @import "bootstrap";
 
-	// Baseline grid
-	@basefont:          13px;
-	@baseline:          18px;
+     // Baseline grid
+     @basefont:          13px;
+     @baseline:          18px;
 
 
 ## Using javascripts
@@ -58,10 +58,9 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
 
     //= require bootstrap
 
-	$(document).ready(function(){
+    $(document).ready(function(){
       /* Your javascripts goes here... */
-	});
-
+    });
 
 
 ## Changelog
