@@ -19,8 +19,6 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib","vendor"]
 
-  s.add_runtime_dependency 'less'
-  s.add_runtime_dependency "less-rails", "~> 2.0.1"
   s.add_runtime_dependency 'railties'
   s.add_runtime_dependency 'actionpack'
   s.add_development_dependency "bundler"

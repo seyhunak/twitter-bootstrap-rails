@@ -19,38 +19,15 @@ You can run bundle from command line
     bundle install
 
 
-## Using with Less
+## Using stylesheets
 
-Bootstrap was built with Preboot, an open-source pack of mixins and variables to be used in conjunction with Less,
-a CSS preprocessor for faster and easier web development.
-
-## Installing Less
-
-Include Less in Gemfile;
-   gem 'less'
-
-Include less-rails in Gemfile;
-   gem 'less-rails', :git => 'git://github.com/metaskills/less-rails.git'
-
-## Using stylesheets with Less
-
-You have to require Bootstrap LESS (bootstrap.less) in your application.css
+You have to require Bootstrap CSS (bootstrap.css) in your application.css
 
 	/*
 	 *= require bootstrap
 	*/
 
     /* Your stylesheets goes here... */
-
-Now, you can override LESS files provided by Twitter Bootstrap
-
-i.e
-	@import "bootstrap";
-
-	// Baseline grid
-	@basefont:          13px;
-	@baseline:          18px;
-
 
 ## Using javascripts
 
@@ -63,13 +40,29 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
 	});
 
 
+## Using with coffeescript
+Using Twitter Bootstrap with the CoffeeScript is easy.
+Just create a application.js.coffee file to /app/assets/javascripts/ folder and put lines below.
 
-## Changelog
-<ul>
-  <li>Version 0.0.5 deprecated</li>
-  <li>Asset files updated to latest and removed version numbers</li>
-  <li>Implemented Less::Rails Railtie to use with LESS</li>
-</ul>
+	$ ->
+	  $("body > .topbar").scrollSpy()
+	$ ->
+	  $(".tabs").tabs()
+	$ ->
+	  $("a[rel=twipsy]").twipsy live: true
+	$ ->
+	  $("a[rel=popover]").popover offset: 10
+	$ ->
+	  $(".topbar-wrapper").dropdown()
+	$ ->
+	  $(".alert-message").alert()
+	$ ->
+	  domModal = $(".modal").modal(
+		backdrop: true
+		closeOnEscape: true
+	  )
+	  $(".open-modal").click ->
+		domModal.toggle()
 
 ## Credits
 Seyhun Akyürek - seyhunak [at] gmail com
