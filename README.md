@@ -99,6 +99,7 @@ Just create a application.js.coffee file to /app/assets/javascripts/ folder and 
   <li>Version 0.0.5 deprecated</li>
   <li>Asset files updated to latest and removed version numbers</li>
   <li>Implemented Less::Rails Railtie to use with LESS</li>
+  <li>Fixed railtie to only initialize Less when installed</li>
 </ul>
 
 ## Credits
@@ -113,6 +114,7 @@ Seyhun Akyürek - seyhunak [at] gmail com
   <li>Bradly Feeley</li>
   <li>Guilherme Moreira</li>
   <li>Alex Behar</li>
+  <li>Brandon Keene</li>
 </ul>
 
 
