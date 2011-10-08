@@ -100,6 +100,7 @@ Just create a application.js.coffee file to /app/assets/javascripts/ folder and 
   <li>Asset files updated to latest and removed version numbers</li>
   <li>Implemented Less::Rails Railtie to use with LESS</li>
   <li>Fixed railtie to only initialize Less when installed</li>
+  <li>Created new branch for the static version of Bootstrap (w/o Less) - check static branch</li>
 </ul>
 
 ## Credits
