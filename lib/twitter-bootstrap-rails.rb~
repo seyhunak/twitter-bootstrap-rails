@@ -4,6 +4,8 @@ module Twitter
       end
    end
 end
+
 require 'less-rails'
 require "twitter/bootstrap/rails/version"
 require "twitter/bootstrap/rails/engine"
+
