@@ -60,7 +60,7 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
 ## Using With Coffeescript
 
 Using Twitter Bootstrap with the CoffeeScript is easy.
-Just create a "application.js.coffee" file to /app/assets/javascripts/ folder and put lines below.
+Just create a application.js.coffee file to /app/assets/javascripts/ folder and put lines below.
 
     $ ->
 	  $("body > .topbar").scrollSpy()
