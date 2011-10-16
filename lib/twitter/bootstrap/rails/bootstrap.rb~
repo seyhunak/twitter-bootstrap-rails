@@ -1,2 +1,0 @@
-require "twitter/bootstrap/rails/version"
-require "less/rails/bootstrap/engine"
