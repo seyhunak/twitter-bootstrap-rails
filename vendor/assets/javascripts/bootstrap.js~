@@ -1,0 +1,15 @@
+//= require bootstrap-alerts
+//= require bootstrap-dropdown
+//= require bootstrap-modal
+//= require bootstrap-twipsy
+//= require bootstrap-popover
+//= require bootstrap-scrollspy
+//= require bootstrap-tabs
+
+//= require twitter/bootstrap/bootstrap-alerts
+//= require twitter/bootstrap/bootstrap-dropdown
+//= require twitter/bootstrap/bootstrap-modal
+//= require twitter/bootstrap/twipsy
+//= require twitter/bootstrap/popover
+//= require twitter/bootstrap/scrollspy
+//= require twitter/bootstrap/tabs
