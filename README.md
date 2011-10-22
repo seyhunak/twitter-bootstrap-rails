@@ -39,7 +39,7 @@ You have to require Bootstrap LESS (bootstrap.less) in your application.css
 
 Now, you can override LESS files provided by Twitter Bootstrap
 
-     @import "bootstrap";
+     @import "twitter/bootstrap";
      
      // Baseline grid
      @basefont:          13px;
