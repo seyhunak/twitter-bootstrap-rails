@@ -5,3 +5,4 @@
 //= require twitter/bootstrap/bootstrap-popover
 //= require twitter/bootstrap/bootstrap-scrollspy
 //= require twitter/bootstrap/bootstrap-tabs
+//= require twitter/bootstrap/bootstrap-buttons
