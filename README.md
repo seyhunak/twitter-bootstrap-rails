@@ -101,6 +101,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Created new branch for the static version of Bootstrap (w/o Less) - check static branch</li>
   <li>Added path to support heroku deploy</li>
   <li>Rake precompile issue fixed</li>
+  <li>Updated to 1.4.0</li>
 </ul>
 
 ## Credits
