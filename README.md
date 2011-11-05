@@ -5,14 +5,13 @@ It includes base CSS and HTML for typography, forms, buttons, tables, grids, nav
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline
 
 
-## Installing Gem
-Include Bootstrap in Gemfile;
+## Using Static CSS, JS (w/o Less)
 
-    gem 'twitter-bootstrap-rails'
+twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest static CSS, JS files.
 
-or you can install from latest build;
+You can install from latest build (from branch);
 
-    gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+    gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
 
 You can run bundle from command line
 
@@ -24,17 +23,30 @@ You can run bundle from command line
 You have to require Bootstrap CSS (bootstrap.css) in your application.css
 
 	/*
-	 *= require bootstrap
+	 *= require bootstrap 
+	*/
+	
+	or
+	
+	/*
+	 *= require bootstrap.min
 	*/
 
-    /* Your stylesheets goes here... */
+  /* Your stylesheets goes here... */
 
 ## Using javascripts
 
 You have to require Bootstrap JS (bootstrap.js) in your application.js
 
-    //= require bootstrap
-
+  //= require bootstrap-alerts
+  //= require bootstrap-dropdown
+  //= require bootstrap-modal
+  //= require bootstrap-twipsy 
+  //= require bootstrap-popover
+  //= require bootstrap-scrollspy
+  //= require bootstrap-tabs 
+  //= require bootstrap-buttons  
+  
 	$(document).ready(function(){
       /* Your javascripts goes here... */
 	});
@@ -68,15 +80,6 @@ Just create a application.js.coffee file to /app/assets/javascripts/ folder and 
 Seyhun Akyürek - seyhunak [at] gmail com
 
 [Follow me on Twitter](http://twitter.com/seyhunak "Twitter")
-
-
-## Contributors
-<ul>
-  <li>Daniel Morris</li>
-  <li>Bradly Feeley</li>
-  <li>Guilherme Moreira</li>
-  <li>Alex Behar</li>
-</ul>
 
 
 ## Thanks
