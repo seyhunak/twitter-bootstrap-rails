@@ -36,7 +36,7 @@ You have to require Bootstrap CSS (bootstrap.css) in your application.css
 
 ## Using javascripts
 
-You have to require Bootstrap JS (twitter/bootstrap.js) in your application.js
+You have to require Bootstrap JS (bootstrap.js) in your application.js
 
   //= require bootstrap-alerts
   //= require bootstrap-dropdown
