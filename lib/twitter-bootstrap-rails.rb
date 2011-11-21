@@ -1,10 +1,10 @@
 module Twitter
   module Bootstrap
-      module Rails       
+      module Rails    
+        require 'twitter/bootstrap/rails/engine' if defined?(Rails)   
       end
    end
 end
 
 require 'less-rails'
 require 'twitter/bootstrap/rails/bootstrap'
-

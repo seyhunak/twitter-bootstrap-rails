@@ -1,3 +1,5 @@
+require 'rails'
+
 module Twitter
   module Bootstrap
     module Rails

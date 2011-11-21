@@ -20,11 +20,22 @@ You can run bundle from command line
 
     bundle install
 
+## Installing to App
+Run generator to install Twitter Bootstrap
+You can run generator from command line
 
+
+    rails g bootstrap:install
+    
+ Generator;
+ 
+    Adds bootstrap requires to application.css and application.js.
+    Adds bootstrap boilerplate Less and Coffee files to build with Twitter Bootstrap easily.   
+    
+    
 ## Using with Less
 
-Bootstrap was built with Preboot, an open-source pack of mixins and variables to be used in conjunction with Less,
-a CSS preprocessor for faster and easier web development.
+Bootstrap was built with Preboot, an open-source pack of mixins and variables to be used in conjunction with Less, a CSS preprocessor for faster and easier web development.
 
 ## Using stylesheets with Less
 
@@ -60,28 +71,37 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
 ## Using With Coffeescript
 
 Using Twitter Bootstrap with the CoffeeScript is easy.
-Just create a "application.js.coffee" file to /app/assets/javascripts/ folder and put lines below.
+Just create a "bootstrap.js.coffee" file to /app/assets/javascripts/ folder and put lines below.
 
     $ ->
-	  $("body > .topbar").scrollSpy()
+	    $("body > .topbar").scrollSpy()
+	  
+    $ ->
+	    $(".tabs").tabs()
+	  
   	$ ->
-	  $(".tabs").tabs()
-	$ ->
-	  $("a[rel=twipsy]").twipsy live: true
-	$ ->
-	  $("a[rel=popover]").popover offset: 10
-	$ ->
-	  $(".topbar-wrapper").dropdown()
-	$ ->
-	  $(".alert-message").alert()
-	$ ->
-	  domModal = $(".modal").modal(
-		backdrop: true
-		closeOnEscape: true
-	  )
-	  $(".open-modal").click ->
-		domModal.toggle()
-		
+	    $("a[rel=twipsy]").twipsy live: true
+	  
+  	$ ->
+	    $("a[rel=popover]").popover offset: 10
+	  
+  	$ ->
+	    $(".topbar-wrapper").dropdown()
+	  
+  	$ ->
+	    $(".alert-message").alert()
+	  
+  	$ ->
+	    domModal = $(".modal").modal(
+		  backdrop: true
+		  closeOnEscape: true
+	    )
+	    $(".open-modal").click ->
+		  domModal.toggle()
+		  
+  	$ ->
+    	$(".btn").button "complete"
+    	
 
 ## Using Static CSS, JS (w/o Less)
 
@@ -101,8 +121,17 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Created new branch for the static version of Bootstrap (w/o Less) - check static branch</li>
   <li>Added path to support heroku deploy</li>
   <li>Rake precompile issue fixed</li>
-  <li>Updated to 1.4.0</li>
+  <li>Updated asset files to 1.4.0</li>
+  <li>Updated dependency less-rails (now requires 2.1.0)</li>
+  <li>Added generators</li>
 </ul>
+
+
+## Future
+<ul>
+  <li>Writing tests (not implemented yet)</li>  
+</ul>
+
 
 ## Credits
 Seyhun Akyürek - seyhunak [at] gmail com
