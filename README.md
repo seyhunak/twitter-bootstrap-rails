@@ -26,13 +26,13 @@ You can run generator from command line
 
 
     rails g bootstrap:install
-    
+
  Generator;
- 
+
     Adds bootstrap requires to application.css and application.js.
-    Adds bootstrap boilerplate Less and Coffee files to build with Twitter Bootstrap easily.   
-    
-    
+    Adds bootstrap boilerplate Less and Coffee files to build with Twitter Bootstrap easily.
+
+
 ## Using with Less
 
 Bootstrap was built with Preboot, an open-source pack of mixins and variables to be used in conjunction with Less, a CSS preprocessor for faster and easier web development.
@@ -46,12 +46,12 @@ You have to require Bootstrap LESS (bootstrap.less) in your application.css
     */
 
     /* Your stylesheets goes here... */
-    
+
 
 Now, you can override LESS files provided by Twitter Bootstrap
 
      @import "twitter/bootstrap";
-     
+
      // Baseline grid
      @basefont:          13px;
      @baseline:          18px;
@@ -91,17 +91,17 @@ Just create a "bootstrap.js.coffee" file to /app/assets/javascripts/ folder and 
 				closeOnEscape: true
 			)
 			$(".open-modal").click ->
-				domModal.toggle()  
+				domModal.toggle()
 		$ ->
 			$(".btn").button "complete"
-    	
+
 
 ## Using Static CSS, JS (w/o Less)
 
 twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest static CSS, JS files.
 
     You can install from latest build (from branch);
-    
+
     gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
 
 
@@ -117,12 +117,14 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Updated asset files to 1.4.0</li>
   <li>Updated dependency less-rails (now requires 2.1.0)</li>
   <li>Added generators</li>
+  <li>Fixed generators</li>
+  <li>Fixed class name conflicts from (bootstrap.js.coffee)</li>
 </ul>
 
 
 ## Future
 <ul>
-  <li>Writing tests (not implemented yet)</li>  
+  <li>Writing tests (not implemented yet)</li>
 </ul>
 
 
@@ -155,4 +157,3 @@ Copyright (c) 2011 Seyhun Akyürek
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-

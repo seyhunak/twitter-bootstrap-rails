@@ -17,5 +17,3 @@ $ ->
   )
   $(".open-modal").click ->
     domModal.toggle()  
-$ ->
-	$(".btn").button "complete"
