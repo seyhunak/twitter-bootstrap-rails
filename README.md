@@ -94,6 +94,21 @@ Just create a "bootstrap.js.coffee" file to /app/assets/javascripts/ folder and 
 				domModal.toggle()
 		$ ->
 			$(".btn").button "complete"
+			
+
+## Using simple_form and integrating Twitter Bootstrap
+
+1. First install simple_form gem;
+
+   gem 'simple_form'
+   
+2. Create initializer for simple_form to (/config/initializers/simple_form.rb)
+
+Check this gist;
+
+   https://gist.github.com/1479043
+
+Note: Don't forget to reboot server.
 
 
 ## Using Static CSS, JS (w/o Less)
