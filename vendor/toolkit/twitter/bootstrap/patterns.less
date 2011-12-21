@@ -430,7 +430,9 @@ a.menu:after,
 .pill-content {
 }
 .tab-content > .tab-pane,
-.pill-content > .pill-pane {
+.pill-content > .pill-pane,
+.tab-content > div,
+.pill-content > div {
   display: none;
 }
 .tab-content > .active,
@@ -579,7 +581,7 @@ footer {
 
   // Active and Disabled states
   &.active,
-  :active {
+  &:active {
     @shadow: inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05);
     .box-shadow(@shadow);
   }
@@ -1023,6 +1025,7 @@ input[type=submit].btn {
   white-space: nowrap;
   background-color: @grayLight;
   .border-radius(3px);
+  text-shadow: none;
   &.important { background-color: #c43c35; }
   &.warning   { background-color: @orange; }
   &.success   { background-color: @green; }
