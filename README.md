@@ -188,9 +188,10 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
 Seyhun Akyürek - seyhunak [at] gmail com
 
 [Follow me on Twitter](http://twitter.com/seyhunak "Twitter")
+[Follow me on Google+](http://plus.ly/seyhunak "Google+")
 
 
-## Contributors & Patches
+## Contributors & Patches & Forks
 <ul>
   <li>Daniel Morris</li>
   <li>Bradly Feeley</li>
@@ -199,11 +200,13 @@ Seyhun Akyürek - seyhunak [at] gmail com
   <li>Brandon Keene</li>
   <li>Anthony Corcutt</li>
   <li>Colin Warren</li>
+  <li>Giovanni Cappellotto</li>
+  <li>Masakuni Kato</li>
 </ul>
 
 
 ## Thanks
-Twitter Bootstrap
+Twitter Bootstrap and all twitter-bootstrap-rails contributors
 http://twitter.github.com/bootstrap
 
 
