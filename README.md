@@ -26,7 +26,7 @@ You can run bundle from command line
 You can run following generators to get started with Twitter Bootstrap quickly.
 
 
-1. Install (requires directives to Asset pipeline.)
+Install (requires directives to Asset pipeline.)
 
 
 Usage:
@@ -35,7 +35,7 @@ Usage:
     rails g bootstrap:install
 
 
-2. Layout (generates Twitter Bootstrap compatible layout.)
+Layout (generates Twitter Bootstrap compatible layout.)
 
 
 Usage:
@@ -50,7 +50,7 @@ Example:
     rails g bootstrap:layout application fixed
 
 
-3. Themed (generates Twitter Bootstrap compatible scaffold views.)
+Themed (generates Twitter Bootstrap compatible scaffold views.)
 
 
 Usage:
