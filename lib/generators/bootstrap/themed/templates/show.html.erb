@@ -1,0 +1,5 @@
+<% columns.each do |column| %>
+  <label class="label"><%%= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= column.name %>", :default => t("activerecord.labels.<%= column.name %>", :default => "<%= column.name.humanize %>")) %>:</label>
+  <p><%%= @<%= resource_name %>.<%= column.name %> %></p>
+<%- end -%>
+<%%= link_to "Back", <%= controller_routing_path %>_path  %>

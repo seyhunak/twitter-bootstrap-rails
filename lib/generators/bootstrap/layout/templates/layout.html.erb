@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= app_name %></title>
+  <%%= stylesheet_link_tag    "application" %>
+  <%%= javascript_include_tag "application" %>
+  <%%= csrf_meta_tags %>
+</head>
+<body style="padding-top: 60px">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="<%= container_class %>">
+        <h3><%%= link_to "<%= app_name %>", "/" %></h3>
+        <ul class="nav">
+        <%- (1..3).each do |i| -%>
+          <li><%%= link_to "Link<%= i %>", "/path<%= i %>"  %></li>
+        <%- end -%>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="<%= container_class %>">
+  <%- if layout_type == "fluid" -%>
+    <div class="sidebar">
+      <div class="well">
+        <h5>Sidebar</h5>
+        <ul>
+        <%- (1..3).each do |i| -%>
+          <li><%%= link_to "Link<%= i %>", "/path<%= i %>"  %></li>
+        <%- end -%>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+      <%%= yield %>
+    </div>
+  <%- else -%>
+    <div class="content">
+      <div class="row">
+        <div class="span11">
+          <%%= yield %>
+        </div>
+        <div class="span1">&nbsp;</div>
+        <div class="span4">
+          <h3>Sidebar</h3>
+          <ul>
+          <%- (1..3).each do |i| -%>
+            <li><%%= link_to "Link<%= i %>", "/path<%= i %>"  %></li>
+          <%- end -%>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <%- end -%>
+  </div>
+</body>
+</html>

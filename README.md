@@ -20,17 +20,36 @@ You can run bundle from command line
 
     bundle install
 
-## Installing to App
-Run generator to install Twitter Bootstrap
-You can run generator from command line
+
+## Installing to App (using Generators)
+
+You can run following generators to get started with Twitter Bootstrap quickly.
+
+1. Install (requires directives to Asset pipeline.)
+Usage:
+
+     rails g bootstrap:install
 
 
-    rails g bootstrap:install
+2. Layout (generates Twitter Bootstrap compatible layout.)
+Usage:
 
- Generator;
+     rails g bootstrap:layout [LAYOUT_NAME] [*ﬁxed or ﬂuid] [options]
 
-    Adds bootstrap requires to application.css and application.js.
-    Adds bootstrap boilerplate Less and Coffee files to build with Twitter Bootstrap easily.
+Example:
+
+     rails g bootstrap:layout application fixed
+
+
+3. Themed (generates Twitter Bootstrap compatible scaffold views.)
+Usage:
+
+     rails g bootstrap:themed [RESOURCE_NAME] [LAYOUT] [options]
+
+Example:
+
+     rails g scaffold post title:string description:text
+     rails g bootstrap:themed posts
 
 
 ## Using with Less
@@ -68,10 +87,11 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
     });
 
 
-## Using With Coffeescript
+## Using Coffeescript (optionally)
 
 Using Twitter Bootstrap with the CoffeeScript is easy.
-Just create a "bootstrap.js.coffee" file to /app/assets/javascripts/ folder and put lines below.
+twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
+to /app/assets/javascripts/ folder.
 
 		$ ->
 			$("body > .topbar").scrollSpy()
@@ -94,19 +114,22 @@ Just create a "bootstrap.js.coffee" file to /app/assets/javascripts/ folder and 
 				domModal.toggle()
 		$ ->
 			$(".btn").button "complete"
-			
 
-## Using simple_form and integrating Twitter Bootstrap
 
-1. First install simple_form gem;
+## Using simple_form and integrating Twitter Bootstrap (optionally)
 
-   gem 'simple_form'
-   
-2. Create initializer for simple_form to (/config/initializers/simple_form.rb)
+First, include simple_form in Gemfile;
+
+     gem 'simple_form'
+
+
+Create initializer for simple_form to ("/config/initializers/simple_form.rb")
+
 
 Check this gist;
 
-   https://gist.github.com/1479043
+     https://gist.github.com/1479043
+
 
 Note: Don't forget to reboot server.
 
@@ -126,7 +149,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Asset files updated to latest and removed version numbers</li>
   <li>Implemented Less::Rails Railtie to use with LESS</li>
   <li>Fixed railtie to only initialize Less when installed</li>
-  <li>Created new branch for the static version of Bootstrap (w/o Less) - check static branch</li>
+  <li>New branch for the static version of Bootstrap (w/o Less) - check static branch</li>
   <li>Added path to support heroku deploy</li>
   <li>Rake precompile issue fixed</li>
   <li>Updated asset files to 1.4.0</li>
@@ -134,6 +157,9 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Added generators</li>
   <li>Fixed generators</li>
   <li>Fixed class name conflicts from (bootstrap.js.coffee)</li>
+  <li>Fixed jquery-rails gem version dependency</li>
+  <li>Updated asset files</li>
+  <li>Added new generators (install, layout and themed)</li>
 </ul>
 
 
