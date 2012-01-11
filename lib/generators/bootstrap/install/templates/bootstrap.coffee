@@ -3,6 +3,8 @@ $ ->
 $ ->
   $(".tabs").tabs()
 $ ->
+  $(".pills").pills()
+$ ->
   $("a[rel=twipsy]").twipsy live: true
 $ ->
   $("a[rel=popover]").popover offset: 10
