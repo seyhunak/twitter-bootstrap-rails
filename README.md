@@ -181,6 +181,8 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
 ## Future
 <ul>
   <li>Writing tests (not implemented yet)</li>
+  <li>Markup Helpers (alert, tabs, pagination, breadcrumbs etc.)</li>
+  <li>Compability to Rails 3.2</li>
 </ul>
 
 
@@ -188,6 +190,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
 Seyhun Akyürek - seyhunak [at] gmail com
 
 [Follow me on Twitter](http://twitter.com/seyhunak "Twitter")
+
 [Follow me on Google+](http://plus.ly/seyhunak "Google+")
 
 
