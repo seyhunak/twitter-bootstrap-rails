@@ -49,7 +49,7 @@ Example:
 
     rails g bootstrap:layout application fixed
 
-
+ --- Please dont use themed generator, currently unstable (rewriting) ---
 Themed (generates Twitter Bootstrap compatible scaffold views.)
 
 
