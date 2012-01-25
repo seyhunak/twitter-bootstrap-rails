@@ -1,21 +1,32 @@
 $ ->
-  $("body > .topbar").scrollSpy()
-$ ->
-  $(".tabs").tabs()
-$ ->
-  $(".pills").pills()
-$ ->
-  $("a[rel=twipsy]").twipsy live: true
-$ ->
-  $("a[rel=popover]").popover offset: 10
-$ ->
-  $(".topbar-wrapper").dropdown()
-$ ->
   $(".alert-message").alert()
+
 $ ->
-  domModal = $(".modal").modal(
-    backdrop: true
-    closeOnEscape: true
-  )
-  $(".open-modal").click ->
-    domModal.toggle()  
+  $(".tabs").button()
+
+$ ->
+  $(".carousel").carousel()
+
+$ ->
+  $(".collapse").collapse()
+
+$ ->
+  $(".dropdown-toggle").dropdown()
+
+$ ->
+  $("#myModal").modal options
+
+$ ->
+  $("#example").popover options
+
+$ ->
+  $("#navbar").scrollspy()
+
+$ ->
+  $("#myTab").tab "show"
+
+$ ->
+  $("#example").tooltip options
+
+$ ->
+  $(".typeahead").typeahead()
