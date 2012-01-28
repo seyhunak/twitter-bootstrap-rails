@@ -1,6 +1,10 @@
 <% columns.each do |column| %>
-    <%%= f.label :<%= column.name %>, t("activerecord.attributes.<%= model_name.underscore %>.<%= column.name %>", :default => "<%= column.name.humanize %>"), :class => :label %>
+<div class="clearfix">
+   <%%= f.label :<%= column.name %>, t("activerecord.attributes.<%= model_name.underscore %>.<%= column.name %>", :default => "<%= column.name.humanize %>"), :class => :label %>
+  <div class="input">
     <%%= f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>' %>
+  </div>
+</div>
 <%- end -%>
 <div class="actions">
   <button class="btn primary" type="submit">Save</button> or

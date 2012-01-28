@@ -1,9 +1,8 @@
-# Twitter Bootstrap for Rails 3.1 Asset Pipeline
-Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites.
-It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
+# Twitter Bootstrap for Rails 3.2 Asset Pipeline
+Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 
-twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline
+twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.2 Asset Pipeline
 
 
 ## Installing Gem
@@ -49,9 +48,7 @@ Example:
 
     rails g bootstrap:layout application fixed
 
- --- Please dont use themed generator, currently unstable (rewriting) ---
- 
- 
+
 Themed (generates Twitter Bootstrap compatible scaffold views.)
 
 
@@ -59,14 +56,14 @@ Usage:
 
 
     rails g bootstrap:themed [RESOURCE_NAME] [LAYOUT] [options]
-     
+
 
 Example:
 
 
     rails g scaffold post title:string description:text
     rails g bootstrap:themed posts
-     
+
 
 
 ## Using with Less
@@ -110,45 +107,28 @@ Using Twitter Bootstrap with the CoffeeScript is easy.
 twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
 
-		$ ->
-			$("body > .topbar").scrollSpy()
-		$ ->
-			$(".tabs").tabs()
-		$ ->
-			$("a[rel=twipsy]").twipsy live: true
-		$ ->
-			$("a[rel=popover]").popover offset: 10
-		$ ->
-			$(".topbar-wrapper").dropdown()
-		$ ->
-			$(".alert-message").alert()
-		$ ->
-			domModal = $(".modal").modal(
-				backdrop: true
-				closeOnEscape: true
-			)
-			$(".open-modal").click ->
-				domModal.toggle()
-		$ ->
-			$(".btn").button "complete"
-
-
-## Using simple_form and integrating Twitter Bootstrap (optionally)
-
-First, include simple_form in Gemfile;
-
-     gem 'simple_form'
-
-
-Create initializer for simple_form to ("/config/initializers/simple_form.rb")
-
-
-Check this gist;
-
-     https://gist.github.com/1479043
-
-
-Note: Don't forget to reboot server.
+    $ ->
+      $(".alert-message").alert()
+    $ ->
+      $(".tabs").button()
+    $ ->
+      $(".carousel").carousel()
+    $ ->
+      $(".collapse").collapse()
+    $ ->
+      $(".dropdown-toggle").dropdown()
+    $ ->
+      $("#myModal").modal options
+    $ ->
+      $("#example").popover options
+    $ ->
+      $("#navbar").scrollspy()
+    $ ->
+      $("#myTab").tab "show"
+    $ ->
+      $("#example").tooltip options
+    $ ->
+      $(".typeahead").typeahead()
 
 
 ## Using Static CSS, JS (w/o Less)
@@ -177,6 +157,8 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Fixed jquery-rails gem version dependency</li>
   <li>Updated asset files</li>
   <li>Added new generators (install, layout and themed)</li>
+  <li>Compability to Rails 3.2</li>
+  <li>Transitioning to 2.0</li>
 </ul>
 
 
@@ -184,7 +166,6 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
 <ul>
   <li>Writing tests (not implemented yet)</li>
   <li>Markup Helpers (alert, tabs, pagination, breadcrumbs etc.)</li>
-  <li>Compability to Rails 3.2</li>
 </ul>
 
 
@@ -192,22 +173,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
 Seyhun Akyürek - seyhunak [at] gmail com
 
 [Follow me on Twitter](http://twitter.com/seyhunak "Twitter")
-
 [Follow me on Google+](http://plus.ly/seyhunak "Google+")
-
-
-## Contributors & Patches & Forks
-<ul>
-  <li>Daniel Morris</li>
-  <li>Bradly Feeley</li>
-  <li>Guilherme Moreira</li>
-  <li>Alex Behar</li>
-  <li>Brandon Keene</li>
-  <li>Anthony Corcutt</li>
-  <li>Colin Warren</li>
-  <li>Giovanni Cappellotto</li>
-  <li>Masakuni Kato</li>
-</ul>
 
 
 ## Thanks

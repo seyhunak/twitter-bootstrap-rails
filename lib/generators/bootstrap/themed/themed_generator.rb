@@ -15,21 +15,6 @@ module Bootstrap
         initialize_views_variables
       end
 
-      def copy_form_builder
-        copy_file "builders/builder.rb", "app/form_builders/bootstrap_form_builder.rb"
-      end
-
-      def copy_helper
-       if File.exist?('app/helpers/application_helper.rb')
-	      insert_into_file "app/helpers/application_helper.rb","  def bootstrap_form_for(object, options = {}, &block)
-    options[:builder] = BootstrapFormBuilder
-    form_for(object, options, &block)
-  end\n", :after => "module ApplicationHelper\n"
-	      else
-	      copy_file "builders/helper.rb", "app/helpers/application_helper.rb"
-	      end
-  	  end
-
   	  def copy_views
         generate_views
         gsub_file(File.join('app/views/layouts', "#{layout}.html.erb"), /\<ul\s+class=\"nav\">.*\<\/ul\>/mi) do |match|
