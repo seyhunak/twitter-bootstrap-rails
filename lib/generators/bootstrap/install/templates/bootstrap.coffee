@@ -9,14 +9,14 @@ $ ->
 $ ->
   $(".dropdown-toggle").dropdown()
 $ ->
-  $("#myModal").modal options
+  $(".modal").modal
 $ ->
-  $("#example").popover options
+  $("a[rel]").popover
 $ ->
-  $("#navbar").scrollspy()
+  $(".navbar").scrollspy()
 $ ->
-  $("#myTab").tab "show"
+  $(".tab").tab "show"
 $ ->
-  $("#example").tooltip options
+  $(".tooltip").tooltip
 $ ->
   $(".typeahead").typeahead()  
