@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Seyhun Akyurek"]
   s.email       = ["seyhunak@gmail.com"]
   s.homepage    = "https://github.com/seyhunak/twitter-bootstrap-rails"
-  s.summary     = %q{Bootstrap CSS toolkit for Rails 3.2 Asset Pipeline}
-  s.description = %q{twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.2 Asset Pipeline}
+  s.summary     = %q{Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline}
+  s.description = %q{twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline}
 
   s.rubyforge_project = "twitter-bootstrap-rails"
   s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + ["Rakefile", "README.md"]
@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency             'railties',   '>= 3.2.1'
-  s.add_dependency             'actionpack', '>= 3.2.1'
+  s.add_dependency             'railties',   '>= 3.1'
+  s.add_dependency             'actionpack', '>= 3.1'
   s.add_runtime_dependency     'less-rails', '~> 2.1.2'
-  s.add_development_dependency 'rails', '>= 3.2.1'
+  s.add_development_dependency 'rails', '>= 3.1'
 end
