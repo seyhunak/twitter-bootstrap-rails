@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Seyhun Akyurek"]
   s.email       = ["seyhunak@gmail.com"]
   s.homepage    = "https://github.com/seyhunak/twitter-bootstrap-rails"
-  s.summary     = %q{Bootstrap CSS toolkit for Rails 3.2 Asset Pipeline}
-  s.description = %q{twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.2 Asset Pipeline}
+  s.summary     = %q{Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline}
+  s.description = %q{twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline}
 
   s.rubyforge_project = "twitter-bootstrap-rails"
   s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + ["Rakefile", "README.md"]
