@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency             'railties',   '>= 3.2.1'
-  s.add_dependency             'actionpack', '>= 3.2.1'
+  s.add_dependency             'railties',   '>= 3.1'
+  s.add_dependency             'actionpack', '>= 3.1'
   s.add_runtime_dependency     'less-rails', '~> 2.1.2'
-  s.add_development_dependency 'rails', '>= 3.2.1'
+  s.add_development_dependency 'rails', '>= 3.1'
 end
