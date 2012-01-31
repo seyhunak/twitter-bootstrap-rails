@@ -34,7 +34,7 @@ Usage:
     rails g bootstrap:install
 
 
-Layout (generates Twitter Bootstrap compatible layout.)
+Layout (generates Twitter Bootstrap compatible layout.) - (Slim supported)
 
 
 Usage:
@@ -173,6 +173,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Colin Warren</li>
   <li>Giovanni Cappellotto</li>
   <li>Masakuni Kato</li>
+  <li>Gudleik Rasch</li>
 </ul>
 
 
