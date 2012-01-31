@@ -16,7 +16,7 @@ module Bootstrap
         @app_name = app.class.to_s.split("::").first
         @container_class = layout_type == "fluid" ? "container-fluid" : "container"
         ext = app.config.generators.options[:rails][:template_engine] || :erb
-        template "layout.html.erb", "app/views/layouts/#{layout_name}.html.erb"
+        template "layout.html.#{ext}", "app/views/layouts/#{layout_name}.html.#{ext}"
       end
     end
   end
