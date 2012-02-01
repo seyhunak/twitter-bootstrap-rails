@@ -9,7 +9,7 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 A
 
 Include Bootstrap in Gemfile;
 
-    gem 'twitter-bootstrap-rails'
+    gem 'twitter-bootstrap-rails', :group => :assets
 
 or you can install from latest build;
 
