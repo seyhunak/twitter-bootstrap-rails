@@ -1,6 +1,13 @@
 // MODALS
 // ------
 
+.modal-open {
+  .dropdown-menu {  z-index: @zindexDropdown + @zindexModal; }
+  .dropdown.open { *z-index: @zindexDropdown + @zindexModal; }
+  .popover       {  z-index: @zindexPopover  + @zindexModal; }
+  .tooltip       {  z-index: @zindexTooltip  + @zindexModal; }
+}
+
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -41,7 +48,7 @@
   &.fade.in { top: 50%; }
 }
 .modal-header {
-  padding: 5px 15px;
+  padding: 9px 15px;
   border-bottom: 1px solid #eee;
   // Close icon
   .close { margin-top: 2px; }
@@ -60,6 +67,6 @@
   .btn {
     float: right;
     margin-left: 5px;
-    margin-bottom: 0; // account for input[type=submit] which gets the bottom margin like all other inputs
+    margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
   }
 }
