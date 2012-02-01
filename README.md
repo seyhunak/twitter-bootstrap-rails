@@ -34,7 +34,7 @@ Usage:
     rails g bootstrap:install
 
 
-Layout (generates Twitter Bootstrap compatible layout.) - (Slim supported)
+Layout (generates Twitter Bootstrap compatible layout.) - (Haml and Slim supported)
 
 
 Usage:
@@ -49,7 +49,7 @@ Example:
     rails g bootstrap:layout application fixed
 
 
-Themed (generates Twitter Bootstrap compatible scaffold views.)
+Themed (generates Twitter Bootstrap compatible scaffold views.) - (Haml supported)
 
 
 Usage:

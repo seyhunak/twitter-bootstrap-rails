@@ -1,0 +1,41 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %title= content_for?(:title) ? yield(:title) : "<%= app_name %>"
+    = javascript_include_tag "application"
+    = stylesheet_link_tag    "application"
+    = csrf_meta_tags
+
+  %body
+    .navbar
+      .navbar-inner
+        .<%= container_class %>
+          %h3= link_to "<%= app_name %>", root_path, :class => "brand"
+          %ul.nav
+            %li= link_to "Link 1", "/path1"
+            %li= link_to "Link 2", "/path2"
+            %li= link_to "Link 3", "/path3"
+
+    .<%= container_class %>
+    <%- if layout_type == "fluid" -%>
+      .sidebar
+        .well
+          %h5 Sidebar
+          %ul
+            %li= link_to "Link 1", "/path1"
+            %li= link_to "Link 2", "/path2"
+            %li= link_to "Link 3", "/path3"
+      .content= yield
+    <% else %>
+      .content
+        .row
+          .span11= yield
+          .span1 &nbsp;
+          .span4
+            %h3 Sidebar
+            %ul
+              %li= link_to "Link 1", "/path1"
+              %li= link_to "Link 2", "/path2"
+              %li= link_to "Link 3", "/path3"
+    <% end %>
