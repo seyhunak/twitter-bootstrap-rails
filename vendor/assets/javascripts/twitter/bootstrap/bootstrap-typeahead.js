@@ -24,8 +24,11 @@
   var Typeahead = function ( element, options ) {
     this.$element = $(element)
     this.options = $.extend({}, $.fn.typeahead.defaults, options)
+    this.matcher = this.options.matcher || this.matcher
+    this.sorter = this.options.sorter || this.sorter
+    this.highlighter = this.options.highlighter || this.highlighter
     this.$menu = $(this.options.menu).appendTo('body')
-    this.data = this.options.data
+    this.source = this.options.source
     this.shown = false
     this.listen()
   }
@@ -33,11 +36,6 @@
   Typeahead.prototype = {
 
     constructor: Typeahead
-
-  , matcher: function (item, query) {
-      // ;_; http://jsperf.com/asdfdfasdfa
-      return ~item.toLowerCase().indexOf(query)
-    }
 
   , select: function () {
       var val = this.$menu.find('.active').attr('data-value')
@@ -77,11 +75,11 @@
         return this.shown ? this.hide() : this
       }
 
-      q = this.query.toLowerCase()
-
-      items = this.data.filter(function (item) {
-        if (that.matcher(item, q)) return item
+      items = $.grep(this.source, function (item) {
+        if (that.matcher(item)) return item
       })
+
+      items = this.sorter(items)
 
       if (!items.length) {
         return this.shown ? this.hide() : this
@@ -90,17 +88,37 @@
       return this.render(items.slice(0, this.options.items)).show()
     }
 
+  , matcher: function (item) {
+      return ~item.toLowerCase().indexOf(this.query.toLowerCase())
+    }
+
+  , sorter: function (items) {
+      var beginswith = []
+        , caseSensitive = []
+        , caseInsensitive = []
+        , item
+
+      while (item = items.shift()) {
+        if (!item.toLowerCase().indexOf(this.query.toLowerCase())) beginswith.push(item)
+        else if (~item.indexOf(this.query)) caseSensitive.push(item)
+        else caseInsensitive.push(item)
+      }
+
+      return beginswith.concat(caseSensitive, caseInsensitive)
+    }
+
+  , highlighter: function (item) {
+      return item.replace(new RegExp('(' + this.query + ')', 'ig'), function ($1, match) {
+        return '<strong>' + match + '</strong>'
+      })
+    }
+
   , render: function (items) {
       var that = this
-        , QUERY = new RegExp('(' + this.query + ')', 'ig')
 
       items = $(items).map(function (i, item) {
         i = $(that.options.item).attr('data-value', item)
-
-        i.find('a').html(item.replace(QUERY, function ($1, match) {
-          return '<strong>' + match + '</strong>'
-        }))
-
+        i.find('a').html(that.highlighter(item))
         return i[0]
       })
 
@@ -157,6 +175,7 @@
 
         case 9: // tab
         case 13: // enter
+          if (!this.shown) return
           this.select()
           break
 
@@ -172,6 +191,7 @@
 
   , keypress: function (e) {
       e.stopPropagation()
+      if (!this.shown) return
 
       switch(e.keyCode) {
         case 9: // tab
@@ -181,13 +201,11 @@
           break
 
         case 38: // up arrow
-          if (!this.shown) return
           e.preventDefault()
           this.prev()
           break
 
         case 40: // down arrow
-          if (!this.shown) return
           e.preventDefault()
           this.next()
           break
@@ -229,7 +247,8 @@
   }
 
   $.fn.typeahead.defaults = {
-    items: 8
+    source: []
+  , items: 8
   , menu: '<ul class="typeahead dropdown-menu"></ul>'
   , item: '<li><a href="#"></a></li>'
   }
