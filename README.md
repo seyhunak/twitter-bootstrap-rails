@@ -11,6 +11,10 @@ Include Bootstrap in Gemfile;
 
     gem 'twitter-bootstrap-rails', :group => :assets
 
+Include Bootstrap in Gemfile (latest release)
+
+    gem "twitter-bootstrap-rails", "~> 2.0rc0", :group => :assets
+
 or you can install from latest build;
 
     gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
