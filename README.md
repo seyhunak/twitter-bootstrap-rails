@@ -113,7 +113,7 @@ twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
 
     $ ->
-      $(".alert-message").alert()
+      $(".alert").alert()
     $ ->
       $(".tabs").button()
     $ ->

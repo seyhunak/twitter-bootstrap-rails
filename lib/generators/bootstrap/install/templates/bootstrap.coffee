@@ -1,5 +1,5 @@
 $ ->
-  $(".alert-message").alert()
+  $(".alert").alert()
 $ ->
   $(".tabs").button()
 $ ->
