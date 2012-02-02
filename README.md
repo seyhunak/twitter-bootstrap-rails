@@ -53,7 +53,7 @@ Example:
     rails g bootstrap:layout application fixed
 
 
-Themed (generates Twitter Bootstrap compatible scaffold views.) - (Haml supported)
+Themed (generates Twitter Bootstrap compatible scaffold views.) - (Haml and Slim supported)
 
 
 Usage:

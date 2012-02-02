@@ -1,0 +1,11 @@
+<%- columns.each do |column| -%>
+.clearfix
+  = f.label :<%= column.name %>, t("activerecord.attributes.<%= model_name.underscore %>.<%= column.name %>", :default => "<%= column.name.humanize %>"), :class => :label
+  .input
+    = f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>'
+<%- end -%>
+
+.actions
+  button class="btn primary" type="submit" Save
+  | or
+  = link_to "Cancel", <%= controller_routing_path %>_path
