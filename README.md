@@ -9,7 +9,11 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 A
 
 Include Bootstrap in Gemfile;
 
-    gem 'twitter-bootstrap-rails'
+    gem 'twitter-bootstrap-rails', :group => :assets
+
+Include Bootstrap in Gemfile (latest release)
+
+    gem "twitter-bootstrap-rails", "~> 2.0rc0", :group => :assets
 
 or you can install from latest build;
 
@@ -62,6 +66,7 @@ Example:
 
 
     rails g scaffold post title:string description:text
+    rake db:migrate
     rails g bootstrap:themed posts
 
 
@@ -108,7 +113,7 @@ twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
 
     $ ->
-      $(".alert-message").alert()
+      $(".alert").alert()
     $ ->
       $(".tabs").button()
     $ ->
@@ -118,15 +123,15 @@ to /app/assets/javascripts/ folder.
     $ ->
       $(".dropdown-toggle").dropdown()
     $ ->
-      $("#myModal").modal options
+      $(".modal").modal
     $ ->
-      $("#example").popover options
+      $("a[rel]").popover
     $ ->
-      $("#navbar").scrollspy()
+      $(".navbar").scrollspy()
     $ ->
-      $("#myTab").tab "show"
+      $(".tab").tab "show"
     $ ->
-      $("#example").tooltip options
+      $(".tooltip").tooltip
     $ ->
       $(".typeahead").typeahead()
 
@@ -159,6 +164,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Added new generators (install, layout and themed)</li>
   <li>Compability to Rails 3.2</li>
   <li>Transitioning to 2.0</li>
+  <li>Released gem v.2.0rc0</li>
 </ul>
 
 

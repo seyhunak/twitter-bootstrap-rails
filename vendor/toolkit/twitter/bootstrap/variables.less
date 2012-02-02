@@ -30,22 +30,14 @@
 @pink:                  #c3325f;
 @purple:                #7a43b6;
 
-// Grid system
-// Modify the grid styles in mixins.less
-@gridColumns:           12;
-@gridColumnWidth:       60px;
-@gridGutterWidth:       20px;
-@siteWidth:             (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
-// Fluid width sidebar
-@fluidSidebarWidth:     220px;
-
 // Typography
 @baseFontSize:          13px;
 @baseFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
 @baseLineHeight:        18px;
+@textColor:             @grayDark;
 
 // Buttons
-@primaryButtonColor:    @blue;
+@primaryButtonBackground:    @linkColor;
 
 
 
@@ -70,21 +62,38 @@
 @navbarBackground:                @grayDarker;
 @navbarBackgroundHighlight:       @grayDark;
 
+@navbarText:                      @grayLight;
+@navbarLinkColor:                 @grayLight;
+@navbarLinkColorHover:            @white;
+
 // Form states and alerts
 @warningText:             #c09853;
 @warningBackground:       #fcf8e3;
-@warningBorder:           #f3edd2;
+@warningBorder:           darken(spin(@warningBackground, -10), 3%);
 
 @errorText:               #b94a48;
 @errorBackground:         #f2dede;
-@errorBorder:             #e9c7c7;
+@errorBorder:             darken(spin(@errorBackground, -10), 3%);
 
 @successText:             #468847;
 @successBackground:       #dff0d8;
-@successBorder:           #cfe8c4;
+@successBorder:           darken(spin(@successBackground, -10), 5%);
 
 @infoText:                #3a87ad;
 @infoBackground:          #d9edf7;
-@infoBorder:              #bfe1f2;
+@infoBorder:              darken(spin(@infoBackground, -10), 7%);
 
 
+
+// GRID
+// --------------------------------------------------
+
+// Default 940px grid
+@gridColumns:             12;
+@gridColumnWidth:         60px;
+@gridGutterWidth:         20px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+// Fluid grid
+@fluidGridColumnWidth:    6.382978723%;
+@fluidGridGutterWidth:    2.127659574%;
