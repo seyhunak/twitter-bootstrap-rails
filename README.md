@@ -119,15 +119,15 @@ to /app/assets/javascripts/ folder.
     $ ->
       $(".dropdown-toggle").dropdown()
     $ ->
-      $("#myModal").modal options
+      $(".modal").modal
     $ ->
-      $("#example").popover options
+      $("a[rel]").popover
     $ ->
-      $("#navbar").scrollspy()
+      $(".navbar").scrollspy()
     $ ->
-      $("#myTab").tab "show"
+      $(".tab").tab "show"
     $ ->
-      $("#example").tooltip options
+      $(".tooltip").tooltip
     $ ->
       $(".typeahead").typeahead()
 
@@ -160,6 +160,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Added new generators (install, layout and themed)</li>
   <li>Compability to Rails 3.2</li>
   <li>Transitioning to 2.0</li>
+  <li>Released gem v.2.0rc0</li>
 </ul>
 
 
