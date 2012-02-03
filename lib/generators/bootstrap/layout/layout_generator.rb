@@ -2,7 +2,7 @@ require 'rails/generators'
 
 module Bootstrap
   module Generators
-    class LayoutGenerator < Rails::Generators::Base
+    class LayoutGenerator < ::Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator creates layout file with navigation."
       argument :layout_name, :type => :string, :default => "application"
@@ -12,7 +12,7 @@ module Bootstrap
       attr_reader :app_name, :container_class
 
       def generate_layout
-        app = Rails.application
+        app = ::Rails.application
         @app_name = app.class.to_s.split("::").first
         @container_class = layout_type == "fluid" ? "container-fluid" : "container"
         ext = app.config.generators.options[:rails][:template_engine] || :erb
