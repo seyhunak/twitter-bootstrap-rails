@@ -3,7 +3,7 @@ require 'rails/generators/generated_attribute'
 
 module Bootstrap
   module Generators
-    class ThemedGenerator < Rails::Generators::Base
+    class ThemedGenerator < ::Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
       argument :controller_path,    :type => :string
       argument :model_name,         :type => :string, :required => false
@@ -61,9 +61,9 @@ module Bootstrap
       def columns
         begin
           excluded_column_names = %w[id created_at updated_at]
-          Kernel.const_get(@model_name).columns.reject{|c| excluded_column_names.include?(c.name) }.collect{|c| Rails::Generators::GeneratedAttribute.new(c.name, c.type)}
+          Kernel.const_get(@model_name).columns.reject{|c| excluded_column_names.include?(c.name) }.collect{|c| ::Rails::Generators::GeneratedAttribute.new(c.name, c.type)}
         rescue NoMethodError
-          Kernel.const_get(@model_name).fields.collect{|c| c[1]}.reject{|c| excluded_column_names.include?(c.name) }.collect{|c| Rails::Generators::GeneratedAttribute.new(c.name, c.type.to_s)}
+          Kernel.const_get(@model_name).fields.collect{|c| c[1]}.reject{|c| excluded_column_names.include?(c.name) }.collect{|c| ::Rails::Generators::GeneratedAttribute.new(c.name, c.type.to_s)}
         end
       end
 
@@ -94,7 +94,7 @@ module Bootstrap
       end
 
       def ext
-        Rails.application.config.generators.options[:rails][:template_engine] || :erb
+        ::Rails.application.config.generators.options[:rails][:template_engine] || :erb
       end
 
     end
