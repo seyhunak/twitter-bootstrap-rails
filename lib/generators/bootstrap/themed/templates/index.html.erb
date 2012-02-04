@@ -1,5 +1,5 @@
 <h1><%= resource_name.titleize %>s</h1>
-<table class="zebra-striped">
+<table class="table table-striped">
  <thead>
   <tr>
     <th>ID</th>
@@ -31,4 +31,4 @@
    </tbody>
 </table>
 
-<%%= link_to "New", new_<%= singular_controller_routing_path %>_path, :class => 'btn primary' %>
+<%%= link_to "New", new_<%= singular_controller_routing_path %>_path, :class => 'btn btn-primary' %>

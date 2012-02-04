@@ -11,10 +11,6 @@ Include Bootstrap in Gemfile;
 
     gem 'twitter-bootstrap-rails', :group => :assets
 
-Include Bootstrap in Gemfile (latest release)
-
-    gem "twitter-bootstrap-rails", "~> 2.0rc0", :group => :assets
-
 or you can install from latest build;
 
     gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
@@ -38,13 +34,13 @@ Usage:
     rails g bootstrap:install
 
 
-Layout (generates Twitter Bootstrap compatible layout.) - (Haml and Slim supported)
+Layout (generates Twitter Bootstrap compatible layout with flash messages) - (Haml and Slim supported)
 
 
 Usage:
 
 
-    rails g bootstrap:layout [LAYOUT_NAME] [*ﬁxed or ﬂuid] [options]
+    rails g bootstrap:layout [LAYOUT_NAME] [*ﬁxed or ﬂuid]
 
 
 Example:
@@ -59,7 +55,7 @@ Themed (generates Twitter Bootstrap compatible scaffold views.) - (Haml and Slim
 Usage:
 
 
-    rails g bootstrap:themed [RESOURCE_NAME] [LAYOUT] [options]
+    rails g bootstrap:themed [RESOURCE_NAME]
 
 
 Example:
@@ -87,12 +83,14 @@ You have to require Bootstrap LESS (bootstrap.less) in your application.css
 
 
 Now, you can override LESS files provided by Twitter Bootstrap
+Also, you can import additional files (.ie responsive)
 
-     @import "twitter/bootstrap";
+    @import "twitter/bootstrap";
 
-     // Baseline grid
-     @basefont:          13px;
-     @baseline:          18px;
+    // import responsive layout
+    @import "twitter/bootstrap/responsive";
+
+    // Your custom stylesheets goes here (override Less here)
 
 
 ## Using Javascripts
@@ -112,27 +110,17 @@ Using Twitter Bootstrap with the CoffeeScript is easy.
 twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
 
-    $ ->
-      $(".alert").alert()
-    $ ->
+    jQuery ->
+      $(".alert-message").alert()
       $(".tabs").button()
-    $ ->
       $(".carousel").carousel()
-    $ ->
       $(".collapse").collapse()
-    $ ->
       $(".dropdown-toggle").dropdown()
-    $ ->
-      $(".modal").modal
-    $ ->
-      $("a[rel]").popover
-    $ ->
+      $(".modal").modal()
+      $("a[rel]").popover()
       $(".navbar").scrollspy()
-    $ ->
       $(".tab").tab "show"
-    $ ->
-      $(".tooltip").tooltip
-    $ ->
+      $(".tooltip").tooltip()
       $(".typeahead").typeahead()
 
 
@@ -166,6 +154,8 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Transitioning to 2.0</li>
   <li>Released gem v.2.0rc0</li>
   <li>Added Haml and Slim support</li>
+  <li>Added Twitter Bootstrap compatible flash messages</li>
+  <li>Fixes and release 2.0.0</li>
 </ul>
 
 

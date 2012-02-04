@@ -17,12 +17,6 @@ module Bootstrap
 
       def copy_views
         generate_views
-        if ext == :erb
-          gsub_file(File.join('app/views/layouts', "#{layout}.html.erb"), /\<ul\s+class=\"nav\">.*\<\/ul\>/mi) do |match|
-            match.gsub!(/\<\/ul\>/, "")
-            %|#{match} <li class="<%= controller.controller_path == '#{@controller_file_path}' ? 'active' : '' %>"><a href="<%= #{controller_routing_path}_path %>">#{plural_model_name}</a></li></ul>|
-          end
-        end
       end
 
       protected

@@ -1,5 +1,5 @@
 %h1 <%= resource_name.titleize %>s
-%table{:class => "zebra-striped"}
+%table{:class => "table table-striped"}
   %thead
     %tr
       %th ID
@@ -22,4 +22,4 @@
           = link_to "Edit", edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>)
           = link_to "Destroy", <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
 
-= link_to "New", new_<%= singular_controller_routing_path %>_path, :class => 'btn primary'
+= link_to "New", new_<%= singular_controller_routing_path %>_path, :class => 'btn btn-primary'

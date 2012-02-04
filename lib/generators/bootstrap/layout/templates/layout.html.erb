@@ -11,7 +11,7 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <%%= stylesheet_link_tag    "application" %>
+    <%%= stylesheet_link_tag    "application", :media => "all" %>
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -64,6 +64,14 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
+          <%% [:notice, :error, :alert].each do |level| %>
+            <%% unless flash[level].blank? %>
+              <div data-alert="alert" class="alert alert-<%%= flash_class(level) %> fade in">
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                <%= content_tag :p, flash[level] %>
+              </div>
+            <%% end %>
+          <%% end %>
           <%%= yield %>
         </div>
       </div><!--/row-->
@@ -71,7 +79,15 @@
         <div class="content">
           <div class="row">
             <div class="span9">
-              <%%= yield %>
+            <%% [:notice, :error, :alert].each do |level| %>
+            <%% unless flash[level].blank? %>
+             <div data-alert="alert" class="alert alert-<%%= flash_class(level) %> fade in">
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                <%%= content_tag :p, flash[level] %>
+              </div>
+              <%% end %>
+            <%% end %>
+            <%%= yield %>
             </div>
             <div class="span1">&nbsp;</div>
             <div class="span3">

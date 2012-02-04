@@ -5,7 +5,7 @@
     = f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>'
 <%- end -%>
 
-.actions
+.form-actions
   button class="btn primary" type="submit" Save
   | or
   = link_to "Cancel", <%= controller_routing_path %>_path
