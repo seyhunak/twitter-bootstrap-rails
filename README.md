@@ -155,6 +155,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Released gem v.2.0rc0</li>
   <li>Added Haml and Slim support</li>
   <li>Added Twitter Bootstrap compatible flash messages</li>
+  <li>Added Responsive layout support</li>
   <li>Fixes and release 2.0.0</li>
 </ul>
 
