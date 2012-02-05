@@ -20,6 +20,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency             'railties',   '>= 3.1'
   s.add_dependency             'actionpack', '>= 3.1'
-  s.add_runtime_dependency     'less-rails', '~> 2.1.2'
+  s.add_runtime_dependency     'less-rails', '~> 2.1.5'
   s.add_development_dependency 'rails', '>= 3.1'
 end
