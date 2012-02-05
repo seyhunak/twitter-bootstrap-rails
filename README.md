@@ -76,7 +76,7 @@ Bootstrap was built with Preboot, an open-source pack of mixins and variables to
 You have to require Bootstrap LESS (bootstrap.less) in your application.css
 
     /*
-     *= require twitter/bootstrap
+     *= require bootstrap
     */
 
     /* Your stylesheets goes here... */
