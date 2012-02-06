@@ -5,8 +5,9 @@ jQuery ->
   $(".collapse").collapse()
   $(".dropdown-toggle").dropdown()
   $(".modal").modal()
-  $("a[rel]").popover()
+  $("a[rel=popover]").popover()
   $(".navbar").scrollspy()
   $(".tab").tab "show"
   $(".tooltip").tooltip()
-  $(".typeahead").typeahead() 
+  $(".typeahead").typeahead()
+  $("a[rel=tooltip]").tooltip()
