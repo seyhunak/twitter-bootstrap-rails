@@ -64,14 +64,6 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
-          <%% [:notice, :error, :alert].each do |level| %>
-            <%% unless flash[level].blank? %>
-              <div data-alert="alert" class="alert alert-<%%= flash_class(level) %> fade in">
-                <a class="close" data-dismiss="alert" href="#">&times;</a>
-                <%%= content_tag :p, flash[level] %>
-              </div>
-            <%% end %>
-          <%% end %>
           <%%= yield %>
         </div>
       </div><!--/row-->
@@ -79,14 +71,6 @@
         <div class="content">
           <div class="row">
             <div class="span9">
-            <%% [:notice, :error, :alert].each do |level| %>
-            <%% unless flash[level].blank? %>
-             <div data-alert="alert" class="alert alert-<%%= flash_class(level) %> fade in">
-                <a class="close" data-dismiss="alert" href="#">&times;</a>
-                <%%= content_tag :p, flash[level] %>
-              </div>
-              <%% end %>
-            <%% end %>
             <%%= yield %>
             </div>
             <div class="span1">&nbsp;</div>

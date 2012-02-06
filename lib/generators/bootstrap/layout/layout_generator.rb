@@ -11,16 +11,6 @@ module Bootstrap
 
       attr_reader :app_name, :container_class
 
-      def add_helper
-       if File.exists?(::Rails.root.join("app/helpers/application_helper.rb"))
-          say "Bootstrap helpers installs to application_helper..."
-          insert_into_file "app/helpers/application_helper.rb",
-          "  def flash_class(level)\n  case level\n  when :notice then 'info'\n  when :error then 'error'\n  when :alert then 'warning'\n  end\n  end\n", :after => "module ApplicationHelper\n"
-       else
-          say "Already installed"
-       end
-      end
-
       def generate_layout
         app = ::Rails.application
         @app_name = app.class.to_s.split("::").first

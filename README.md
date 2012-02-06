@@ -10,7 +10,7 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 A
 
 Include Bootstrap in Gemfile;
 
-    gem 'twitter-bootstrap-rails', :group => :assets
+    gem 'twitter-bootstrap-rails'
 
 or you can install from latest build;
 
@@ -35,7 +35,7 @@ Usage:
     rails g bootstrap:install
 
 
-Layout (generates Twitter Bootstrap compatible layout with flash messages) - (Haml and Slim supported)
+Layout (generates Twitter Bootstrap compatible layout) - (Haml and Slim supported)
 
 
 Usage:
@@ -155,7 +155,6 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Transitioning to 2.0</li>
   <li>Released gem v.2.0rc0</li>
   <li>Added Haml and Slim support</li>
-  <li>Added Twitter Bootstrap compatible flash messages</li>
   <li>Added Responsive layout support</li>
   <li>Fixes and release 2.0.0</li>
 </ul>
@@ -188,6 +187,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
 Seyhun Akyürek - seyhunak [at] gmail com
 
 [Follow me on Twitter](http://twitter.com/seyhunak "Twitter")
+
 [Follow me on Google+](http://plus.ly/seyhunak "Google+")
 
 
