@@ -51,25 +51,21 @@
               %li= link_to "Link 2", "/path2"
               %li= link_to "Link 3", "/path3"
         .span9
-        <% [:notice, :error, :alert].each do |level| %>
-          <% unless flash[level].blank? %>
-          .alert.fade.in{:class => "alert-<%= flash_class(level) %>", "data-alert" => "alert"}
-            %a.close{"data-dismiss" => "alert", :href => "#"} ×
-            <%= content_tag :p, flash[level] %>
-          <% end %>
-          <% end %>
+          - [:notice, :error, :alert].each do |level|
+            - unless flash[level].blank?
+              .alert.fade.in{:class => "alert-<%= '#{flash_class(level)}' %>", "data-alert" => "alert"}
+                %a.close{"data-dismiss" => "alert", :href => "#"} ×
+                = content_tag :p, flash[level]
           = yield
     <% else %>
       .content
         .row
           .span9
-          <% [:notice, :error, :alert].each do |level| %>
-            <% unless flash[level].blank? %>
-            .alert.fade.in{:class => "alert-<%= flash_class(level) %>", "data-alert" => "alert"}
-            %a.close{"data-dismiss" => "alert", :href => "#"} ×
-            <%= content_tag :p, flash[level] %>
-            <% end %>
-          <% end %>
+            - [:notice, :error, :alert].each do |level|
+              - unless flash[level].blank?
+                .alert.fade.in{:class => "alert-<%= '#{flash_class(level)}' %>", "data-alert" => "alert"}
+                  %a.close{"data-dismiss" => "alert", :href => "#"} ×
+                  = content_tag :p, flash[level]
             = yield
           .span1 &nbsp;
           .span3
