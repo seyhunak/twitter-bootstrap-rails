@@ -22,6 +22,7 @@ module Bootstrap
       def add_bootstrap
         copy_file "bootstrap.coffee", "app/assets/javascripts/bootstrap.js.coffee"
         copy_file "bootstrap.less", "app/assets/stylesheets/bootstrap.css.less"
+        copy_file "variables.less", "app/assets/stylesheets/variables.less"
       end
 
     end
