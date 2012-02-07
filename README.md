@@ -110,19 +110,11 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
 Using Twitter Bootstrap with the CoffeeScript is easy.
 twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
-
+    
     jQuery ->
-      $(".alert-message").alert()
-      $(".tabs").button()
-      $(".carousel").carousel()
-      $(".collapse").collapse()
-      $(".dropdown-toggle").dropdown()
-      $(".modal").modal()
-      $("a[rel]").popover()
-      $(".navbar").scrollspy()
-      $(".tab").tab "show"
+      $("a[rel=popover]").popover()
       $(".tooltip").tooltip()
-      $(".typeahead").typeahead()
+      $("a[rel=tooltip]").tooltip()
 
 
 ## Using Static CSS, JS (w/o Less)
