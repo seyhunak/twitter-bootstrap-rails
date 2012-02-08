@@ -84,12 +84,10 @@ You have to require Bootstrap LESS (bootstrap.less) in your application.css
 
 
 Now, you can override LESS files provided by Twitter Bootstrap
-Also, you can import additional files (.ie responsive)
+Also, you can import additional files
 
-    @import "twitter/bootstrap";
-
-    // import responsive layout
-    @import "twitter/bootstrap/responsive";
+    // import twitter bootstrap variables and mixins
+    @import "twitter/bootstrap_base";
 
     // Your custom stylesheets goes here (override Less here)
 
