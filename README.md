@@ -93,7 +93,7 @@ Also, you can import additional files (.ie responsive)
 
     // Your custom stylesheets goes here (override Less here)
 
-Note: (very important) to use bootstrap in less file, you must set the file which contain the import into a directory named bootstrap if you need to use sprites in bootstrap!
+Note: (very important) to use bootstrap with sprites, you must set the file which contain the import into a LESS file in a directory named bootstrap!
 
 ## Using Javascripts
 
