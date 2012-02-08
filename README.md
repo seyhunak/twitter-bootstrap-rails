@@ -14,7 +14,7 @@ Include Bootstrap in Gemfile;
 
 or you can install from latest build;
 
-    gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+    gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git', :submodules => true
 
 You can run bundle from command line
 
@@ -91,6 +91,7 @@ Also, you can import additional files
 
     // Your custom stylesheets goes here (override Less here)
 
+Note: (very important) to use bootstrap with sprites, you must set the file which contain the import into a LESS file in a directory named bootstrap!
 
 ## Using Javascripts
 
@@ -108,7 +109,7 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
 Using Twitter Bootstrap with the CoffeeScript is easy.
 twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
-    
+
     jQuery ->
       $("a[rel=popover]").popover()
       $(".tooltip").tooltip()
