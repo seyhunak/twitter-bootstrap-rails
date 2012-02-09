@@ -7,21 +7,27 @@ module Bootstrap
       desc "This generator installs Twitter Bootstrap to Asset Pipeline"
 
       def add_assets
-       if File.exist?('app/assets/javascripts/application.js')
-	      insert_into_file "app/assets/javascripts/application.js", "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
-	     else
-	      copy_file "application.js", "app/assets/javascripts/application.js"
-	     end
-       if File.exist?('app/assets/stylesheets/application.css')
-	      insert_into_file "app/assets/stylesheets/application.css", " *= require twitter/bootstrap\n", :after => "require_self\n"
-	     else
-	      copy_file "application.css", "app/assets/stylesheets/application.css"
-	     end
+        path_main_js_file = 'app/assets/javascripts/application.js'
+        path_main_coffee_file = 'app/assets/javascripts/application.js.coffee'
+
+        if File.exist?(path_main_js_file)
+          if File.open(path_main_js_file).lines.any?{|line| line.exclude?('twitter/bootstrap')}
+            insert_into_file path_main_js_file, "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
+          end
+        else
+          if File.exist?(path_main_coffee_file)
+            if File.open(path_main_coffee_file).lines.any?{|line| line.exclude?('twitter/bootstrap')}
+              insert_into_file path_main_coffee_file, "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
+            end
+          else
+            copy_file "application.js", path_main_js_file
+          end
+        end
   	  end
 
       def add_bootstrap
-        copy_file "bootstrap.coffee", "app/assets/javascripts/bootstrap.js.coffee"
-        copy_file "bootstrap.less", "app/assets/stylesheets/bootstrap.css.less"
+        copy_file "bootstrap.coffee", "app/assets/javascripts/bootstrap/bootstrap.js.coffee"
+        copy_file "bootstrap.less", "app/assets/stylesheets/bootstrap/bootstrap.css.less"
       end
 
     end
