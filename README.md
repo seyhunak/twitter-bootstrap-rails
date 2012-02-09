@@ -89,7 +89,7 @@ Also, you can import additional files (.ie responsive)
     @import "twitter/bootstrap";
 
     // import responsive layout
-    @import "twitter/bootstrap/responsive";
+    @import "twitter/bootstrap_responsive";
 
     // Your custom stylesheets goes here (override Less here)
 
