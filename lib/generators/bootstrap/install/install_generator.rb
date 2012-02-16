@@ -16,9 +16,6 @@ module Bootstrap
         end
 
         if File.exist?('app/assets/stylesheets/application.css')
-          # Remove old requires (if any) that included twitter/bootstrap directly:
-          gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap\s*\n|, "")
-          gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap_responsive\s*\n|, "")
           # Add our own require:
           content = File.read("app/assets/stylesheets/application.css")
           if content.match(/require_tree\s+\./)
@@ -31,6 +28,17 @@ module Bootstrap
           copy_file "application.css", "app/assets/stylesheets/application.css"
         end
 
+      end
+
+      def add_bootstrap
+        copy_file "bootstrap.coffee", "app/assets/javascripts/bootstrap.js.coffee"
+        copy_file "bootstrap_and_overrides.less", "app/assets/stylesheets/bootstrap_and_overrides.css.less"
+      end
+
+      def cleanup_legacy
+        # Remove old requires (if any) that included twitter/bootstrap directly:
+        gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap\s*\n|, "")
+        gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap_responsive\s*\n|, "")
         if File.exist?('app/assets/stylesheets/bootstrap_override.css.less')
           puts <<-EOM
           Warning:
@@ -38,12 +46,6 @@ module Bootstrap
             It should be removed, as it has been superceded by app/assets/stylesheets/bootstrap_and_overrides.css.less
           EOM
         end
-
-      end
-
-      def add_bootstrap
-        copy_file "bootstrap.coffee", "app/assets/javascripts/bootstrap.js.coffee"
-        copy_file "bootstrap_and_overrides.less", "app/assets/stylesheets/bootstrap_and_overrides.css.less"
       end
 
     end
