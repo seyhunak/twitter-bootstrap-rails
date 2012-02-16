@@ -74,22 +74,20 @@ Bootstrap was built with Preboot, an open-source pack of mixins and variables to
 
 ## Using stylesheets with Less
 
-You have to require Bootstrap LESS (bootstrap.less) in your application.css
+You have to require Bootstrap LESS (bootstrap_and_overrides.css.less) in your application.css
 
     /*
-     *= require twitter/bootstrap
-    */
+     *= require bootstrap_and_overrides
+     */
 
     /* Your stylesheets goes here... */
 
 
-Now, you can override LESS files provided by Twitter Bootstrap
-Also, you can import additional files
+If you'd like to alter Bootstrap's own variables, or define your LESS
+styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrides.css.less:
 
-    // import twitter bootstrap variables and mixins
-    @import "twitter/bootstrap_base";
+    @linkColor: #ff0000;
 
-    // Your custom stylesheets goes here (override Less here)
 
 
 ## Using Javascripts
