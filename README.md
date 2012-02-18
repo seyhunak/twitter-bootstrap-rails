@@ -21,6 +21,10 @@ You can run bundle from command line
     bundle install
 
 
+## Gem Version (to supporting Bootstrap)
+    twitter-bootstrap-rails v2.0.1.0 (Gem Version 0 with Twitter Bootstrap V.2.0.1)
+
+
 ## Installing to App (using Generators)
 
 You can run following generators to get started with Twitter Bootstrap quickly.
@@ -106,7 +110,7 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
 Using Twitter Bootstrap with the CoffeeScript is easy.
 twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
-    
+
     jQuery ->
       $("a[rel=popover]").popover()
       $(".tooltip").tooltip()
@@ -145,6 +149,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Added Haml and Slim support</li>
   <li>Added Responsive layout support</li>
   <li>Fixes and release 2.0.0</li>
+  <li>Updated to v2.0.1, versioned v2.0.1.0</li>
 </ul>
 
 
