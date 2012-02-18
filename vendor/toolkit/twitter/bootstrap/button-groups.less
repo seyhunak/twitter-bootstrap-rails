@@ -29,7 +29,7 @@
   position: relative;
   float: left;
   margin-left: -1px;
-  .border-radius(0px);
+  .border-radius(0);
 }
 // Set corners individual because sometimes a single button can be in a .btn-group and we need :first-child and :last-child to both match
 .btn-group .btn:first-child {
@@ -133,7 +133,8 @@
 .btn-primary,
 .btn-danger,
 .btn-info,
-.btn-success {
+.btn-success,
+.btn-inverse {
   .caret {
     border-top-color: @white;
     .opacity(75);
@@ -144,3 +145,4 @@
 .btn-small .caret {
   margin-top: 4px;
 }
+
