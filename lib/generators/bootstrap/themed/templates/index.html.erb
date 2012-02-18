@@ -1,34 +1,33 @@
 <h1><%= resource_name.titleize %>s</h1>
 <table class="table table-striped">
- <thead>
-  <tr>
-    <th>ID</th>
-    <% unless columns.empty? -%>
-    <th>
-      <%%= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.capitalize %>")) %>
-    </th>
-    <% end -%>
-    <th>Created at</th>
-    <th>Actions</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <%- unless columns.empty? -%>
+      <th>
+        <%%= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.capitalize %>")) %>
+      </th>
+      <%- end -%>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
   </thead>
   <tbody>
-  <%% @<%= plural_resource_name %>.each do |<%= resource_name %>| -%>
-   <tr>
-    <td><%%= <%= resource_name %>.id %></td>
-    <% unless columns.empty? -%>
-    <td><%%= link_to <%= resource_name %>.<%= columns.first.name %>, <%= singular_controller_routing_path %>_path(<%= resource_name %>) %>
-    </td>
-    <% end -%>
-    <td><%%= <%= resource_name %>.created_at %></td>
-    <td>
-      <%%= link_to "Show", <%= singular_controller_routing_path %>_path(<%= resource_name %>) %>
-      <%%= link_to "Edit", edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>) %>
-      <%%= link_to "Destroy", <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
-    </td>
-    </tr>
+    <%% @<%= plural_resource_name %>.each do |<%= resource_name %>| -%>
+      <tr>
+        <td><%%= <%= resource_name %>.id %></td>
+        <%- unless columns.empty? -%>
+        <td><%%= link_to <%= resource_name %>.<%= columns.first.name %>, <%= singular_controller_routing_path %>_path(<%= resource_name %>) %></td>
+        <%- end -%>
+        <td><%%= <%= resource_name %>.created_at %></td>
+        <td>
+          <%%= link_to "Show", <%= singular_controller_routing_path %>_path(<%= resource_name %>) %>
+          <%%= link_to "Edit", edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>) %>
+          <%%= link_to "Destroy", <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+        </td>
+      </tr>
     <%% end -%>
-   </tbody>
+  </tbody>
 </table>
 
 <%%= link_to "New", new_<%= singular_controller_routing_path %>_path, :class => 'btn btn-primary' %>
