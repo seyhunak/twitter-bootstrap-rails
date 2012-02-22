@@ -1,3 +1,1 @@
-<%%= form_for @<%= model_name.underscore  %>, :url => <%= singular_controller_routing_path %>_path(@<%= resource_name %>), :html => { :method => "put", :class => "edit_<%= model_name.underscore  %>", :id => "edit_<%= model_name.underscore %>" } do |f| -%>
-  <%%= render :partial => "form", :locals => {:f => f} %>
-<%% end -%>
+<%%= render :partial => 'form' %>

@@ -1,10 +1,14 @@
-<% columns.each do |column| %>
-<label class="label"><%%= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= column.name %>", :default => t("activerecord.labels.<%= column.name %>", :default => "<%= column.name.humanize %>")) %>:</label>
-<p><%%= @<%= resource_name %>.<%= column.name %> %></p>
-<%- end -%>
+<h1><%= model_name.titleize %></h1>
 
+<%- columns.each do |column| -%>
+<p>
+  <b><%= column.name.humanize %></b><br>
+  <%%= @<%= resource_name %>.<%= column.name %> %>
+</p>
+
+<%- end -%>
 <div class="form-actions">
-  <%%= link_to "Back", <%= controller_routing_path %>_path, :class => 'btn'  %>
-  <%%= link_to "Edit", edit_<%= singular_controller_routing_path %>_path(@<%= resource_name %>), :class => 'btn' %>
-  <%%= link_to "Delete", <%= singular_controller_routing_path %>_path(@<%= resource_name %>), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn' %>
+  <%%= link_to 'Back', <%= controller_routing_path %>_path, :class => 'btn'  %>
+  <%%= link_to 'Edit', edit_<%= singular_controller_routing_path %>_path(@<%= resource_name %>), :class => 'btn' %>
+  <%%= link_to 'Delete', <%= singular_controller_routing_path %>_path(@<%= resource_name %>), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
 </div>
