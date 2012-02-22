@@ -4,16 +4,14 @@
     <tr>
       <th>ID</th>
       <%- unless columns.empty? -%>
-      <th>
-        <%%= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.capitalize %>")) %>
-      </th>
+      <th><%= columns.first.name.humanize %></th>
       <%- end -%>
       <th>Created at</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <%% @<%= plural_resource_name %>.each do |<%= resource_name %>| -%>
+    <%% @<%= plural_resource_name %>.each do |<%= resource_name %>| %>
       <tr>
         <td><%%= <%= resource_name %>.id %></td>
         <%- unless columns.empty? -%>
@@ -21,13 +19,12 @@
         <%- end -%>
         <td><%%= <%= resource_name %>.created_at %></td>
         <td>
-          <%%= link_to "Show", <%= singular_controller_routing_path %>_path(<%= resource_name %>) %>
-          <%%= link_to "Edit", edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>) %>
-          <%%= link_to "Destroy", <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          <%%= link_to 'Edit', edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-mini' %>
+          <%%= link_to 'Destroy', <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
-    <%% end -%>
+    <%% end %>
   </tbody>
 </table>
 
-<%%= link_to "New", new_<%= singular_controller_routing_path %>_path, :class => 'btn btn-primary' %>
+<%%= link_to 'New', new_<%= singular_controller_routing_path %>_path, :class => 'btn btn-primary' %>
