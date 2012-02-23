@@ -175,14 +175,17 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Markup Helpers (alert, tabs, pagination, breadcrumbs etc.)</li>
 </ul>
 
-
 ## Credits
 Seyhun Akyürek - seyhunak [at] gmail com
+[Visit My Blog](http://www.seyhunakyurek.com/ "Visit My Blog")
 
-[Follow me on Twitter](http://twitter.com/seyhunak "Twitter")
+[Add Me On Twitter](http://twitter.com/seyhunak "Add Me On Twitter")
 
-[Follow me on Google+](http://plus.ly/seyhunak "Google+")
+[Add Me On Linkedin](http://tr.linkedin.com/in/seyhunak "Add Me On Linkedin")
 
+[Add Me On Facebook](https://www.facebook.com/seyhunak "Add Me On Facebook")
+
+[Add Me On Google+](http://plus.ly/seyhunak "Add Me On Google+")
 
 ## Thanks
 Twitter Bootstrap and all twitter-bootstrap-rails contributors
