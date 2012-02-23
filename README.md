@@ -177,14 +177,12 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
 
 ## Credits
 Seyhun Akyürek - seyhunak [at] gmail com
+
 [Visit My Blog](http://www.seyhunakyurek.com/ "Visit My Blog")
 
 [Add Me On Twitter](http://twitter.com/seyhunak "Add Me On Twitter")
-
 [Add Me On Linkedin](http://tr.linkedin.com/in/seyhunak "Add Me On Linkedin")
-
 [Add Me On Facebook](https://www.facebook.com/seyhunak "Add Me On Facebook")
-
 [Add Me On Google+](http://plus.ly/seyhunak "Add Me On Google+")
 
 ## Thanks
