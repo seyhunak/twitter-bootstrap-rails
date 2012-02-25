@@ -10,7 +10,7 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 A
 
 Include Bootstrap in Gemfile;
 
-    gem "twitter-bootstrap-rails", "~> 2.0.1.0"
+    gem "twitter-bootstrap-rails"
 
 or you can install from latest build;
 
@@ -19,10 +19,6 @@ or you can install from latest build;
 You can run bundle from command line
 
     bundle install
-
-
-## Gem Version
-    twitter-bootstrap-rails v2.0.1.0 (Gem Version 0 with Twitter Bootstrap V.2.0.1)
 
 
 ## Installing to App (using Generators)
@@ -150,6 +146,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Added Responsive layout support</li>
   <li>Fixes and release 2.0.0</li>
   <li>Updated to v2.0.1, versioned v2.0.1.0</li>
+  <li>Released gem v.2.0.3</li>
 </ul>
 
 
