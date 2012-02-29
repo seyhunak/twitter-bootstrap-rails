@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= app_name %></title>
     <%%= csrf_meta_tags %>
 
@@ -11,11 +12,6 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
     <%%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- Le fav and touch icons -->
@@ -70,10 +66,9 @@
       <%- else -%>
       <div class="content">
         <div class="row">
-          <div class="span9">
-            <%%= yield %>
-          </div>
-          <div class="span1">&nbsp;</div>
+           <div class="span9">
+              <%%= yield %>
+            </div>
             <div class="span3">
               <div class="well sidebar-nav">
                 <h3>Sidebar</h3>
@@ -83,9 +78,8 @@
                     <li><%%= link_to "Link<%= i %>", "/path<%= i %>"  %></li>
                   <%- end -%>
                 </ul>
-              </div>
-            </div>
-          </div>
+              </div><!--/.well -->
+            </div><!--/span-->
         </div><!--/row-->
       </div><!--/content-->
       <%- end -%>
