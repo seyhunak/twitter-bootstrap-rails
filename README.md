@@ -6,6 +6,19 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 A
 [![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png)](http://travis-ci.org/seyhunak/twitter-bootstrap-rails)
 [![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png)](https://gemnasium.com/seyhunak/twitter-bootstrap-rails)
 
+
+## Screencasts
+#### Installing twitter-bootstrap-rails, generators, usage and more
+Screencasts provided by Railscasts (Ryan Bates)
+
+[Twitter Bootstrap Basics](http://railscasts.com/episodes/328-twitter-bootstrap-basics "Twitter Bootstrap Basics")
+in this episode you will learn how to include Twitter Bootstrap into Rails application with the twitter-bootstrap-rails gem.
+
+[More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap") 
+in this episode continues on the Twitter Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
+(Note: This episode is pro episode)
+
+
 ## Installing Gem
 
 Include Bootstrap in Gemfile;
@@ -172,15 +185,20 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Markup Helpers (alert, tabs, pagination, breadcrumbs etc.)</li>
 </ul>
 
+
 ## Credits
 Seyhun Akyürek - seyhunak [at] gmail com
 
+[Add Me On Twitter](http://twitter.com/seyhunak "Add Me On Twitter")
+
+[Add Me On Linkedin](http://tr.linkedin.com/in/seyhunak "Add Me On Linkedin")
+
+[Add Me On Facebook](https://www.facebook.com/seyhunak "Add Me On Facebook")
+
+[Add Me On Google+](http://plus.ly/seyhunak "Add Me On Google+")
+
 [Visit My Blog](http://www.seyhunakyurek.com/ "Visit My Blog")
 
-[Add Me On Twitter](http://twitter.com/seyhunak "Add Me On Twitter")
-[Add Me On Linkedin](http://tr.linkedin.com/in/seyhunak "Add Me On Linkedin")
-[Add Me On Facebook](https://www.facebook.com/seyhunak "Add Me On Facebook")
-[Add Me On Google+](http://plus.ly/seyhunak "Add Me On Google+")
 
 ## Thanks
 Twitter Bootstrap and all twitter-bootstrap-rails contributors
