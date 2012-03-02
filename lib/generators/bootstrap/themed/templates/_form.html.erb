@@ -1,4 +1,4 @@
-<%%= form_for @<%= model_name.underscore  %>, :html => { :class => 'form-horizontal' } do |f| %>
+<%%= form_for @<%= resource_name %>, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend><%%= controller.action_name.capitalize %> <%= model_name.titleize %></legend>
 
