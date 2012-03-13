@@ -176,6 +176,7 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Masakuni Kato</li>
   <li>Gudleik Rasch</li>
   <li>Thomas Volkmar Worm</li>
+  <li>Thiago Almeida</li>
 </ul>
 
 
