@@ -18,7 +18,7 @@ module Twitter
       def add_breadcrumb name, url = ''
         @breadcrumbs ||= []
         url = eval(url) if url =~ /_path|_url|@/
-          @breadcrumbs << {name => name, url => url}
+          @breadcrumbs << {:name => name, :url => url}
       end
     end
   end
