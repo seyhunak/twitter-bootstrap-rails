@@ -24,7 +24,7 @@ module Bootstrap
       def initialize_views_variables
         @base_name, @controller_class_path, @controller_file_path, @controller_class_nesting, @controller_class_nesting_depth = extract_modules(controller_path)
         @controller_routing_path = @controller_file_path.gsub(/\//, '_')
-        @model_name = @controller_class_nesting + "::#{@base_name.singularize}" unless @model_name
+        @model_name = @controller_class_nesting + "::#{@base_name.singularize.camelize}" unless @model_name
         @model_name = @model_name.camelize
       end
 
