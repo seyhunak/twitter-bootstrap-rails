@@ -77,7 +77,7 @@ Example:
 
     rails g scaffold post title:string description:text
     rake db:migrate
-    rails g bootstrap:themed posts
+    rails g bootstrap:themed Posts
 
 
 
