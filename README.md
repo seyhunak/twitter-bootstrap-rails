@@ -27,7 +27,7 @@ Include Bootstrap in Gemfile;
 
 or you can install from latest build;
 
-    gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+    gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 You can run bundle from command line
 
