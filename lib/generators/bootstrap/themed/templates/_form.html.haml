@@ -1,13 +1,14 @@
-%fieldset
-  %legend
-    = controller.action_name.capitalize
-    <%= model_name.titleize %>
-  <%- columns.each do |column| -%>
-  .control-group
-    = f.label :<%= column.name %>, :class => 'control-label'
-    .controls
-      = f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>'
-  <%- end -%>
-  .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to "Cancel", <%= controller_routing_path %>_path, :class => 'btn'
+= form_for @<%= resource_name %>, :html => { :class => 'form-horizontal' } do |f|
+  %fieldset
+    %legend
+      = controller.action_name.capitalize
+      <%= model_name.titleize %>
+    <%- columns.each do |column| -%>
+    .control-group
+      = f.label :<%= column.name %>, :class => 'control-label'
+      .controls
+        = f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>'
+    <%- end -%>
+    .form-actions
+      = f.submit nil, :class => 'btn btn-primary'
+      = link_to "Cancel", <%= controller_routing_path %>_path, :class => 'btn'
