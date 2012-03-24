@@ -1,6 +1,8 @@
 <%- columns.each do |column| -%>
-%label{:class => "label"}= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= column.name %>", :default => t("activerecord.labels.<%= column.name %>", :default => "<%= column.name.humanize %>")) + ":"
-%p= @<%= resource_name %>.<%= column.name %>
+%p
+  %strong= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= column.name %>", :default => t("activerecord.labels.<%= column.name %>", :default => "<%= column.name.humanize %>")) + ":"
+  %br
+  = @<%= resource_name %>.<%= column.name %>
 <%- end -%>
 
 .form-actions
