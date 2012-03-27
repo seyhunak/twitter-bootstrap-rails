@@ -14,7 +14,7 @@ module Twitter
 
         initializer 'twitter-bootstrap-rails.setup_helpers' do |app|
           app.config.to_prepare do
-            ActionController::Base.send(:include, BreadCrumbs)
+            ActionController::Base.send :include, BreadCrumbs
           end
         end
       end

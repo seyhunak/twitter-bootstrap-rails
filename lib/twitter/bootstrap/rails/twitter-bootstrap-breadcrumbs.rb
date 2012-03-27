@@ -20,6 +20,10 @@ module Twitter
         url = eval(url) if url =~ /_path|_url|@/
           @breadcrumbs << {:name => name, :url => url}
       end
+
+      def render_breadcrumbs(divider = '/')
+        render :partial => 'twitter-bootstrap/breadcrumbs', :locals => {:divider => divider}
+      end
     end
   end
 end
