@@ -22,7 +22,8 @@ module Twitter
       end
 
       def render_breadcrumbs(divider = '/')
-        render :partial => 'twitter-bootstrap/breadcrumbs', :locals => {:divider => divider}
+        s = render :partial => 'twitter-bootstrap/breadcrumbs', :locals => {:divider => divider}
+        s.html_safe
       end
     end
   end
