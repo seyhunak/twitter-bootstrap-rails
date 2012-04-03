@@ -1,11 +1,15 @@
-<%- columns.each do |column| -%>
-.clearfix
-  = f.label :<%= column.name %>, t("activerecord.attributes.<%= model_name.underscore %>.<%= column.name %>", :default => "<%= column.name.humanize %>"), :class => :label
-  .input
-    = f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>'
-<%- end -%>
-
-.form-actions
-  button class="btn primary" type="submit" Save
-  |  or 
-  = link_to "Cancel", <%= controller_routing_path %>_path
+= form_for @<%= resource_name %>, :html => { :class => "form-horizontal" } do |f|
+  fieldset
+    legend
+      = controller.action_name.capitalize
+      | <%= resource_name.titleize %>
+    <%- columns.each do |column| -%>
+    .control-group
+      = f.label :<%= column.name %>, :class => 'control-label'
+      .controls
+        = f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>'
+    <%- end -%>
+    .form-actions
+      = f.submit nil, :class => 'btn btn-primary'
+      '
+      = link_to "Cancel", <%= controller_routing_path %>_path, :class => 'btn'

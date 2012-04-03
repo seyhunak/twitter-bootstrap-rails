@@ -1,6 +1,6 @@
 <%%= form_for @<%= resource_name %>, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
-    <legend><%%= controller.action_name.capitalize %> <%= model_name.titleize %></legend>
+    <legend><%%= controller.action_name.capitalize %> <%= resource_name.titleize %></legend>
 
     <%- columns.each do |column| -%>
     <div class="control-group">

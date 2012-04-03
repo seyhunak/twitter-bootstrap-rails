@@ -1,10 +1,10 @@
-<h1><%= resource_name.titleize %>s</h1>
+<h1><%= resource_name.pluralize.titleize %></h1>
 <table class="table table-striped">
   <thead>
     <tr>
       <th>ID</th>
       <%- unless columns.empty? -%>
-      <th><%= columns.first.name.humanize %></th>
+      <th><%%= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.humanize %>")) %></th>
       <%- end -%>
       <th>Created at</th>
       <th>Actions</th>
