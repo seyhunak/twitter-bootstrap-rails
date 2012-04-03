@@ -9,8 +9,8 @@
         <%%= f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>' %>
       </div>
     </div>
-
     <%- end -%>
+
     <div class="form-actions">
       <%%= f.submit nil, :class => 'btn btn-primary' %>
       <%%= link_to 'Cancel', <%= controller_routing_path %>_path, :class => 'btn' %>
