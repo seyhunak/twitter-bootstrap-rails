@@ -1,11 +1,11 @@
-%h1 <%= resource_name.titleize %>s
+%h1 <%= resource_name.pluralize.titleize %>
 %table.table.table-striped
   %thead
     %tr
       %th ID
       <%- unless columns.empty? -%>
       %th
-        = t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.capitalize %>"))
+        = t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.humanize %>"))
       <%- end -%>
       %th Created at
       %th Actions
@@ -18,8 +18,7 @@
         <%- end -%>
         %td= <%= resource_name %>.created_at
         %td
-          = link_to "Show", <%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-mini'
           = link_to "Edit", edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-mini'
-          = link_to "Destroy", <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-mini btn-danger' 
+          = link_to "Destroy", <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger'
 
 = link_to "New", new_<%= singular_controller_routing_path %>_path, :class => 'btn btn-primary'
