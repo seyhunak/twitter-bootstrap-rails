@@ -2,7 +2,7 @@
   %fieldset
     %legend
       = controller.action_name.capitalize
-      <%= model_name.titleize %>
+      <%= resource_name.titleize %>
     <%- columns.each do |column| -%>
     .control-group
       = f.label :<%= column.name %>, :class => 'control-label'

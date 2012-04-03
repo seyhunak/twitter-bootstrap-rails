@@ -1,12 +1,12 @@
-<h1><%= model_name.titleize %></h1>
+<h1><%= resource_name.titleize %></h1>
 
 <%- columns.each do |column| -%>
 <p>
-  <b><%= column.name.humanize %></b><br>
+  <strong><%%= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= column.name %>", :default => t("activerecord.labels.<%= column.name %>", :default => "<%= column.name.humanize %>")) %>:</strong><br>
   <%%= @<%= resource_name %>.<%= column.name %> %>
 </p>
-
 <%- end -%>
+
 <div class="form-actions">
   <%%= link_to 'Back', <%= controller_routing_path %>_path, :class => 'btn'  %>
   <%%= link_to 'Edit', edit_<%= singular_controller_routing_path %>_path(@<%= resource_name %>), :class => 'btn' %>
