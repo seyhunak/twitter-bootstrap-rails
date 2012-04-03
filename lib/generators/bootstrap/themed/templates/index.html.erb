@@ -1,13 +1,14 @@
-<h1><%= resource_name.pluralize.titleize %></h1>
+<%%- model_class = @<%= plural_resource_name %>.first.class -%>
+<h1><%%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
+      <th><%%= model_class.human_attribute_name(:id) %></th>
       <%- unless columns.empty? -%>
-      <th><%%= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.humanize %>")) %></th>
+      <th><%%= model_class.human_attribute_name(:<%= columns.first.name %>) %></th>
       <%- end -%>
-      <th>Created at</th>
-      <th>Actions</th>
+      <th><%%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -17,14 +18,21 @@
         <%- unless columns.empty? -%>
         <td><%%= link_to <%= resource_name %>.<%= columns.first.name %>, <%= singular_controller_routing_path %>_path(<%= resource_name %>) %></td>
         <%- end -%>
-        <td><%%= <%= resource_name %>.created_at %></td>
+        <td><%%=l <%= resource_name %>.created_at %></td>
         <td>
-          <%%= link_to 'Edit', edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-mini' %>
-          <%%= link_to 'Destroy', <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-mini' %>
+          <%%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      <%= singular_controller_routing_path %>_path(<%= resource_name %>),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <%% end %>
   </tbody>
 </table>
 
-<%%= link_to 'New', new_<%= singular_controller_routing_path %>_path, :class => 'btn btn-primary' %>
+<%%= link_to t('.new', :default => t("helpers.links.new")),
+            new_<%= singular_controller_routing_path %>_path,
+            :class => 'btn btn-primary' %>
