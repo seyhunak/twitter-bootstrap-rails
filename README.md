@@ -160,6 +160,11 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Fixes and release 2.0.0</li>
   <li>Updated to v2.0.1, versioned v2.0.1.0</li>
   <li>Released gem v.2.0.3</li>
+  <li>Released gem v.2.0.4</li>
+  <li>Released gem v.2.0.5</li>
+  <li>Added SimpleForm support</li>
+  <li>Added FontAwesome support</li>
+  <li>Released gem v.2.0.6</li>
 </ul>
 
 
@@ -177,6 +182,8 @@ twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest s
   <li>Gudleik Rasch</li>
   <li>Thomas Volkmar Worm</li>
   <li>Thiago Almeida</li>
+  <li>Sébastien Grosjean</li>
+  <li>Nick DeSteffen</li>
 </ul>
 
 
