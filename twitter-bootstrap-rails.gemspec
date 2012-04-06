@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "twitter-bootstrap-rails/version"
+require "twitter/bootstrap/rails/version"
 
 Gem::Specification.new do |s|
   s.name        = "twitter-bootstrap-rails"
@@ -13,15 +13,12 @@ Gem::Specification.new do |s|
   s.description = %q{twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline}
 
   s.rubyforge_project = "twitter-bootstrap-rails"
-
-  s.files         = `git ls-files`.split("\n")
+  s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + ["Rakefile", "README.md"]
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib","vendor"]
+  s.require_paths = ["lib"]
 
-  s.add_runtime_dependency 'railties'
-  s.add_runtime_dependency 'actionpack'
-  s.add_development_dependency "bundler"
-  s.add_development_dependency "rails", "~> 3.1"
+  s.add_dependency             'railties',   '>= 3.1'
+  s.add_dependency             'actionpack', '>= 3.1'
+  s.add_development_dependency 'rails', '>= 3.1'
 end
-
