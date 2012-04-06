@@ -4,17 +4,17 @@
   %thead
     %tr
       %th= model_class.human_attribute_name(:id)
-      <%- unless columns.empty? -%>
-      %th= model_class.human_attribute_name(:<%= columns.first.name %>)
+      <%- columns.each do |column| -%>
+      %th= model_class.human_attribute_name(:<%= column.name %>)
       <%- end -%>
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
     - @<%= plural_resource_name %>.each do |<%= resource_name %>|
       %tr
-        %td= <%= resource_name %>.id
-        <%- unless columns.empty? -%>
-        %td= link_to <%= resource_name %>.<%= columns.first.name %>, <%= singular_controller_routing_path %>_path(<%= resource_name %>)
+        %td= link_to <%= resource_name %>.id, <%= singular_controller_routing_path %>_path(<%= resource_name %>)
+        <%- columns.each do |column| -%>
+        %td= <%= resource_name %>.<%= column.name %>
         <%- end -%>
         %td=l <%= resource_name %>.created_at
         %td
