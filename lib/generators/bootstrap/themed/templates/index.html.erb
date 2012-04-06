@@ -1,4 +1,4 @@
-<%%- model_class = @<%= plural_resource_name %>.first.class -%>
+<%%- model_class = <%= resource_name.classify %>.new.class -%>
 <h1><%%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 <table class="table table-striped">
   <thead>
