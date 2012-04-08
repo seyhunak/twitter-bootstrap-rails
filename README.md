@@ -23,11 +23,15 @@ in this episode continues on the Twitter Bootstrap project showing how to displa
 
 Include Bootstrap in Gemfile;
 
-    gem "twitter-bootstrap-rails"
+```ruby
+gem "twitter-bootstrap-rails"
+```
 
 or you can install from latest build;
 
-    gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+```ruby
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+```
 
 You can run bundle from command line
 
@@ -89,30 +93,33 @@ Bootstrap was built with Preboot, an open-source pack of mixins and variables to
 
 You have to require Bootstrap LESS (bootstrap_and_overrides.css.less) in your application.css
 
-    /*
-     *= require bootstrap_and_overrides
-     */
+```css
+/*
+ *= require bootstrap_and_overrides
+ */
 
-    /* Your stylesheets goes here... */
-
+/* Your stylesheets goes here... */
+```
 
 If you'd like to alter Bootstrap's own variables, or define your LESS
 styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrides.css.less:
 
-    @linkColor: #ff0000;
-
+```css
+@linkColor: #ff0000;
+```
 
 
 ## Using Javascripts
 
 You have to require Bootstrap JS (bootstrap.js) in your application.js
 
-    //= require twitter/bootstrap
+```js
+//= require twitter/bootstrap
 
-    $(document).ready(function(){
-      /* Your javascripts goes here... */
-    });
-
+$(document).ready(function(){
+  /* Your javascripts goes here... */
+});
+```
 
 ## Using Coffeescript (optionally)
 
@@ -120,19 +127,23 @@ Using Twitter Bootstrap with the CoffeeScript is easy.
 twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
 
-    jQuery ->
-      $("a[rel=popover]").popover()
-      $(".tooltip").tooltip()
-      $("a[rel=tooltip]").tooltip()
-
+```coffee
+jQuery ->
+  $("a[rel=popover]").popover()
+  $(".tooltip").tooltip()
+  $("a[rel=tooltip]").tooltip()
+```
 
 ## Using Static CSS, JS (w/o Less)
 
 twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest static CSS, JS files.
 
-    You can install from latest build (from branch);
+You can install from latest build (from branch);
 
-    gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
+```ruby
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git',
+                               :branch => 'static'
+```
 
 
 ## Changelog
