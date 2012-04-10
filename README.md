@@ -219,6 +219,8 @@ Seyhun Akyürek - seyhunak [at] gmail com
 [Visit My Blog](http://www.seyhunakyurek.com/ "Visit My Blog")
 
 ## Score me
+<img src="https://addons.opera.com/media/extensions/55/14355/1.0.1-rev1/icons/icon_64x64.png"></img>
+
 Please +K my influence in Ruby on Rails on @klout
 
 http://klout.com/plusk/49924/31351845?n=tw&v=plusK_ask
