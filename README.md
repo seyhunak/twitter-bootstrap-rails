@@ -218,6 +218,10 @@ Seyhun Akyürek - seyhunak [at] gmail com
 
 [Visit My Blog](http://www.seyhunakyurek.com/ "Visit My Blog")
 
+## Score me
+Please +K my influence in Ruby on Rails on @klout
+
+http://klout.com/plusk/49924/31351845?n=tw&v=plusK_ask
 
 ## Thanks
 Twitter Bootstrap and all twitter-bootstrap-rails contributors
