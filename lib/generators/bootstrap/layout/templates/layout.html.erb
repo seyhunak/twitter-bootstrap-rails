@@ -22,11 +22,7 @@
 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
-        <%- if layout_type == "fluid" -%>
-          <div class="container-fluid">
-        <%- else -%>
-          <div class="container">
-        <%- end -%>
+        <div class="<%= container_class %>">
           <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
