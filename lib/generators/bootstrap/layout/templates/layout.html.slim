@@ -18,11 +18,7 @@ html lang="en"
   body
     .navbar.navbar-fixed-top
       .navbar-inner
-        <%- if layout_type == "fluid" -%>
-        .container-fluid
-        <%- else -%>
-        .container
-        <%- end -%>
+        .<%= container_class %>
           a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
             span.icon-bar
             span.icon-bar
