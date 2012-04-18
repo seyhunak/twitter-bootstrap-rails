@@ -223,7 +223,7 @@ Seyhun Akyürek - seyhunak [at] gmail com
 
 Please +K my influence in Ruby on Rails on @klout
 
-http://klout.com/plusk/49924/31351845?n=tw&v=plusK_ask
+http://klout.com/#/seyhunak
 
 ## Thanks
 Twitter Bootstrap and all twitter-bootstrap-rails contributors
