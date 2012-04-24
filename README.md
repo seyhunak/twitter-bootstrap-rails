@@ -195,6 +195,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
   <li>Thiago Almeida</li>
   <li>Sébastien Grosjean</li>
   <li>Nick DeSteffen</li>
+  <li>Christian Joudrey</li>
 </ul>
 
 
