@@ -1,12 +1,12 @@
 <%%- model_class = @<%= resource_name %>.class -%>
 <h1><%%=t '.title', :default => model_class.model_name.human %></h1>
 
+<dl class="dl-horizontal">
 <%- columns.each do |column| -%>
-<p>
-  <strong><%%= model_class.human_attribute_name(:<%= column.name %>) %>:</strong><br>
-  <%%= @<%= resource_name %>.<%= column.name %> %>
-</p>
+  <dt><strong><%%= model_class.human_attribute_name(:<%= column.name %>) %>:</strong></dt>
+  <dd><%%= @<%= resource_name %>.<%= column.name %> %></dd>
 <%- end -%>
+</dl>
 
 <div class="form-actions">
   <%%= link_to t('.back', :default => t("helpers.links.back")),
