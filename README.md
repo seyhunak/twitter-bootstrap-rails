@@ -79,7 +79,7 @@ Usage:
 Example:
 
 
-    rails g scaffold post title:string description:text
+    rails g scaffold Post title:string description:text
     rake db:migrate
     rails g bootstrap:themed Posts
 
