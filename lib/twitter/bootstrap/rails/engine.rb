@@ -2,6 +2,7 @@ require 'rails'
 
 require File.dirname(__FILE__) + '/twitter-bootstrap-breadcrumbs.rb'
 require File.dirname(__FILE__) + '/../../../../app/helpers/flash_block_helper.rb'
+require File.dirname(__FILE__) + '/../../../../app/helpers/modal.rb'
 
 module Twitter
   module Bootstrap
@@ -14,6 +15,7 @@ module Twitter
             ActionController::Base.send :helper_method, :render_breadcrumbs
 
             ActionController::Base.send :helper, FlashBlockHelper
+            ActionController::Base.send :helper, ModalHelper
           end
         end
       end
