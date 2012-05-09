@@ -1,0 +1,24 @@
+- model_class = <%= resource_name.classify %>.new.class
+%h1=t '.title', :default => model_class.model_name.human.pluralize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      <%- columns.each do |column| -%>
+      %th= model_class.human_attribute_name(:<%= column.name %>)
+      <%- end -%>
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @<%= plural_resource_name %>.each do |<%= resource_name %>|
+      %tr
+        %td= link_to <%= resource_name %>.id, <%= singular_controller_routing_path %>_path(<%= resource_name %>)
+        <%- columns.each do |column| -%>
+        %td= <%= resource_name %>.<%= column.name %>
+        <%- end -%>
+        %td=l <%= resource_name %>.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
+
+= link_to t('.new', :default => t("helpers.links.new")), new_<%= singular_controller_routing_path %>_path, :class => 'btn btn-primary'
