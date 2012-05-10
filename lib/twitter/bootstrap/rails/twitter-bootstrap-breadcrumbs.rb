@@ -28,4 +28,3 @@ module Twitter
     end
   end
 end
-
