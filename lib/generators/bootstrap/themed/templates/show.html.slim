@@ -1,5 +1,6 @@
 - model_class = @<%= resource_name %>.class
-h1=t '.title', :default => model_class.model_name.human
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human
 
 <%- columns.each do |column| -%>
 p
