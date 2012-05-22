@@ -3,12 +3,12 @@
   <% separator = divider %>
   <% @breadcrumbs[0..-2].each do |crumb| %>
   <li>
-    <a href="<%= crumb[:url] %>"><%= crumb[:name] %></a>
+    <%= link_to crumb[:name], crumb[:url] %>
     <span class="divider"><%= separator %></span>
   </li>
   <% end %>
   <li class="active">
-    <a href="<%= @breadcrumbs.last[:url] %>"><%= @breadcrumbs.last[:name] %></a>
+    <%= link_to @breadcrumbs.last[:name], @breadcrumbs.last[:url] %>
   </li>
 </ul>
 <% end %>
