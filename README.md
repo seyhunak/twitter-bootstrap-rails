@@ -176,6 +176,8 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
   <li>Added SimpleForm support</li>
   <li>Added FontAwesome support</li>
   <li>Released gem v.2.0.6</li>
+  <li>Released gem v.2.0.7</li>
+  <li>Released gem v.2.0.8</li>
 </ul>
 
 
