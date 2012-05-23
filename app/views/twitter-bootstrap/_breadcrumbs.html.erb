@@ -1,14 +1,14 @@
-<% if @breadcrumbs %>
 <ul class="breadcrumb">
   <% separator = divider %>
-  <% @breadcrumbs[0..-2].each do |crumb| %>
-  <li>
-    <%= link_to crumb[:name], crumb[:url] %>
-    <span class="divider"><%= separator %></span>
-  </li>
+  <% if @breadcrumbs %>
+    <% @breadcrumbs[0..-2].each do |crumb| %>
+      <li>
+	<%= link_to crumb[:name], crumb[:url], crumb[:options] %>
+        <span class="divider"><%= separator %></span>
+      </li>
+    <% end %>
+    <li class="active">
+      <%= link_to @breadcrumbs.last[:name], @breadcrumbs.last[:url], @breadcrumbs.last[:options] %>
+    </li>
   <% end %>
-  <li class="active">
-    <%= link_to @breadcrumbs.last[:name], @breadcrumbs.last[:url] %>
-  </li>
 </ul>
-<% end %>
