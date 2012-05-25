@@ -11,11 +11,13 @@ body {
 @iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-@fontAwesomeEotPath: asset-path('fontawesome-webfont.eot');
-@fontAwesomeWoffPath: asset-path('fontawesome-webfont.woff');
-@fontAwesomeTtfPath: asset-path('fontawesome-webfont.ttf');
-@fontAwesomeSvgzPath: asset-path('fontawesome-webfont.svgz');
-@fontAwesomeSvgPath: asset-path('fontawesome-webfont.svg');
+// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not 
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
+@fontAwesomeWoffPath: '/assets/fontawesome-webfont.woff';
+@fontAwesomeTtfPath: '/assets/fontawesome-webfont.ttf';
+@fontAwesomeSvgzPath: '/assets/fontawesome-webfont.svgz';
+@fontAwesomeSvgPath: '/assets/fontawesome-webfont.svg';
 
 // Font Awesome
 @import "fontawesome";

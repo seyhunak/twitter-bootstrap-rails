@@ -5,3 +5,4 @@ pkg/*
 .DS_Store
 *.swp
 *~
+.rvmrc
