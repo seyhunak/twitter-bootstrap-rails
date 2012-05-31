@@ -18,7 +18,7 @@ module Bootstrap
         if File.exist?('app/assets/stylesheets/application.css')
           # Add our own require:
           content = File.read("app/assets/stylesheets/application.css")
-          if content.match(/require_tree\s+\./)
+          if content.match(/require_tree\s+\.\s*$/)
             # Good enough - that'll include our bootstrap_and_overrides.css.less
           else
             style_require_block = " *= require bootstrap_and_overrides\n"
