@@ -1,5 +1,5 @@
 /* =============================================================
- * bootstrap-typeahead.js v2.0.3
+ * bootstrap-typeahead.js v2.0.4
  * http://twitter.github.com/bootstrap/javascript.html#typeahead
  * =============================================================
  * Copyright 2012 Twitter, Inc.
@@ -56,7 +56,7 @@
     }
 
   , show: function () {
-      var pos = $.extend({}, this.$element.position(), {
+      var pos = $.extend({}, this.$element.offset(), {
         height: this.$element[0].offsetHeight
       })
 
