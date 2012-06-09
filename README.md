@@ -28,7 +28,9 @@ You have to require Bootstrap CSS (bootstrap.css) in your application.css
 	 *= require bootstrap
 	*/
 
-	or
+	/* Your stylesheets goes here... */
+
+or
 
 	/*
 	 *= require bootstrap.min
