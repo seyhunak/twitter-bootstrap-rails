@@ -34,7 +34,7 @@ You have to require Bootstrap CSS (bootstrap.css) in your application.css
 	 *= require bootstrap.min
 	*/
 
-  /* Your stylesheets goes here... */
+	/* Your stylesheets goes here... */
 
 ## Using javascripts
 
