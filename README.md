@@ -179,6 +179,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
   <li>Released gem v.2.0.7</li>
   <li>Released gem v.2.0.8</li>
   <li>Released gem v.2.0.9 (Bootstrap 2.0.4 and FontAwesome 2.0 support)</li>
+  <li>Released gem v.2.1.0 (JRuby support)</li>
 </ul>
 
 
