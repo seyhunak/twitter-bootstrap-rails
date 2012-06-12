@@ -124,7 +124,11 @@ dd {
 }
 dt {
   font-weight: bold;
-  line-height: @baseLineHeight - 1; // fix jank Helvetica Neue font bug
+  // The following fix causes the issue: https://github.com/twitter/bootstrap/issues/3806
+  // which is a problem in the bootstrap:themed show view as noted here:
+  // https://github.com/seyhunak/twitter-bootstrap-rails/issues/274
+  // so we're commenting it out.
+  //line-height: @baseLineHeight - 1; // fix jank Helvetica Neue font bug
 }
 dd {
   margin-left: @baseLineHeight / 2;
