@@ -24,11 +24,11 @@
 
 @font-face {
   font-family: 'FontAwesome';
-  src: url(@fontAwesomeEotPath);
-  src: url('@{@fontAwesomeEotPath}?#iefix') format('embedded-opentype'),
-    url(@fontAwesomeWoffPath) format('woff'),
-    url(@fontAwesomeTtfPath) format('truetype'),
-    url('@{@fontAwesomeSvgPath}#FontAwesome') format('svg');
+  src: asset-url(@fontAwesomeEotPath);
+  src: asset-url("@{fontAwesomeEotPath}?#iefix") format('embedded-opentype'),
+    asset-url(@fontAwesomeWoffPath) format('woff'),
+    asset-url(@fontAwesomeTtfPath) format('truetype'),
+    asset-url('@{fontAwesomeSvgPath}#FontAwesome') format('svg');
   font-weight: normal;
   font-style: normal;
 }
