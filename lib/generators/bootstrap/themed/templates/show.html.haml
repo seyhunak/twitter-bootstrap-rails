@@ -1,4 +1,4 @@
-- model_class = @<%= resource_name %>.class
+- model_class = <%= resource_name.classify %>
 .page-header
   %h1=t '.title', :default => model_class.model_name.human
 
