@@ -4,7 +4,7 @@
     <% @breadcrumbs[0..-2].each do |crumb| %>
       <li>
       	<%= link_to crumb[:name], crumb[:url], crumb[:options] %>
-        <span class="divider"><%= separator.html_safe %></span>
+        <span class="divider"><%= separator %></span>
       </li>
     <% end %>
     <li class="active">
