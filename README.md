@@ -5,6 +5,7 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 A
 
 [![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png)](http://travis-ci.org/seyhunak/twitter-bootstrap-rails)
 [![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png)](https://gemnasium.com/seyhunak/twitter-bootstrap-rails)
+[![Code Climate](https://codeclimate.com/badge.png)](https://github.com/seyhunak/twitter-bootstrap-rails)
 
 
 ## Screencasts
