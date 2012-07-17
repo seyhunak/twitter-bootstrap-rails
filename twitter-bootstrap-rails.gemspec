@@ -27,6 +27,6 @@ Gem::Specification.new do |s|
     s.add_dependency          'therubyracer', '0.10.1'
   end
   
-  s.add_runtime_dependency     'less-rails', '~> 2.2.2'
+  s.add_runtime_dependency     'less-rails', '~> 2.2.3'
   s.add_development_dependency 'rails', '>= 3.1'
 end
