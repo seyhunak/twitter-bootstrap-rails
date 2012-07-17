@@ -21,7 +21,7 @@ in this episode continues on the Twitter Bootstrap project showing how to displa
 
 ## Installing Gem
 
-Include Bootstrap in Gemfile;
+Include the [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) in Gemfile to install it from [RubyGems.org](http://rubygems.org);
 
 ```ruby
 gem "twitter-bootstrap-rails"
