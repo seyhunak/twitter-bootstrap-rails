@@ -7,7 +7,6 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 A
 [![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png)](https://gemnasium.com/seyhunak/twitter-bootstrap-rails)
 [![Code Climate](https://codeclimate.com/badge.png)](https://github.com/seyhunak/twitter-bootstrap-rails)
 
-
 ## Screencasts
 #### Installing twitter-bootstrap-rails, generators, usage and more
 Screencasts provided by Railscasts (Ryan Bates)
@@ -225,6 +224,10 @@ Seyhun Akyürek - seyhunak [at] gmail com
 
 [Visit My Blog](http://www.seyhunakyurek.com/ "Visit My Blog")
 
+## Endorse My Skills
+<a href="http://coderwall.com/seyhunak">
+<img src="http://api.coderwall.com/seyhunak/endorsecount.png" />
+</a>
 
 ##  Want to Donate?
 <img src="https://www.paypalobjects.com/en_US/i/logo/PayPal_mark_50x34.gif"></img>
