@@ -18,6 +18,6 @@
   <%%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               <%= singular_controller_routing_path %>_path(@<%= resource_name %>),
               :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
 </div>
