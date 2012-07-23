@@ -137,7 +137,7 @@ jQuery ->
 ## Using Helpers
 
 ### Flash helper
-Add flash helper <%= bootstap_flash %> to your layout (built-in with layout generator)
+Add flash helper <%= bootstrap_flash %> to your layout (built-in with layout generator)
 
 
 ## Using Static CSS, JS (w/o Less)
