@@ -134,6 +134,12 @@ jQuery ->
   $("a[rel=tooltip]").tooltip()
 ```
 
+## Using Helpers
+
+### Flash helper
+Add flash helper <%= bootstap_flash %> to your layout (built-in with layout generator)
+
+
 ## Using Static CSS, JS (w/o Less)
 
 twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest static CSS, JS files.
@@ -181,6 +187,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
   <li>Released gem v.2.0.9 (Bootstrap 2.0.4 and FontAwesome 2.0 support)</li>
   <li>Released gem v.2.1.0 (JRuby support)</li>
   <li>Released gem v.2.1.1 (minor fixes)</li>
+  <li>Flash block message helper added</li>
 </ul>
 
 
