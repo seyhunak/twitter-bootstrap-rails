@@ -23,7 +23,7 @@ in this episode continues on the Twitter Bootstrap project showing how to displa
 
 Include Bootstrap in Gemfile;
 
-    gem "twitter-bootstrap-rails"
+    gem "twitter-bootstrap-rails", :group => :assets
 
 or you can install from latest build;
 
