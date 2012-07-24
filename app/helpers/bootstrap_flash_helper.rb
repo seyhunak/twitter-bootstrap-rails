@@ -1,5 +1,5 @@
 module BootstrapFlashHelper  
-  def bootstap_flash
+  def bootstrap_flash
    flash_messages = []
    flash.each do |type, message|
      type = :success if type == :notice
