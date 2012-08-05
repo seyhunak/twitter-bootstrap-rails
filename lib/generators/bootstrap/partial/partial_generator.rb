@@ -8,12 +8,12 @@ module Bootstrap
       argument :component_name, :type => :string, :default => "application",
                :banner => "navbar, navbar-devise, carousel"
 
-      attr_reader :app_name, :container_class
+      attr_reader :app_name
 
       def generate_partial
         app = ::Rails.application
         ext = app.config.generators.options[:rails][:template_engine] || :erb
-        template "_#{component_name}.html.#{ext}", "app/views/shared/_#{component_name}.html.#{ext}"
+        copy_file "_#{component_name}.html.#{ext}", "app/views/shared/_#{component_name}.html.#{ext}"
       end
     end
   end
