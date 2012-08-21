@@ -24,7 +24,7 @@ in this episode continues on the Twitter Bootstrap project showing how to displa
 Include the [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) in Gemfile to install it from [RubyGems.org](http://rubygems.org);
 
 ```ruby
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails", :group => :assets
 ```
 
 or you can install from latest build;
@@ -188,6 +188,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
   <li>Released gem v.2.1.0 (JRuby support)</li>
   <li>Released gem v.2.1.1 (minor fixes)</li>
   <li>Flash block message helper added</li>
+  <li>Released gem v.2.1.2 (minor fixes and updated to Twitter Bootstrap 2.1.0)</li>
 </ul>
 
 
