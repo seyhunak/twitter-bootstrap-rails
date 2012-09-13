@@ -24,7 +24,7 @@ in this episode continues on the Twitter Bootstrap project showing how to displa
 Include the [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) in Gemfile to install it from [RubyGems.org](http://rubygems.org);
 
 ```ruby
-gem "twitter-bootstrap-rails", :group => :assets
+gem "twitter-bootstrap-rails"
 ```
 
 or you can install from latest build;
@@ -83,7 +83,7 @@ Example:
     rake db:migrate
     rails g bootstrap:themed Posts
 
-
+Notice the plural usage of the resource to generate bootstrap:themed.
 
 ## Using with Less
 
@@ -189,6 +189,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
   <li>Released gem v.2.1.1 (minor fixes)</li>
   <li>Flash block message helper added</li>
   <li>Released gem v.2.1.2 (minor fixes and updated to Twitter Bootstrap 2.1.0)</li>
+  <li>Released gem v.2.1.3 (minor fixes and updated to Twitter Bootstrap 2.1.1)</li>
 </ul>
 
 
@@ -209,6 +210,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
   <li>Sébastien Grosjean</li>
   <li>Nick DeSteffen</li>
   <li>Christian Joudrey</li>
+  <li>Todd Baur</li>
 </ul>
 
 
