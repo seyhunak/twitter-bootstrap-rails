@@ -20,13 +20,13 @@ Gem::Specification.new do |s|
 
   s.add_dependency             'railties',   '>= 3.1'
   s.add_dependency             'actionpack', '>= 3.1'
-  
+
   if (RUBY_PLATFORM == 'java')
     s.add_dependency  'therubyrhino', '~> 1.73.4'
   else
-    s.add_dependency  'therubyracer', '~> 0.10.2'
+    s.add_dependency  'therubyracer', '>= 0.10.2'
   end
-  
+
   s.add_runtime_dependency     'less-rails', '~> 2.2.3'
   s.add_development_dependency 'rails', '>= 3.1'
 end
