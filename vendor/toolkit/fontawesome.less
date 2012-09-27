@@ -25,7 +25,7 @@
 @font-face {
   font-family: "FontAwesome";
   src: url("@{fontAwesomeEotPath}");
-  src: url("@{fontAwesomeEotPath}?#iefix") format("embedded-opentype"),
+  src: url("@{fontAwesomeEotPath}#iefix") format("embedded-opentype"),
     url("@{fontAwesomeWoffPath}") format("woff"),
     url("@{fontAwesomeTtfPath}") format("truetype"),
     url("@{fontAwesomeSvgPath}") format("svg");
@@ -36,7 +36,7 @@
 /*  Font Awesome styles
     ------------------------------------------------------- */
 [class^="icon-"]:before,
-[class*=" icon-"]:before {
+[class*="icon-"]:before {
   font-family: FontAwesome;
   font-weight: normal;
   font-style: normal;
@@ -45,7 +45,7 @@
 }
 
 a [class^="icon-"],
-a [class*=" icon-"] {
+a [class*="icon-"] {
   display: inline-block;
   text-decoration: inherit;
 }
@@ -58,7 +58,7 @@ a [class*=" icon-"] {
 
 .btn, .nav-tabs {
   [class^="icon-"],
-  [class*=" icon-"] {
+  [class*="icon-"] {
   /* keeps button heights with and without icons the same */
     line-height: .9em;
   }
@@ -66,7 +66,7 @@ a [class*=" icon-"] {
 
 li {
   [class^="icon-"],
-  [class*=" icon-"] {
+  [class*="icon-"] {
     display: inline-block;
     width: 1.25em;
     text-align: center;
@@ -85,7 +85,7 @@ ul.icons {
 
   li {
     [class^="icon-"],
-    [class*=" icon-"] {
+    [class*="icon-"] {
       width: .8em;
     }
     .icon-large:before,
