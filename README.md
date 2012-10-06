@@ -24,13 +24,13 @@ in this episode continues on the Twitter Bootstrap project showing how to displa
 Include the [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) in Gemfile to install it from [RubyGems.org](http://rubygems.org);
 
 ```ruby
-gem "twitter-bootstrap-turno"
+gem "twitter-bootstrap-turbo"
 ```
 
 or you can install from latest build;
 
 ```ruby
-gem 'twitter-bootstrap-turno', :git => 'git://github.com/davydotcom/twitter-bootstrap-rails.git'
+gem 'twitter-bootstrap-turbo', :git => 'git://github.com/davydotcom/twitter-bootstrap-rails.git'
 ```
 
 You can run bundle from command line
