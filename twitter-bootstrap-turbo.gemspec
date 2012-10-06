@@ -3,16 +3,16 @@ $:.push File.expand_path("../lib", __FILE__)
 require "twitter/bootstrap/rails/version"
 
 Gem::Specification.new do |s|
-  s.name        = "twitter-bootstrap-rails"
+  s.name        = "twitter-bootstrap-turbo"
   s.version     = Twitter::Bootstrap::Rails::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Seyhun Akyurek"]
-  s.email       = ["seyhunak@gmail.com"]
-  s.homepage    = "https://github.com/seyhunak/twitter-bootstrap-rails"
-  s.summary     = %q{Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline}
-  s.description = %q{twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline}
+  s.authors     = ["David Estes","Seyhun Akyurek"]
+  s.email       = ["davydotcom@gmail.com"]
+  s.homepage    = "https://github.com/davydotcom/twitter-bootstrap-rails"
+  s.summary     = %q{Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline with Turbolinks support}
+  s.description = %q{twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline and turbolinks}
 
-  s.rubyforge_project = "twitter-bootstrap-rails"
+  s.rubyforge_project = "twitter-bootstrap-turbo"
   s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + Dir["app/**/*"] + ["Rakefile", "README.md"]
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
