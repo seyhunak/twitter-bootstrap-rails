@@ -1,4 +1,4 @@
-# Twitter Bootstrap for Rails 3.1 Asset Pipeline
+# Twitter Bootstrap for Rails 3.1 Asset Pipeline with Turbolinks Support
 Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline (Rails 3.2 supported)
@@ -14,7 +14,7 @@ Screencasts provided by Railscasts (Ryan Bates)
 [Twitter Bootstrap Basics](http://railscasts.com/episodes/328-twitter-bootstrap-basics "Twitter Bootstrap Basics")
 in this episode you will learn how to include Twitter Bootstrap into Rails application with the twitter-bootstrap-rails gem.
 
-[More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap") 
+[More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap")
 in this episode continues on the Twitter Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
 (Note: This episode is pro episode)
 
@@ -24,13 +24,13 @@ in this episode continues on the Twitter Bootstrap project showing how to displa
 Include the [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) in Gemfile to install it from [RubyGems.org](http://rubygems.org);
 
 ```ruby
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-turbo"
 ```
 
 or you can install from latest build;
 
 ```ruby
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'twitter-bootstrap-turbo', :git => 'git://github.com/davydotcom/twitter-bootstrap-rails.git'
 ```
 
 You can run bundle from command line
