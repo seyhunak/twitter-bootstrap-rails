@@ -190,6 +190,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
   <li>Flash block message helper added</li>
   <li>Released gem v.2.1.2 (minor fixes and updated to Twitter Bootstrap 2.1.0)</li>
   <li>Released gem v.2.1.3 (minor fixes and updated to Twitter Bootstrap 2.1.1)</li>
+  <li>Released gem v.2.1.4 (minor fixes)</li>
 </ul>
 
 
