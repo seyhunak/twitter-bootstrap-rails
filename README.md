@@ -58,7 +58,7 @@ Layout (generates Twitter Bootstrap compatible layout) - (Haml and Slim supporte
 Usage:
 
 
-    rails g bootstrap:layout [LAYOUT_NAME] [*ﬁxed or ﬂuid]
+    rails g bootstrap:layout [LAYOUT_NAME] [*fixed or fluid]
 
 
 Example:
