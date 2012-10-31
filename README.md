@@ -20,10 +20,22 @@ in this episode continues on the Twitter Bootstrap project showing how to displa
 
 
 ## Installing Gem
+The gem includes the source LESS and JS files. You'll need to choose a javascript runtime.
+ExecJS supports these runtimes:
 
-Include the [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) in Gemfile to install it from [RubyGems.org](http://rubygems.org);
+* [therubyracer](https://github.com/cowboyd/therubyracer) - Google V8
+  embedded within Ruby
+* [therubyrhino](https://github.com/cowboyd/therubyrhino) - Mozilla
+  Rhino embedded within JRuby
+* [Node.js](http://nodejs.org/)
+* Apple JavaScriptCore - Included with Mac OS X
+* [Microsoft Windows Script Host](http://msdn.microsoft.com/en-us/library/9bbdkx3k.aspx) (JScript)
+
+Include the [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) in Gemfile to install it from [RubyGems.org](http://rubygems.org):
 
 ```ruby
+gem "therubyracer"
+gem "less" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 ```
 
