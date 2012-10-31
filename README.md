@@ -31,7 +31,7 @@ ExecJS supports these runtimes:
 * Apple JavaScriptCore - Included with Mac OS X
 * [Microsoft Windows Script Host](http://msdn.microsoft.com/en-us/library/9bbdkx3k.aspx) (JScript)
 
-Include the [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) in Gemfile to install it from [RubyGems.org](http://rubygems.org);
+Include the [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) in Gemfile to install it from [RubyGems.org](http://rubygems.org):
 
 ```ruby
 gem "therubyracer"
