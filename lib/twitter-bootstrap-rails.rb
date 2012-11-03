@@ -6,5 +6,5 @@ module Twitter
    end
 end
 
-require 'less-rails'
+#require 'less-rails'
 require 'twitter/bootstrap/rails/bootstrap' if defined?(Rails)
