@@ -7,12 +7,12 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 A
 [![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png)](https://gemnasium.com/seyhunak/twitter-bootstrap-rails)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails)
 
-## Example Application
-An example application is available at [toadkicker/teststrap](https://github.com/toadkicker/teststrap). You can view it running on heroku [here.](http://teststrap.herokuapp.com/) Contributions welcome.
 
 ## Screencasts
 #### Installing twitter-bootstrap-rails, generators, usage and more
-Screencasts provided by Railscasts (Ryan Bates)
+<img width="180" height="35" src="http://oi49.tinypic.com/s5wn05.jpg"></img>
+
+Screencasts provided by <a href="http://railscasts.com">Railscasts</a> (Ryan Bates)
 
 [Twitter Bootstrap Basics](http://railscasts.com/episodes/328-twitter-bootstrap-basics "Twitter Bootstrap Basics")
 in this episode you will learn how to include Twitter Bootstrap into Rails application with the twitter-bootstrap-rails gem.
@@ -20,6 +20,10 @@ in this episode you will learn how to include Twitter Bootstrap into Rails appli
 [More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap") 
 in this episode continues on the Twitter Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
 (Note: This episode is pro episode)
+
+
+## Example Application
+An example application is available at [toadkicker/teststrap](https://github.com/toadkicker/teststrap). You can view it running on heroku [here.](http://teststrap.herokuapp.com/) Contributions welcome.
 
 
 ## Installing Gem
@@ -232,44 +236,46 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 </ul>
 
 
-## Future
+### Future
 <ul>
   <li>Writing tests (not implemented yet)</li>
   <li>Markup Helpers (alert, tabs, pagination, breadcrumbs etc.)</li>
 </ul>
 
+## About Me
+Lead/ Senior Developer - Programmer @useful (Usefulideas) Istanbul / Turkey
 
-## Credits
+### Contact me
 Seyhun Akyürek - seyhunak [at] gmail com
 
-[Add Me On Twitter](http://twitter.com/seyhunak "Add Me On Twitter")
+### Follow me 
+<a href="http://zerply.com/seyhunak">
+<img width="110" height="40" src="http://zerply.com/img/welcomesteps/zerply_logo.png" />
+</a>
 
-[Add Me On Linkedin](http://tr.linkedin.com/in/seyhunak "Add Me On Linkedin")
+(Twitter, Facebook, Linkedin, Google+, Github)
 
-[Add Me On Facebook](https://www.facebook.com/seyhunak "Add Me On Facebook")
+http://zerply.com/seyhunak
 
-[Add Me On Google+](http://plus.ly/seyhunak "Add Me On Google+")
-
-[Visit My Blog](http://www.seyhunakyurek.com/ "Visit My Blog")
-
-## Endorse My Skills
+### Endorse me
 <a href="http://coderwall.com/seyhunak">
 <img src="http://api.coderwall.com/seyhunak/endorsecount.png" />
 </a>
 
-##  Want to Donate?
-<img src="https://www.paypalobjects.com/en_US/i/logo/PayPal_mark_50x34.gif"></img>
-
-[Want to donate for my efforts?. Show your love](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W8ZLWQBREFP4U
- "Donate")
-
-
-## Score me
+### Klout me
 <img src="https://addons.opera.com/media/extensions/55/14355/1.0.1-rev1/icons/icon_64x64.png"></img>
 
 Please +K my influence in Ruby on Rails on @klout
 
 http://klout.com/#/seyhunak
+
+
+### Want to donate?
+<img src="https://www.paypalobjects.com/en_US/i/logo/PayPal_mark_50x34.gif"></img>
+
+[Want to donate for my efforts?. Show your love](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W8ZLWQBREFP4U
+ "Donate")
+
 
 ## Thanks
 Twitter Bootstrap and all twitter-bootstrap-rails contributors
@@ -277,7 +283,7 @@ http://twitter.github.com/bootstrap
 
 
 ## License
-Copyright (c) 2011 Seyhun Akyürek
+Copyright (c) 2012 Seyhun Akyürek
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
