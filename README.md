@@ -7,6 +7,9 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 A
 [![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png)](https://gemnasium.com/seyhunak/twitter-bootstrap-rails)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails)
 
+## Example Application
+An example application is available at [toadkicker/teststrap](https://github.com/toadkicker/teststrap). You can view it running on heroku [here.](http://teststrap.herokuapp.com/) Contributions welcome.
+
 ## Screencasts
 #### Installing twitter-bootstrap-rails, generators, usage and more
 Screencasts provided by Railscasts (Ryan Bates)
