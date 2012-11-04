@@ -1,6 +1,10 @@
-module NavLinkHelper
+module NavigationHelper
   def page_links_for_navigation
     link = Struct.new(:name, :url)
+  end
+
+  def navbar(*class_names)
+    content_tag(:div, :class => class_names)
   end
 
   def nav_link(link_text, link_path)
