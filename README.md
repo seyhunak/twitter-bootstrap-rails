@@ -121,6 +121,29 @@ You have to require Bootstrap LESS (bootstrap_and_overrides.css.less) in your ap
 /* Your stylesheets goes here... */
 ```
 
+To use individual components from bootstrap, your bootstrap_and_overrides.less could look like this:
+
+```css
+@import "twitter/bootstrap/reset.less";
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+@import "twitter/bootstrap/scaffolding.less";
+@import "twitter/bootstrap/grid.less";
+@import "twitter/bootstrap/layouts.less";
+@import "twitter/bootstrap/type.less";
+@import "twitter/bootstrap/forms.less";
+@import "twitter/bootstrap/wells.less";
+@import "twitter/bootstrap/component-animations.less";
+@import "twitter/bootstrap/buttons.less";
+@import "twitter/bootstrap/close.less";
+@import "twitter/bootstrap/navs.less";
+@import "twitter/bootstrap/navbar.less";
+@import "twitter/bootstrap/labels-badges.less";
+@import "twitter/bootstrap/hero-unit.less";
+@import "twitter/bootstrap/utilities.less";
+@import "twitter/bootstrap/responsive";
+```
+
 If you'd like to alter Bootstrap's own variables, or define your LESS
 styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrides.css.less:
 
@@ -140,6 +163,20 @@ $(document).ready(function(){
   /* Your javascripts goes here... */
 });
 ```
+
+If you want to customize what is loaded, your application.js would look something like this
+
+```js
+#= require jquery
+#= require jquery_ujs
+#= require twitter/bootstrap/bootstrap-transition
+#= require twitter/bootstrap/bootstrap-alert
+#= require twitter/bootstrap/bootstrap-modal
+#= require twitter/bootstrap/bootstrap-button
+#= require twitter/bootstrap/bootstrap-collapse
+```
+
+...and so on for each bootstrap js component.
 
 ## Using Coffeescript (optionally)
 
