@@ -82,14 +82,17 @@ module Bootstrap
       end
 
       def generate_views
-        views = {
+        options.engine == generate_erb(selected_views)
+      end
+
+      def selected_views
+        {
           "index.html.#{ext}"                 => File.join('app/views', @controller_file_path, "index.html.#{ext}"),
           "new.html.#{ext}"                   => File.join('app/views', @controller_file_path, "new.html.#{ext}"),
           "edit.html.#{ext}"                  => File.join('app/views', @controller_file_path, "edit.html.#{ext}"),
           "#{form_builder}_form.html.#{ext}"  => File.join('app/views', @controller_file_path, "_form.html.#{ext}"),
-          "show.html.#{ext}"                  => File.join('app/views', @controller_file_path, "show.html.#{ext}")}
-        selected_views = views
-        options.engine == generate_erb(selected_views)
+          "show.html.#{ext}"                  => File.join('app/views', @controller_file_path, "show.html.#{ext}")
+        }
       end
 
       def generate_erb(views)
@@ -108,3 +111,6 @@ module Bootstrap
     end
   end
 end
+
+
+
