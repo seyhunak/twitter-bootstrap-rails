@@ -26,7 +26,7 @@ task :build_static_stylesheets do
     puts "Compiling #{source_file}"
     target_file = File.join(target_directory, File.basename(source_file, '.less')+'.css.erb')
     tree = parser.parse(File.read(source_file))
-    File.open(target_file, 'w') {|f| f.puts tree.to_css(compress: true) }
+    File.open(target_file, 'w') {|f| f.puts tree.to_css(:compress => true) }
   end
 end
 

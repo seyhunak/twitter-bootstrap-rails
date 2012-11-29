@@ -6,7 +6,7 @@ module Bootstrap
 
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator installs Twitter Bootstrap to Asset Pipeline"
-      argument :stylesheets_type, :type => :string, :default => 'less', banner: '*less or static'
+      argument :stylesheets_type, :type => :string, :default => 'less', :banner => '*less or static'
 
       def add_assets
 
