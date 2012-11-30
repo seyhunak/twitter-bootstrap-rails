@@ -31,7 +31,7 @@ module Bootstrap
       end
 
       def add_bootstrap
-        if Rails.configuration.app_generators.rails[:javascript_engine] == :coffee
+        if ::Rails.configuration.app_generators.rails[:javascript_engine] == :coffee
           copy_file "bootstrap.coffee", "app/assets/javascripts/bootstrap.js.coffee"
         else
           copy_file "bootstrap.js", "app/assets/javascripts/bootstrap.js"
