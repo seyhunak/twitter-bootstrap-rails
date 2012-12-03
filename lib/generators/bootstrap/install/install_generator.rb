@@ -6,6 +6,7 @@ module Bootstrap
 
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator installs Twitter Bootstrap to Asset Pipeline"
+      argument :stylesheets_type, :type => :string, :default => 'less', :banner => '*less or static'
 
       def add_assets
 
@@ -31,12 +32,16 @@ module Bootstrap
       end
 
       def add_bootstrap
-        if ::Rails.configuration.app_generators.rails[:javascript_engine] == :coffee
+        if use_coffeescript?
           copy_file "bootstrap.coffee", "app/assets/javascripts/bootstrap.js.coffee"
         else
           copy_file "bootstrap.js", "app/assets/javascripts/bootstrap.js"
         end
-        copy_file "bootstrap_and_overrides.less", "app/assets/stylesheets/bootstrap_and_overrides.css.less"
+        if use_less?
+          copy_file "bootstrap_and_overrides.less", "app/assets/stylesheets/bootstrap_and_overrides.css.less"
+        else
+          copy_file "bootstrap_and_overrides.css", "app/assets/stylesheets/bootstrap_and_overrides.css"
+        end
       end
 
       def cleanup_legacy
@@ -52,6 +57,14 @@ module Bootstrap
         end
       end
 
+    private
+      def use_less?
+        (defined?(Less) && (stylesheets_type!='static') ) || (stylesheets_type=='less')
+      end
+
+      def use_coffeescript?
+        ::Rails.configuration.app_generators.rails[:javascript_engine] == :coffee
+      end
     end
   end
 end
