@@ -18,7 +18,7 @@ Screencasts provided by <a href="http://railscasts.com">Railscasts</a> (Ryan Bat
 [Twitter Bootstrap Basics](http://railscasts.com/episodes/328-twitter-bootstrap-basics "Twitter Bootstrap Basics")
 in this episode you will learn how to include Twitter Bootstrap into Rails application with the twitter-bootstrap-rails gem.
 
-[More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap") 
+[More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap")
 in this episode continues on the Twitter Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
 (Note: This episode is pro episode)
 
@@ -27,19 +27,20 @@ in this episode continues on the Twitter Bootstrap project showing how to displa
 An example application is available at [toadkicker/teststrap](https://github.com/toadkicker/teststrap). You can view it running on heroku [here.](http://teststrap.herokuapp.com/) Contributions welcome.
 
 
-## Installing Gem
-The gem includes the source LESS and JS files. You'll need to choose a javascript runtime.
-ExecJS supports these runtimes:
+## Installing the Gem
 
-* [therubyracer](https://github.com/cowboyd/therubyracer) - Google V8
-  embedded within Ruby
-* [therubyrhino](https://github.com/cowboyd/therubyrhino) - Mozilla
-  Rhino embedded within JRuby
-* [Node.js](http://nodejs.org/)
-* Apple JavaScriptCore - Included with Mac OS X
-* [Microsoft Windows Script Host](http://msdn.microsoft.com/en-us/library/9bbdkx3k.aspx) (JScript)
+The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) can provide the Twitter Bootstrap stylesheets in two ways.
 
-Include the [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) in Gemfile to install it from [RubyGems.org](http://rubygems.org):
+The plain CSS way is how Twitter Bootstrap is provided on [the official website](http://twitter.github.com/bootstrap/).
+
+The [Less](http://lesscss.org/) way provides more customisation options, like changing theme colors, and provides useful Less mixins for your code, but requires the
+Less gem and the Ruby Racer Javascript runtime (not available on Microsoft Windows).
+
+### Installing the Less stylesheets
+
+To use Less stylesheets, you'll need the [less-rails gem](http://rubygems.org/gems/less-rails), and one of [Javascript runtimes supported by CommonJS](https://github.com/cowboyd/commonjs.rb#supported-runtimes).
+
+Include these lines in the Gemfile to install the gems from [RubyGems.org](http://rubygems.org):
 
 ```ruby
 gem "therubyracer"
@@ -53,23 +54,29 @@ or you can install from latest build;
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 ```
 
-You can run bundle from command line
+Then run `bundle install` from the command line:
 
     bundle install
 
+Then run the boostrap generator to add Bootstrap includes into your assets:
 
-## Installing to App (using Generators)
+    rails generate bootstrap:install less
+
+### Installing the CSS stylesheets
+
+If you don't need to customize the stylesheets using Less, the only gem you need is the `twitter-bootstrap-rails` gem:
+
+```ruby
+gem "twitter-bootstrap-rails"
+```
+
+After running `bundle install`, run the generator:
+
+    rails generate bootstrap:install static
+
+## Generating layouts and views
 
 You can run following generators to get started with Twitter Bootstrap quickly.
-
-
-Install (requires directives to Asset pipeline.)
-
-
-Usage:
-
-
-    rails g bootstrap:install
 
 
 Layout (generates Twitter Bootstrap compatible layout) - (Haml and Slim supported)
@@ -196,19 +203,6 @@ jQuery ->
 ### Flash helper
 Add flash helper <%= bootstrap_flash %> to your layout (built-in with layout generator)
 
-
-## Using Static CSS, JS (w/o Less)
-
-twitter-bootstrap-rails has seperate branch (w/o Less) that just serves latest static CSS, JS files.
-
-You can install from latest build (from branch);
-
-```ruby
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git',
-                               :branch => 'static'
-```
-
-
 ## Changelog
 <ul>
   <li>Version 0.0.5 deprecated</li>
@@ -250,6 +244,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
   <li>Released gem v.2.1.4 (minor fixes)</li>
   <li>Released gem v.2.1.5 (minor fixes, install generator detects javascript template engine, updated to Twitter Bootstrap 2.2.1)</li>
   <li>Released gem v.2.1.6 (minor fixes)</li>
+  <li>Added static stylesheets support</li>
 </ul>
 
 
@@ -271,6 +266,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
   <li>Nick DeSteffen</li>
   <li>Christian Joudrey</li>
   <li>Todd Baur</li>
+  <li>Leonid Shevtsov</li>
 </ul>
 
 
@@ -286,7 +282,7 @@ Lead/ Senior Developer - Programmer @useful (Usefulideas) Istanbul / Turkey
 ### Contact me
 Seyhun Akyürek - seyhunak [at] gmail com
 
-### Follow me 
+### Follow me
 <a href="http://zerply.com/seyhunak">
 <img width="110" height="40" src="http://zerply.com/img/welcomesteps/zerply_logo.png" />
 </a>
