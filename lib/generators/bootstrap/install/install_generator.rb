@@ -63,7 +63,7 @@ module Bootstrap
       end
 
       def use_coffeescript?
-        Rails.configuration.app_generators.rails[:javascript_engine] == :coffee
+        ::Rails.configuration.app_generators.rails[:javascript_engine] == :coffee
       end
     end
   end
