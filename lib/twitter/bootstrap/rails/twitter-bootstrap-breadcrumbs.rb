@@ -8,6 +8,7 @@ module Twitter
       module ClassMethods
         def add_breadcrumb name, url, options={}
           before_filter options do |controller|
+            name = controller.send :translate_breadcrumb, name, self.name if name.is_a?(Symbol)
             controller.send :add_breadcrumb, name, url
           end
         end
@@ -15,10 +16,20 @@ module Twitter
 
       protected
 
-      def add_breadcrumb name, url = '', options = {}
+      def add_breadcrumb(name, url = '', options = {})
         @breadcrumbs ||= []
+        name = translate_breadcrumb(name, self.class_name) if name.is_a?(Symbol)
         url = eval(url.to_s) if url =~ /_path|_url|@/
           @breadcrumbs << {:name => name, :url => url, :options => options}
+      end
+
+      def translate_breadcrumb(name, class_name)
+        scope = [:breadcrumbs]
+        namespace = class_name.underscore.split('/')
+        namespace.last.sub!('_controller', '')
+        scope += namespace
+
+        I18n.t name, scope: scope
       end
 
       def render_breadcrumbs(divider = '/')
