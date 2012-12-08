@@ -4,7 +4,8 @@ module AbstractController
   module Testing
 
     class TestHelper
-      BREADCRUMB_NAMES = [:class_level, :object_level, :i18n]
+      BREADCRUMB_NAMES = [:class_level, :class_level_i18n, :instance_level,
+        :instance_level_i18n]
 
       class << self
         BREADCRUMB_NAMES.each do |name|
@@ -24,10 +25,11 @@ module AbstractController
       include Twitter::Bootstrap::BreadCrumbs
 
       add_breadcrumb TestHelper.class_level_name, TestHelper.class_level_path
+      add_breadcrumb :class_level_i18n, TestHelper.class_level_i18n_path
 
       def index
-        add_breadcrumb TestHelper.object_level_name, TestHelper.object_level_path
-        add_breadcrumb :test_breadcrumb_i18n, TestHelper.i18n_path
+        add_breadcrumb TestHelper.instance_level_name, TestHelper.instance_level_path
+        add_breadcrumb :instance_level_i18n, TestHelper.instance_level_i18n_path
       end
 
       def class_name
@@ -41,8 +43,10 @@ module AbstractController
 
     class BreadcrumbsTest < MiniTest::Unit::TestCase
       def setup
-        I18n.stubs(:t).returns(TestHelper.i18n_name)
-
+        options = { scope: [:breadcrumbs, 'abstract_controller', 'testing', 'test'] }
+        [:class_level_i18n, :instance_level_i18n].each do |name|
+          I18n.expects(:t).with(name, options).returns(TestHelper.send("#{name}_name"))
+        end
         @controller = TestController.new
         @controller.process(:index)
       end
@@ -55,7 +59,7 @@ module AbstractController
 
       def include_breadcrumb?(name)
         selected = @controller.breadcrumbs.select { |b|
-          b[:name] == TestHelper.send("#{name}_name") && b[:url] == TestHelper.send("#{name}_path")
+          b[:url] == TestHelper.send("#{name}_path")
         }
         selected.any?
       end
