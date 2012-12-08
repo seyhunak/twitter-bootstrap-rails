@@ -32,10 +32,6 @@ module AbstractController
         add_breadcrumb :instance_level_i18n, TestHelper.instance_level_i18n_path
       end
 
-      def class_name
-        self.class.name
-      end
-
       def breadcrumbs
         @breadcrumbs
       end
