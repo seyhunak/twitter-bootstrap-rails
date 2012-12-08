@@ -59,6 +59,7 @@ module AbstractController
 
       def include_breadcrumb?(name)
         selected = @controller.breadcrumbs.select { |b|
+          b[:name] == TestHelper.send("#{name}_name") &&
           b[:url] == TestHelper.send("#{name}_path")
         }
         selected.any?
