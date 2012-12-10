@@ -281,6 +281,7 @@ Add breadcrumbs helper <%= render_breadcrumbs %> to your layout
   <li>Released gem v.2.1.5 (minor fixes, install generator detects javascript template engine, updated to Twitter Bootstrap 2.2.1)</li>
   <li>Released gem v.2.1.6 (minor fixes)</li>
   <li>Added static stylesheets support</li>
+  <li>Released gem v.2.1.8 and updated to Twitter Bootstrap 2.2.2</li>
 </ul>
 
 
