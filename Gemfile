@@ -5,5 +5,8 @@ gemspec
 gem 'less-rails', :path => ENV['LESS_RAILS_SOURCE'] if ENV['LESS_RAILS_SOURCE']
 
 group :test do
+  gem 'minitest'
+  gem 'mocha'
   gem 'rake'
+  gem 'turn'
 end
