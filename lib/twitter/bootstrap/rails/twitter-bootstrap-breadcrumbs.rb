@@ -7,8 +7,9 @@ module Twitter
 
       module ClassMethods
         def add_breadcrumb(name, url, options = {})
+          class_name = self.name
           before_filter options do |controller|
-            name = controller.send :translate_breadcrumb, name, controller.class.name if name.is_a?(Symbol)
+            name = controller.send :translate_breadcrumb, name, class_name if name.is_a?(Symbol)
             controller.send :add_breadcrumb, name, url
           end
         end

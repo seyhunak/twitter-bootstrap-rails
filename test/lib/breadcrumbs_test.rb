@@ -5,7 +5,7 @@ module AbstractController
 
     class TestHelper
       BREADCRUMB_NAMES = [:class_level, :class_level_i18n, :instance_level,
-        :instance_level_i18n]
+        :instance_level_i18n, :base_level, :base_level_i18n]
 
       class << self
         BREADCRUMB_NAMES.each do |name|
@@ -20,20 +20,25 @@ module AbstractController
       end
     end
 
-    class TestController < AbstractController::Base
-      include AbstractController::Callbacks
+    class BaseTestController < AbstractController::Base
       include Twitter::Bootstrap::BreadCrumbs
+      include AbstractController::Callbacks
 
+      add_breadcrumb TestHelper.base_level_name, TestHelper.base_level_path
+      add_breadcrumb :base_level_i18n, TestHelper.base_level_i18n_path
+
+      def breadcrumbs
+        @breadcrumbs
+      end
+    end
+
+    class TestController < BaseTestController
       add_breadcrumb TestHelper.class_level_name, TestHelper.class_level_path
       add_breadcrumb :class_level_i18n, TestHelper.class_level_i18n_path
 
       def index
         add_breadcrumb TestHelper.instance_level_name, TestHelper.instance_level_path
         add_breadcrumb :instance_level_i18n, TestHelper.instance_level_i18n_path
-      end
-
-      def breadcrumbs
-        @breadcrumbs
       end
     end
 
@@ -43,6 +48,11 @@ module AbstractController
         [:class_level_i18n, :instance_level_i18n].each do |name|
           I18n.expects(:t).with(name, options).returns(TestHelper.send("#{name}_name"))
         end
+
+        name = :base_level_i18n
+        options = { scope: [:breadcrumbs, 'abstract_controller', 'testing', 'base_test'] }
+        I18n.expects(:t).with(name, options).returns(TestHelper.send("#{name}_name"))
+
         @controller = TestController.new
         @controller.process(:index)
       end
