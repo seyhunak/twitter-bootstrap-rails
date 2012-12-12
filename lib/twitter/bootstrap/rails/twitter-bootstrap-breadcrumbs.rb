@@ -30,7 +30,7 @@ module Twitter
         namespace.last.sub!('_controller', '')
         scope += namespace
 
-        I18n.t name, scope: scope
+        I18n.t name, :scope => scope
       end
 
       def render_breadcrumbs(divider = '/')
