@@ -88,10 +88,16 @@ Usage:
     rails g bootstrap:layout [LAYOUT_NAME] [*fixed or fluid]
 
 
-Example:
+Example of a fixed layout:
 
 
     rails g bootstrap:layout application fixed
+
+
+Example of a responsive layout:
+
+
+    rails g bootstrap:layout application fluid
 
 
 Themed (generates Twitter Bootstrap compatible scaffold views.) - (Haml and Slim supported)
