@@ -3,11 +3,15 @@ require 'bundler'
 Bundler::GemHelper.install_tasks
 
 desc "Bundle the gem"
-task :bundle do
-  sh('bundle install')
+task :bundle  => [:bundle_install, :build_static_stylesheets] do
   sh 'gem build *.gemspec'
   sh 'gem install *.gem'
   sh 'rm *.gem'
+end
+
+desc "Runs bundle install"
+task :bundle_install do
+  sh('bundle install')
 end
 
 desc "Build the static precompiled stylesheets from Less sources"
