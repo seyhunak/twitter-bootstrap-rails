@@ -58,7 +58,7 @@ Then run `bundle install` from the command line:
 
     bundle install
 
-Then run the boostrap generator to add Bootstrap includes into your assets:
+Then run the bootstrap generator to add Bootstrap includes into your assets:
 
     rails generate bootstrap:install less
 
@@ -172,7 +172,7 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
 ```js
 //= require twitter/bootstrap
 
-$(document).ready(function(){
+$(function(){
   /* Your javascripts goes here... */
 });
 ```
@@ -217,7 +217,7 @@ end
 ```
 
 ```ruby
-class ExapmlesController < ApplicationController
+class ExamplesController < ApplicationController
   add_breadcrumb :index, :examples_path
 
   def index
