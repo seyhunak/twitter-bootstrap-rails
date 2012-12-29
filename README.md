@@ -58,7 +58,7 @@ Then run `bundle install` from the command line:
 
     bundle install
 
-Then run the boostrap generator to add Bootstrap includes into your assets:
+Then run the bootstrap generator to add Bootstrap includes into your assets:
 
     rails generate bootstrap:install less
 
@@ -217,7 +217,7 @@ end
 ```
 
 ```ruby
-class ExapmlesController < ApplicationController
+class ExamplesController < ApplicationController
   add_breadcrumb :index, :examples_path
 
   def index
