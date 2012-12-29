@@ -172,7 +172,7 @@ You have to require Bootstrap JS (bootstrap.js) in your application.js
 ```js
 //= require twitter/bootstrap
 
-$(document).ready(function(){
+$(function(){
   /* Your javascripts goes here... */
 });
 ```
