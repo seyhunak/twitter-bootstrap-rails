@@ -289,6 +289,7 @@ Add breadcrumbs helper <%= render_breadcrumbs %> to your layout
   <li>Added static stylesheets support</li>
   <li>Released gem v.2.1.8 and updated to Twitter Bootstrap 2.2.2</li>
   <li>Released gem v.2.1.9</li>
+  <li>Released gem v.2.2.0 (Font Awesome 3)</li>
 </ul>
 
 
