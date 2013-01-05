@@ -164,6 +164,17 @@ styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrid
 @linkColor: #ff0000;
 ```
 
+### Icons
+
+By default, this gem overrides standard Bootstraps's Glyphicons with Font Awesome (http://fortawesome.github.com/Font-Awesome/).
+If you would like to restore the default Glyphicons, inside the _bootstrap_and_overrides.css.less_ remove the FontAwesome declaration and uncomment the line:
+
+```css
+// Font Awesome
+// @import "fontawesome";
+// Glyphicons
+@import "twitter/bootstrap/sprites.less";
+```
 
 ## Using Javascripts
 
