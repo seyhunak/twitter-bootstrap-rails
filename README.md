@@ -221,6 +221,9 @@ jQuery ->
 Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout generator)
 
 ### Breadcrumbs Helpers
+
+Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
+
 ```ruby
 class ApplicationController
   add_breadcrumb :index, :root_path
@@ -253,8 +256,6 @@ en:
       index: "Examples"
       show: "Example"
 ```
-
-Add breadcrumbs helper <%= render_breadcrumbs %> to your layout
 
 ## Changelog
 <ul>
