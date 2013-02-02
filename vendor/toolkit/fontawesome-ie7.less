@@ -1,30 +1,25 @@
-/*  Font Awesome 3.0
-    the iconic font designed for use with Twitter Bootstrap
-    -------------------------------------------------------
-    The full suite of pictographic icons, examples, and documentation
-    can be found at: http://fortawesome.github.com/Font-Awesome/
+/*!
+ *  Font Awesome 3.0.2
+ *  the iconic font designed for use with Twitter Bootstrap
+ *  -------------------------------------------------------
+ *  The full suite of pictographic icons, examples, and documentation
+ *  can be found at: http://fortawesome.github.com/Font-Awesome/
+ *
+ *  License
+ *  -------------------------------------------------------
+ *  - The Font Awesome font is licensed under the SIL Open Font License - http://scripts.sil.org/OFL
+ *  - Font Awesome CSS, LESS, and SASS files are licensed under the MIT License -
+ *    http://opensource.org/licenses/mit-license.html
+ *  - The Font Awesome pictograms are licensed under the CC BY 3.0 License - http://creativecommons.org/licenses/by/3.0/
+ *  - Attribution is no longer required in Font Awesome 3.0, but much appreciated:
+ *    "Font Awesome by Dave Gandy - http://fortawesome.github.com/Font-Awesome"
 
-    License
-    -------------------------------------------------------
-    • The Font Awesome font is licensed under the SIL Open Font License - http://scripts.sil.org/OFL
-    • Font Awesome CSS, LESS, and SASS files are licensed under the MIT License -
-      http://opensource.org/licenses/mit-license.html
-    • The Font Awesome pictograms are licensed under the CC BY 3.0 License - http://creativecommons.org/licenses/by/3.0/
-    • Attribution is no longer required in Font Awesome 3.0, but much appreciated:
-      "Font Awesome by Dave Gandy - http://fortawesome.github.com/Font-Awesome"
-
-    Contact
-    -------------------------------------------------------
-    Email: dave@davegandy.com
-    Twitter: http://twitter.com/fortaweso_me
-    Work: Lead Product Designer @ http://kyruus.com
-
-    */
-
-[class^="icon-"],
-[class*=" icon-"] {
-  padding-right:.3em;
-}
+ *  Contact
+ *  -------------------------------------------------------
+ *  Email: dave@davegandy.com
+ *  Twitter: http://twitter.com/fortaweso_me
+ *  Work: Lead Product Designer @ http://kyruus.com
+ */
 
 .icon-large {
   font-size: 4/3em;
@@ -32,10 +27,10 @@
   padding-top: 3px;
   margin-bottom: -4px;
   padding-bottom: 3px;
-  vertical-align: -20%;
+  vertical-align: middle;
 }
 
-.btn, .nav {
+.nav {
   [class^="icon-"],
   [class*=" icon-"] {
     vertical-align: inherit;
@@ -43,7 +38,32 @@
     padding-top: 3px;
     margin-bottom: -4px;
     padding-bottom: 3px;
-    line-height: .9em;
+    &.icon-large {
+      vertical-align: -25%;
+    }
+  }
+}
+
+.nav-pills, .nav-tabs {
+  [class^="icon-"],
+  [class*=" icon-"] {
+    &.icon-large {
+      line-height: .75em;
+      margin-top: -7px;
+      padding-top: 5px;
+      margin-bottom: -5px;
+      padding-bottom: 4px;
+    }
+  }
+}
+
+.btn {
+  [class^="icon-"],
+  [class*=" icon-"] {
+    &.pull-left, &.pull-right { vertical-align: inherit; }
+    &.icon-large {
+      margin-top: -.5em;
+    }
   }
 }
 
