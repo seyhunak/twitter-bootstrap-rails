@@ -44,6 +44,10 @@ module Bootstrap
         end
       end
 
+      def add_locale
+        copy_file "en.bootstrap.yml", "config/locale/en.bootstrap.yml"
+      end
+
       def cleanup_legacy
         # Remove old requires (if any) that included twitter/bootstrap directly:
         gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap\s*\n|, "")
