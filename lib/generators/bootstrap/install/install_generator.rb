@@ -45,7 +45,7 @@ module Bootstrap
       end
 
       def add_locale
-        copy_file "en.bootstrap.yml", "config/locale/en.bootstrap.yml"
+        copy_file "en.bootstrap.yml", "config/locales/en.bootstrap.yml" unless File.exist?
       end
 
       def cleanup_legacy
