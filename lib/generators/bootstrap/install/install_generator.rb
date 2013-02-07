@@ -45,7 +45,12 @@ module Bootstrap
       end
 
       def add_locale
-        copy_file "en.bootstrap.yml", "config/locales/en.bootstrap.yml" unless File.exist?
+        if File.exist?("config/locales/en.bootstrap.yml")
+          localez = File.read("config/locales/en.bootstrap.yml")
+          insert_into_file "config/locales/en.bootstrap.yml", localez, :after => "en\n"
+        else
+          copy_file "en.bootstrap.yml", "config/locales/en.bootstrap.yml"
+        end
       end
 
       def cleanup_legacy
