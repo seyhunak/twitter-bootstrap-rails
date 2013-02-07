@@ -44,6 +44,15 @@ module Bootstrap
         end
       end
 
+      def add_locale
+        if File.exist?("config/locales/en.bootstrap.yml")
+          localez = File.read("config/locales/en.bootstrap.yml")
+          insert_into_file "config/locales/en.bootstrap.yml", localez, :after => "en\n"
+        else
+          copy_file "en.bootstrap.yml", "config/locales/en.bootstrap.yml"
+        end
+      end
+
       def cleanup_legacy
         # Remove old requires (if any) that included twitter/bootstrap directly:
         gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap\s*\n|, "")
