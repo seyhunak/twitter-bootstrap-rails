@@ -256,6 +256,8 @@ en:
       index: "Examples"
       show: "Example"
 ```
+NOTE: If you are using Devise in your project, you must have a devise locale file
+for handling flash messages, even if those messages are blank. See https://github.com/plataformatec/devise/wiki/I18n
 
 ## Changelog
 <ul>
