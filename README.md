@@ -304,6 +304,7 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Released gem v.2.1.8 and updated to Twitter Bootstrap 2.2.2</li>
   <li>Released gem v.2.1.9</li>
   <li>Released gem v.2.2.0 (Font Awesome 3)</li>
+  <li>Released gem v.2.2.1 (minor fixes and updates)</li>
 </ul>
 
 
