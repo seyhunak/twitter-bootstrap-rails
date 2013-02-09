@@ -305,11 +305,13 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Released gem v.2.1.9</li>
   <li>Released gem v.2.2.0 (Font Awesome 3)</li>
   <li>Released gem v.2.2.1 (minor fixes and updates)</li>
+  <li>Released gem v.2.2.2 (Bootstrap 2.3.0)</li>
 </ul>
 
 
 ## Contributors & Patches & Forks
 <ul>
+  <li>Ben Lovell</li>
   <li>Daniel Morris</li>
   <li>Bradly Feeley</li>
   <li>Guilherme Moreira</li>
