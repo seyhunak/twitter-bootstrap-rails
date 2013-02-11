@@ -306,6 +306,8 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Released gem v.2.2.0 (Font Awesome 3)</li>
   <li>Released gem v.2.2.1 (minor fixes and updates)</li>
   <li>Released gem v.2.2.2 (Bootstrap 2.3.0)</li>
+  <li>Released gem v.2.2.3 (Minor fixes)</li>
+
 </ul>
 
 
