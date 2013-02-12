@@ -82,7 +82,7 @@ module Bootstrap
       end
 
       def retrieve_columns
-        if defined?(ActiveRecord) == "constant" && ActiveRecord.class == Class 
+        if defined?(ActiveRecord) == "constant"
           rescue_block ActiveRecord::StatementInvalid do
             @model_name.constantize.columns
           end
