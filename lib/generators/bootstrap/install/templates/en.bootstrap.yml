@@ -7,7 +7,7 @@ en:
     links:
       back: "Back"
       cancel: "Cancel"
-      confirm: "Confirm"
+      confirm: "Are you sure?"
       destroy: "Delete"
       new: "New"
     titles:
