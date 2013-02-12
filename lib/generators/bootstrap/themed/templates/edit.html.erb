@@ -1,6 +1,5 @@
 <%%- model_class = <%= resource_name.classify %> -%>
 <div class="page-header">
-  <h1><%%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
-                                   :default => "Edit #{model_class.model_name.human}") %></h1>
+  <h1><%%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human %></h1>
 </div>
 <%%= render :partial => 'form' %>
