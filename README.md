@@ -308,6 +308,7 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Released gem v.2.2.2 (Bootstrap 2.3.0)</li>
   <li>Released gem v.2.2.3 (Minor fixes)</li>
   <li>Released gem v.2.2.4 (Minor fixes)</li>
+  <li>Released gem v.2.2.5 (Bootstrap 2.3.1)</li>
 
 </ul>
 
