@@ -3,11 +3,11 @@ Bootstrap is a toolkit from Twitter designed to kickstart development of webapps
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline (Rails 3.2 supported)
 
-[![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png)](http://travis-ci.org/seyhunak/twitter-bootstrap-rails)
+[![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.png)][gem]
+[![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master)](http://travis-ci.org/seyhunak/twitter-bootstrap-rails)
 [![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png)](https://gemnasium.com/seyhunak/twitter-bootstrap-rails)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails)
-[![Still Maintained](https://a248.e.akamai.net/camo.github.com/9c977523be7fce95c026a1b7d9673903f82e59cd/687474703a2f2f7374696c6c6d61696e7461696e65642e636f6d2f7374696c6c6d61696e7461696e65642f7374696c6c6d61696e7461696e65642e706e67)](http://stillmaintained.com/seyhunak/twitter-bootstrap-rails)
-
+[![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master)][coveralls]
 
 ## Screencasts
 #### Installing twitter-bootstrap-rails, generators, usage and more
