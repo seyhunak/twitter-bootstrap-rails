@@ -44,13 +44,13 @@ module AbstractController
 
     class BreadcrumbsTest < MiniTest::Unit::TestCase
       def setup
-        options = { scope: [:breadcrumbs, 'abstract_controller', 'testing', 'test'] }
+        options = { :scope => [:breadcrumbs, 'abstract_controller', 'testing', 'test'] }
         [:class_level_i18n, :instance_level_i18n].each do |name|
           I18n.expects(:t).with(name, options).returns(TestHelper.send("#{name}_name"))
         end
 
         name = :base_level_i18n
-        options = { scope: [:breadcrumbs, 'abstract_controller', 'testing', 'base_test'] }
+        options = { :scope => [:breadcrumbs, 'abstract_controller', 'testing', 'base_test'] }
         I18n.expects(:t).with(name, options).returns(TestHelper.send("#{name}_name"))
 
         @controller = TestController.new

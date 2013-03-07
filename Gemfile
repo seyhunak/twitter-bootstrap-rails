@@ -9,4 +9,5 @@ group :test do
   gem 'mocha'
   gem 'rake'
   gem 'turn'
+  gem 'coveralls'
 end
