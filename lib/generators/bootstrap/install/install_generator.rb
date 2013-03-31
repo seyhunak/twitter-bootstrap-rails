@@ -18,14 +18,16 @@ module Bootstrap
           copy_file "application.js", js_manifest
         end
 
-        if File.exist?('app/assets/stylesheets/application.css')
+        css_manifest = 'app/assets/stylesheets/application.css'
+
+        if File.exist?(css_manifest)
           # Add our own require:
-          content = File.read("app/assets/stylesheets/application.css")
+          content = File.read(css_manifest)
           if content.match(/require_tree\s+\.\s*$/)
             # Good enough - that'll include our bootstrap_and_overrides.css.less
           else
             style_require_block = " *= require bootstrap_and_overrides\n"
-            insert_into_file "app/assets/stylesheets/application.css", style_require_block, :after => "require_self\n"
+            insert_into_file css_manifest, style_require_block, :after => "require_self\n"
           end
         else
           copy_file "application.css", "app/assets/stylesheets/application.css"
