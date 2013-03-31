@@ -10,10 +10,12 @@ module Bootstrap
 
       def add_assets
 
-        if File.exist?('app/assets/javascripts/application.js')
-          insert_into_file "app/assets/javascripts/application.js", "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
+        js_manifest = 'app/assets/javascripts/applications.js'
+
+        if File.exist?(js_manifest)
+          insert_into_file js_manifest, "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
         else
-          copy_file "application.js", "app/assets/javascripts/application.js"
+          copy_file "application.js", js_manifest
         end
 
         if File.exist?('app/assets/stylesheets/application.css')
