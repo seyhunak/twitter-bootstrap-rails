@@ -379,7 +379,7 @@ http://klout.com/#/seyhunak
 ### Want to donate?
 <img src="https://www.paypalobjects.com/en_US/i/logo/PayPal_mark_50x34.gif"></img>
 
-[Want to donate for my efforts?. Show your love](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W8ZLWQBREFP4U
+[Want to donate for my efforts? Show your love](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W8ZLWQBREFP4U
  "Donate")
 
 
