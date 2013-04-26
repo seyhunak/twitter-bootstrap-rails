@@ -228,6 +228,8 @@ Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout g
 
 ### Breadcrumbs Helpers
 
+*Notice* If your application is using [breadcrumbs-on-rails](https://github.com/weppos/breadcrumbs_on_rails) you will have a namespace collision with the add_breadcrumb method. 
+You do not need to use these breadcrumb gems since this gem provides the same functionality out of the box without the additional dependency. 
 Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
 
 ```ruby
