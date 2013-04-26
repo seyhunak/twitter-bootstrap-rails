@@ -169,6 +169,17 @@ styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrid
 ```css
 @linkColor: #ff0000;
 ```
+### SASS
+
+If you are using SASS to compile your application.css (e.g. your manifest file is application.css.sass or application.css.scss) you may get this:
+
+```
+Invalid CSS after "*": expected "{", was "= require twitt..."
+(in app/assets/stylesheets/application.css)
+(sass)
+```
+
+If this is the case, you **must** use @import instead of `*=` in your manifest file, or don't compile your manifest with SASS.
 
 ### Icons
 
@@ -184,7 +195,7 @@ If you would like to restore the default Glyphicons, inside the _bootstrap_and_o
 
 ## Using Javascripts
 
-You have to require Bootstrap JS (bootstrap.js) in your application.js
+Require Bootstrap JS (bootstrap.js) in your application.js
 
 ```js
 //= require twitter/bootstrap
@@ -230,6 +241,7 @@ Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout g
 
 *Notice* If your application is using [breadcrumbs-on-rails](https://github.com/weppos/breadcrumbs_on_rails) you will have a namespace collision with the add_breadcrumb method. 
 You do not need to use these breadcrumb gems since this gem provides the same functionality out of the box without the additional dependency. 
+
 Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
 
 ```ruby
@@ -253,17 +265,10 @@ class ExamplesController < ApplicationController
 end
 ```
 
-Add I18n translations
+###i18n Internationalization Support
+The installer creates an english translation file for you and copies it to config/locales/en.bootstrap.yml
 
-```yml
-en:
-  breadcrumbs:
-    application:
-      index: "Index"
-    examples:
-      index: "Examples"
-      show: "Example"
-```
+
 NOTE: If you are using Devise in your project, you must have a devise locale file
 for handling flash messages, even if those messages are blank. See https://github.com/plataformatec/devise/wiki/I18n
 
@@ -341,13 +346,6 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Christian Joudrey</li>
   <li>Todd Baur</li>
   <li>Leonid Shevtsov</li>
-</ul>
-
-
-### Future
-<ul>
-  <li>Writing tests (not implemented yet)</li>
-  <li>Markup Helpers (alert, tabs, pagination, breadcrumbs etc.)</li>
 </ul>
 
 ## About Me
