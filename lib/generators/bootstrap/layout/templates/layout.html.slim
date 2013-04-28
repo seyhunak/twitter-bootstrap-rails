@@ -9,13 +9,15 @@ html lang="en"
 
     /! Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
-      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
     = stylesheet_link_tag "application", :media => "all"
-    link href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144"
-    link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114"
-    link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72"
-    link href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed"
-    link href="images/favicon.ico" rel="shortcut icon"
+    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+
+
 
   body
     .navbar.navbar-<%= layout_type %>-top
@@ -44,6 +46,7 @@ html lang="en"
               li= link_to "Link 2", "/path2"
               li= link_to "Link 3", "/path3"
         .span9
+          = bootstrap_flash
           = yield
     <% else %>
       .row
@@ -60,7 +63,7 @@ html lang="en"
               li= link_to "Link 3", "/path3"
     <% end %>
       footer
-        p &copy; Company 2012
+        p &copy; Company 2013
     /!
       Javascripts
       \==================================================

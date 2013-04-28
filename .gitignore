@@ -6,3 +6,4 @@ pkg/*
 *.swp
 *~
 .rvmrc
+coverage/*
