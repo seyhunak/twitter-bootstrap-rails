@@ -10,4 +10,5 @@ group :test do
   gem 'rake'
   gem 'turn'
   gem 'coveralls'
+  gem 'rspec'
 end

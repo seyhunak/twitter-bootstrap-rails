@@ -1,13 +1,15 @@
-<div class="navbar">
+<% navbar :class => class_names do %>
   <div class="navbar-inner">
-    <div class="container">
-      <a class="brand" href="/">Brand</a>
-      <p>
-        " the mission "
-      </p>
-      <ul class="nav pull-right">
-        <li><%= link_to "Link 1", "" %></li>
-      </ul>
-    </div>
+    <a class=brand" href="<%= root_url %>"><%= enki_config[:title] %></a>
+    <ul class="nav">
+      <% page_links_for_navigation.each do |link| -%>
+        <%= nav_link link.name, link.url %>
+      <% end -%>
+    </ul>
+    <form class="search-form" method="get" id="sform" action="http://www.google.com/search">
+        <input class="search-query" type="text" id="q" value="" name="q">
+        <button class="btn" type="submit">Search</button>
+        <input type="hidden" name="sitesearch" value="<%= enki_config[:url] %>">
+    </form>
   </div>
-</div>
+<% end %>
