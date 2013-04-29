@@ -234,7 +234,19 @@ jQuery ->
 
 ## Using Helpers
 
+### Modal Helper
+
+```ruby
+<%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => 'modal'} %>
+
+<%= modal_dialog :id => "modal",
+		 :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
+                 :body   => 'This is the body',
+                 :footer => content_tag(:button, 'Save', :class => 'btn') %>
+```
+
 ### Flash helper
+
 Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout generator)
 
 ### Breadcrumbs Helpers
