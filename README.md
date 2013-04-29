@@ -234,6 +234,19 @@ jQuery ->
 
 ## Using Helpers
 
+### Modal Helper
+You can create modals easily using the following example. The header, body, and footer all accept content_tag or plain html.
+The href of the button to launch the modal must matche the id of the modal dialog.
+
+```ruby
+<%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => modal'} %>
+
+<%= modal_dialog :id => "modal",
+		 :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
+                 :body   => 'This is the body',
+                 :footer => content_tag(:button, 'Save', :class => 'btn') %>
+```
+
 ### Navbar Helper
 It should let you write things like:
 
@@ -501,7 +514,9 @@ If you want to put regular plain text in the navbar anywhere, you do it like thi
 ````
 It also takes the :pull option to drag it to the left or right.
 
+
 ### Flash helper
+
 Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout generator)
 
 ### Breadcrumbs Helpers
