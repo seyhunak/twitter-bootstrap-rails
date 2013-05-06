@@ -22,7 +22,7 @@ task :build_static_stylesheets do
 
   parser = Less::Parser.new :paths => [toolkit_path]
 
-  target_directory = File.expand_path('vendor/assets/stylesheets/twitter-bootstrap-static')
+  target_directory = File.expand_path('app/assets/stylesheets/twitter-bootstrap-static')
 
   sh "rm -rf #{target_directory}"
   sh "mkdir -p #{target_directory}"
