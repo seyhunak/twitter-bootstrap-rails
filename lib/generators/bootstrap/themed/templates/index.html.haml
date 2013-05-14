@@ -1,6 +1,6 @@
 - model_class = <%= resource_name.classify %>
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
 %table.table.table-striped
   %thead
     %tr
