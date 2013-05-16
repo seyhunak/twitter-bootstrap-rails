@@ -26,7 +26,7 @@ module ModalHelper
 
   def modal_footer(options = {}, &block)
     content_tag :div, options, :class => 'modal-footer', &block
-    end
+  end
 
   def close_button(dismiss)
     #It doesn't seem to like content_tag, so we do this instead.	
