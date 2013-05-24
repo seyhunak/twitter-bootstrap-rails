@@ -28,6 +28,22 @@ module NavbarHelper
     end
   end
 
+  def drop_down_with_submenu(name, &block)
+    content_tag :li, :class => "dropdown" do
+      drop_down_link(name) + drop_down_sublist(&block)
+    end
+  end
+
+  def drop_down_sublist(&block)
+    content_tag :ul, :class => "dropdown-menu", &block
+  end
+
+  def drop_down_submenu(name, &block)
+    content_tag :li, :class => "dropdown-submenu" do
+      link_to(name, "") + drop_down_list(&block)
+    end
+  end
+
   def drop_down_divider
     content_tag :li, "", :class => "divider"
   end
