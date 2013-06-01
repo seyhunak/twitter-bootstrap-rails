@@ -111,6 +111,16 @@ describe NavbarHelper, :type => :helper do
     end
   end
 
+  describe "drop_down_with_submenu" do
+    it "should do render the proper drop down code" do
+      drop_down_with_submenu "Products" do
+        drop_down_submenu "Latest" do
+          menu_item "Option1", "/"
+        end
+      end.gsub(/\s/, '').downcase.should eql(DROPDOWN_MENU_WITH_SUBMENU.gsub(/\s/, '').downcase)
+    end
+  end
+
   describe "menu_divider" do
     it "should render <li class='divider-vertical'></li>" do
       menu_divider.should eql '<li class="divider-vertical"></li>'
@@ -306,6 +316,20 @@ DROPDOWN_MENU = <<-HTML
   </a>
   <ul class="dropdown-menu">
     <li><a href="/">Latest</a></li>
+  </ul>
+</li>
+HTML
+
+DROPDOWN_MENU_WITH_SUBMENU = <<-HTML
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li class="dropdown-submenu">
+      <a href="">Latest</a>
+      <ul class="dropdown-menu">
+        <li><a href="/">Option1</a></li>
+      </ul>
+    </li>
   </ul>
 </li>
 HTML
