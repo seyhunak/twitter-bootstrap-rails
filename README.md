@@ -547,6 +547,23 @@ class ExamplesController < ApplicationController
 end
 ```
 
+### Element utility helpers
+
+Badge:
+```ruby
+<%= badge(12, :warning) %> # <span class="badge badge-warning">12</span>
+```
+
+Label:
+```ruby
+<%= label('Gut!', :success) %> # <span class="badge badge-success">Gut!</span>
+```
+
+Glyph:
+```ruby
+<%= glyph(:pencil) %> # <i class="icon-pencil"></i>
+```
+
 ###i18n Internationalization Support
 The installer creates an english translation file for you and copies it to config/locales/en.bootstrap.yml
 
