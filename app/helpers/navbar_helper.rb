@@ -157,7 +157,7 @@ module NavbarHelper
   end
 
   def is_active?(path)
-    "active" if current_page?(path)
+    "active" if uri_state(path).in?(:active, :chosen)
   end
 
   def name_and_caret(name)

@@ -11,7 +11,7 @@ include NavbarHelper
 
 describe NavbarHelper, :type => :helper do
   before do
-    self.stub!("current_page?").and_return(false)
+    self.stub!("uri_state").and_return(:inactive)
     self.stub!("root_url").and_return("/")
   end
   describe "nav_bar" do
@@ -94,11 +94,11 @@ describe NavbarHelper, :type => :helper do
       menu_item("Home", "/").should eql('<li><a href="/">Home</a></li>')
     end
     it "should return the link with class 'active' if on current page" do
-      self.stub!("current_page?").and_return(true)
+      self.stub!("uri_state").and_return(:active)
       menu_item("Home", "/").should eql('<li class="active"><a href="/">Home</a></li>')
     end
     it "should pass any other options through to the link_to method" do
-      self.stub!("current_page?").and_return(true)
+      self.stub!("uri_state").and_return(:active)
       menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete).should eql('<li class="active"><a href="/users/sign_out" class="home_link" data-method="delete" rel="nofollow">Log out</a></li>')
     end
   end
