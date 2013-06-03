@@ -66,6 +66,33 @@ module NavbarHelper
     end
   end
 
+  # Returns current url or path state (useful for buttons).
+  # Example:
+  #   # Assume we'r currently at blog/categories/test
+  #   uri_state('/blog/categories/test')   # :active
+  #   uri_state('/blog/categories')        # :chosen
+  #   uri_state('/blog/categories/test/3') # :inactive    
+  def uri_state(uri)
+    root_url = request.host_with_port + '/'
+    root = uri == '/' || uri == root_url
+
+    request_uri = if uri.start_with?(root_url)
+      request.url
+    else
+      request.path
+    end
+
+    if uri == request_uri
+      :active
+    else
+      if request_uri.start_with?(uri) and not(root)
+        :chosen
+      else
+        :inactive
+      end
+    end
+  end  
+
   private
 
   def nav_bar_div(options, &block)
@@ -130,7 +157,7 @@ module NavbarHelper
   end
 
   def is_active?(path)
-    "active" if current_page?(path)
+    "active" if uri_state(path).in?(:active, :chosen)
   end
 
   def name_and_caret(name)
