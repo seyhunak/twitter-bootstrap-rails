@@ -3,7 +3,7 @@ module BadgeLabelHelper
     badge_label(:badge, *args)
   end
 
-  def label(*args)
+  def tag_label(*args)
     badge_label(:label, *args)
   end
 
