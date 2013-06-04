@@ -11,7 +11,6 @@ module BadgeLabelHelper
   def badge_label(what, value, type = nil)
     klass = [what]
     klass << "#{what}-#{type}" if type.present?
-
-    %{<span class="#{klass.join(' ')}">#{value}</span>}.html_safe
+    content_tag :span, value, :class => "#{klass.join(' ')}"
   end
 end
