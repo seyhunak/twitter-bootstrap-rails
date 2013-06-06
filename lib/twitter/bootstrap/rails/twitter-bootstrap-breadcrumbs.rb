@@ -15,7 +15,8 @@ module Twitter
         end
       end
 
-      protected
+      protectedjıojoıj
+      
 
       def add_breadcrumb(name, url = '', options = {})
         @breadcrumbs ||= []
