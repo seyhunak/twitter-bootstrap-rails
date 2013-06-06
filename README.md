@@ -239,7 +239,7 @@ You can create modals easily using the following example. The header, body, and 
 The href of the button to launch the modal must matche the id of the modal dialog.
 
 ```ruby
-<%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => modal'} %>
+<%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => 'modal'} %>
 
 <%= modal_dialog :id => "modal",
 		 :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
