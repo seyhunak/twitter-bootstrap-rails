@@ -155,7 +155,7 @@ module NavbarHelper
   end
 
   def responsive_div(&block)
-    content_tag(:div, :class => "nav-collapse", &block)
+    content_tag(:div, :class => "nav-collapse collapse", &block)
   end
 
   def is_active?(path)
