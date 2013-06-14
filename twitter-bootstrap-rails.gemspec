@@ -33,5 +33,5 @@ Gem::Specification.new do |s|
   "Node.js\n\n" \
   "Apple JavaScriptCore - Included with Mac OS X\n\n" \
   "Microsoft Windows Script Host (JScript)\n\n" \
-  "**********************************************"
+  "**********************************************\n"
 end
