@@ -166,9 +166,11 @@ To use individual components from bootstrap, your bootstrap_and_overrides.less c
 If you'd like to alter Bootstrap's own variables, or define your LESS
 styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrides.css.less:
 
+
 ```css
 @linkColor: #ff0000;
 ```
+
 ### SASS
 
 If you are using SASS to compile your application.css (e.g. your manifest file is application.css.sass or application.css.scss) you may get this:
@@ -184,11 +186,44 @@ If this is the case, you **must** use @import instead of `*=` in your manifest f
 ### Icons
 
 By default, this gem overrides standard Bootstraps's Glyphicons with Font Awesome (http://fortawesome.github.com/Font-Awesome/).
-If you would like to restore the default Glyphicons, inside the _bootstrap_and_overrides.css.less_ remove the FontAwesome declaration and uncomment the line:
+
+This should appear inside _bootstrap_and_overrides *(based on you twitter-bootstrap-rails version)*
+
+**From 2.2.7**
 
 ```css
 // Font Awesome
-// @import "fontawesome";
+@fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
+@import "fontawesome/font-awesome";
+```
+
+**Before 2.2.7**
+
+```css
+// Font Awesome
+@fontAwesomeEotPath: "/assets/fontawesome-webfont.eot";
+@fontAwesomeEotPath_iefix: "/assets/fontawesome-webfont.eot?#iefix";
+@fontAwesomeWoffPath: "/assets/fontawesome-webfont.woff";
+@fontAwesomeTtfPath: "/assets/fontawesome-webfont.ttf";
+@fontAwesomeSvgPath: "/assets/fontawesome-webfont.svg#fontawesomeregular";
+@import "fontawesome";
+```
+
+If you would like to restore the default Glyphicons, inside the _bootstrap_and_overrides.css.less_ remove the FontAwesome declaration and uncomment the line:
+
+```less
+// Font Awesome
+// @fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
+// @fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
+// @fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
+// @fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
+// @fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
+// @import "fontawesome/font-awesome";
+
 // Glyphicons
 @import "twitter/bootstrap/sprites.less";
 ```
@@ -242,7 +277,7 @@ The href of the button to launch the modal must matche the id of the modal dialo
 <%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => 'modal'} %>
 
 <%= modal_dialog :id => "modal",
-		 :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
+         :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
                  :body   => 'This is the body',
                  :footer => content_tag(:button, 'Save', :class => 'btn') %>
 ````
@@ -252,31 +287,31 @@ It should let you write things like:
 
 ````
 <%= nav_bar :fixed => :top, :brand => "Fashionable Clicheizr 2.0", :responsive => true do %>
-	<%= menu_group do %>
-		<%= menu_item "Home", root_path %>
-		<%= menu_divider %>
-		<%= drop_down "Products" do %>
-			<%= menu_item "Things you can't afford", expensive_products_path %>
-			<%= menu_item "Things that won't suit you anyway", harem_pants_path %>
-			<%= menu_item "Things you're not even cool enough to buy anyway", hipster_products_path %>
-			<% if current_user.lives_in_hackney? %>
-				<%= menu_item "Bikes", fixed_wheel_bikes_path %>
-			<% end %>
-		<% end %>
-		<%= menu_item "About Us", about_us_path %>
-		<%= menu_item "Contact", contact_path %>
-	<% end %>
-	<%= menu_group :pull => :right do %>
-		<% if current_user %>
-			<%= menu_item "Log Out", log_out_path %>
-		<% else %>
-			<%= form_for @user, :url => session_path(:user), html => {:class=> "navbar-form pull-right"} do |f| -%>
-			  <p><%= f.text_field :email %></p>
-			  <p><%= f.password_field :password %></p>
-			  <p><%= f.submit "Sign in" %></p>
-			<% end -%>
-		<% end %>
-	<% end %>
+    <%= menu_group do %>
+        <%= menu_item "Home", root_path %>
+        <%= menu_divider %>
+        <%= drop_down "Products" do %>
+            <%= menu_item "Things you can't afford", expensive_products_path %>
+            <%= menu_item "Things that won't suit you anyway", harem_pants_path %>
+            <%= menu_item "Things you're not even cool enough to buy anyway", hipster_products_path %>
+            <% if current_user.lives_in_hackney? %>
+                <%= menu_item "Bikes", fixed_wheel_bikes_path %>
+            <% end %>
+        <% end %>
+        <%= menu_item "About Us", about_us_path %>
+        <%= menu_item "Contact", contact_path %>
+    <% end %>
+    <%= menu_group :pull => :right do %>
+        <% if current_user %>
+            <%= menu_item "Log Out", log_out_path %>
+        <% else %>
+            <%= form_for @user, :url => session_path(:user), html => {:class=> "navbar-form pull-right"} do |f| -%>
+              <p><%= f.text_field :email %></p>
+              <p><%= f.password_field :password %></p>
+              <p><%= f.submit "Sign in" %></p>
+            <% end -%>
+        <% end %>
+    <% end %>
 <% end %>
 ````
 
@@ -290,12 +325,12 @@ In your view file (most likely application.html.erb) to get a basic navbar set u
 
 Which will render:
 
-	<div class="navbar">
-	  <div class="navbar-inner">
-	    <div class="container">
-	    </div>
-	  </div>
-	</div>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+        </div>
+      </div>
+    </div>
 
 
 ### Fixed navbar
@@ -308,12 +343,12 @@ If you want the navbar to stick to the top of the screen, pass in the option lik
 
 To render:
 
-	<div class="navbar navbar-fixed-top">
-	  <div class="navbar-inner">
-	    <div class="container">
-	    </div>
-	  </div>
-	</div>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+        </div>
+      </div>
+    </div>
 
 ### Static navbar
 
@@ -325,12 +360,12 @@ If you want a full-width navbar that scrolls away with the page, pass in the opt
 
 To render:
 
-	<div class="navbar navbar-static-top">
-	  <div class="navbar-inner">
-	    <div class="container">
-	    </div>
-	  </div>
-	</div>
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+        </div>
+      </div>
+    </div>
 
 
 ### Brand name
@@ -343,15 +378,15 @@ Add the name of your site on the left hand edge of the navbar. By default, it wi
 
 Which will render:
 
-	<div class="navbar">
-	  <div class="navbar-inner">
-	    <div class="container">
-			<a class="brand" href="/accounts/dashboard">
-			  We're sooo web 2.0alizr
-			</a>
-	    </div>
-	  </div>
-	</div>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/accounts/dashboard">
+              We're sooo web 2.0alizr
+            </a>
+        </div>
+      </div>
+    </div>
 
 
 ### Optional responsive variation
@@ -364,22 +399,22 @@ If you want the responsive version of the navbar to work (One that shrinks down 
 Which renders the html quite differently:
 
 
-	<div class="navbar">
-	  <div class="navbar-inner">
-	    <div class="container">
-	      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-	      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </a>
-	      <!-- Everything in here gets hidden at 940px or less -->
-	      <div class="nav-collapse">
-	        <!-- menu items gets rendered here instead -->
-	      </div>
-	    </div>
-	  </div>
-	</div>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <!-- Everything in here gets hidden at 940px or less -->
+          <div class="nav-collapse">
+            <!-- menu items gets rendered here instead -->
+          </div>
+        </div>
+      </div>
+    </div>
 
 
 ### Nav links
@@ -398,23 +433,23 @@ menu_item generates a link wrapped in an li tag. It takes two arguments and an o
 
 ````
 <%= nav_bar :fixed => :top, :brand => "Ninety Ten" do %>
-	<% menu_group do %>
-		<%= menu_item "Home", root_path %>
-		<%= menu_item "About Us", about_us_path %>
-		<%= menu_item "Contact", contact_path %>
-	<% end %>
-	<% if current_user %>
-		<%= menu_item "Log Out", log_out_path %>
-	<% else %>
-		<% menu_group :pull => :right do %>
-			<%= menu_item "Sign Up", registration_path %>
-			<% form_for @user, :url => session_path(:user) do |f| -%>
-			  <p><%= f.text_field :email %></p>
-			  <p><%= f.password_field :password %></p>
-			  <p><%= f.submit "Sign in" %></p>
-			<% end -%>
-		<% end %>
-	<% end %>
+    <% menu_group do %>
+        <%= menu_item "Home", root_path %>
+        <%= menu_item "About Us", about_us_path %>
+        <%= menu_item "Contact", contact_path %>
+    <% end %>
+    <% if current_user %>
+        <%= menu_item "Log Out", log_out_path %>
+    <% else %>
+        <% menu_group :pull => :right do %>
+            <%= menu_item "Sign Up", registration_path %>
+            <% form_for @user, :url => session_path(:user) do |f| -%>
+              <p><%= f.text_field :email %></p>
+              <p><%= f.password_field :password %></p>
+              <p><%= f.submit "Sign in" %></p>
+            <% end -%>
+        <% end %>
+    <% end %>
 <% end %>
 ````
 
@@ -424,17 +459,17 @@ For multi-level list options, where it makes logical sense to group menu items, 
 
 ````
 <%= nav_bar do %>
-	<%= menu_item "Home", root_path %>
+    <%= menu_item "Home", root_path %>
 
-	<%= drop_down "Products" do %>
-		<%= menu_item "Latest", latest_products_path %>
-		<%= menu_item "Top Sellers", popular_products_path %>
-		<%= drop_down_divider %>
-		<%= menu_item "Discount Items", discounted_products_path %>
-	<% end %>
+    <%= drop_down "Products" do %>
+        <%= menu_item "Latest", latest_products_path %>
+        <%= menu_item "Top Sellers", popular_products_path %>
+        <%= drop_down_divider %>
+        <%= menu_item "Discount Items", discounted_products_path %>
+    <% end %>
 
-	<%= menu_item "About Us", about_us_path %>
-	<%= menu_item "Contact", contact_path %>
+    <%= menu_item "About Us", about_us_path %>
+    <%= menu_item "Contact", contact_path %>
 <% end %>
 ````
 
@@ -444,15 +479,15 @@ Dividers are just vertical bars that visually separate logically disparate group
 
 ````
 <%= nav_bar :fixed => :bottom do %>
-	<%= menu_item "Home", root_path %>
-	<%= menu_item "About Us", about_us_path %>
-	<%= menu_item "Contact", contact_path %>
+    <%= menu_item "Home", root_path %>
+    <%= menu_item "About Us", about_us_path %>
+    <%= menu_item "Contact", contact_path %>
 
-	<%= menu_divider %>
+    <%= menu_divider %>
 
-	<%= menu_item "Edit Profile", edit_user_path(current_user) %>
-	<%= menu_item "Account Settings", edit_user_account_path(current_user, @account) %>
-	<%= menu_item "Log Out", log_out_path %>
+    <%= menu_item "Edit Profile", edit_user_path(current_user) %>
+    <%= menu_item "Account Settings", edit_user_account_path(current_user, @account) %>
+    <%= menu_item "Log Out", log_out_path %>
 <% end %>
 ````
 
@@ -488,16 +523,16 @@ You can shift things to the left or the right across the nav bar. It's easiest t
 
 ````
 <%= nav_bar :fixed => :bottom do %>
-	<% menu_group do %>
-		<%= menu_item "Home", root_path %>
-		<%= menu_item "About Us", about_us_path %>
-		<%= menu_item "Contact", contact_path %>
-	<% end %>
-	<% menu_group :pull => :right do %>
-		<%= menu_item "Edit Profile", edit_user_path(current_user) %>
-		<%= menu_item "Account Settings", edit_user_account_path(current_user, @account) %>
-		<%= menu_item "Log Out", log_out_path %>
-	<% end %>
+    <% menu_group do %>
+        <%= menu_item "Home", root_path %>
+        <%= menu_item "About Us", about_us_path %>
+        <%= menu_item "Contact", contact_path %>
+    <% end %>
+    <% menu_group :pull => :right do %>
+        <%= menu_item "Edit Profile", edit_user_path(current_user) %>
+        <%= menu_item "Account Settings", edit_user_account_path(current_user, @account) %>
+        <%= menu_item "Log Out", log_out_path %>
+    <% end %>
 <% end %>
 ````
 
@@ -507,9 +542,9 @@ If you want to put regular plain text in the navbar anywhere, you do it like thi
 
 ````
 <%= nav_bar :brand => "Apple" do %>
-	<%= menu_text "We make shiny things" %>
-	<%= menu_item "Home", root_path %>
-	<%= menu_item "About Us", about_us_path %>
+    <%= menu_text "We make shiny things" %>
+    <%= menu_item "Home", root_path %>
+    <%= menu_item "About Us", about_us_path %>
 <% end %>
 ````
 It also takes the :pull option to drag it to the left or right.
