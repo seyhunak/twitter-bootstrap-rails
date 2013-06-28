@@ -12,7 +12,7 @@ en:
       new: "New"
       edit: "Edit"
     titles:
-      edit: "Edit"
-      save: "Save"
-      new: "New"
-      delete: "Delete"
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"
