@@ -16,6 +16,7 @@ html lang="en"
     = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
     = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    = javascript_include_tag "application"
 
 
 
@@ -64,8 +65,3 @@ html lang="en"
     <% end %>
       footer
         p &copy; Company 2013
-    /!
-      Javascripts
-      \==================================================
-    /! Placed at the end of the document so the pages load faster
-    = javascript_include_tag "application"

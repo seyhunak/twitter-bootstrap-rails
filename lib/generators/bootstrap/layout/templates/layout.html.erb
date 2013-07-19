@@ -33,6 +33,8 @@
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
     <%%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+    <%%= javascript_include_tag "application" %>
   </head>
   <body>
 
@@ -99,11 +101,6 @@
       </footer>
 
     </div> <!-- /container -->
-
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%%= javascript_include_tag "application" %>
 
   </body>
 </html>
