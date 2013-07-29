@@ -20,6 +20,13 @@ describe NavbarHelper, 'uri_state', type: :helper do
     subject.uri_state("#{HOST}/a/b").should == :active
   end
 
+  it 'must not return chosen for non get method' do
+    subject.uri_state('/a/b', :method => 'delete').should == :inactive
+    subject.uri_state("#{HOST}/a/b", :method => 'delete').should == :inactive
+    subject.uri_state('/a/b', "data-method" => 'delete').should == :inactive
+    subject.uri_state("#{HOST}/a/b", "data-method" => 'delete').should == :inactive
+  end
+
   it 'must return chosen state' do
     subject.uri_state('/a').should == :chosen
     subject.uri_state("#{HOST}/a").should == :chosen
