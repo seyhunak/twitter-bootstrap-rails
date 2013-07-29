@@ -13,11 +13,13 @@ describe NavbarHelper, 'uri_state', type: :helper do
     subject.stub_chain("request.protocol").and_return("http://")
     subject.stub_chain("request.url").and_return("#{HOST}/a/b")
     subject.stub_chain("request.path").and_return('/a/b')    
+    subject.stub("url_for").and_return('/a/b')
   end
 
   it 'must return active state' do
     subject.uri_state('/a/b').should == :active
     subject.uri_state("#{HOST}/a/b").should == :active
+    subject.uri_state(:a_b).should == :active
   end
 
   it 'must return chosen state' do

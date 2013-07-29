@@ -73,10 +73,16 @@ module NavbarHelper
   #   # Assume we'r currently at blog/categories/test
   #   uri_state('/blog/categories/test')   # :active
   #   uri_state('/blog/categories')        # :chosen
+  #   uri_state(:blog_categories)          # :chosen, same as previous
+  #   uri_state([:blog, :categories])      # :chosen, same as previous
   #   uri_state('/blog/categories/test/3') # :inactive    
   def uri_state(uri)
     root_url = request.host_with_port + '/'
     root = uri == '/' || uri == root_url
+
+    if !uri.respond_to?(:start_with?)
+      uri = url_for(uri)
+    end
 
     request_uri = if uri.start_with?(root_url)
       request.url
