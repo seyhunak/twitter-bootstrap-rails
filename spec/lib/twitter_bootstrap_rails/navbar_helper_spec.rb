@@ -43,10 +43,6 @@ describe NavbarHelper, :type => :helper do
       nav_bar(:brand => "Ninety Ten", :brand_link => "http://www.ninetyten.com").gsub(/\s/, '').downcase.should eql(NAVBAR_WITH_BRAND_AND_LINK.gsub(/\s/, '').downcase)
     end
 
-    it "should set the container to fluid" do
-      nav_bar(:fluid => :true).gsub(/\s/, '').downcase.should eql(BASIC_NAVBAR_FLUID.gsub(/\s/, '').downcase)
-    end
-
     it "should add the buttons etc for a responsive layout with no block passed" do
       nav_bar(:responsive => true).gsub(/\s/, '').downcase.should eql(RESPONSIVE_NAVBAR.gsub(/\s/, '').downcase)
     end
@@ -78,13 +74,13 @@ describe NavbarHelper, :type => :helper do
     it "should return a ul with the class 'nav'" do
       menu_group do
         menu_item("Home", "/") + menu_item("Products", "/products")
-      end.should eql '<ul class="nav "><li><a href="/">Home</a></li><li><a href="/products">Products</a></li></ul>'
+      end.should eql '<ul class="nav navbar-nav "><li><a href="/">Home</a></li><li><a href="/products">Products</a></li></ul>'
     end
 
     it "should return a ul with class .pull-left when passed the {:pull => :left} option" do
       menu_group(:pull => :left) do
         menu_item("Home", "/")
-      end.should eql('<ul class="nav pull-left"><li><a href="/">Home</a></li></ul>')
+      end.should eql('<ul class="nav navbar-nav pull-left"><li><a href="/">Home</a></li></ul>')
     end
   end
 
@@ -99,7 +95,7 @@ describe NavbarHelper, :type => :helper do
     end
     it "should pass any other options through to the link_to method" do
       self.stub!("uri_state").and_return(:active)
-      menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete).should eql('<li class="active"><a href="/users/sign_out" class="home_link" data-method="delete" rel="nofollow">Log out</a></li>')
+      menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete).should eql('<li class="active"><a class="home_link" data-method="delete" href="/users/sign_out" rel="nofollow">Log out</a></li>')
     end
     it "should pass a block but no name if a block is present" do
       self.stub!("current_page?").and_return(false)
@@ -175,93 +171,68 @@ end
 
 BASIC_NAVBAR = <<-HTML
 <div class="navbar">
-  <div class="navbar-inner">
-    <div class="container">
-    </div>
+  <div class="container">
   </div>
 </div>
 HTML
 
 FIXED_TOP_NAVBAR = <<-HTML
 <div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-    </div>
+  <div class="container">
   </div>
 </div>
 HTML
 
 STATIC_TOP_NAVBAR = <<-HTML
 <div class="navbar navbar-static-top">
-  <div class="navbar-inner">
-    <div class="container">
-    </div>
+  <div class="container">
   </div>
 </div>
 HTML
 
 FIXED_BOTTOM_NAVBAR = <<-HTML
 <div class="navbar navbar-fixed-bottom">
-  <div class="navbar-inner">
-    <div class="container">
-    </div>
+  <div class="container">
   </div>
 </div>
 HTML
 
 INVERSE_NAVBAR = <<-HTML
 <div class="navbar navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-    </div>
-  </div>
-</div>
-HTML
-
-BASIC_NAVBAR_FLUID= <<-HTML
-<div class="navbar">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-    </div>
+  <div class="container">
   </div>
 </div>
 HTML
 
 NAVBAR_WITH_BRAND = <<-HTML
 <div class="navbar">
-  <div class="navbar-inner">
-    <div class="container">
-			<a href="/" class="brand">
-			  Ninety Ten
-			</a>
-    </div>
+  <div class="container">
+          <a class="navbar-brand" href="/">
+            Ninety Ten
+          </a>
   </div>
 </div>
 HTML
 
 NAVBAR_WITH_BRAND_AND_LINK = <<-HTML
 <div class="navbar">
-  <div class="navbar-inner">
-    <div class="container">
-			<a href="http://www.ninetyten.com" class="brand">
-			  Ninety Ten
-			</a>
-    </div>
+  <div class="container">
+          <a class="navbar-brand" href="http://www.ninetyten.com">
+            Ninety Ten
+          </a>
   </div>
 </div>
 HTML
 
 RESPONSIVE_NAVBAR = <<-HTML
 <div class="navbar">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <div class="nav-collapse">
-      </div>
+  <div class="container">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="nav-collapse collapse">
     </div>
   </div>
 </div>
@@ -269,60 +240,54 @@ HTML
 
 RESPONSIVE_NAVBAR_WITH_BLOCK = <<-HTML
 <div class="navbar">
-  <div class="navbar-inner">
     <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </a>
-      <div class="nav-collapse">
+      </button>
+      <div class="nav-collapse collapse">
 				<p>Passing a block</p>
       </div>
     </div>
-  </div>
 </div>
 HTML
 
 PLAIN_NAVBAR_WITH_ITEM = <<-HTML
 <div class="navbar">
-	<div class="navbar-inner">
-		<div class="container">
-			<ul class="nav">
-				<li>
-					<a href="/">Home</a>
-				</li>
-				<li>
-					<a href="/products">Products</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/products">Products</a>
+            </li>
+        </ul>
+    </div>
 </div>
 HTML
 
 BRANDED_NAVBAR_WITH_ITEM = <<-HTML
 <div class="navbar">
-	<div class="navbar-inner">
-		<div class="container">
-			<a href="/" class="brand">
-			  Something
-			</a>
-			<ul class="nav">
-				<li>
-					<a href="/">Home</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+    <div class="container">
+        <a class="navbar-brand" href="/">
+          Something
+        </a>
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="/">Home</a>
+            </li>
+        </ul>
+    </div>
 </div>
 HTML
 
 DROPDOWN_MENU = <<-HTML
 <li class="dropdown">
-  <a href="#"
-        class="dropdown-toggle"
-        data-toggle="dropdown">
+  <a class="dropdown-toggle"
+        data-toggle="dropdown"
+        href="#">
         Products
         <b class="caret"></b>
   </a>
@@ -334,7 +299,7 @@ HTML
 
 DROPDOWN_MENU_WITH_SUBMENU = <<-HTML
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <li class="dropdown-submenu">
       <a href="">Latest</a>
@@ -348,15 +313,13 @@ HTML
 
 PLAIN_NAVBAR_WITH_FORM = <<-HTML
 <div class="navbar">
-	<div class="navbar-inner">
-		<div class="container">
-			<form accept-charset="utf-8" action="/" method="get">
-				<div style="margin:0;padding:0;display:inline">
-					<input name="utf8" type="hidden" value="&#x2713;"/>
-				</div>
-				<input id="search_stub" name="search[stub]" size="30" type="text"/>
-			</form>
-		</div>
-	</div>
+      <div class="container">
+          <form accept-charset="utf-8" action="/" method="get">
+              <div style="margin:0;padding:0;display:inline">
+                  <input name="utf8" type="hidden" value="&#x2713;"/>
+              </div>
+              <input id="search_stub" name="search[stub]" type="text"/>
+          </form>
+      </div>
 </div>
 HTML
