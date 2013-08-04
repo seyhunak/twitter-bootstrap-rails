@@ -2,17 +2,15 @@
 module NavbarHelper
   def nav_bar(options={}, &block)
     nav_bar_div(options) do
-      navbar_inner_div do
-        container_div(options[:brand], options[:brand_link], options[:responsive], options[:fluid]) do
-          yield if block_given?
-        end
+      container_div(options[:brand], options[:brand_link], options[:responsive], options[:fluid]) do
+        yield if block_given?
       end
     end
   end
 
   def menu_group(options={}, &block)
     pull_class = "pull-#{options[:pull].to_s}" if options[:pull].present?
-    content_tag(:ul, :class => "nav #{pull_class}", &block)
+    content_tag(:ul, :class => "nav navbar-nav #{pull_class}", &block)
   end
 
   def menu_item(name=nil, path="#", *args, &block)
@@ -111,14 +109,8 @@ module NavbarHelper
     end
   end
 
-  def navbar_inner_div(&block)
-    content_tag :div, :class => "navbar-inner" do
-      yield
-    end
-  end
-
   def container_div(brand, brand_link, responsive, fluid, &block)
-    content_tag :div, :class => "container#{"-fluid" if fluid}" do
+    content_tag :div, :class => "container" do
       container_div_with_block(brand, brand_link, responsive, &block)
     end
   end
@@ -146,15 +138,15 @@ module NavbarHelper
   def brand_link(name, url)
     return "" if name.blank?
     url ||= root_url
-    link_to(name, url, :class => "brand")
+    link_to(name, url, :class => "navbar-brand")
   end
 
   def responsive_button
-    %{<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    %{<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
-	      </a>}
+	      </button>}
   end
 
   def responsive_div(&block)

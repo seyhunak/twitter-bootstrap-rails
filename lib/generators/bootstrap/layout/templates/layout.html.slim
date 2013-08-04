@@ -21,40 +21,25 @@ html lang="en"
 
 
   body
-    .navbar.navbar-<%= layout_type %>-top
-      .navbar-inner
-        .<%= container_class %>
-          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+    .navbar.navbar-fixed-top
+        .container
+          button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand href="#"<%= app_name %>
-          .<%=container_class%>.nav-collapse
-            ul.nav
+          a.navbar-brand href="#"<%= app_name %>
+          .nav-collapse.collapse.navbar-responsive-collapse
+            ul.nav.navbar-nav
               li= link_to "Link 1", "/path1"
               li= link_to "Link 2", "/path2"
               li= link_to "Link 3", "/path3"
 
-    .<%= container_class %>
-    <%- if layout_type == "fluid" -%>
-
-      .row-fluid
-        .span3
-          .well.sidebar-nav
-            ul.nav.nav-list
-              li.nav-header Sidebar
-              li= link_to "Link 1", "/path1"
-              li= link_to "Link 2", "/path2"
-              li= link_to "Link 3", "/path3"
-        .span9
-          = bootstrap_flash
-          = yield
-    <% else %>
+    .container
       .row
-        .span9
+        .col-lg-9
           = bootstrap_flash
           = yield
-        .span3
+        .col-lg-3
           .well.sidebar-nav
             h3 Sidebar
             ul.nav.nav-list
@@ -62,6 +47,6 @@ html lang="en"
               li= link_to "Link 1", "/path1"
               li= link_to "Link 2", "/path2"
               li= link_to "Link 3", "/path3"
-    <% end %>
+
       footer
         p &copy; Company <%= Date.today.year %>
