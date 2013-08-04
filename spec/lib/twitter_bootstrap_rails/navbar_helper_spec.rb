@@ -207,9 +207,9 @@ HTML
 NAVBAR_WITH_BRAND = <<-HTML
 <div class="navbar">
   <div class="container">
-          <a class="navbar-brand" href="/">
-            Ninety Ten
-          </a>
+    <a class="navbar-brand" href="/">
+      Ninety Ten
+    </a>
   </div>
 </div>
 HTML
@@ -217,9 +217,9 @@ HTML
 NAVBAR_WITH_BRAND_AND_LINK = <<-HTML
 <div class="navbar">
   <div class="container">
-          <a class="navbar-brand" href="http://www.ninetyten.com">
-            Ninety Ten
-          </a>
+    <a class="navbar-brand" href="http://www.ninetyten.com">
+      Ninety Ten
+    </a>
   </div>
 </div>
 HTML
@@ -240,46 +240,46 @@ HTML
 
 RESPONSIVE_NAVBAR_WITH_BLOCK = <<-HTML
 <div class="navbar">
-    <div class="container">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <div class="nav-collapse collapse">
-				<p>Passing a block</p>
-      </div>
+  <div class="container">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="nav-collapse collapse">
+              <p>Passing a block</p>
     </div>
+  </div>
 </div>
 HTML
 
 PLAIN_NAVBAR_WITH_ITEM = <<-HTML
 <div class="navbar">
-    <div class="container">
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="/">Home</a>
-            </li>
-            <li>
-                <a href="/products">Products</a>
-            </li>
-        </ul>
-    </div>
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/products">Products</a>
+      </li>
+    </ul>
+  </div>
 </div>
 HTML
 
 BRANDED_NAVBAR_WITH_ITEM = <<-HTML
 <div class="navbar">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-          Something
-        </a>
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="/">Home</a>
-            </li>
-        </ul>
-    </div>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      Something
+    </a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/">Home</a>
+      </li>
+    </ul>
+  </div>
 </div>
 HTML
 
@@ -313,13 +313,13 @@ HTML
 
 PLAIN_NAVBAR_WITH_FORM = <<-HTML
 <div class="navbar">
-      <div class="container">
-          <form accept-charset="utf-8" action="/" method="get">
-              <div style="margin:0;padding:0;display:inline">
-                  <input name="utf8" type="hidden" value="&#x2713;"/>
-              </div>
-              <input id="search_stub" name="search[stub]" type="text"/>
-          </form>
+  <div class="container">
+    <form accept-charset="utf-8" action="/" method="get">
+      <div style="margin:0;padding:0;display:inline">
+        <input name="utf8" type="hidden" value="&#x2713;"/>
       </div>
+      <input id="search_stub" name="search[stub]" type="text"/>
+    </form>
+  </div>
 </div>
 HTML
