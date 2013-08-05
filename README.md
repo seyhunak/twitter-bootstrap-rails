@@ -91,19 +91,7 @@ Layout (generates Twitter Bootstrap compatible layout) - (Haml and Slim supporte
 Usage:
 
 
-    rails g bootstrap:layout [LAYOUT_NAME] [*fixed or fluid]
-
-
-Example of a fixed layout:
-
-
-    rails g bootstrap:layout application fixed
-
-
-Example of a responsive layout:
-
-
-    rails g bootstrap:layout application fluid
+    rails g bootstrap:layout [LAYOUT_NAME]
 
 
 Themed (generates Twitter Bootstrap compatible scaffold views.) - (Haml and Slim supported)
@@ -160,7 +148,6 @@ To use individual components from bootstrap, your bootstrap_and_overrides.less c
 @import "twitter/bootstrap/labels-badges.less";
 @import "twitter/bootstrap/hero-unit.less";
 @import "twitter/bootstrap/utilities.less";
-@import "twitter/bootstrap/responsive";
 ```
 
 If you'd like to alter Bootstrap's own variables, or define your LESS
@@ -325,9 +312,7 @@ In your view file (most likely application.html.erb) to get a basic navbar set u
 Which will render:
 
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-        </div>
+      <div class="container">
       </div>
     </div>
 
@@ -343,9 +328,7 @@ If you want the navbar to stick to the top of the screen, pass in the option lik
 To render:
 
     <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-        </div>
+      <div class="container">
       </div>
     </div>
 
@@ -360,9 +343,7 @@ If you want a full-width navbar that scrolls away with the page, pass in the opt
 To render:
 
     <div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <div class="container">
-        </div>
+      <div class="container">
       </div>
     </div>
 
@@ -378,12 +359,10 @@ Add the name of your site on the left hand edge of the navbar. By default, it wi
 Which will render:
 
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-            <a class="brand" href="/accounts/dashboard">
-              We're sooo web 2.0alizr
-            </a>
-        </div>
+      <div class="container">
+          <a class="navbar-brand" href="/accounts/dashboard">
+            We're sooo web 2.0alizr
+          </a>
       </div>
     </div>
 
@@ -399,18 +378,16 @@ Which renders the html quite differently:
 
 
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <!-- Everything in here gets hidden at 940px or less -->
-          <div class="nav-collapse">
-            <!-- menu items gets rendered here instead -->
-          </div>
+      <div class="container">
+        <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- Everything in here gets hidden at 940px or less -->
+        <div class="nav-collapse collapse">
+          <!-- menu items gets rendered here instead -->
         </div>
       </div>
     </div>

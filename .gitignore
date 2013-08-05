@@ -7,3 +7,5 @@ pkg/*
 *~
 .rvmrc
 coverage/*
+.ruby-version
+.ruby-gemset
