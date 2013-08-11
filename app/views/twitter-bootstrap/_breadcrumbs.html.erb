@@ -1,10 +1,8 @@
 <% if @breadcrumbs.present? %>
   <ul class="breadcrumb">
-    <% separator = divider.html_safe %>
     <% @breadcrumbs[0..-2].each do |crumb| %>
       <li>
         <%= link_to crumb[:name], crumb[:url], crumb[:options] %>
-        <span class="divider"><%= separator %></span>
       </li>
     <% end %>
     <li class="active">
