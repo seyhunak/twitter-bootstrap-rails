@@ -37,7 +37,7 @@ An example application is available at [toadkicker/teststrap](https://github.com
 
 The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) can provide the Twitter Bootstrap stylesheets in two ways.
 
-The plain CSS way is how Twitter Bootstrap is provided on [the official website](http://twitter.github.com/bootstrap/).
+The plain CSS way is how Twitter Bootstrap is provided on [the official website](http://twbs.github.io/bootstrap/).
 
 The [Less](http://lesscss.org/) way provides more customisation options, like changing theme colors, and provides useful Less mixins for your code, but requires the
 Less gem and the Ruby Racer Javascript runtime (not available on Microsoft Windows).
@@ -720,7 +720,7 @@ http://klout.com/#/seyhunak
 
 ## Thanks
 Twitter Bootstrap and all twitter-bootstrap-rails contributors
-http://twitter.github.com/bootstrap
+http://twbs.github.io/bootstrap
 
 
 ## License
