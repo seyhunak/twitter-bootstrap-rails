@@ -11,8 +11,8 @@ include NavbarHelper
 
 describe NavbarHelper, :type => :helper do
   before do
-    self.stub!("uri_state").and_return(:inactive)
-    self.stub!("root_url").and_return("/")
+    allow(self).to receive(:uri_state) { :inactive }
+    allow(self).to receive(:root_url) { '/' }
   end
   describe "nav_bar" do
     it "should return a basic bootstrap navbar" do
@@ -86,27 +86,27 @@ describe NavbarHelper, :type => :helper do
 
   describe "menu_item" do
     it "should return a link within an li tag" do
-      self.stub!("current_page?").and_return(false)
+      allow(self).to receive(:current_page?) { false }
       menu_item("Home", "/").should eql('<li><a href="/">Home</a></li>')
     end
     it "should return the link with class 'active' if on current page" do
-      self.stub!("uri_state").and_return(:active)
+      allow(self).to receive(:uri_state) { :active }
       menu_item("Home", "/").should eql('<li class="active"><a href="/">Home</a></li>')
     end
     it "should pass any other options through to the link_to method" do
-      self.stub!("uri_state").and_return(:active)
+      allow(self).to receive(:uri_state) { :active }
       menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete).should eql('<li class="active"><a class="home_link" data-method="delete" href="/users/sign_out" rel="nofollow">Log out</a></li>')
     end
     it "should pass a block but no name if a block is present" do
-      self.stub!("current_page?").and_return(false)
+      allow(self).to receive(:current_page?) { false }
       menu_item("/"){content_tag("i", "", :class => "icon-home") + " Home"}.should eql('<li><a href="/"><i class="icon-home"></i> Home</a></li>')
     end
     it "should work with just a block" do
-      self.stub!("current_page?").and_return(false)
+      allow(self).to receive(:current_page?) { false }
       menu_item{ content_tag("i", "", :class => "icon-home") + " Home" }.should eql('<li><a href="#"><i class="icon-home"></i> Home</a></li>')
     end
     it "should return the link with class 'active' if on current page with a block" do
-      self.stub!("uri_state").and_return(:active)
+      allow(self).to receive(:uri_state) { :active }
       menu_item("/"){ content_tag("i", "", :class => "icon-home") + " Home" }.should eql('<li class="active"><a href="/"><i class="icon-home"></i> Home</a></li>')
     end
   end
