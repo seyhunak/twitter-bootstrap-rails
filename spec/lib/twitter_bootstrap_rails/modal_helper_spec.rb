@@ -28,7 +28,7 @@ describe ModalHelper, :type => :helper do
   end
 
   it 'renders a close button' do
-    close_button('modal').should eql "<button class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>"
+    close_button('modal').should eql "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n"
   end
 
   it 'renders a modal toggle button' do
@@ -36,27 +36,47 @@ describe ModalHelper, :type => :helper do
   end
 
   it 'renders a cancel button' do
-    modal_cancel_button("Cancel", :href => "#modal", :data => {:dismiss => 'modal'}).gsub(/\n/, "").should eql MODAL_CANCEL_BUTTON.gsub(/\n/, "")
+    modal_cancel_button("Cancel", :href => "#modal").gsub(/\n/, "").should eql MODAL_CANCEL_BUTTON.gsub(/\n/, "")
   end
 end
 
-BASIC_MODAL = <<-HTML
-<div class="modal fade" id="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">Modal header</h4></div><div class="modal-body">This is the body</div><div class="modal-footer"><button class="btn">Save</button></div></div></div></div>
+BASIC_MODAL = <<-HTML.split("\n").collect {|l| l.strip }.join('')
+<div class="modal fade" id="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Modal header</h4>
+      </div>
+      <div class="modal-body">
+        This is the body
+      </div>
+      <div class="modal-footer">
+        <button class="btn">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
 HTML
 
-MODAL_HEADER_WITHOUT_CLOSE = <<-HTML
-<div class="modal-header"><h4 class="modal-title">Modal header</h4></div>
+MODAL_HEADER_WITHOUT_CLOSE = <<-HTML.split("\n").collect {|l| l.strip }.join
+<div class="modal-header">
+  <h4 class="modal-title">Modal header</h4>
+</div>
 HTML
 
-MODAL_HEADER_WITH_CLOSE = <<-HTML
-<div class="modal-header"><button class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">Modal header</h4></div>
+MODAL_HEADER_WITH_CLOSE = <<-HTML.split("\n").collect {|l| l.strip }.join
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Modal header</h4>
+</div>
 HTML
 
-MODAL_TOGGLE = <<-HTML
+MODAL_TOGGLE = <<-HTML.split("\n").collect {|l| l.strip }.join
 <a class="btn btn-default" data-toggle="modal" href="#modal">Save</a>
 HTML
 
-MODAL_CANCEL_BUTTON = <<-HTML
-<a class="btn bootstrap-modal-cancel-button" data-dismiss="modal" href="#modal">Cancel</a>
+MODAL_CANCEL_BUTTON = <<-HTML.split("\n").collect {|l| l.strip }.join
+<button class="btn btn-default" data-dismiss="modal" href="#modal">Cancel</button>
 HTML
 
