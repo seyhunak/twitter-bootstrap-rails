@@ -20,8 +20,8 @@ module Twitter
       def add_breadcrumb(name, url = '', options = {})
         @breadcrumbs ||= []
         name = translate_breadcrumb(name, self.class.name) if name.is_a?(Symbol)
-        url = eval(url.to_s) if url =~ /_path|_url|@/
-          @breadcrumbs << {:name => name, :url => url, :options => options}
+        url = eval(url.to_s) if Symbol === url && url =~ /_path|_url|@/
+        @breadcrumbs << {:name => name, :url => url, :options => options}
       end
 
       def translate_breadcrumb(name, class_name)

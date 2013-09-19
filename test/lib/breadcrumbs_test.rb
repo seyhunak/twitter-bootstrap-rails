@@ -20,6 +20,17 @@ module AbstractController
       end
     end
 
+    class TestUrlHelper
+      def self.test_urls_name
+        "test-breadcrumb-test_urls"
+      end
+
+      def self.test_urls_path
+        "/test/breadcrumb/test_urls"
+      end
+    end
+
+
     class BaseTestController < AbstractController::Base
       include Twitter::Bootstrap::BreadCrumbs
       include AbstractController::Callbacks
@@ -42,8 +53,18 @@ module AbstractController
       end
     end
 
+    class TestUrlController < AbstractController::Base
+      include Twitter::Bootstrap::BreadCrumbs
+      def index
+        add_breadcrumb TestUrlHelper.test_urls_name, TestUrlHelper.test_urls_path
+      end
+      def breadcrumbs
+        @breadcrumbs
+      end
+    end
+
     class BreadcrumbsTest < MiniTest::Unit::TestCase
-      def setup
+      def test_should_have_breadcrumbs
         options = { :scope => [:breadcrumbs, 'abstract_controller', 'testing', 'test'] }
         [:class_level_i18n, :instance_level_i18n].each do |name|
           I18n.expects(:t).with(name, options).returns(TestHelper.send("#{name}_name"))
@@ -55,18 +76,22 @@ module AbstractController
 
         @controller = TestController.new
         @controller.process(:index)
-      end
 
-      def test_should_have_breadcrumbs
         TestHelper::BREADCRUMB_NAMES.each do |name|
-          assert include_breadcrumb?(name), "#{name} breadcrumb not found"
+          assert include_breadcrumb?(TestHelper, name), "#{name} breadcrumb not found"
         end
       end
 
-      def include_breadcrumb?(name)
+      def test_should_allow_breadcrumb_with_url_in_url
+        @controller = TestUrlController.new
+        @controller.process(:index)
+        assert include_breadcrumb?(TestUrlHelper, :test_urls), "#{:test_urls} breadcrumb not found"
+      end
+
+      def include_breadcrumb?(helper, name)
         selected = @controller.breadcrumbs.select { |b|
-          b[:name] == TestHelper.send("#{name}_name") &&
-          b[:url] == TestHelper.send("#{name}_path")
+          b[:name] == helper.send("#{name}_name") &&
+          b[:url] == helper.send("#{name}_path")
         }
         selected.any?
       end
