@@ -87,7 +87,7 @@ module NavbarHelper
 
     if !options[:method].nil? || !options["data-method"].nil?
       :inactive
-    elsif uri == request_uri
+    elsif uri == request_uri || (options[:root] && (request_uri == '/') || (request_uri == root_url))
       :active
     else
       if request_uri.start_with?(uri) and not(root)
