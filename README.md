@@ -1,5 +1,5 @@
-# Twitter Bootstrap for Rails Asset Pipeline
-Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
+# Bootstrap for Rails Asset Pipeline
+Bootstrap is a toolkit designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 3.1, 3.2 and 4.0 supported)
 
@@ -22,10 +22,10 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset
 Screencasts provided by <a href="http://railscasts.com">Railscasts</a> (Ryan Bates)
 
 [Twitter Bootstrap Basics](http://railscasts.com/episodes/328-twitter-bootstrap-basics "Twitter Bootstrap Basics")
-in this episode you will learn how to include Twitter Bootstrap into Rails application with the twitter-bootstrap-rails gem.
+in this episode you will learn how to include Bootstrap into Rails application with the twitter-bootstrap-rails gem.
 
 [More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap")
-in this episode continues on the Twitter Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
+in this episode continues on the Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
 (Note: This episode is pro episode)
 
 
@@ -35,9 +35,9 @@ An example application is available at [toadkicker/teststrap](https://github.com
 
 ## Installing the Gem
 
-The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) can provide the Twitter Bootstrap stylesheets in two ways.
+The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) can provide the Bootstrap stylesheets in two ways.
 
-The plain CSS way is how Twitter Bootstrap is provided on [the official website](http://twbs.github.io/bootstrap/).
+The plain CSS way is how Bootstrap is provided on [the official website](http://twbs.github.io/bootstrap/).
 
 The [Less](http://lesscss.org/) way provides more customisation options, like changing theme colors, and provides useful Less mixins for your code, but requires the
 Less gem and the Ruby Racer Javascript runtime (not available on Microsoft Windows).
@@ -82,10 +82,10 @@ After running `bundle install`, run the generator:
 
 ## Generating layouts and views
 
-You can run following generators to get started with Twitter Bootstrap quickly.
+You can run following generators to get started with Bootstrap quickly.
 
 
-Layout (generates Twitter Bootstrap compatible layout) - (Haml and Slim supported)
+Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)
 
 
 Usage:
@@ -106,7 +106,7 @@ Example of a responsive layout:
     rails g bootstrap:layout application fluid
 
 
-Themed (generates Twitter Bootstrap compatible scaffold views.) - (Haml and Slim supported)
+Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)
 
 
 Usage:
@@ -256,7 +256,7 @@ If you want to customize what is loaded, your application.js would look somethin
 
 ## Using Coffeescript (optionally)
 
-Using Twitter Bootstrap with the CoffeeScript is easy.
+Using Bootstrap with the CoffeeScript is easy.
 twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
 
@@ -719,7 +719,7 @@ http://klout.com/#/seyhunak
 
 
 ## Thanks
-Twitter Bootstrap and all twitter-bootstrap-rails contributors
+Bootstrap and all twitter-bootstrap-rails contributors
 http://twbs.github.io/bootstrap
 
 

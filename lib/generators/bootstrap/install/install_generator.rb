@@ -5,7 +5,7 @@ module Bootstrap
     class InstallGenerator < ::Rails::Generators::Base
 
       source_root File.expand_path("../templates", __FILE__)
-      desc "This generator installs Twitter Bootstrap to Asset Pipeline"
+      desc "This generator installs Bootstrap to Asset Pipeline"
       argument :stylesheets_type, :type => :string, :default => 'less', :banner => '*less or static'
 
       def add_assets
