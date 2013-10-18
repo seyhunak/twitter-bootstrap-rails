@@ -1,6 +1,6 @@
 require 'rails'
 
-require File.dirname(__FILE__) + '/twitter-bootstrap-breadcrumbs.rb'
+require File.dirname(__FILE__) + '/breadcrumbs.rb'
 require File.dirname(__FILE__) + '/../../../../app/helpers/flash_block_helper.rb'
 require File.dirname(__FILE__) + '/../../../../app/helpers/modal_helper.rb'
 require File.dirname(__FILE__) + '/../../../../app/helpers/navbar_helper.rb'
