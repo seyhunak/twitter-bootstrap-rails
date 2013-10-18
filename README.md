@@ -563,7 +563,7 @@ You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>
 
 ```ruby
 class ApplicationController
-  add_breadcrumb :index, :root_path
+  add_breadcrumb :root # 'root_path' will be used as url
 end
 ```
 
@@ -571,16 +571,15 @@ end
 class ExamplesController < ApplicationController
   add_breadcrumb :index, :examples_path
 
-  def index
-  end
-
-  def show
+  def edit
     @example = Example.find params[:id]
-    add_breadcrumb @example.name, example_path(@example)
-    # add_breadcrumb :show, example_path(@example)
+    add_breadcrumb @example # @example.to_s as name, example_path(@example) as url
+    add_breadcrumb :edit, edit_example_path(@example)
   end
 end
 ```
+All symbolic names translated with I18n. See [I18n Internatiolization Support](#i18n-internationalization-support)
+section.
 
 ### Element utility helpers
 
@@ -599,7 +598,7 @@ Glyph:
 <%= glyph(:pencil) %> <i class="icon-pencil"></i>
 ```
 
-###i18n Internationalization Support
+###I18n Internationalization Support
 The installer creates an english translation file for you and copies it to config/locales/en.bootstrap.yml
 
 
