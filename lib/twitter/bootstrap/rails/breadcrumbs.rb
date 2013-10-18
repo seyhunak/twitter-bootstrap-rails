@@ -35,7 +35,7 @@ module Twitter
           name = name.to_s
         end
 
-        url = eval(url.to_s) if url.is_a? Symbol && url =~ /_path|_url|@/
+        url = eval(url.to_s) if url.is_a?(Symbol) && url =~ /_path|_url|@/
 
         @breadcrumbs << {:name => name, :url => url, :options => options}
       end
