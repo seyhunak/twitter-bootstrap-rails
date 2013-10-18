@@ -23,7 +23,7 @@ module Twitter
 
         if name.is_a? Symbol
           if url.blank?
-            url_helper = "#{name}_path"
+            url_helper = :"#{name}_path"
             url = url_helper if respond_to?(url_helper)
           end
 
