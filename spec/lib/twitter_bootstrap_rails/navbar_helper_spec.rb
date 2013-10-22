@@ -170,91 +170,97 @@ end
 # HTML output
 
 BASIC_NAVBAR = <<-HTML
-<div class="navbar">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
   </div>
-</div>
+</nav>
 HTML
 
 FIXED_TOP_NAVBAR = <<-HTML
-<div class="navbar navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
   </div>
-</div>
+</nav>
 HTML
 
 STATIC_TOP_NAVBAR = <<-HTML
-<div class="navbar navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
   </div>
-</div>
+</nav>
 HTML
 
 FIXED_BOTTOM_NAVBAR = <<-HTML
-<div class="navbar navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
   <div class="container">
   </div>
-</div>
+</nav>
 HTML
 
 INVERSE_NAVBAR = <<-HTML
-<div class="navbar navbar-inverse">
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
   <div class="container">
   </div>
-</div>
+</nav>
 HTML
 
 NAVBAR_WITH_BRAND = <<-HTML
-<div class="navbar">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <a class="navbar-brand" href="/">
       Ninety Ten
     </a>
   </div>
-</div>
+</nav>
 HTML
 
 NAVBAR_WITH_BRAND_AND_LINK = <<-HTML
-<div class="navbar">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <a class="navbar-brand" href="http://www.ninetyten.com">
       Ninety Ten
     </a>
   </div>
-</div>
+</nav>
 HTML
 
 RESPONSIVE_NAVBAR = <<-HTML
-<div class="navbar">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <div class="nav-collapse collapse">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
     </div>
   </div>
-</div>
+</nav>
 HTML
 
 RESPONSIVE_NAVBAR_WITH_BLOCK = <<-HTML
-<div class="navbar">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <div class="nav-collapse collapse">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
               <p>Passing a block</p>
     </div>
   </div>
-</div>
+</nav>
 HTML
 
 PLAIN_NAVBAR_WITH_ITEM = <<-HTML
-<div class="navbar">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <ul class="nav navbar-nav">
       <li>
@@ -265,11 +271,11 @@ PLAIN_NAVBAR_WITH_ITEM = <<-HTML
       </li>
     </ul>
   </div>
-</div>
+</nav>
 HTML
 
 BRANDED_NAVBAR_WITH_ITEM = <<-HTML
-<div class="navbar">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <a class="navbar-brand" href="/">
       Something
@@ -280,7 +286,7 @@ BRANDED_NAVBAR_WITH_ITEM = <<-HTML
       </li>
     </ul>
   </div>
-</div>
+</nav>
 HTML
 
 DROPDOWN_MENU = <<-HTML
@@ -312,7 +318,7 @@ DROPDOWN_MENU_WITH_SUBMENU = <<-HTML
 HTML
 
 PLAIN_NAVBAR_WITH_FORM = <<-HTML
-<div class="navbar">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <form accept-charset="utf-8" action="/" method="get">
       <div style="margin:0;padding:0;display:inline">
@@ -321,5 +327,5 @@ PLAIN_NAVBAR_WITH_FORM = <<-HTML
       <input id="search_stub" name="search[stub]" type="text"/>
     </form>
   </div>
-</div>
+</nav>
 HTML
