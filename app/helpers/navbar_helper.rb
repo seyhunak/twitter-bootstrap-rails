@@ -1,7 +1,7 @@
 #Credit for this goes to https://github.com/julescopeland/Rails-Bootstrap-Navbar
 module NavbarHelper
   def nav_bar(options={}, &block)
-    nav_bar_div(options) do
+    nav_bar_nav(options) do
       container_div(options[:brand], options[:brand_link], options[:responsive], options[:fluid]) do
         yield if block_given?
       end
@@ -98,13 +98,13 @@ module NavbarHelper
 
   private
 
-  def nav_bar_div(options, &block)
+  def nav_bar_nav(options, &block)
 
     position = "static-#{options[:static].to_s}" if options[:static]
     position = "fixed-#{options[:fixed].to_s}" if options[:fixed]
     inverse = (options[:inverse].present? && options[:inverse] == true) ? true : false
 
-    content_tag :div, :class => nav_bar_css_class(position, inverse) do
+    content_tag :nav, :class => nav_bar_css_class(position, inverse), :role => "navigation" do
       yield
     end
   end
@@ -118,8 +118,7 @@ module NavbarHelper
   def container_div_with_block(brand, brand_link, responsive, &block)
     output = []
     if responsive == true
-      output << responsive_button
-      output << brand_link(brand, brand_link)
+      output << responsive_nav_header(brand, brand_link)
       output << responsive_div { capture(&block) }
     else
       output << brand_link(brand, brand_link)
@@ -128,8 +127,17 @@ module NavbarHelper
     output.join("\n").html_safe
   end
 
+  def responsive_nav_header(brand, brand_link)
+    content_tag(:div, :class => "navbar-header") do
+      output = []
+      output << responsive_button
+      output << brand_link(brand, brand_link)
+      output.join("\n").html_safe
+    end
+  end
+
   def nav_bar_css_class(position, inverse = false)
-    css_class = ["navbar"]
+    css_class = ["navbar", "navbar-default"]
     css_class << "navbar-#{position}" if position.present?
     css_class << "navbar-inverse" if inverse
     css_class.join(" ")
@@ -142,7 +150,8 @@ module NavbarHelper
   end
 
   def responsive_button
-    %{<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+    %{<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
@@ -150,7 +159,7 @@ module NavbarHelper
   end
 
   def responsive_div(&block)
-    content_tag(:div, :class => "nav-collapse collapse", &block)
+    content_tag(:div, :class => "navbar-collapse collapse", &block)
   end
 
   def is_active?(path, options={})
