@@ -23,7 +23,7 @@
         <td><%%=l <%= resource_name %>.created_at %></td>
         <td>
           <%%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => btn btn-default btn-xs %>
+                      edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-default btn-xs' %>
           <%%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       <%= singular_controller_routing_path %>_path(<%= resource_name %>),
                       :method => :delete,
