@@ -3,7 +3,7 @@ module NavbarHelper
   def nav_bar(options={}, &block)
     nav_bar_div(options) do
       navbar_inner_div do
-        container_div(options[:brand], options[:brand_link], options[:responsive], options[:fluid]) do
+        container_div(options[:brand], options[:brand_link], options[:brand_html_left], options[:brand_html_right], options[:responsive], options[:fluid]) do
           yield if block_given?
         end
       end
@@ -117,20 +117,20 @@ module NavbarHelper
     end
   end
 
-  def container_div(brand, brand_link, responsive, fluid, &block)
+  def container_div(brand, brand_link, brand_html_left, brand_html_right, responsive, fluid, &block)
     content_tag :div, :class => "container#{"-fluid" if fluid}" do
-      container_div_with_block(brand, brand_link, responsive, &block)
+      container_div_with_block(brand, brand_link, brand_html_left, brand_html_right, responsive, &block)
     end
   end
 
-  def container_div_with_block(brand, brand_link, responsive, &block)
+  def container_div_with_block(brand, brand_link, brand_html_left, brand_html_right, responsive, &block)
     output = []
     if responsive == true
       output << responsive_button
-      output << brand_link(brand, brand_link)
+      output << brand_link(brand, brand_link, brand_html_left, brand_html_right)
       output << responsive_div { capture(&block) }
     else
-      output << brand_link(brand, brand_link)
+      output << brand_link(brand, brand_link, brand_html_left, brand_html_right)
       output << capture(&block)
     end
     output.join("\n").html_safe
@@ -143,10 +143,15 @@ module NavbarHelper
     css_class.join(" ")
   end
 
-  def brand_link(name, url)
+  def brand_link(name, url, brand_html_left, brand_html_right)
     return "" if name.blank?
     url ||= root_url
-    link_to(name, url, :class => "brand")
+
+    output = []
+    output << '<div class="brand_html_left">' + brand_html_left + '</div>' if brand_html_left
+    output << link_to(name, url, :class => "brand")
+    output << '<div class="brand_html_right">' + brand_html_right + '</div>' if brand_html_right
+    output.join("\n").html_safe
   end
 
   def responsive_button
