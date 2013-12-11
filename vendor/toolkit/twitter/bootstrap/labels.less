@@ -4,7 +4,7 @@
 
 .label {
   display: inline;
-  padding: .25em .6em;
+  padding: .2em .6em .3em;
   font-size: 75%;
   font-weight: bold;
   line-height: 1;
@@ -28,6 +28,12 @@
   &:empty {
     display: none;
   }
+
+  // Quick fix for labels in buttons
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
 }
 
 // Colors
@@ -37,18 +43,22 @@
   .label-variant(@label-default-bg);
 }
 
-.label-danger {
-  .label-variant(@label-danger-bg);
+.label-primary {
+  .label-variant(@label-primary-bg);
 }
 
 .label-success {
   .label-variant(@label-success-bg);
 }
 
+.label-info {
+  .label-variant(@label-info-bg);
+}
+
 .label-warning {
   .label-variant(@label-warning-bg);
 }
 
-.label-info {
-  .label-variant(@label-info-bg);
+.label-danger {
+  .label-variant(@label-danger-bg);
 }
