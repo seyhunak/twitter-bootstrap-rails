@@ -39,12 +39,12 @@ The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rai
 
 The plain CSS way is how Bootstrap is provided on [the official website](http://twbs.github.io/bootstrap/).
 
-The [Less](http://lesscss.org/) way provides more customisation options, like changing theme colors, and provides useful Less mixins for your code, but requires the
+The [Less](http://lesscss.org/) way provides more customization options, like changing theme colors, and provides useful Less mixins for your code, but requires the
 Less gem and the Ruby Racer Javascript runtime (not available on Microsoft Windows).
 
 ### Installing the Less stylesheets
 
-To use Less stylesheets, you'll need the [less-rails gem](http://rubygems.org/gems/less-rails), and one of [Javascript runtimes supported by CommonJS](https://github.com/cowboyd/commonjs.rb#supported-runtimes).
+To use Less stylesheets, you'll need the [less-rails gem](http://rubygems.org/gems/less-rails), and one of [JavaScript runtimes supported by CommonJS](https://github.com/cowboyd/commonjs.rb#supported-runtimes).
 
 Include these lines in the Gemfile to install the gems from [RubyGems.org](http://rubygems.org):
 
@@ -228,7 +228,7 @@ If you would like to restore the default Glyphicons, inside the _bootstrap_and_o
 @import "twitter/bootstrap/sprites.less";
 ```
 
-## Using Javascripts
+## Using JavaScript
 
 Require Bootstrap JS (bootstrap.js) in your application.js
 
@@ -236,7 +236,7 @@ Require Bootstrap JS (bootstrap.js) in your application.js
 //= require twitter/bootstrap
 
 $(function(){
-  /* Your javascripts goes here... */
+  /* Your JavaScript goes here... */
 });
 ```
 
@@ -254,7 +254,7 @@ If you want to customize what is loaded, your application.js would look somethin
 
 ...and so on for each bootstrap js component.
 
-## Using Coffeescript (optionally)
+## Using CoffeeScript (optionally)
 
 Using Bootstrap with the CoffeeScript is easy.
 twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
@@ -270,7 +270,7 @@ jQuery ->
 
 ### Modal Helper
 You can create modals easily using the following example. The header, body, and footer all accept content_tag or plain html.
-The href of the button to launch the modal must matche the id of the modal dialog.
+The href of the button to launch the modal must match the id of the modal dialog.
 
 ````
 <%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => 'modal'} %>
@@ -578,7 +578,7 @@ class ExamplesController < ApplicationController
   end
 end
 ```
-All symbolic names translated with I18n. See [I18n Internatiolization Support](#i18n-internationalization-support)
+All symbolic names translated with I18n. See [I18n Internationalization Support](#i18n-internationalization-support)
 section.
 
 ### Element utility helpers
@@ -599,7 +599,7 @@ Glyph:
 ```
 
 ###I18n Internationalization Support
-The installer creates an english translation file for you and copies it to config/locales/en.bootstrap.yml
+The installer creates an English translation file for you and copies it to config/locales/en.bootstrap.yml
 
 
 NOTE: If you are using Devise in your project, you must have a devise locale file
@@ -622,7 +622,7 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Fixed jquery-rails gem version dependency</li>
   <li>Updated asset files</li>
   <li>Added new generators (install, layout and themed)</li>
-  <li>Compability to Rails 3.2</li>
+  <li>Compatibility to Rails 3.2</li>
   <li>Transitioning to 2.0</li>
   <li>Released gem v.2.0rc0</li>
   <li>Added Haml and Slim support</li>
@@ -644,7 +644,7 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Released gem v.2.1.2 (minor fixes and updated to Twitter Bootstrap 2.1.0)</li>
   <li>Released gem v.2.1.3 (minor fixes and updated to Twitter Bootstrap 2.1.1)</li>
   <li>Released gem v.2.1.4 (minor fixes)</li>
-  <li>Released gem v.2.1.5 (minor fixes, install generator detects javascript template engine, updated to Twitter Bootstrap 2.2.1)</li>
+  <li>Released gem v.2.1.5 (minor fixes, install generator detects JavaScript template engine, updated to Twitter Bootstrap 2.2.1)</li>
   <li>Released gem v.2.1.6 (minor fixes)</li>
   <li>Added static stylesheets support</li>
   <li>Released gem v.2.1.8 and updated to Twitter Bootstrap 2.2.2</li>
