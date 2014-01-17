@@ -1,7 +1,7 @@
 # Bootstrap for Rails Asset Pipeline
 Bootstrap is a toolkit designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
-twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 3.1, 3.2 and 4.0 supported)
+twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 4, 3.1, 3.2 are supported)
 
 [![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.png)][gem]
 [![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master)][travis]
@@ -684,7 +684,8 @@ for handling flash messages, even if those messages are blank. See https://githu
 </ul>
 
 ## About Me
-Lead/ Senior Developer - Programmer @useful (Usefulideas) Istanbul / Turkey
+CTO / Senior Developer / Programmer 
+@useful (Usefulideas) Istanbul / Turkey
 
 ### Contact me
 Seyhun Akyürek - seyhunak [at] gmail com
@@ -724,7 +725,7 @@ http://twbs.github.io/bootstrap
 
 
 ## License
-Copyright (c) 2012 Seyhun Akyürek
+Copyright (c) 2014 Seyhun Akyürek
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
