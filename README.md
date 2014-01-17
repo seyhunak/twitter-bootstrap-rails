@@ -683,40 +683,18 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Leonid Shevtsov</li>
 </ul>
 
+### Contribute and Earn Bitcoin
+Make commits and get tips for it
+[![tip for next commit](http://tip4commit.com/projects/13.svg)](http://tip4commit.com/projects/13)
+
+
 ## About Me
 CTO / Senior Developer / Programmer 
 @useful (Usefulideas) Istanbul / Turkey
 
+
 ### Contact me
 Seyhun Akyürek - seyhunak [at] gmail com
-
-### Follow me
-<a href="http://zerply.com/seyhunak">
-<img width="110" height="40" src="http://zerply.com/img/welcomesteps/zerply_logo.png" />
-</a>
-
-(Twitter, Facebook, Linkedin, Google+, Github)
-
-http://zerply.com/seyhunak
-
-### Endorse me
-<a href="http://coderwall.com/seyhunak">
-<img src="http://api.coderwall.com/seyhunak/endorsecount.png" />
-</a>
-
-### Klout me
-<img src="https://addons.opera.com/media/extensions/55/14355/1.0.1-rev1/icons/icon_64x64.png"></img>
-
-Please +K my influence in Ruby on Rails on @klout
-
-http://klout.com/#/seyhunak
-
-
-### Want to donate?
-<img src="https://www.paypalobjects.com/en_US/i/logo/PayPal_mark_50x34.gif"></img>
-
-[Want to donate for my efforts? Show your love](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W8ZLWQBREFP4U
- "Donate")
 
 
 ## Thanks
