@@ -8,6 +8,7 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset
 [![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png?travis)][gemnasium]
 [![Code Climate](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails.png)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master)][coveralls]
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/seyhunak/twitter-bootstrap-rails/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 [gem]: https://rubygems.org/gems/twitter-bootstrap-rails
 [travis]: http://travis-ci.org/seyhunak/twitter-bootstrap-rails
