@@ -437,7 +437,7 @@ menu_item generates a link wrapped in an li tag. It takes two arguments and an o
 
 ````
 <%= nav_bar :fixed => :top, :brand => "Ninety Ten" do %>
-    <% menu_group do %>
+    <%= menu_group do %>
         <%= menu_item "Home", root_path %>
         <%= menu_item "About Us", about_us_path %>
         <%= menu_item "Contact", contact_path %>
@@ -445,9 +445,9 @@ menu_item generates a link wrapped in an li tag. It takes two arguments and an o
     <% if current_user %>
         <%= menu_item "Log Out", log_out_path %>
     <% else %>
-        <% menu_group :pull => :right do %>
+        <%= menu_group :pull => :right do %>
             <%= menu_item "Sign Up", registration_path %>
-            <% form_for @user, :url => session_path(:user) do |f| -%>
+            <%= form_for @user, :url => session_path(:user) do |f| -%>
               <p><%= f.text_field :email %></p>
               <p><%= f.password_field :password %></p>
               <p><%= f.submit "Sign in" %></p>
