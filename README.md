@@ -69,6 +69,10 @@ Then run the bootstrap generator to add Bootstrap includes into your assets:
 
     rails generate bootstrap:install less
 
+If you need to skip coffeescript replacement into app generators, use:
+
+    rails generate bootstrap:install --no-coffeescript
+
 ### Installing the CSS stylesheets
 
 If you don't need to customize the stylesheets using Less, the only gem you need is the `twitter-bootstrap-rails` gem:
@@ -690,7 +694,7 @@ Make commits and get tips for it
 
 
 ## About Me
-CTO / Senior Developer / Programmer 
+CTO / Senior Developer / Programmer
 @useful (Usefulideas) Istanbul / Turkey
 
 
