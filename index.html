@@ -1,70 +1,576 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>twitter-bootstrap-rails by seyhunak</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
-  </head>
-  <body>
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
 
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/seyhunak/twitter-bootstrap-rails">Fork On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/seyhunak/twitter-bootstrap-rails/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/seyhunak/twitter-bootstrap-rails/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
 
-    <div class="wrapper">
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
 
-      <section>
-        <div id="title">
-          <h1>twitter-bootstrap-rails</h1>
-          <p>Twitter Bootstrap for Rails 3.1 Asset Pipeline</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/seyhunak">seyhunak</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/#!/michigangraham">mattgraham</a></span>
-        </div>
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
 
-        <h2>Twitter Bootstrap for Rails 3.1 Asset Pipeline</h2>
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
 
-<p>Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.</p>
+p{
+margin:1em 0;
+}
 
-<p>twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline</p>
+img{
+max-width:100%;
+}
 
-<h3>Installing Gem</h3>
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
 
-<p>Include Bootstrap in Gemfile;</p>
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
 
-<p>gem 'twitter-bootstrap-rails'
-or you can install from latest build;</p>
 
-<p>gem 'twitter-bootstrap-rails', :git =&gt; '<a href="https://github.com/seyhunak/twitter-bootstrap-rails.git">https://github.com/seyhunak/twitter-bootstrap-rails.git</a>'
-You can run bundle from command line</p>
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
 
-<p>bundle install</p>
+b, strong { font-weight: bold; }
 
-<h3>License</h3>
+dfn { font-style: italic; }
 
-<p>Copyright (c) 2011 Seyhun Akyürek</p>
+ins { background: #ff9; color: #000; text-decoration: none; }
 
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-      </section>
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
 
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-  </body>
-</html>
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>README</title></head><body><h1 id="bootstrap-for-rails-asset-pipeline">Bootstrap for Rails Asset Pipeline</h1>
+<p>Bootstrap is a toolkit designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.</p>
+<p>twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 4, 3.1, 3.2 are supported)</p>
+<p><a href="https://rubygems.org/gems/twitter-bootstrap-rails"><img alt="Gem Version" src="https://badge.fury.io/rb/twitter-bootstrap-rails.png" /></a>
+<a href="http://travis-ci.org/seyhunak/twitter-bootstrap-rails"><img alt="Build Status" src="https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master" /></a>
+<a href="https://gemnasium.com/seyhunak/twitter-bootstrap-rails"><img alt="Dependency Status" src="https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png?travis" /></a>
+<a href="https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails"><img alt="Code Climate" src="https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails.png" /></a>
+<a href="https://coveralls.io/r/seyhunak/twitter-bootstrap-rails"><img alt="Coverage Status" src="https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master" /></a>
+<a href="https://bitdeli.com/free" title="Bitdeli Badge"><img alt="Bitdeli Badge" src="https://d2weczhvl823v0.cloudfront.net/seyhunak/twitter-bootstrap-rails/trend.png" /></a></p>
+<h2 id="screencasts">Screencasts</h2>
+<h4 id="installing-twitter-bootstrap-rails-generators-usage-and-more">Installing twitter-bootstrap-rails, generators, usage and more</h4>
+<p><img width="180" height="35" src="http://oi49.tinypic.com/s5wn05.jpg"></img></p>
+<p>Screencasts provided by <a href="http://railscasts.com">Railscasts</a> (Ryan Bates)</p>
+<p><a href="http://railscasts.com/episodes/328-twitter-bootstrap-basics" title="Twitter Bootstrap Basics">Twitter Bootstrap Basics</a>
+in this episode you will learn how to include Bootstrap into Rails application with the twitter-bootstrap-rails gem.</p>
+<p><a href="http://railscasts.com/episodes/329-more-on-twitter-bootstrap" title="More on Twitter Bootstrap">More on Twitter Bootstrap</a>
+in this episode continues on the Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
+(Note: This episode is pro episode)</p>
+<h2 id="example-application">Example Application</h2>
+<p>An example application is available at <a href="https://github.com/toadkicker/teststrap">toadkicker/teststrap</a>. You can view it running on heroku <a href="http://teststrap.herokuapp.com/">here.</a> Contributions welcome.</p>
+<h2 id="installing-the-gem">Installing the Gem</h2>
+<p>The <a href="http://rubygems.org/gems/twitter-bootstrap-rails">Twitter Bootstrap Rails gem</a> can provide the Bootstrap stylesheets in two ways.</p>
+<p>The plain CSS way is how Bootstrap is provided on <a href="http://twbs.github.io/bootstrap/">the official website</a>.</p>
+<p>The <a href="http://lesscss.org/">Less</a> way provides more customization options, like changing theme colors, and provides useful Less mixins for your code, but requires the
+Less gem and the Ruby Racer Javascript runtime (not available on Microsoft Windows).</p>
+<h3 id="installing-the-less-stylesheets">Installing the Less stylesheets</h3>
+<p>To use Less stylesheets, you'll need the <a href="http://rubygems.org/gems/less-rails">less-rails gem</a>, and one of <a href="https://github.com/cowboyd/commonjs.rb#supported-runtimes">JavaScript runtimes supported by CommonJS</a>.</p>
+<p>Include these lines in the Gemfile to install the gems from <a href="http://rubygems.org">RubyGems.org</a>:</p>
+<pre><code class="ruby">gem &quot;therubyracer&quot;
+gem &quot;less-rails&quot; #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem &quot;twitter-bootstrap-rails&quot;
+</code></pre>
+
+<p>or you can install from latest build;</p>
+<pre><code class="ruby">gem 'twitter-bootstrap-rails', :git =&gt; 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+</code></pre>
+
+<p>Then run <code>bundle install</code> from the command line:</p>
+<pre><code>bundle install
+</code></pre>
+<p>Then run the bootstrap generator to add Bootstrap includes into your assets:</p>
+<pre><code>rails generate bootstrap:install less
+</code></pre>
+<p>If you need to skip coffeescript replacement into app generators, use:</p>
+<pre><code>rails generate bootstrap:install --no-coffeescript
+</code></pre>
+<h3 id="installing-the-css-stylesheets">Installing the CSS stylesheets</h3>
+<p>If you don't need to customize the stylesheets using Less, the only gem you need is the <code>twitter-bootstrap-rails</code> gem:</p>
+<pre><code class="ruby">gem &quot;twitter-bootstrap-rails&quot;
+</code></pre>
+
+<p>After running <code>bundle install</code>, run the generator:</p>
+<pre><code>rails generate bootstrap:install static
+</code></pre>
+<h2 id="generating-layouts-and-views">Generating layouts and views</h2>
+<p>You can run following generators to get started with Bootstrap quickly.</p>
+<p>Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)</p>
+<p>Usage:</p>
+<pre><code>rails g bootstrap:layout [LAYOUT_NAME]
+</code></pre>
+<p>Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)</p>
+<p>Usage:</p>
+<pre><code>rails g bootstrap:themed [RESOURCE_NAME]
+</code></pre>
+<p>Example:</p>
+<pre><code>rails g scaffold Post title:string description:text
+rake db:migrate
+rails g bootstrap:themed Posts
+</code></pre>
+<p>Notice the plural usage of the resource to generate bootstrap:themed.</p>
+<h2 id="using-with-less">Using with Less</h2>
+<p>Bootstrap was built with Preboot, an open-source pack of mixins and variables to be used in conjunction with Less, a CSS preprocessor for faster and easier web development.</p>
+<h2 id="using-stylesheets-with-less">Using stylesheets with Less</h2>
+<p>You have to require Bootstrap LESS (bootstrap_and_overrides.css.less) in your application.css</p>
+<pre><code class="css">/*
+ *= require bootstrap_and_overrides
+ */
+
+/* Your stylesheets goes here... */
+</code></pre>
+
+<p>To use individual components from bootstrap, your bootstrap_and_overrides.less could look like this:</p>
+<pre><code class="css">@import &quot;twitter/bootstrap/reset.less&quot;;
+@import &quot;twitter/bootstrap/variables.less&quot;;
+@import &quot;twitter/bootstrap/mixins.less&quot;;
+@import &quot;twitter/bootstrap/scaffolding.less&quot;;
+@import &quot;twitter/bootstrap/grid.less&quot;;
+@import &quot;twitter/bootstrap/layouts.less&quot;;
+@import &quot;twitter/bootstrap/type.less&quot;;
+@import &quot;twitter/bootstrap/forms.less&quot;;
+@import &quot;twitter/bootstrap/wells.less&quot;;
+@import &quot;twitter/bootstrap/component-animations.less&quot;;
+@import &quot;twitter/bootstrap/buttons.less&quot;;
+@import &quot;twitter/bootstrap/close.less&quot;;
+@import &quot;twitter/bootstrap/navs.less&quot;;
+@import &quot;twitter/bootstrap/navbar.less&quot;;
+@import &quot;twitter/bootstrap/labels-badges.less&quot;;
+@import &quot;twitter/bootstrap/hero-unit.less&quot;;
+@import &quot;twitter/bootstrap/utilities.less&quot;;
+</code></pre>
+
+<p>If you'd like to alter Bootstrap's own variables, or define your LESS
+styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrides.css.less:</p>
+<pre><code class="css">@linkColor: #ff0000;
+</code></pre>
+
+<h3 id="sass">SASS</h3>
+<p>If you are using SASS to compile your application.css (e.g. your manifest file is application.css.sass or application.css.scss) you may get this:</p>
+<pre><code>Invalid CSS after &quot;*&quot;: expected &quot;{&quot;, was &quot;= require twitt...&quot;
+(in app/assets/stylesheets/application.css)
+(sass)
+</code></pre>
+
+<p>If this is the case, you <strong>must</strong> use @import instead of <code>*=</code> in your manifest file, or don't compile your manifest with SASS.</p>
+<h3 id="icons">Icons</h3>
+<p>By default, this gem overrides standard Bootstraps's Glyphicons with Font Awesome (http://fortawesome.github.com/Font-Awesome/).</p>
+<p>This should appear inside _bootstrap_and_overrides <em>(based on you twitter-bootstrap-rails version)</em></p>
+<p><strong>From 2.2.7</strong></p>
+<pre><code class="css">// Font Awesome
+@fontAwesomeEotPath: asset-url(&quot;fontawesome-webfont.eot&quot;);
+@fontAwesomeEotPath_iefix: asset-url(&quot;fontawesome-webfont.eot?#iefix&quot;);
+@fontAwesomeWoffPath: asset-url(&quot;fontawesome-webfont.woff&quot;);
+@fontAwesomeTtfPath: asset-url(&quot;fontawesome-webfont.ttf&quot;);
+@fontAwesomeSvgPath: asset-url(&quot;fontawesome-webfont.svg#fontawesomeregular&quot;);
+@import &quot;fontawesome/font-awesome&quot;;
+</code></pre>
+
+<p><strong>Before 2.2.7</strong></p>
+<pre><code class="css">// Font Awesome
+@fontAwesomeEotPath: &quot;/assets/fontawesome-webfont.eot&quot;;
+@fontAwesomeEotPath_iefix: &quot;/assets/fontawesome-webfont.eot?#iefix&quot;;
+@fontAwesomeWoffPath: &quot;/assets/fontawesome-webfont.woff&quot;;
+@fontAwesomeTtfPath: &quot;/assets/fontawesome-webfont.ttf&quot;;
+@fontAwesomeSvgPath: &quot;/assets/fontawesome-webfont.svg#fontawesomeregular&quot;;
+@import &quot;fontawesome&quot;;
+</code></pre>
+
+<p>If you would like to restore the default Glyphicons, inside the <em>bootstrap_and_overrides.css.less</em> remove the FontAwesome declaration and uncomment the line:</p>
+<pre><code class="less">// Font Awesome
+// @fontAwesomeEotPath: asset-url(&quot;fontawesome-webfont.eot&quot;);
+// @fontAwesomeEotPath_iefix: asset-url(&quot;fontawesome-webfont.eot?#iefix&quot;);
+// @fontAwesomeWoffPath: asset-url(&quot;fontawesome-webfont.woff&quot;);
+// @fontAwesomeTtfPath: asset-url(&quot;fontawesome-webfont.ttf&quot;);
+// @fontAwesomeSvgPath: asset-url(&quot;fontawesome-webfont.svg#fontawesomeregular&quot;);
+// @import &quot;fontawesome/font-awesome&quot;;
+
+// Glyphicons
+@import &quot;twitter/bootstrap/sprites.less&quot;;
+</code></pre>
+
+<h2 id="using-javascript">Using JavaScript</h2>
+<p>Require Bootstrap JS (bootstrap.js) in your application.js</p>
+<pre><code class="js">//= require twitter/bootstrap
+
+$(function(){
+  /* Your JavaScript goes here... */
+});
+</code></pre>
+
+<p>If you want to customize what is loaded, your application.js would look something like this</p>
+<pre><code class="js">#= require jquery
+#= require jquery_ujs
+#= require twitter/bootstrap/bootstrap-transition
+#= require twitter/bootstrap/bootstrap-alert
+#= require twitter/bootstrap/bootstrap-modal
+#= require twitter/bootstrap/bootstrap-button
+#= require twitter/bootstrap/bootstrap-collapse
+</code></pre>
+
+<p>...and so on for each bootstrap js component.</p>
+<h2 id="using-coffeescript-optionally">Using CoffeeScript (optionally)</h2>
+<p>Using Bootstrap with the CoffeeScript is easy.
+twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
+to /app/assets/javascripts/ folder.</p>
+<pre><code class="coffee">jQuery -&gt;
+  $(&quot;a[rel~=popover], .has-popover&quot;).popover()
+  $(&quot;a[rel~=tooltip], .has-tooltip&quot;).tooltip()
+</code></pre>
+
+<h2 id="using-helpers">Using Helpers</h2>
+<h3 id="modal-helper">Modal Helper</h3>
+<p>You can create modals easily using the following example. The header, body, and footer all accept content_tag or plain html.
+The href of the button to launch the modal must match the id of the modal dialog.</p>
+<pre><code>&lt;%= content_tag :a, &quot;Modal&quot;, :href =&gt; &quot;#modal&quot;, :class =&gt; 'btn', :data =&gt; {:toggle =&gt; 'modal'} %&gt;
+
+&lt;%= modal_dialog :id =&gt; &quot;modal&quot;,
+         :header =&gt; { :show_close =&gt; true, :dismiss =&gt; 'modal', :title =&gt; 'Modal header' },
+                 :body   =&gt; 'This is the body',
+                 :footer =&gt; content_tag(:button, 'Save', :class =&gt; 'btn') %&gt;
+</code></pre>
+
+<h3 id="navbar-helper">Navbar Helper</h3>
+<p>It should let you write things like:</p>
+<pre><code>&lt;%= nav_bar :fixed =&gt; :top, :brand =&gt; &quot;Fashionable Clicheizr 2.0&quot;, :responsive =&gt; true do %&gt;
+    &lt;%= menu_group do %&gt;
+        &lt;%= menu_item &quot;Home&quot;, root_path %&gt;
+        &lt;%= menu_divider %&gt;
+        &lt;%= drop_down &quot;Products&quot; do %&gt;
+            &lt;%= menu_item &quot;Things you can't afford&quot;, expensive_products_path %&gt;
+            &lt;%= menu_item &quot;Things that won't suit you anyway&quot;, harem_pants_path %&gt;
+            &lt;%= menu_item &quot;Things you're not even cool enough to buy anyway&quot;, hipster_products_path %&gt;
+            &lt;% if current_user.lives_in_hackney? %&gt;
+                &lt;%= menu_item &quot;Bikes&quot;, fixed_wheel_bikes_path %&gt;
+            &lt;% end %&gt;
+        &lt;% end %&gt;
+        &lt;%= menu_item &quot;About Us&quot;, about_us_path %&gt;
+        &lt;%= menu_item &quot;Contact&quot;, contact_path %&gt;
+    &lt;% end %&gt;
+    &lt;%= menu_group :pull =&gt; :right do %&gt;
+        &lt;% if current_user %&gt;
+            &lt;%= menu_item &quot;Log Out&quot;, log_out_path %&gt;
+        &lt;% else %&gt;
+            &lt;%= form_for @user, :url =&gt; session_path(:user), html =&gt; {:class=&gt; &quot;navbar-form pull-right&quot;} do |f| -%&gt;
+              &lt;p&gt;&lt;%= f.text_field :email %&gt;&lt;/p&gt;
+              &lt;p&gt;&lt;%= f.password_field :password %&gt;&lt;/p&gt;
+              &lt;p&gt;&lt;%= f.submit &quot;Sign in&quot; %&gt;&lt;/p&gt;
+            &lt;% end -%&gt;
+        &lt;% end %&gt;
+    &lt;% end %&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<h3 id="navbar-scaffolding">Navbar scaffolding</h3>
+<p>In your view file (most likely application.html.erb) to get a basic navbar set up you need to do this:</p>
+<pre><code>&lt;%= nav_bar  %&gt;
+</code></pre>
+
+<p>Which will render:</p>
+<pre><code>&lt;div class="navbar"&gt;
+  &lt;div class="container"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="fixed-navbar">Fixed navbar</h3>
+<p>If you want the navbar to stick to the top of the screen, pass in the option like this:</p>
+<pre><code>&lt;%= nav_bar :fixed =&gt; :top  %&gt;
+</code></pre>
+
+<p>To render:</p>
+<pre><code>&lt;div class="navbar navbar-fixed-top"&gt;
+  &lt;div class="container"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="static-navbar">Static navbar</h3>
+<p>If you want a full-width navbar that scrolls away with the page, pass in the option like this:</p>
+<pre><code>&lt;%= nav_bar :static =&gt; :top  %&gt;
+</code></pre>
+
+<p>To render:</p>
+<pre><code>&lt;div class="navbar navbar-static-top"&gt;
+  &lt;div class="container"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="brand-name">Brand name</h3>
+<p>Add the name of your site on the left hand edge of the navbar. By default, it will link to root_url. Passing a brand_link option will set the url to whatever you want.</p>
+<pre><code>&lt;%= nav_bar :brand =&gt; &quot;We're sooo web 2.0alizr&quot;, :brand_link =&gt; account_dashboard_path  %&gt;
+</code></pre>
+
+<p>Which will render:</p>
+<pre><code>&lt;div class="navbar"&gt;
+  &lt;div class="container"&gt;
+      &lt;a class="navbar-brand" href="/accounts/dashboard"&gt;
+        We're sooo web 2.0alizr
+      &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="optional-responsive-variation">Optional responsive variation</h3>
+<p>If you want the responsive version of the navbar to work (One that shrinks down on mobile devices etc.), you need to pass this option:</p>
+<pre><code>&lt;%= nav_bar :responsive =&gt; true %&gt;
+</code></pre>
+
+<p>Which renders the html quite differently:</p>
+<pre><code>&lt;div class="navbar"&gt;
+  &lt;div class="container"&gt;
+    &lt;!-- .navbar-toggle is used as the toggle for collapsed navbar content --&gt;
+    &lt;button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"&gt;
+      &lt;span class="icon-bar"&gt;&lt;/span&gt;
+      &lt;span class="icon-bar"&gt;&lt;/span&gt;
+      &lt;span class="icon-bar"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;!-- Everything in here gets hidden at 940px or less --&gt;
+    &lt;div class="nav-collapse collapse"&gt;
+      &lt;!-- menu items gets rendered here instead --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="nav-links">Nav links</h3>
+<p>This is the 'meat' of the code where you define your menu items.</p>
+<p>You can group menu items in theoretical boxes which you can apply logic to - e.g. show different collections for logged in users/logged out users, or simply right align a group.</p>
+<p>The active menu item will be inferred from the link for now.</p>
+<p>The important methods here are menu_group and menu_item.</p>
+<p>menu_group only takes one argument - :pull - this moves the group left or right when passed :left or :right.</p>
+<p>menu_item generates a link wrapped in an li tag. It takes two arguments and an options hash. The first argument is the name (the text that will appear in the menu), and the path (which defaults to "#" if left blank). The rest of the options are passed straight through to the link_to helper, so that you can add classes, ids, methods or data tags etc.</p>
+<pre><code>&lt;%= nav_bar :fixed =&gt; :top, :brand =&gt; &quot;Ninety Ten&quot; do %&gt;
+    &lt;%= menu_group do %&gt;
+        &lt;%= menu_item &quot;Home&quot;, root_path %&gt;
+        &lt;%= menu_item &quot;About Us&quot;, about_us_path %&gt;
+        &lt;%= menu_item &quot;Contact&quot;, contact_path %&gt;
+    &lt;% end %&gt;
+    &lt;% if current_user %&gt;
+        &lt;%= menu_item &quot;Log Out&quot;, log_out_path %&gt;
+    &lt;% else %&gt;
+        &lt;%= menu_group :pull =&gt; :right do %&gt;
+            &lt;%= menu_item &quot;Sign Up&quot;, registration_path %&gt;
+            &lt;%= form_for @user, :url =&gt; session_path(:user) do |f| -%&gt;
+              &lt;p&gt;&lt;%= f.text_field :email %&gt;&lt;/p&gt;
+              &lt;p&gt;&lt;%= f.password_field :password %&gt;&lt;/p&gt;
+              &lt;p&gt;&lt;%= f.submit &quot;Sign in&quot; %&gt;&lt;/p&gt;
+            &lt;% end -%&gt;
+        &lt;% end %&gt;
+    &lt;% end %&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<h3 id="dropdown-menus">Dropdown menus</h3>
+<p>For multi-level list options, where it makes logical sense to group menu items, or simply to save space if you have a lot of pages, you can group menu items into drop down lists like this:</p>
+<pre><code>&lt;%= nav_bar do %&gt;
+    &lt;%= menu_item &quot;Home&quot;, root_path %&gt;
+
+    &lt;%= drop_down &quot;Products&quot; do %&gt;
+        &lt;%= menu_item &quot;Latest&quot;, latest_products_path %&gt;
+        &lt;%= menu_item &quot;Top Sellers&quot;, popular_products_path %&gt;
+        &lt;%= drop_down_divider %&gt;
+        &lt;%= menu_item &quot;Discount Items&quot;, discounted_products_path %&gt;
+    &lt;% end %&gt;
+
+    &lt;%= menu_item &quot;About Us&quot;, about_us_path %&gt;
+    &lt;%= menu_item &quot;Contact&quot;, contact_path %&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<h3 id="dividers">Dividers</h3>
+<p>Dividers are just vertical bars that visually separate logically disparate groups of menu items</p>
+<pre><code>&lt;%= nav_bar :fixed =&gt; :bottom do %&gt;
+    &lt;%= menu_item &quot;Home&quot;, root_path %&gt;
+    &lt;%= menu_item &quot;About Us&quot;, about_us_path %&gt;
+    &lt;%= menu_item &quot;Contact&quot;, contact_path %&gt;
+
+    &lt;%= menu_divider %&gt;
+
+    &lt;%= menu_item &quot;Edit Profile&quot;, edit_user_path(current_user) %&gt;
+    &lt;%= menu_item &quot;Account Settings&quot;, edit_user_account_path(current_user, @account) %&gt;
+    &lt;%= menu_item &quot;Log Out&quot;, log_out_path %&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<h3 id="forms-in-navbar">Forms in navbar</h3>
+<p>At the moment - this is just a how to...</p>
+<p>You need to add this class to the form itself (Different form builders do this in different ways - please check out the relevant docs)</p>
+<pre><code class="css">.navbar-form
+</code></pre>
+
+<p>To pull the form left or right, add either of these classes:</p>
+<pre><code class="css">.pull-left
+.pull-right
+</code></pre>
+
+<p>If you want the Bootstrap search box (I think it just rounds the corners), use:</p>
+<pre><code class="css">.navbar-search
+</code></pre>
+
+<p>Instead of:</p>
+<pre><code class="css">.navbar-form
+</code></pre>
+
+<p>To change the size of the form fields, use .span2 (or however many span widths you want) to the input itself.</p>
+<h3 id="component-alignment">Component alignment</h3>
+<p>You can shift things to the left or the right across the nav bar. It's easiest to do this on grouped menu items:</p>
+<pre><code>&lt;%= nav_bar :fixed =&gt; :bottom do %&gt;
+    &lt;% menu_group do %&gt;
+        &lt;%= menu_item &quot;Home&quot;, root_path %&gt;
+        &lt;%= menu_item &quot;About Us&quot;, about_us_path %&gt;
+        &lt;%= menu_item &quot;Contact&quot;, contact_path %&gt;
+    &lt;% end %&gt;
+    &lt;% menu_group :pull =&gt; :right do %&gt;
+        &lt;%= menu_item &quot;Edit Profile&quot;, edit_user_path(current_user) %&gt;
+        &lt;%= menu_item &quot;Account Settings&quot;, edit_user_account_path(current_user, @account) %&gt;
+        &lt;%= menu_item &quot;Log Out&quot;, log_out_path %&gt;
+    &lt;% end %&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<h3 id="text-in-the-navbar">Text in the navbar</h3>
+<p>If you want to put regular plain text in the navbar anywhere, you do it like this:</p>
+<pre><code>&lt;%= nav_bar :brand =&gt; &quot;Apple&quot; do %&gt;
+    &lt;%= menu_text &quot;We make shiny things&quot; %&gt;
+    &lt;%= menu_item &quot;Home&quot;, root_path %&gt;
+    &lt;%= menu_item &quot;About Us&quot;, about_us_path %&gt;
+&lt;% end %&gt;
+</code></pre>
+
+<p>It also takes the :pull option to drag it to the left or right.</p>
+<h3 id="flash-helper">Flash helper</h3>
+<p>Add flash helper <code>&lt;%= bootstrap_flash %&gt;</code> to your layout (built-in with layout generator)</p>
+<h3 id="breadcrumbs-helpers">Breadcrumbs Helpers</h3>
+<p><em>Notice</em> If your application is using <a href="https://github.com/weppos/breadcrumbs_on_rails">breadcrumbs-on-rails</a> you will have a namespace collision with the add_breadcrumb method.
+You do not need to use these breadcrumb gems since this gem provides the same functionality out of the box without the additional dependency.</p>
+<p>Add breadcrumbs helper <code>&lt;%= render_breadcrumbs %&gt;</code> to your layout.
+You can also specify a divider for it like this: <code>&lt;%= render_breadcrumbs('&gt;') %&gt;</code> (default divider is <code>/</code>).</p>
+<pre><code class="ruby">class ApplicationController
+  add_breadcrumb :root # 'root_path' will be used as url
+end
+</code></pre>
+
+<pre><code class="ruby">class ExamplesController &lt; ApplicationController
+  add_breadcrumb :index, :examples_path
+
+  def edit
+    @example = Example.find params[:id]
+    add_breadcrumb @example # @example.to_s as name, example_path(@example) as url
+    add_breadcrumb :edit, edit_example_path(@example)
+  end
+end
+</code></pre>
+
+<p>All symbolic names translated with I18n. See <a href="#i18n-internationalization-support">I18n Internationalization Support</a>
+section.</p>
+<h3 id="element-utility-helpers">Element utility helpers</h3>
+<p>Badge:</p>
+<pre><code class="erb">&lt;%= badge(12, :warning) %&gt; &lt;span class=&quot;badge badge-warning&quot;&gt;12&lt;/span&gt;
+</code></pre>
+
+<p>Label:</p>
+<pre><code class="erb">&lt;%= label('Gut!', :success) %&gt; &lt;span class=&quot;badge badge-success&quot;&gt;Gut!&lt;/span&gt;
+</code></pre>
+
+<p>Glyph:</p>
+<pre><code class="erb">&lt;%= glyph(:pencil) %&gt; &lt;i class=&quot;icon-pencil&quot;&gt;&lt;/i&gt;
+</code></pre>
+
+<h3 id="i18n-internationalization-support">I18n Internationalization Support</h3>
+<p>The installer creates an English translation file for you and copies it to config/locales/en.bootstrap.yml</p>
+<p>NOTE: If you are using Devise in your project, you must have a devise locale file
+for handling flash messages, even if those messages are blank. See https://github.com/plataformatec/devise/wiki/I18n</p>
+<h3 id="contribute-and-earn-bitcoin">Contribute and Earn Bitcoin</h3>
+<p>Make commits and get tips for it</p>
+<p><a href="http://tip4commit.com/projects/13"><img alt="tip for next commit" src="http://tip4commit.com/projects/13.svg" /></a></p>
+<h2 id="about-me">About Me</h2>
+<p>CTO / Senior Developer / Programmer
+@useful (Usefulideas) Istanbul / Turkey</p>
+<h3 id="contact-me">Contact me</h3>
+<p>Seyhun Akyürek - seyhunak [at] gmail com</p>
+<h2 id="thanks">Thanks</h2>
+<p>Bootstrap and all twitter-bootstrap-rails contributors
+http://twbs.github.io/bootstrap</p>
+<h2 id="license">License</h2>
+<p>Copyright (c) 2014 Seyhun Akyürek</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></body></html>
