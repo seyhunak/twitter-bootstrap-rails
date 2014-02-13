@@ -169,7 +169,8 @@ module NavbarHelper
   end
 
   def is_active?(path, options={})
-    "active" if uri_state(path, options).in?([:active, :chosen])
+    state = uri_state(path, options)
+    "active" if state.in?([:active, :chosen]) || state === true
   end
 
   def name_and_caret(name)
