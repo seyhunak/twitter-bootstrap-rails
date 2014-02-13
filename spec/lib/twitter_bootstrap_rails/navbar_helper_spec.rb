@@ -260,7 +260,7 @@ RESPONSIVE_NAVBAR = <<-HTML
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <div class="nav-collapse">
+      <div class="nav-collapse collapse">
       </div>
     </div>
   </div>
@@ -334,7 +334,7 @@ HTML
 
 DROPDOWN_MENU_WITH_SUBMENU = <<-HTML
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <li class="dropdown-submenu">
       <a href="">Latest</a>
