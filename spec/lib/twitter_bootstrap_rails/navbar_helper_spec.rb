@@ -99,7 +99,7 @@ describe NavbarHelper, :type => :helper do
     end
     it "should pass any other options through to the link_to method" do
       allow(self).to receive(:uri_state) { :active }
-      menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete).should eql('<li class="active"><a href="/users/sign_out" class="home_link" data-method="delete" rel="nofollow">Log out</a></li>')
+      menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete).should eql('<li class="active"><a class="home_link" data-method="delete" href="/users/sign_out" rel="nofollow">Log out</a></li>')
     end
     it "should pass a block but no name if a block is present" do
       allow(self).to receive(:current_page?) { false }
@@ -276,7 +276,7 @@ RESPONSIVE_NAVBAR_WITH_BLOCK = <<-HTML
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <div class="nav-collapse">
+      <div class="nav-collapse collapse">
 				<p>Passing a block</p>
       </div>
     </div>
@@ -305,7 +305,7 @@ BRANDED_NAVBAR_WITH_ITEM = <<-HTML
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
-			<a href="/" class="brand">
+			<a class="brand" href="/">
 			  Something
 			</a>
 			<ul class="nav">
@@ -354,7 +354,7 @@ PLAIN_NAVBAR_WITH_FORM = <<-HTML
 				<div style="margin:0;padding:0;display:inline">
 					<input name="utf8" type="hidden" value="&#x2713;"/>
 				</div>
-				<input id="search_stub" name="search[stub]" size="30" type="text"/>
+				<input id="search_stub" name="search[stub]" type="text"/>
 			</form>
 		</div>
 	</div>
