@@ -76,6 +76,8 @@ module NavbarHelper
   #   uri_state('/blog/categories/test', {method: delete}) # :inactive
   #   uri_state('/blog/categories/test/3', {})             # :inactive
   def uri_state(uri, options={})
+    return options[:status] if options.key?(:status)
+
     root_url = request.host_with_port + '/'
     root = uri == '/' || uri == root_url
 
@@ -96,7 +98,7 @@ module NavbarHelper
         :inactive
       end
     end
-  end  
+  end
 
   private
 
