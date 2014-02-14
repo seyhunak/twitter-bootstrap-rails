@@ -11,8 +11,8 @@ include NavbarHelper
 
 describe NavbarHelper, :type => :helper do
   before do
-    self.stub!("uri_state").and_return(:inactive)
-    self.stub!("root_url").and_return("/")
+    allow(self).to receive(:uri_state) { :inactive }
+    allow(self).to receive(:root_url) { '/' }
   end
   describe "nav_bar" do
     it "should return a basic bootstrap navbar" do
@@ -90,27 +90,27 @@ describe NavbarHelper, :type => :helper do
 
   describe "menu_item" do
     it "should return a link within an li tag" do
-      self.stub!("current_page?").and_return(false)
+      allow(self).to receive(:current_page?) { false }
       menu_item("Home", "/").should eql('<li><a href="/">Home</a></li>')
     end
     it "should return the link with class 'active' if on current page" do
-      self.stub!("uri_state").and_return(:active)
+      allow(self).to receive(:uri_state) { :active }
       menu_item("Home", "/").should eql('<li class="active"><a href="/">Home</a></li>')
     end
     it "should pass any other options through to the link_to method" do
-      self.stub!("uri_state").and_return(:active)
-      menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete).should eql('<li class="active"><a href="/users/sign_out" class="home_link" data-method="delete" rel="nofollow">Log out</a></li>')
+      allow(self).to receive(:uri_state) { :active }
+      menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete).should eql('<li class="active"><a class="home_link" data-method="delete" href="/users/sign_out" rel="nofollow">Log out</a></li>')
     end
     it "should pass a block but no name if a block is present" do
-      self.stub!("current_page?").and_return(false)
+      allow(self).to receive(:current_page?) { false }
       menu_item("/"){content_tag("i", "", :class => "icon-home") + " Home"}.should eql('<li><a href="/"><i class="icon-home"></i> Home</a></li>')
     end
     it "should work with just a block" do
-      self.stub!("current_page?").and_return(false)
+      allow(self).to receive(:current_page?) { false }
       menu_item{ content_tag("i", "", :class => "icon-home") + " Home" }.should eql('<li><a href="#"><i class="icon-home"></i> Home</a></li>')
     end
     it "should return the link with class 'active' if on current page with a block" do
-      self.stub!("uri_state").and_return(:active)
+      allow(self).to receive(:uri_state) { :active }
       menu_item("/"){ content_tag("i", "", :class => "icon-home") + " Home" }.should eql('<li class="active"><a href="/"><i class="icon-home"></i> Home</a></li>')
     end
   end
@@ -231,7 +231,7 @@ NAVBAR_WITH_BRAND = <<-HTML
 <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-			<a href="/" class="brand">
+			<a class="brand" href="/">
 			  Ninety Ten
 			</a>
     </div>
@@ -243,7 +243,7 @@ NAVBAR_WITH_BRAND_AND_LINK = <<-HTML
 <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-			<a href="http://www.ninetyten.com" class="brand">
+			<a class="brand" href="http://www.ninetyten.com">
 			  Ninety Ten
 			</a>
     </div>
@@ -260,7 +260,7 @@ RESPONSIVE_NAVBAR = <<-HTML
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <div class="nav-collapse">
+      <div class="nav-collapse collapse">
       </div>
     </div>
   </div>
@@ -276,7 +276,7 @@ RESPONSIVE_NAVBAR_WITH_BLOCK = <<-HTML
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <div class="nav-collapse">
+      <div class="nav-collapse collapse">
 				<p>Passing a block</p>
       </div>
     </div>
@@ -305,7 +305,7 @@ BRANDED_NAVBAR_WITH_ITEM = <<-HTML
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
-			<a href="/" class="brand">
+			<a class="brand" href="/">
 			  Something
 			</a>
 			<ul class="nav">
@@ -320,9 +320,9 @@ HTML
 
 DROPDOWN_MENU = <<-HTML
 <li class="dropdown">
-  <a href="#"
-        class="dropdown-toggle"
-        data-toggle="dropdown">
+  <a class="dropdown-toggle"
+        data-toggle="dropdown"
+        href="#">
         Products
         <b class="caret"></b>
   </a>
@@ -334,7 +334,7 @@ HTML
 
 DROPDOWN_MENU_WITH_SUBMENU = <<-HTML
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products <b class="caret"></b></a>
   <ul class="dropdown-menu">
     <li class="dropdown-submenu">
       <a href="">Latest</a>
@@ -354,7 +354,7 @@ PLAIN_NAVBAR_WITH_FORM = <<-HTML
 				<div style="margin:0;padding:0;display:inline">
 					<input name="utf8" type="hidden" value="&#x2713;"/>
 				</div>
-				<input id="search_stub" name="search[stub]" size="30" type="text"/>
+				<input id="search_stub" name="search[stub]" type="text"/>
 			</form>
 		</div>
 	</div>
