@@ -1,7 +1,13 @@
-# Bootstrap 2.3.2 for Rails Asset Pipeline
+# Twitter Bootstrap 2.3.2 for Rails Asset Pipeline
 Bootstrap is a toolkit designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 4, 3.1, 3.2 are supported)
+
+[gem]: https://rubygems.org/gems/twitter-bootstrap-rails
+[travis]: http://travis-ci.org/seyhunak/twitter-bootstrap-rails
+[gemnasium]: https://gemnasium.com/seyhunak/twitter-bootstrap-rails
+[codeclimate]: https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails
+[coveralls]: https://coveralls.io/r/seyhunak/twitter-bootstrap-rails
 
 [![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.png)][gem]
 [![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master)][travis]
@@ -10,11 +16,8 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset
 [![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master)][coveralls]
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/seyhunak/twitter-bootstrap-rails/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-[gem]: https://rubygems.org/gems/twitter-bootstrap-rails
-[travis]: http://travis-ci.org/seyhunak/twitter-bootstrap-rails
-[gemnasium]: https://gemnasium.com/seyhunak/twitter-bootstrap-rails
-[codeclimate]: https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails
-[coveralls]: https://coveralls.io/r/seyhunak/twitter-bootstrap-rails
+## Twitter Bootstrap 3.x.x
+Use "bootstrap3" branch [Twitter Bootstrap 3.x.x](https://github.com/seyhunak/twitter-bootstrap-rails/tree/bootstrap3) (Latest Bootstrap 3 completely supported)
 
 ## Screencasts
 #### Installing twitter-bootstrap-rails, generators, usage and more
