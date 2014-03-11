@@ -1,4 +1,4 @@
-# Bootstrap for Rails Asset Pipeline
+# Bootstrap 2.3.2 for Rails Asset Pipeline
 Bootstrap is a toolkit designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 4, 3.1, 3.2 are supported)
