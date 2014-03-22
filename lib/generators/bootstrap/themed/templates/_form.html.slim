@@ -1,9 +1,9 @@
 = form_for @<%= resource_name %>, :html => { :class => "form-horizontal" } do |f|
   <%- columns.each do |column| -%>
-  .control-group
+  .form-group
     = f.label :<%= column.name %>, :class => 'control-label'
     .controls
-      = f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>'
+      = f.<%= column.field_type %> :<%= column.name %>, :class => 'form-control'
   <%- end -%>
   = f.submit nil, :class => 'btn btn-primary'
   '
