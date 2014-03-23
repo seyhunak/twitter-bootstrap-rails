@@ -9,7 +9,7 @@ module NavbarHelper
   end
 
   def menu_group(options={}, &block)
-    pull_class = "pull-#{options[:pull].to_s}" if options[:pull].present?
+    pull_class = "navbar-#{options[:pull].to_s}" if options[:pull].present?
     content_tag(:ul, :class => "nav navbar-nav #{pull_class}", &block)
   end
 
