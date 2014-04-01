@@ -19,7 +19,7 @@ module BootstrapFlashHelper
                                        "data-dismiss" => "alert",
                                        "aria-hidden" => "true",
                                        "type" => "button") +
-                            msg.html_safe,
+                            msg,
                            :class => "alert fade in alert-#{type} alert-dismissable")
         flash_messages << text if msg
       end
