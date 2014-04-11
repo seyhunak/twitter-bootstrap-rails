@@ -6,7 +6,8 @@ module BootstrapFlashHelper
     flash.each do |type, message|
       # Skip empty messages, e.g. for devise messages set to nothing in a locale file.
       next if message.blank?
-      
+
+      type = type.to_sym
       type = :success if type == :notice
       type = :danger  if type == :alert
       type = :danger  if type == :error
@@ -14,8 +15,8 @@ module BootstrapFlashHelper
 
       Array(message).each do |msg|
         text = content_tag(:div,
-                            content_tag(:button, raw("&times;"), 
-                                       :class => "close", 
+                            content_tag(:button, raw("&times;"),
+                                       :class => "close",
                                        "data-dismiss" => "alert",
                                        "aria-hidden" => "true",
                                        "type" => "button") +
