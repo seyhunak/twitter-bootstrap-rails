@@ -386,7 +386,7 @@ Which renders the html quite differently:
           <span class="icon-bar"></span>
         </button>
         <!-- Everything in here gets hidden at 940px or less -->
-        <div class="nav-collapse collapse">
+        <div class="navbar-collapse collapse">
           <!-- menu items gets rendered here instead -->
         </div>
       </div>
