@@ -31,11 +31,11 @@ module Bootstrap
       end
 
       def controller_routing_path
-        @controller_routing_path
+        ActiveModel::Naming.route_key(@model_name.constantize)
       end
 
       def singular_controller_routing_path
-        @controller_routing_path.singularize
+        ActiveModel::Naming.singular_route_key(@model_name.constantize)
       end
 
       def model_name
