@@ -77,10 +77,10 @@ describe NavbarHelper, :type => :helper do
       end.should eql '<ul class="nav navbar-nav "><li><a href="/">Home</a></li><li><a href="/products">Products</a></li></ul>'
     end
 
-    it "should return a ul with class .pull-left when passed the {:pull => :left} option" do
+    it "should return a ul with class .navbar-left when passed the {:pull => :left} option" do
       menu_group(:pull => :left) do
         menu_item("Home", "/")
-      end.should eql('<ul class="nav navbar-nav pull-left"><li><a href="/">Home</a></li></ul>')
+      end.should eql('<ul class="nav navbar-nav navbar-left"><li><a href="/">Home</a></li></ul>')
     end
   end
 
