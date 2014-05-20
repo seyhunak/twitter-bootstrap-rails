@@ -7,7 +7,7 @@ module ModalHelper
         content_tag :div, :class => "modal-content" do
           modal_header(options[:header].merge(:id => options[:id])) +
           modal_body(options[:body].merge(:id => options[:id])) +
-          modal_footer(options[:footer].merge(:id => options[:id]))
+          modal_footer(options[:footer].merge(:id => options[:id])) 
         end
       end
     end
