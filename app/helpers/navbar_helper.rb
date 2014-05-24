@@ -2,7 +2,7 @@
 module NavbarHelper
   def nav_bar(options={}, &block)
     nav_bar_nav(options) do
-      container_div(options[:brand], options[:brand_link], options[:responsive], options[:fluid]) do
+      container_div(options[:brand], options[:brand_link], options[:responsive], options[:fluid], options[:no_turbolink]) do
         yield if block_given?
       end
     end
@@ -94,7 +94,7 @@ module NavbarHelper
         :inactive
       end
     end
-  end  
+  end
 
   private
 
@@ -109,30 +109,32 @@ module NavbarHelper
     end
   end
 
-  def container_div(brand, brand_link, responsive, fluid, &block)
+  def container_div(brand, brand_link, responsive, fluid, no_turbolink, &block)
     div_container_class = fluid ? "container-fluid" : "container"
+    no_turbolink ||= false
+
     content_tag :div, :class => div_container_class do
-      container_div_with_block(brand, brand_link, responsive, &block)
+      container_div_with_block(brand, brand_link, responsive, no_turbolink, &block)
     end
   end
 
-  def container_div_with_block(brand, brand_link, responsive, &block)
+  def container_div_with_block(brand, brand_link, responsive, no_turbolink, &block)
     output = []
     if responsive == true
-      output << responsive_nav_header(brand, brand_link)
+      output << responsive_nav_header(brand, brand_link, no_turbolink)
       output << responsive_div { capture(&block) }
     else
-      output << brand_link(brand, brand_link)
+      output << brand_link(brand, brand_link, no_turbolink)
       output << capture(&block)
     end
     output.join("\n").html_safe
   end
 
-  def responsive_nav_header(brand, brand_link)
+  def responsive_nav_header(brand, brand_link, no_turbolink)
     content_tag(:div, :class => "navbar-header") do
       output = []
       output << responsive_button
-      output << brand_link(brand, brand_link)
+      output << brand_link(brand, brand_link, no_turbolink)
       output.join("\n").html_safe
     end
   end
@@ -144,10 +146,15 @@ module NavbarHelper
     css_class.join(" ")
   end
 
-  def brand_link(name, url)
+  def brand_link(name, url, no_turbolink)
     return "" if name.blank?
     url ||= root_url
-    link_to(name, url, :class => "navbar-brand")
+
+    if no_turbolink
+      link_to(name, url, :class => "navbar-brand", :data => { :no_turbolink => true})
+    else
+      link_to(name, url, :class => "navbar-brand")
+    end
   end
 
   def responsive_button
