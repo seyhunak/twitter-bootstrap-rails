@@ -155,7 +155,7 @@ styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrid
 
 
 ```css
-@#link-color: #ff0000;
+@link-color: #ff0000;
 ```
 
 ### SASS
