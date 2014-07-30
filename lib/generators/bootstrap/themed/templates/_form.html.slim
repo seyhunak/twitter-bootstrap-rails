@@ -4,6 +4,10 @@
     = f.label :<%= column.name %>, :class => 'control-label'
     .controls
       = f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>'
+    - if @<%= resource_name.errors %>
+      - @<%= resource_name.errors %>.errors.full_messages.each do |msg|
+        %p.help-block
+          = msg
   <%- end -%>
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

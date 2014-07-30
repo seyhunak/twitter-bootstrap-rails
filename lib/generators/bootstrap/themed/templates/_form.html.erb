@@ -5,6 +5,13 @@
     <div class="controls">
       <%%= f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>' %>
     </div>
+    <%%- if @<%= resource_name %>.errors %>
+      <% @<%= resource_name.errors %>.errors.full_messages.each do |msg| %>
+        <p class="help-block">
+          <%= msg %>
+        </p>
+      <%% end %>
+    <%% end %>
   </div>
   <%- end -%>
 
