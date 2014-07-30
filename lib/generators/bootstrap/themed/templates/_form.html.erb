@@ -5,7 +5,7 @@
     <div class="controls #{column.controls_class  ||= ''}">
       <%%= f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>' %>
     </div>
-    <%%= error_span(@<%= resource_name %>[<%= column.name.to_sym %>]) %>
+    <%%= error_span(@<%= resource_name %>[:<%= column.name %>]) %>
   </div>
   <%- end -%>
 

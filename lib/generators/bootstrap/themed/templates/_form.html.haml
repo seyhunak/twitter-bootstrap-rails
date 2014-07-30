@@ -4,8 +4,8 @@
     = f.label :<%= column.name %>, class: "control-label #{column.label_class ||= ''}"
       .controls{class: "#{column.group_class ||= ''}"}
         = f.<%= column.field_type %> :<%= column.name %>, class: '<%= column.field_type %>'
-    = error_span(@<%= resource_name %>[<%= column.name.to_sym %>])
+    = error_span(@<%= resource_name %>[:<%= column.name %>])
   <%- end -%>
-  .form-actions.#{actions_class}
+  .form-actions{class: "#{actions_class ||= ''}"}
     = f.submit nil, class: "btn #{button_class ||= 'btn-primary'}"
     = link_to t('.cancel', default: t("helpers.links.cancel")), <%= controller_routing_path %>_path, class: "btn #{cancel_btn_class ||= 'btn-default'}"
