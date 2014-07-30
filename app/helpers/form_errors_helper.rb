@@ -1,4 +1,8 @@
 module FormErrorsHelper
+
+  attr_reader :template
+  attr_reader :object
+
   def error_span(attribute, options = {})
     options[:class] ||= 'help-inline'
 
