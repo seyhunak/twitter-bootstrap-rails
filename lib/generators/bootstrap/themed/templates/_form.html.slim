@@ -1,11 +1,11 @@
-= form_for @<%= resource_name %>, html: { class: "form #{form_class ||= 'form-horizontal'}" } do |f|
+= form_for @<%= resource_name %>, html: { class: "form form-horizontal <%= resource_name %>" } do |f|
   <%- columns.each do |column| -%>
-  .control-group{class: "#{group_class ||= ''}"}
-    = f.label :<%= column.name %>, class: "control-label #{column.label_class ||= ''}"
-      .controls{class: "#{column.group_class ||= ''}"}
-        = f.<%= column.field_type %> :<%= column.name %>, class: '<%= column.field_type %>'
+  .control-group
+    = f.label :<%= column.name %>, class: "control-label <%= column.name %>-label"
+      .controls{class: "<%= column.name %>-controls"}
+        = f.<%= column.field_type %> :<%= column.name %>, class: '<%= column.name %>-<%= column.field_type %>'
     = error_span(@<%= resource_name %>[:<%= column.name %>])
   <%- end -%>
-  .form-actions.#{actions_class}
-    = f.submit nil, class: "btn #{button_class ||= 'btn-primary'}"
-    = link_to t('.cancel', default: t("helpers.links.cancel")), <%= controller_routing_path %>_path, class: "btn #{cancel_btn_class ||= 'btn-default'}"
+  .form-actions{class: "<%= column.name %>-actions"}
+    = f.submit nil, class: "btn btn-primary <%= column.name %>-submit"
+    = link_to t('.cancel', default: t("helpers.links.cancel")), <%= controller_routing_path %>_path, class: "btn btn-default <%= column.name %>-cancel"
