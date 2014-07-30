@@ -2,7 +2,7 @@ module ModalHelper
 
   #modals have a header, a body, a footer for options.
   def modal_dialog(options = {}, &block)
-    content_tag :div, :id => options[:id], :class => "modal fade" do
+    content_tag :div, :id => options[:id], :class => "bootstrap-modal modal fade" do
       content_tag :div, :class => "modal-dialog " + (!options[:size].nil? ? options[:size] : '') do
         content_tag :div, :class => "modal-content" do
           modal_header(options[:header].merge(:id => options[:id])) +
