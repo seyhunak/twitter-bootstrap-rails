@@ -1,17 +1,17 @@
 <%%= form_for @<%= resource_name %>, html: { class: "form form-horizontal <%= resource_name %>" } do |f| %>
   <%- columns.each do |column| -%>
-  <div class="control-group">
-    <%%= f.label :<%= column.name %>, class: "control-label <%= column.name %>-label" %>
-    <div class="controls <%= column.name %>-controls"}>
-      <%%= f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>' %>
+  <div class="form-group">
+    <%%= f.label :<%= column.name %>, :class => 'control-label' %>
+    <div class="controls">
+      <%%= f.<%= column.field_type %> :<%= column.name %>, :class => 'form-control' %>
     </div>
     <%%= error_span(@<%= resource_name %>[:<%= column.name %>]) %>
   </div>
   <%- end -%>
 
-  <div class="form-actions <%= resource_name %>-actions">
-    <%%= f.submit nil, :class => "btn <%= resource_name %>-submit" %>
-    <%%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                <%= controller_routing_path %>_path, :class => 'btn <%= resource_name %>-cancel' %>
-  </div>
+  
+  <%%= f.submit nil, :class => 'btn btn-primary' %>
+  <%%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            <%= controller_routing_path %>_path, :class => 'btn btn-default' %>
+ 
 <%% end %>

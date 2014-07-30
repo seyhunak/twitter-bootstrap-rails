@@ -1,17 +1,17 @@
 module GlyphHelper
   # ==== Examples
   # glyph(:share_alt)
-  # # => <i class="icon-share-alt"></i>
+  # # => <span class="icon-share-alt"></span>
   # glyph(:lock, :white)
-  # # => <i class="icon-lock icon-white"></i>
+  # # => <span class="icon-lock icon-white"></span>
   # glyph(:thumbs_up, :pull_left)
-  # # => <i class="icon-thumbs-up pull-left"></i>
+  # # => <span class="icon-thumbs-up pull-left"></span>
 
   def glyph(*names)
     names.map! { |name| name.to_s.gsub('_','-') }
     names.map! do |name|
-      name =~ /pull-(?:left|right)/ ? name : "icon-#{name}"
+      name =~ /pull-(?:left|right)/ ? name : "glyphicon glyphicon-#{name}"
     end
-    content_tag :i, nil, :class => names
+    content_tag :span, nil, :class => names
   end
 end

@@ -61,7 +61,6 @@ module Bootstrap
       def cleanup_legacy
         # Remove old requires (if any) that included twitter/bootstrap directly:
         gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap\s*\n|, "")
-        gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap_responsive\s*\n|, "")
         if File.exist?('app/assets/stylesheets/bootstrap_override.css.less')
           puts <<-EOM
           Warning:

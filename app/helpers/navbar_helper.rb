@@ -1,18 +1,16 @@
 #Credit for this goes to https://github.com/julescopeland/Rails-Bootstrap-Navbar
 module NavbarHelper
   def nav_bar(options={}, &block)
-    nav_bar_div(options) do
-      navbar_inner_div do
-        container_div(options[:brand], options[:brand_link], options[:brand_html_left], options[:brand_html_right], options[:responsive], options[:fluid]) do
-          yield if block_given?
-        end
+    nav_bar_nav(options) do
+      container_div(options[:brand], options[:brand_link], options[:responsive], options[:fluid], options[:no_turbolink]) do
+        yield if block_given?
       end
     end
   end
 
   def menu_group(options={}, &block)
-    pull_class = "pull-#{options[:pull].to_s}" if options[:pull].present?
-    content_tag(:ul, :class => "nav #{pull_class}", &block)
+    pull_class = "navbar-#{options[:pull].to_s}" if options[:pull].present?
+    content_tag(:ul, :class => "nav navbar-nav #{pull_class}", &block)
   end
 
   def menu_item(name=nil, path="#", *args, &block)
@@ -102,70 +100,76 @@ module NavbarHelper
 
   private
 
-  def nav_bar_div(options, &block)
+  def nav_bar_nav(options, &block)
 
     position = "static-#{options[:static].to_s}" if options[:static]
     position = "fixed-#{options[:fixed].to_s}" if options[:fixed]
     inverse = (options[:inverse].present? && options[:inverse] == true) ? true : false
 
-    content_tag :div, :class => nav_bar_css_class(position, inverse) do
+    content_tag :nav, :class => nav_bar_css_class(position, inverse), :role => "navigation" do
       yield
     end
   end
 
-  def navbar_inner_div(&block)
-    content_tag :div, :class => "navbar-inner" do
-      yield
+  def container_div(brand, brand_link, responsive, fluid, no_turbolink, &block)
+    div_container_class = fluid ? "container-fluid" : "container"
+    no_turbolink ||= false
+
+    content_tag :div, :class => div_container_class do
+      container_div_with_block(brand, brand_link, responsive, no_turbolink, &block)
     end
   end
 
-  def container_div(brand, brand_link, brand_html_left, brand_html_right, responsive, fluid, &block)
-    content_tag :div, :class => "container#{"-fluid" if fluid}" do
-      container_div_with_block(brand, brand_link, brand_html_left, brand_html_right, responsive, &block)
-    end
-  end
-
-  def container_div_with_block(brand, brand_link, brand_html_left, brand_html_right, responsive, &block)
+  def container_div_with_block(brand, brand_link, responsive, no_turbolink, &block)
     output = []
     if responsive == true
-      output << responsive_button
-      output << brand_link(brand, brand_link, brand_html_left, brand_html_right)
+      output << responsive_nav_header(brand, brand_link, no_turbolink)
       output << responsive_div { capture(&block) }
     else
-      output << brand_link(brand, brand_link, brand_html_left, brand_html_right)
+      output << brand_link(brand, brand_link, no_turbolink)
       output << capture(&block)
     end
     output.join("\n").html_safe
   end
 
+  def responsive_nav_header(brand, brand_link, no_turbolink)
+    content_tag(:div, :class => "navbar-header") do
+      output = []
+      output << responsive_button
+      output << brand_link(brand, brand_link, no_turbolink)
+      output.join("\n").html_safe
+    end
+  end
+
   def nav_bar_css_class(position, inverse = false)
-    css_class = ["navbar"]
+    css_class = ["navbar", "navbar-default"]
     css_class << "navbar-#{position}" if position.present?
     css_class << "navbar-inverse" if inverse
     css_class.join(" ")
   end
 
-  def brand_link(name, url, brand_html_left, brand_html_right)
+  def brand_link(name, url, no_turbolink)
     return "" if name.blank?
     url ||= root_url
 
-    output = []
-    output << '<div class="brand_html_left">' + brand_html_left + '</div>' if brand_html_left
-    output << link_to(name, url, :class => "brand")
-    output << '<div class="brand_html_right">' + brand_html_right + '</div>' if brand_html_right
-    output.join("\n").html_safe
+    if no_turbolink
+      link_to(name, url, :class => "navbar-brand", :data => { :no_turbolink => true})
+    else
+      link_to(name, url, :class => "navbar-brand")
+    end
   end
 
   def responsive_button
-    %{<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    %{<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
-	      </a>}
+	      </button>}
   end
 
   def responsive_div(&block)
-    content_tag(:div, :class => "nav-collapse collapse", &block)
+    content_tag(:div, :class => "navbar-collapse collapse", &block)
   end
 
   def is_active?(path, options={})

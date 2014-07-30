@@ -1,13 +1,7 @@
-# Twitter Bootstrap 2.3.2 for Rails Asset Pipeline
-Bootstrap is a toolkit designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
+# Twitter Bootstrap 3.1.1 for Rails Asset Pipeline
+Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 4, 3.1, 3.2 are supported)
-
-[gem]: https://rubygems.org/gems/twitter-bootstrap-rails
-[travis]: http://travis-ci.org/seyhunak/twitter-bootstrap-rails
-[gemnasium]: https://gemnasium.com/seyhunak/twitter-bootstrap-rails
-[codeclimate]: https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails
-[coveralls]: https://coveralls.io/r/seyhunak/twitter-bootstrap-rails
 
 [![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.png)][gem]
 [![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master)][travis]
@@ -99,19 +93,7 @@ Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)
 Usage:
 
 
-    rails g bootstrap:layout [LAYOUT_NAME] [*fixed or fluid]
-
-
-Example of a fixed layout:
-
-
-    rails g bootstrap:layout application fixed
-
-
-Example of a responsive layout:
-
-
-    rails g bootstrap:layout application fluid
+    rails g bootstrap:layout [LAYOUT_NAME]
 
 
 Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)
@@ -168,7 +150,6 @@ To use individual components from bootstrap, your bootstrap_and_overrides.less c
 @import "twitter/bootstrap/labels-badges.less";
 @import "twitter/bootstrap/hero-unit.less";
 @import "twitter/bootstrap/utilities.less";
-@import "twitter/bootstrap/responsive";
 ```
 
 If you'd like to alter Bootstrap's own variables, or define your LESS
@@ -176,7 +157,7 @@ styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrid
 
 
 ```css
-@linkColor: #ff0000;
+@link-color: #ff0000;
 ```
 
 ### SASS
@@ -253,11 +234,11 @@ If you want to customize what is loaded, your application.js would look somethin
 ```js
 #= require jquery
 #= require jquery_ujs
-#= require twitter/bootstrap/bootstrap-transition
-#= require twitter/bootstrap/bootstrap-alert
-#= require twitter/bootstrap/bootstrap-modal
-#= require twitter/bootstrap/bootstrap-button
-#= require twitter/bootstrap/bootstrap-collapse
+#= require twitter/bootstrap/transition
+#= require twitter/bootstrap/alert
+#= require twitter/bootstrap/modal
+#= require twitter/bootstrap/button
+#= require twitter/bootstrap/collapse
 ```
 
 ...and so on for each bootstrap js component.
@@ -333,9 +314,7 @@ In your view file (most likely application.html.erb) to get a basic navbar set u
 Which will render:
 
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-        </div>
+      <div class="container">
       </div>
     </div>
 
@@ -351,9 +330,7 @@ If you want the navbar to stick to the top of the screen, pass in the option lik
 To render:
 
     <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-        </div>
+      <div class="container">
       </div>
     </div>
 
@@ -368,9 +345,7 @@ If you want a full-width navbar that scrolls away with the page, pass in the opt
 To render:
 
     <div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <div class="container">
-        </div>
+      <div class="container">
       </div>
     </div>
 
@@ -386,12 +361,10 @@ Add the name of your site on the left hand edge of the navbar. By default, it wi
 Which will render:
 
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-            <a class="brand" href="/accounts/dashboard">
-              We're sooo web 2.0alizr
-            </a>
-        </div>
+      <div class="container">
+          <a class="navbar-brand" href="/accounts/dashboard">
+            We're sooo web 2.0alizr
+          </a>
       </div>
     </div>
 
@@ -407,18 +380,16 @@ Which renders the html quite differently:
 
 
     <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <!-- Everything in here gets hidden at 940px or less -->
-          <div class="nav-collapse">
-            <!-- menu items gets rendered here instead -->
-          </div>
+      <div class="container">
+        <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- Everything in here gets hidden at 940px or less -->
+        <div class="navbar-collapse collapse">
+          <!-- menu items gets rendered here instead -->
         </div>
       </div>
     </div>
