@@ -9,9 +9,9 @@
   </div>
   <%- end -%>
 
-  <div class="form-actions <%= column.name %>-actions">
-    <%%= f.submit nil, :class => "btn <%= column.name %>-submit" %>
+  <div class="form-actions <%= resource_name %>-actions">
+    <%%= f.submit nil, :class => "btn <%= resource_name %>-submit" %>
     <%%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                <%= controller_routing_path %>_path, :class => 'btn <%= column.name %>-cancel' %>
+                <%= controller_routing_path %>_path, :class => 'btn <%= resource_name %>-cancel' %>
   </div>
 <%% end %>
