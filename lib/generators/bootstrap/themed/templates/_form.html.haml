@@ -3,7 +3,7 @@
   .control-group
     = f.label :<%= column.name %>, class: "control-label <%= column.name %>-label"
       .controls{class: "<%= column.name %>-controls"}
-        = f.<%= column.field_type %> :<%= column.name %>, class: '<%= column.name %>-<%= column.field_type %>'
+        = f.<%= column.field_type %> :<%= column.name %>, class: "<%= column.name %>-<%= column.field_type %>"
     = error_span(@<%= resource_name %>[:<%= column.name %>])
   <%- end -%>
   .form-actions{class: "<%= resource_name %>-actions"}
