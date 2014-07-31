@@ -1,5 +1,21 @@
 <%%= form_for @<%= resource_name %>, :html => { :class => 'form-horizontal' } do |f| %>
-  <%- columns.each do |column| -%>
+  
+	<%% if @<%= resource_name %>.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%%= pluralize(@<%= resource_name %>.errors.count, "error") %> prohibited this <%= resource_name %> from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <%% @<%= resource_name %>.errors.full_messages.each do |msg| %>
+          <li><%%= msg %></li>
+        <%% end %>
+        </ul>
+      </div>
+		</div>
+  <%% end %>
+	
+	<%- columns.each do |column| -%>
   <div class="control-group">
     <%%= f.label :<%= column.name %>, :class => 'control-label' %>
     <div class="controls">
