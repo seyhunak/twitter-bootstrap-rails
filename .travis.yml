@@ -5,4 +5,4 @@ rvm:
   - 2.0.0
   - 2.1.1
   - ree
-script: bundle exec rake test
+script: bundle exec rake rspec
