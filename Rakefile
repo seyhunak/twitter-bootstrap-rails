@@ -1,5 +1,7 @@
 #!/usr/bin/env rake
 require 'bundler'
+require 'rspec/core/rake_task'
+
 Bundler::GemHelper.install_tasks
 
 desc "Bundle the gem"
@@ -37,10 +39,4 @@ end
 task(:default).clear
 task :default => :bundle
 
-require 'rake/testtask'
-
-Rake::TestTask.new do |t|
-  t.libs << "test"
-  t.test_files = FileList['test/lib/*_test.rb']
-  t.verbose = true
-end
+RSpec::Core::RakeTask.new(:spec)
