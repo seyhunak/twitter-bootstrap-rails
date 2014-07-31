@@ -571,7 +571,7 @@ You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>
 
 Full example: 
 ```ruby
-render_breadcrumbs(" / ", { :class => '', :item_class => '', :divider_class => '' })
+render_breadcrumbs(" / ", { :class => '', :item_class => '', :divider_class => '', :active_class => 'active' })
 ```
 
 ```ruby
