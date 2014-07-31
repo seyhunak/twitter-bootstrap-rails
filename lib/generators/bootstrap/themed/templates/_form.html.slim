@@ -1,9 +1,10 @@
-= form_for @<%= resource_name %>, :html => { :class => "form-horizontal" } do |f|
+= form_for @<%= resource_name %>, html: { class: "form form-horizontal <%= resource_name %>" } do |f|
   <%- columns.each do |column| -%>
   .form-group
     = f.label :<%= column.name %>, :class => 'control-label'
     .controls
       = f.<%= column.field_type %> :<%= column.name %>, :class => 'form-control'
+    = error_span(@<%= resource_name %>[:<%= column.name %>])
   <%- end -%>
   = f.submit nil, :class => 'btn btn-primary'
   '

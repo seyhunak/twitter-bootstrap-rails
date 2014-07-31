@@ -74,6 +74,8 @@ module NavbarHelper
   #   uri_state('/blog/categories/test', {method: delete}) # :inactive
   #   uri_state('/blog/categories/test/3', {})             # :inactive
   def uri_state(uri, options={})
+    return options[:status] if options.key?(:status)
+
     root_url = request.host_with_port + '/'
     root = uri == '/' || uri == root_url
 
@@ -85,7 +87,7 @@ module NavbarHelper
 
     if !options[:method].nil? || !options["data-method"].nil?
       :inactive
-    elsif uri == request_uri
+    elsif uri == request_uri || (options[:root] && (request_uri == '/') || (request_uri == root_url))
       :active
     else
       if request_uri.start_with?(uri) and not(root)
@@ -171,7 +173,8 @@ module NavbarHelper
   end
 
   def is_active?(path, options={})
-    "active" if uri_state(path, options).in?([:active, :chosen])
+    state = uri_state(path, options)
+    "active" if state.in?([:active, :chosen]) || state === true
   end
 
   def name_and_caret(name)

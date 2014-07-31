@@ -8,12 +8,10 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset
 [![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png?travis)][gemnasium]
 [![Code Climate](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails.png)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master)][coveralls]
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/seyhunak/twitter-bootstrap-rails/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-[gem]: https://rubygems.org/gems/twitter-bootstrap-rails
-[travis]: http://travis-ci.org/seyhunak/twitter-bootstrap-rails
-[gemnasium]: https://gemnasium.com/seyhunak/twitter-bootstrap-rails
-[codeclimate]: https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails
-[coveralls]: https://coveralls.io/r/seyhunak/twitter-bootstrap-rails
+## Twitter Bootstrap 3.x.x
+Use "bootstrap3" branch [Twitter Bootstrap 3.x.x](https://github.com/seyhunak/twitter-bootstrap-rails/tree/bootstrap3) (Latest Bootstrap 3 completely supported)
 
 ## Screencasts
 #### Installing twitter-bootstrap-rails, generators, usage and more
@@ -22,10 +20,10 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset
 Screencasts provided by <a href="http://railscasts.com">Railscasts</a> (Ryan Bates)
 
 [Twitter Bootstrap Basics](http://railscasts.com/episodes/328-twitter-bootstrap-basics "Twitter Bootstrap Basics")
-in this episode you will learn how to include Twitter Bootstrap into Rails application with the twitter-bootstrap-rails gem.
+in this episode you will learn how to include Bootstrap into Rails application with the twitter-bootstrap-rails gem.
 
 [More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap")
-in this episode continues on the Twitter Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
+in this episode continues on the Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
 (Note: This episode is pro episode)
 
 
@@ -35,16 +33,16 @@ An example application is available at [toadkicker/teststrap](https://github.com
 
 ## Installing the Gem
 
-The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) can provide the Twitter Bootstrap stylesheets in two ways.
+The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) can provide the Bootstrap stylesheets in two ways.
 
-The plain CSS way is how Twitter Bootstrap is provided on [the official website](http://twitter.github.com/bootstrap/).
+The plain CSS way is how Bootstrap is provided on [the official website](http://twbs.github.io/bootstrap/).
 
-The [Less](http://lesscss.org/) way provides more customisation options, like changing theme colors, and provides useful Less mixins for your code, but requires the
+The [Less](http://lesscss.org/) way provides more customization options, like changing theme colors, and provides useful Less mixins for your code, but requires the
 Less gem and the Ruby Racer Javascript runtime (not available on Microsoft Windows).
 
 ### Installing the Less stylesheets
 
-To use Less stylesheets, you'll need the [less-rails gem](http://rubygems.org/gems/less-rails), and one of [Javascript runtimes supported by CommonJS](https://github.com/cowboyd/commonjs.rb#supported-runtimes).
+To use Less stylesheets, you'll need the [less-rails gem](http://rubygems.org/gems/less-rails), and one of [JavaScript runtimes supported by CommonJS](https://github.com/cowboyd/commonjs.rb#supported-runtimes).
 
 Include these lines in the Gemfile to install the gems from [RubyGems.org](http://rubygems.org):
 
@@ -68,6 +66,10 @@ Then run the bootstrap generator to add Bootstrap includes into your assets:
 
     rails generate bootstrap:install less
 
+If you need to skip coffeescript replacement into app generators, use:
+
+    rails generate bootstrap:install --no-coffeescript
+
 ### Installing the CSS stylesheets
 
 If you don't need to customize the stylesheets using Less, the only gem you need is the `twitter-bootstrap-rails` gem:
@@ -82,10 +84,10 @@ After running `bundle install`, run the generator:
 
 ## Generating layouts and views
 
-You can run following generators to get started with Twitter Bootstrap quickly.
+You can run following generators to get started with Bootstrap quickly.
 
 
-Layout (generates Twitter Bootstrap compatible layout) - (Haml and Slim supported)
+Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)
 
 
 Usage:
@@ -94,7 +96,7 @@ Usage:
     rails g bootstrap:layout [LAYOUT_NAME]
 
 
-Themed (generates Twitter Bootstrap compatible scaffold views.) - (Haml and Slim supported)
+Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)
 
 
 Usage:
@@ -212,10 +214,10 @@ If you would like to restore the default Glyphicons, inside the _bootstrap_and_o
 // @import "fontawesome/font-awesome";
 
 // Glyphicons
-@import "twitter/bootstrap/sprites.less";
+@import "twitter/bootstrap/glyphicons.less";
 ```
 
-## Using Javascripts
+## Using JavaScript
 
 Require Bootstrap JS (bootstrap.js) in your application.js
 
@@ -223,7 +225,7 @@ Require Bootstrap JS (bootstrap.js) in your application.js
 //= require twitter/bootstrap
 
 $(function(){
-  /* Your javascripts goes here... */
+  /* Your JavaScript goes here... */
 });
 ```
 
@@ -241,9 +243,9 @@ If you want to customize what is loaded, your application.js would look somethin
 
 ...and so on for each bootstrap js component.
 
-## Using Coffeescript (optionally)
+## Using CoffeeScript (optionally)
 
-Using Twitter Bootstrap with the CoffeeScript is easy.
+Using Bootstrap with the CoffeeScript is easy.
 twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
 
@@ -257,15 +259,15 @@ jQuery ->
 
 ### Modal Helper
 You can create modals easily using the following example. The header, body, and footer all accept content_tag or plain html.
-The href of the button to launch the modal must matche the id of the modal dialog.
+The href of the button to launch the modal must match the id of the modal dialog.
 
 ````
 <%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => 'modal'} %>
 
 <%= modal_dialog :id => "modal",
          :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
-                 :body   => 'This is the body',
-                 :footer => content_tag(:button, 'Save', :class => 'btn') %>
+                 :body   => {content: 'This is the body', class: 'foo-class' },
+                 :footer => {content: content_tag(:button, 'Save', :class => 'btn'), another_attribute: 'here' %>
 ````
 
 ### Navbar Helper
@@ -409,7 +411,7 @@ menu_item generates a link wrapped in an li tag. It takes two arguments and an o
 
 ````
 <%= nav_bar :fixed => :top, :brand => "Ninety Ten" do %>
-    <% menu_group do %>
+    <%= menu_group do %>
         <%= menu_item "Home", root_path %>
         <%= menu_item "About Us", about_us_path %>
         <%= menu_item "Contact", contact_path %>
@@ -417,9 +419,9 @@ menu_item generates a link wrapped in an li tag. It takes two arguments and an o
     <% if current_user %>
         <%= menu_item "Log Out", log_out_path %>
     <% else %>
-        <% menu_group :pull => :right do %>
+        <%= menu_group :pull => :right do %>
             <%= menu_item "Sign Up", registration_path %>
-            <% form_for @user, :url => session_path(:user) do |f| -%>
+            <%= form_for @user, :url => session_path(:user) do |f| -%>
               <p><%= f.text_field :email %></p>
               <p><%= f.password_field :password %></p>
               <p><%= f.submit "Sign in" %></p>
@@ -532,14 +534,15 @@ Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout g
 
 ### Breadcrumbs Helpers
 
-*Notice* If your application is using [breadcrumbs-on-rails](https://github.com/weppos/breadcrumbs_on_rails) you will have a namespace collision with the add_breadcrumb method. 
-You do not need to use these breadcrumb gems since this gem provides the same functionality out of the box without the additional dependency. 
+*Notice* If your application is using [breadcrumbs-on-rails](https://github.com/weppos/breadcrumbs_on_rails) you will have a namespace collision with the add_breadcrumb method.
+You do not need to use these breadcrumb gems since this gem provides the same functionality out of the box without the additional dependency.
 
 Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
+You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>` (default divider is `/`).
 
 ```ruby
 class ApplicationController
-  add_breadcrumb :index, :root_path
+  add_breadcrumb :root # 'root_path' will be used as url
 end
 ```
 
@@ -547,16 +550,15 @@ end
 class ExamplesController < ApplicationController
   add_breadcrumb :index, :examples_path
 
-  def index
-  end
-
-  def show
+  def edit
     @example = Example.find params[:id]
-    add_breadcrumb @example.name, example_path(@example)
-    # add_breadcrumb :show, example_path(@example)
+    add_breadcrumb @example # @example.to_s as name, example_path(@example) as url
+    add_breadcrumb :edit, edit_example_path(@example)
   end
 end
 ```
+All symbolic names translated with I18n. See [I18n Internationalization Support](#i18n-internationalization-support)
+section.
 
 ### Element utility helpers
 
@@ -575,8 +577,8 @@ Glyph:
 <%= glyph(:pencil) %> <i class="icon-pencil"></i>
 ```
 
-###i18n Internationalization Support
-The installer creates an english translation file for you and copies it to config/locales/en.bootstrap.yml
+###I18n Internationalization Support
+The installer creates an English translation file for you and copies it to config/locales/en.bootstrap.yml
 
 
 NOTE: If you are using Devise in your project, you must have a devise locale file
@@ -599,7 +601,7 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Fixed jquery-rails gem version dependency</li>
   <li>Updated asset files</li>
   <li>Added new generators (install, layout and themed)</li>
-  <li>Compability to Rails 3.2</li>
+  <li>Compatibility to Rails 3.2</li>
   <li>Transitioning to 2.0</li>
   <li>Released gem v.2.0rc0</li>
   <li>Added Haml and Slim support</li>
@@ -621,7 +623,7 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Released gem v.2.1.2 (minor fixes and updated to Twitter Bootstrap 2.1.0)</li>
   <li>Released gem v.2.1.3 (minor fixes and updated to Twitter Bootstrap 2.1.1)</li>
   <li>Released gem v.2.1.4 (minor fixes)</li>
-  <li>Released gem v.2.1.5 (minor fixes, install generator detects javascript template engine, updated to Twitter Bootstrap 2.2.1)</li>
+  <li>Released gem v.2.1.5 (minor fixes, install generator detects JavaScript template engine, updated to Twitter Bootstrap 2.2.1)</li>
   <li>Released gem v.2.1.6 (minor fixes)</li>
   <li>Added static stylesheets support</li>
   <li>Released gem v.2.1.8 and updated to Twitter Bootstrap 2.2.2</li>
@@ -634,7 +636,7 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Released gem v.2.2.5 (Bootstrap 2.3.1)</li>
   <li>Released gem v.2.2.6</li>
   <li>Released gem v.2.2.7 (Fixes)</li>
-
+  <li>Releases gem v.2.2.8</li>
 </ul>
 
 
@@ -660,48 +662,27 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Leonid Shevtsov</li>
 </ul>
 
+### Contribute and Earn Bitcoin
+Make commits and get tips for it
+[![tip for next commit](http://tip4commit.com/projects/13.svg)](http://tip4commit.com/projects/13)
+
+
 ## About Me
-Lead/ Senior Developer - Programmer @useful (Usefulideas) Istanbul / Turkey
+CTO / Senior Developer / Programmer
+@useful (Usefulideas) Istanbul / Turkey
+
 
 ### Contact me
 Seyhun Akyürek - seyhunak [at] gmail com
 
-### Follow me
-<a href="http://zerply.com/seyhunak">
-<img width="110" height="40" src="http://zerply.com/img/welcomesteps/zerply_logo.png" />
-</a>
-
-(Twitter, Facebook, Linkedin, Google+, Github)
-
-http://zerply.com/seyhunak
-
-### Endorse me
-<a href="http://coderwall.com/seyhunak">
-<img src="http://api.coderwall.com/seyhunak/endorsecount.png" />
-</a>
-
-### Klout me
-<img src="https://addons.opera.com/media/extensions/55/14355/1.0.1-rev1/icons/icon_64x64.png"></img>
-
-Please +K my influence in Ruby on Rails on @klout
-
-http://klout.com/#/seyhunak
-
-
-### Want to donate?
-<img src="https://www.paypalobjects.com/en_US/i/logo/PayPal_mark_50x34.gif"></img>
-
-[Want to donate for my efforts? Show your love](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W8ZLWQBREFP4U
- "Donate")
-
 
 ## Thanks
-Twitter Bootstrap and all twitter-bootstrap-rails contributors
-http://twitter.github.com/bootstrap
+Bootstrap and all twitter-bootstrap-rails contributors
+http://twbs.github.io/bootstrap
 
 
 ## License
-Copyright (c) 2012 Seyhun Akyürek
+Copyright (c) 2014 Seyhun Akyürek
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
