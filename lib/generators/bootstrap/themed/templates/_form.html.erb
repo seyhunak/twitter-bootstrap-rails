@@ -17,8 +17,8 @@
 	
 	<%- columns.each do |column| -%>
   <div class="control-group">
-    <%%= f.label :<%= column.name %>, :class => 'control-label' %>
-    <div class="controls">
+    <%%= f.label :<%= column.name %>, :class => 'control-label col-lg-3' %>
+    <div class="col-lg-9">
       <%%= f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>' %>
     </div>
   </div>
