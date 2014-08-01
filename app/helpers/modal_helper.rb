@@ -1,43 +1,48 @@
 module ModalHelper
+  
+  def default_options
+    return {:id => 'modal', :size => '', :show_close => true, :dismiss => true}
+  end
 
   #modals have a header, a body, a footer for options.
   def modal_dialog(options = {}, &block)
-    content_tag :div, :id => options[:id], :class => "modal fade" do
-      content_tag :div, :class => "modal-dialog" do
+    opts = default_options.merge(options)
+    content_tag :div, :id => options[:id], :class => "bootstrap-modal modal fade" do
+      content_tag :div, :class => "modal-dialog #{opts['size']}" do
         content_tag :div, :class => "modal-content" do
-          modal_header(options[:header]) +
-          modal_body(options[:body]) +
-          modal_footer(options[:footer])
+          modal_header(opts, &block) +
+          modal_body(opts, &block) +
+          modal_footer(opts, &block) 
         end
       end
     end
   end
 
-  def modal_header(options = {}, &block)
+  def modal_header(options, &block)
     content_tag :div, :class => 'modal-header' do
       if options[:show_close] 
         close_button(options[:dismiss]) +
         content_tag(:h4, options[:title], :class => 'modal-title', &block)
       else
         content_tag(:h4, options[:title], :class => 'modal-title', &block)
-      end	
+      end   
     end
   end
 
-  def modal_body(options = {}, &block)
-    content_tag :div, options, :class => 'modal-body', &block
+  def modal_body(options, &block)
+    content_tag :div, options[:content], :class => 'modal-body', :style => options[:style], &block
   end
 
-  def modal_footer(options = {}, &block)
-    content_tag :div, options, :class => 'modal-footer', &block
+  def modal_footer(options, &block)
+    content_tag :div, options[:content], :class => 'modal-footer', &block
   end
 
   def close_button(dismiss)
-    #It doesn't seem to like content_tag, so we do this instead.	
+    #It doesn't seem to like content_tag, so we do this instead.    
     raw("<button class=\"close\" data-dismiss=\"#{dismiss}\" aria-hidden=\"true\">&times;</button>")
   end
 
-  def modal_toggle(content_or_options = nil, options = {}, &block)
+  def modal_toggle(content_or_options = nil, options, &block)
     if block_given?
       options = content_or_options if content_or_options.is_a?(Hash)
       default_options = { :class => 'btn btn-default', "data-toggle" => "modal", "href" => options[:dialog] }.merge(options)
@@ -49,11 +54,10 @@ module ModalHelper
     end
   end
 
-  def modal_cancel_button content, options = {}
-    default_options = { :class => "btn bootstrap-modal-cancel-button" }
+  def modal_cancel_button(content, options)
+    default_opts = { :class => "btn bootstrap-modal-cancel-button" }
 
-    content_tag_string "a", content, default_options.merge(options)
+    content_tag_string "a", content, default_opts.merge(options)
   end
 
 end
-

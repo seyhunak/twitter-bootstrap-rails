@@ -94,7 +94,7 @@ describe NavbarHelper, :type => :helper do
       menu_item("Home", "/").should eql('<li class="active"><a href="/">Home</a></li>')
     end
     it "should pass any other options through to the link_to method" do
-      self.stub!("uri_state").and_return(:active)
+      self.stub("uri_state").and_return(:active)
       menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete).should eql('<li class="active"><a class="home_link" data-method="delete" href="/users/sign_out" rel="nofollow">Log out</a></li>')
     end
     it "should pass a block but no name if a block is present" do
@@ -318,13 +318,13 @@ DROPDOWN_MENU_WITH_SUBMENU = <<-HTML
 HTML
 
 PLAIN_NAVBAR_WITH_FORM = <<-HTML
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container">
-    <form accept-charset="utf-8" action="/" method="get">
-      <div style="margin:0;padding:0;display:inline">
-        <input name="utf8" type="hidden" value="&#x2713;"/>
+<nav class=\"navbar navbar-default\"role=\"navigation\">
+  <div class=\"container\">
+    <form accept-charset=\"utf-8\" action=\"/\" method=\"get\">
+      <div style=\"display:none\">
+        <input name=\"utf8\" type=\"hidden\" value=\"&#x2713;\"/>
       </div>
-      <input id="search_stub" name="search[stub]" type="text"/>
+      <input id=\"search_stub\" name=\"search[stub]\" type=\"text\"/>
     </form>
   </div>
 </nav>

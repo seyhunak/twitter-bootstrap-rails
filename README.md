@@ -259,15 +259,20 @@ jQuery ->
 
 ### Modal Helper
 You can create modals easily using the following example. The header, body, and footer all accept content_tag or plain html.
-The href of the button to launch the modal must match the id of the modal dialog.
+The href of the button to launch the modal must match the id of the modal dialog. It also accepts a block for the header, body, and footer. If you are getting a complaint about the modal_helper unable to merge a hash it is due to this.
 
 ````
 <%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => 'modal'} %>
 
 <%= modal_dialog :id => "modal",
          :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
+<<<<<<< HEAD
                  :body   => {content: 'This is the body', class: 'foo-class' },
                  :footer => {content: content_tag(:button, 'Save', :class => 'btn'), another_attribute: 'here' %>
+=======
+                 :body   => { :content => 'This is the body' },
+                 :footer => { :content => content_tag(:button, 'Save', :class => 'btn') } %>
+>>>>>>> c457371fe4c06bd284a97d737a4d50bbcd266a2a
 ````
 
 ### Navbar Helper
@@ -540,6 +545,11 @@ You do not need to use these breadcrumb gems since this gem provides the same fu
 Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
 You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>` (default divider is `/`).
 
+Full example: 
+```ruby
+render_breadcrumbs(" / ", { :class => '', :item_class => '', :divider_class => '', :active_class => 'active' })
+```
+
 ```ruby
 class ApplicationController
   add_breadcrumb :root # 'root_path' will be used as url
@@ -575,6 +585,8 @@ Label:
 Glyph:
 ```erb
 <%= glyph(:pencil) %> <i class="icon-pencil"></i>
+
+<%= glyph(:pencil, {:tag => :span}) %> <span class="icon-pencil"></span>
 ```
 
 ###I18n Internationalization Support

@@ -1,8 +1,6 @@
 language: ruby
 rvm:
-  - 1.8.7
-  - 1.9.2
   - 1.9.3
   - 2.0.0
-  - ree
-script: bundle exec rake test
+  - 2.1.1
+script: bundle exec rake spec
