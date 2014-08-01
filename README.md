@@ -609,6 +609,8 @@ Label:
 Glyph:
 ```erb
 <%= glyph(:pencil) %> <i class="icon-pencil"></i>
+
+<%= glyph(:pencil, {:tag => :span}) %> <span class="icon-pencil"></span>
 ```
 
 ###I18n Internationalization Support
