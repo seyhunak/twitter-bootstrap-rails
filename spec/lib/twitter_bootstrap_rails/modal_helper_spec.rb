@@ -11,8 +11,8 @@ describe ModalHelper, :type => :helper do
   header_without_close = { :show_close => false, :title => 'Modal header' }
   options              = { :id => "modal",
 												 	 :header => header_with_close,
-                           :body   => 'This is the body',
-                           :footer => content_tag(:button, 'Save', :class => 'btn')
+                           :body   => { content: 'This is the body' },
+                           :footer => { content: content_tag(:button, 'Save', :class => 'btn') }
   }
 
   it 'returns a complete modal' do
@@ -28,7 +28,7 @@ describe ModalHelper, :type => :helper do
   end
 
 	it 'renders a close button' do
-		close_button('modal').should eql "<button class=\"close\" data-dismiss=\"modal\">&times;</button>"
+		close_button('modal').should eql "<button class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>"
 	end
 
   it 'renders a modal toggle button' do
@@ -41,19 +41,19 @@ describe ModalHelper, :type => :helper do
 
 end
 BASIC_MODAL = <<-HTML
-<div class=\"bootstrap-modal modal hide fade\" id="modal"><div class=\"modal-header\"><button class=\"close\" data-dismiss=\"modal\">&times;</button><h3>Modal header</h3></div><div class=\"modal-body\">This is the body</div><div class=\"modal-footer\"><button class=\"btn\">Save</button></div></div>
+<div class=\"bootstrap-modal modal fade\" id=\"modal\"><div class=\"modal-dialog \"><div class=\"modal-content\"><div class=\"modal-header\"><button class=\"close\" data-dismiss=\"true\" aria-hidden=\"true\">&times;</button><h4 class=\"modal-title\"></h4></div><div class=\"modal-body\"></div><div class=\"modal-footer\"></div></div></div></div>
 HTML
 
 MODAL_HEADER_WITHOUT_CLOSE = <<-HTML
-<div class="modal-header"><h3>Modal header</h3></div>
+<div class="modal-header"><h4 class=\"modal-title\">Modal header</h4></div>
 HTML
 
 MODAL_HEADER_WITH_CLOSE = <<-HTML
-<div class="modal-header"><button class="close" data-dismiss="modal">&times;</button><h3>Modal header</h3></div>
+<div class="modal-header"><button class="close" data-dismiss="modal" aria-hidden=\"true\">&times;</button><h4 class=\"modal-title\">Modal header</h4></div>
 HTML
 
 MODAL_TOGGLE = <<-HTML
-<a class="btn" data-toggle="modal" href="#modal">Save</a>
+<a class="btn btn-default" data-toggle="modal" href="#modal">Save</a>
 HTML
 
 MODAL_CANCEL_BUTTON = <<-HTML
