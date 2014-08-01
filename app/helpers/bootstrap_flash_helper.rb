@@ -1,7 +1,7 @@
 module BootstrapFlashHelper
   ALERT_TYPES = [:error, :info, :success, :warning] unless const_defined?(:ALERT_TYPES)
 
-  def bootstrap_flash
+  def bootstrap_flash(options)
     flash_messages = []
     flash.each do |type, message|
       # Skip empty messages, e.g. for devise messages set to nothing in a locale file.
@@ -15,7 +15,7 @@ module BootstrapFlashHelper
       Array(message).each do |msg|
         text = content_tag(:div,
                            content_tag(:button, raw("&times;"), :class => "close", "data-dismiss" => "alert") +
-                           msg, :class => "alert fade in alert-#{type}")
+                           msg, :class => "alert fade in alert-#{type} #{options[:class]}")
         flash_messages << text if msg
       end
     end
