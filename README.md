@@ -569,6 +569,11 @@ You do not need to use these breadcrumb gems since this gem provides the same fu
 Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
 You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>` (default divider is `/`).
 
+Full example: 
+```ruby
+render_breadcrumbs(" / ", { :class => '', :item_class => '', :divider_class => '', :active_class => 'active' })
+```
+
 ```ruby
 class ApplicationController
   add_breadcrumb :root # 'root_path' will be used as url
