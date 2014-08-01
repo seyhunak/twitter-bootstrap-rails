@@ -278,15 +278,15 @@ jQuery ->
 
 ### Modal Helper
 You can create modals easily using the following example. The header, body, and footer all accept content_tag or plain html.
-The href of the button to launch the modal must match the id of the modal dialog.
+The href of the button to launch the modal must match the id of the modal dialog. It also accepts a block for the header, body, and footer. If you are getting a complaint about the modal_helper unable to merge a hash it is due to this.
 
 ````
 <%= content_tag :a, "Modal", :href => "#modal", :class => 'btn', :data => {:toggle => 'modal'} %>
 
 <%= modal_dialog :id => "modal",
          :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
-                 :body   => 'This is the body',
-                 :footer => content_tag(:button, 'Save', :class => 'btn') %>
+                 :body   => { :content => 'This is the body' },
+                 :footer => { :content => content_tag(:button, 'Save', :class => 'btn') } %>
 ````
 
 ### Navbar Helper

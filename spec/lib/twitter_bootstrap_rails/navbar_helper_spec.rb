@@ -351,7 +351,7 @@ PLAIN_NAVBAR_WITH_FORM = <<-HTML
 	<div class="navbar-inner">
 		<div class="container">
 			<form accept-charset="utf-8" action="/" method="get">
-				<div style="margin:0;padding:0;display:inline">
+				<div style="display:none">
 					<input name="utf8" type="hidden" value="&#x2713;"/>
 				</div>
 				<input id="search_stub" name="search[stub]" type="text"/>
