@@ -39,4 +39,6 @@ end
 task(:default).clear
 task :default => :bundle
 
-RSpec::Core::RakeTask.new(:spec)
+RSpec::Core::RakeTask.new do |task|
+  task.rspec_opts = ['--color', '--format', 'doc']
+end
