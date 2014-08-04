@@ -263,13 +263,8 @@ The href of the button to launch the modal must match the id of the modal dialog
 
 <%= modal_dialog :id => "modal",
          :header => { :show_close => true, :dismiss => 'modal', :title => 'Modal header' },
-<<<<<<< HEAD
-                 :body   => {content: 'This is the body', class: 'foo-class' },
-                 :footer => {content: content_tag(:button, 'Save', :class => 'btn'), another_attribute: 'here' %>
-=======
-                 :body   => { :content => 'This is the body' },
-                 :footer => { :content => content_tag(:button, 'Save', :class => 'btn') } %>
->>>>>>> c457371fe4c06bd284a97d737a4d50bbcd266a2a
+         :body   => { :content => 'This is the body' },
+         :footer => { :content => content_tag(:button, 'Save', :class => 'btn') } %>
 ````
 
 ### Navbar Helper

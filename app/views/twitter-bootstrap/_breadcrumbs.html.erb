@@ -1,17 +1,10 @@
 <% if @breadcrumbs.present? %>
-<<<<<<< HEAD
-  <ul class="breadcrumb">
-=======
   <ul class="breadcrumb <%= options[:class] %>">
     <% separator = divider.html_safe %>
->>>>>>> c457371fe4c06bd284a97d737a4d50bbcd266a2a
     <% @breadcrumbs[0..-2].each do |crumb| %>
       <li class="<%= options[:item_class] %>">
         <%= link_to crumb[:name], crumb[:url], crumb[:options] %>
-<<<<<<< HEAD
-=======
         <span class="divider <%= options[:divider_class] %>"><%= separator %></span>
->>>>>>> c457371fe4c06bd284a97d737a4d50bbcd266a2a
       </li>
     <% end %>
     <li class="<%= options[:active_class] %>">
