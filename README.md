@@ -57,7 +57,7 @@ gem "twitter-bootstrap-rails"
 or you can install from latest build;
 
 ```ruby
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
 ```
 
 Then run `bundle install` from the command line:
