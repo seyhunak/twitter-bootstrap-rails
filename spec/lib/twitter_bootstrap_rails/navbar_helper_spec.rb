@@ -16,152 +16,177 @@ describe NavbarHelper, :type => :helper do
   end
   describe "nav_bar" do
     it "should return a basic bootstrap navbar" do
-      nav_bar.gsub(/\s/, '').downcase.should eql(BASIC_NAVBAR.gsub(/\s/, '').downcase)
+      expect(nav_bar.gsub(/\s/, '').downcase)
+        .to eql(BASIC_NAVBAR.gsub(/\s/, '').downcase)
     end
 
     it "should set the fixed position to top" do
-      nav_bar(:fixed => :top).gsub(/\s/, '').downcase.should eql(FIXED_TOP_NAVBAR.gsub(/\s/, '').downcase)
+      expect(nav_bar(:fixed => :top).gsub(/\s/, '').downcase)
+        .to eql(FIXED_TOP_NAVBAR.gsub(/\s/, '').downcase)
     end
 
     it "should set the static position to top" do
-      nav_bar(:static => :top).gsub(/\s/, '').downcase.should eql(STATIC_TOP_NAVBAR.gsub(/\s/, '').downcase)
+      expect(nav_bar(:static => :top).gsub(/\s/, '').downcase)
+        .to eql(STATIC_TOP_NAVBAR.gsub(/\s/, '').downcase)
     end
 
     it "should set the fixed position to bottom" do
-      nav_bar(:fixed => :bottom).gsub(/\s/, '').downcase.should eql(FIXED_BOTTOM_NAVBAR.gsub(/\s/, '').downcase)
+      expect(nav_bar(:fixed => :bottom).gsub(/\s/, '').downcase)
+        .to eql(FIXED_BOTTOM_NAVBAR.gsub(/\s/, '').downcase)
     end
 
     it "should set the style to inverse" do
-      nav_bar(:inverse => true).gsub(/\s/, '').downcase.should eql(INVERSE_NAVBAR.gsub(/\s/, '').downcase)
+      expect(nav_bar(:inverse => true).gsub(/\s/, '').downcase)
+        .to eql(INVERSE_NAVBAR.gsub(/\s/, '').downcase)
     end
 
     it "should add the brand name and link it to the home page" do
-      nav_bar(:brand => "Ninety Ten").gsub(/\s/, '').downcase.should eql(NAVBAR_WITH_BRAND.gsub(/\s/, '').downcase)
+      expect(nav_bar(:brand => "Ninety Ten").gsub(/\s/, '').downcase)
+        .to eql(NAVBAR_WITH_BRAND.gsub(/\s/, '').downcase)
     end
 
     it "should be able to set the brand link url" do
-      nav_bar(:brand => "Ninety Ten", :brand_link => "http://www.ninetyten.com").gsub(/\s/, '').downcase.should eql(NAVBAR_WITH_BRAND_AND_LINK.gsub(/\s/, '').downcase)
+      expect(nav_bar(:brand => "Ninety Ten", :brand_link => "http://www.ninetyten.com").gsub(/\s/, '').downcase)
+        .to eql(NAVBAR_WITH_BRAND_AND_LINK.gsub(/\s/, '').downcase)
     end
 
     it "should add the buttons etc for a responsive layout with no block passed" do
-      nav_bar(:responsive => true).gsub(/\s/, '').downcase.should eql(RESPONSIVE_NAVBAR.gsub(/\s/, '').downcase)
+      expect(nav_bar(:responsive => true).gsub(/\s/, '').downcase).to eql(RESPONSIVE_NAVBAR.gsub(/\s/, '').downcase)
     end
 
     it "should add the buttons etc for a responsive layout with block passed" do
-      nav_bar(:responsive => true) do
+      ele = nav_bar(:responsive => true) do
         "<p>Passing a block</p>".html_safe
-      end.gsub(/\s/, '').downcase.should eql(RESPONSIVE_NAVBAR_WITH_BLOCK.gsub(/\s/, '').downcase)
+      end
+      expect(ele.gsub(/\s/, '').downcase).to eql(RESPONSIVE_NAVBAR_WITH_BLOCK.gsub(/\s/, '').downcase)
     end
 
     it "should render contained items" do
-      nav_bar do
+      ele = nav_bar do
         menu_group do
           menu_item("Home", "/") + menu_item("Products", "/products")
         end
-      end.gsub(/\s/, '').downcase.should eql(PLAIN_NAVBAR_WITH_ITEM.gsub(/\s/, '').downcase)
+      end
+      expect(ele.gsub(/\s/, '').downcase).to eql(PLAIN_NAVBAR_WITH_ITEM.gsub(/\s/, '').downcase)
     end
 
     it "should still render the brand name even with other options turned on" do
-      nav_bar(:brand => "Something") do
+      ele = nav_bar(:brand => "Something") do
         menu_group do
           menu_item "Home", "/"
         end
-      end.gsub(/\s/, '').downcase.should eql(BRANDED_NAVBAR_WITH_ITEM.gsub(/\s/, '').downcase)
+      end
+      expect(ele.gsub(/\s/, '').downcase).to eql(BRANDED_NAVBAR_WITH_ITEM.gsub(/\s/, '').downcase)
     end
   end
 
   describe "menu_group" do
     it "should return a ul with the class 'nav'" do
-      menu_group do
+      ele = menu_group do
         menu_item("Home", "/") + menu_item("Products", "/products")
-      end.should eql '<ul class="nav navbar-nav "><li><a href="/">Home</a></li><li><a href="/products">Products</a></li></ul>'
+      end
+      expect(ele).to eql '<ul class="nav navbar-nav "><li><a href="/">Home</a></li><li><a href="/products">Products</a></li></ul>'
     end
 
     it "should return a ul with class .navbar-left when passed the {:pull => :left} option" do
-      menu_group(:pull => :left) do
+      ele = menu_group(:pull => :left) do
         menu_item("Home", "/")
-      end.should eql('<ul class="nav navbar-nav navbar-left"><li><a href="/">Home</a></li></ul>')
+      end
+      expect(ele).to eql('<ul class="nav navbar-nav navbar-left"><li><a href="/">Home</a></li></ul>')
     end
   end
 
   describe "menu_item" do
     it "should return a link within an li tag" do
       allow(self).to receive(:current_page?) { false }
-      menu_item("Home", "/").should eql('<li><a href="/">Home</a></li>')
+      expect(menu_item("Home", "/")).to eql('<li><a href="/">Home</a></li>')
     end
     it "should return the link with class 'active' if on current page" do
       allow(self).to receive(:uri_state) { :active }
-      menu_item("Home", "/").should eql('<li class="active"><a href="/">Home</a></li>')
+      expect(menu_item("Home", "/")).to eql('<li class="active"><a href="/">Home</a></li>')
     end
     it "should pass any other options through to the link_to method" do
       self.stub("uri_state").and_return(:active)
-      menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete).should eql('<li class="active"><a class="home_link" data-method="delete" href="/users/sign_out" rel="nofollow">Log out</a></li>')
+      expect(menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete)).to eql('<li class="active"><a class="home_link" data-method="delete" href="/users/sign_out" rel="nofollow">Log out</a></li>')
     end
     it "should pass a block but no name if a block is present" do
       allow(self).to receive(:current_page?) { false }
-      menu_item("/"){content_tag("i", "", :class => "icon-home") + " Home"}.should eql('<li><a href="/"><i class="icon-home"></i> Home</a></li>')
+      expect(menu_item("/"){content_tag("i", "", :class => "icon-home") + " Home"}).to eql('<li><a href="/"><i class="icon-home"></i> Home</a></li>')
     end
     it "should work with just a block" do
       allow(self).to receive(:current_page?) { false }
-      menu_item{ content_tag("i", "", :class => "icon-home") + " Home" }.should eql('<li><a href="#"><i class="icon-home"></i> Home</a></li>')
+      expect(menu_item{ content_tag("i", "", :class => "icon-home") + " Home" }).to eql('<li><a href="#"><i class="icon-home"></i> Home</a></li>')
     end
     it "should return the link with class 'active' if on current page with a block" do
       allow(self).to receive(:uri_state) { :active }
-      menu_item("/"){ content_tag("i", "", :class => "icon-home") + " Home" }.should eql('<li class="active"><a href="/"><i class="icon-home"></i> Home</a></li>')
+      expect(menu_item("/"){ content_tag("i", "", :class => "icon-home") + " Home" }).to eql('<li class="active"><a href="/"><i class="icon-home"></i> Home</a></li>')
     end
   end
 
   describe "drop_down" do
     it "should do render the proper drop down code" do
-      drop_down "Products" do
+      ele = drop_down "Products" do
         menu_item "Latest", "/"
-      end.gsub(/\s/, '').downcase.should eql(DROPDOWN_MENU.gsub(/\s/, '').downcase)
+      end
+      expect(ele).to have_tag(:li, with: {class: 'dropdown'})
+      expect(ele).to have_tag(:a, with: {class: 'dropdown-toggle'})
     end
   end
 
   describe "drop_down_with_submenu" do
     it "should do render the proper drop down code" do
-      drop_down_with_submenu "Products" do
-        drop_down_submenu "Latest" do
-          menu_item "Option1", "/"
+      ele = drop_down_with_submenu "Products" do
+          drop_down_submenu "Latest" do
+            menu_item "Option1", "/"
+          end
         end
-      end.gsub(/\s/, '').downcase.should eql(DROPDOWN_MENU_WITH_SUBMENU.gsub(/\s/, '').downcase)
+      expect(ele).to have_tag(:li, with: {class: 'dropdown'})
+      expect(ele).to have_tag(:a, with: {class: 'dropdown-toggle'})
+      expect(ele).to have_tag(:ul, with: {class: 'dropdown-menu'})
     end
   end
 
   describe "menu_divider" do
     it "should render <li class='divider-vertical'></li>" do
-      menu_divider.should eql '<li class="divider-vertical"></li>'
+      expect(menu_divider).to match '<li class="divider-vertical"></li>'
     end
   end
 
   describe "menu_text" do
     it "should render text within p tags with class 'navbar-text" do
-      menu_text("Strapline!").should eql("<p class=\"navbar-text\">Strapline!</p>")
+      expect(menu_text("Strapline!")).to match("<p class=\"navbar-text\">Strapline!</p>")
     end
 
     it "should be able to be pulled right or left" do
-      menu_text("I am being pulled right", :pull => :right).should eql("<p class=\"pull-right navbar-text\">I am being pulled right</p>")
+      expect(menu_text("I am being pulled right", :pull => :right)).to match("<p class=\"pull-right navbar-text\">I am being pulled right</p>")
     end
 
     it "should be able to cope with arbitrary options being passed to the p tag" do
-      menu_text("I am classy!", :class => "classy", :id => "classy_text").should eql("<p class=\"classy navbar-text\" id=\"classy_text\">I am classy!</p>")
+      expect(menu_text("I am classy!", :class => "classy", :id => "classy_text")).to match("<p class=\"classy navbar-text\" id=\"classy_text\">I am classy!</p>")
     end
 
     it "should be able to cope with a block too" do
-      menu_text do
-        "I have been rendered programmatically!"
-      end.should eql("<p class=\"navbar-text\">I have been rendered programmatically!</p>")
+      ele = menu_text("I have been rendered programmatically!")
+      expect(ele).to have_tag(:p, with: {class: "navbar-text"})
+      expect(ele).to match "I have been rendered programmatically!"
     end
   end
 
   describe "rendering forms ok" do
     it "should not escape anything unexpectedly" do
-      nav_bar do
-        form_tag "/", :method => 'get' do |f|
-          f.text_field :search, "stub"
+      expect(
+        nav_bar do
+          form_tag "/", :method => 'get' do |f|
+            f.text_field :search, "stub"
+          end
         end
-      end.gsub(/\s/, '').downcase.should eql(PLAIN_NAVBAR_WITH_FORM.gsub(/\s/, '').downcase)
+        ).to have_tag(:form)
+    end
+  end
+
+  describe "default navbar" do
+    it "renders a navbar" do
+      expect(nav_bar { 'foo' }).to have_tag(:nav, with: { class: 'navbar navbar-default', role: 'navigation' }, text: /foo/)
     end
   end
 
@@ -290,17 +315,7 @@ BRANDED_NAVBAR_WITH_ITEM = <<-HTML
 HTML
 
 DROPDOWN_MENU = <<-HTML
-<li class="dropdown">
-  <a class="dropdown-toggle"
-        data-toggle="dropdown"
-        href="#">
-        Products
-        <b class="caret"></b>
-  </a>
-  <ul class="dropdown-menu">
-    <li><a href="/">Latest</a></li>
-  </ul>
-</li>
+<li class="dropdown"> <a class="dropdown-toggle"data-toggle="dropdown"href="#"> Products <b class="caret"></b> </a> <ul class="dropdown-menu"> <li><a href="/">Latest</a></li> </ul> </li>
 HTML
 
 DROPDOWN_MENU_WITH_SUBMENU = <<-HTML
