@@ -18,4 +18,5 @@ group :test do
   gem 'turn'
   gem 'coveralls'
   gem 'rspec'
+  gem 'rspec-html-matchers'
 end
