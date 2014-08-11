@@ -64,11 +64,11 @@ describe Twitter::Bootstrap::Breadcrumbs do
     [:base, :base_i18n, :class, :class_i18n, :instance, :instance_i18n, :test_model, :symbolized].each do |name|
       path = "/#{name}"
       idx = @controller.breadcrumbs.index { |b| b[:name] == name.to_s && b[:url] == path }
-      expect(idx).to be, -> { name }
+      idx.should be, -> { name }
     end
 
     idx = @controller.breadcrumbs.index { |b| b[:name] == "show" && b[:url] == '' }
-    expect(idx).to contain { url == "boat"}
+    idx.should be
   end
 
 end
