@@ -3,11 +3,12 @@ Bootstrap is a toolkit from Twitter designed to kickstart development of webapps
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 4, 3.1, 3.2 are supported)
 
-[![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.png)][gem]
-[![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master)][travis]
-[![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png?travis)][gemnasium]
-[![Code Climate](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails.png)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master)][coveralls]
+
+[![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.png)](https://badge.fury.io/rb/twitter-bootstrap-rails.png)
+[![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master)](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master)
+[![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png?travis)](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.png?travis)
+[![Code Climate](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails.png)](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails.png)
+[![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master)](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/seyhunak/twitter-bootstrap-rails/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ## Screencasts
@@ -537,7 +538,7 @@ You do not need to use these breadcrumb gems since this gem provides the same fu
 Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
 You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>` (default divider is `/`).
 
-Full example: 
+Full example:
 ```ruby
 render_breadcrumbs(" / ", { :class => '', :item_class => '', :divider_class => '', :active_class => 'active' })
 ```
