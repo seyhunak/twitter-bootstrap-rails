@@ -1,5 +1,5 @@
 module BootstrapFlashHelper
-  ALERT_TYPES = [:error, :info, :success, :warning] unless const_defined?(:ALERT_TYPES)
+  ALERT_TYPES = [:success, :info, :warning, :danger] unless const_defined?(:ALERT_TYPES)
 
   def bootstrap_flash(options = {})
     flash_messages = []
@@ -8,8 +8,9 @@ module BootstrapFlashHelper
       next if message.blank?
 
       type = type.to_sym
-      type = :success if type.to_s == :notice.to_s
-      type = :error   if type.to_s == :alert.to_s
+      type = :success if type == :notice
+      type = :danger  if type == :alert
+      type = :danger  if type == :error
       next unless ALERT_TYPES.include?(type)
 
       Array(message).each do |msg|

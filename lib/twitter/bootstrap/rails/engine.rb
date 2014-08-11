@@ -23,6 +23,7 @@ module Twitter
             ActionController::Base.send :include, Breadcrumbs
             ActionController::Base.send :helper, FlashBlockHelper
             ActionController::Base.send :helper, BootstrapFlashHelper
+            ActionController::Base.send :helper, FormErrorsHelper
             ActionController::Base.send :helper, ModalHelper
             ActionController::Base.send :helper, NavbarHelper
             ActionController::Base.send :helper, BadgeLabelHelper

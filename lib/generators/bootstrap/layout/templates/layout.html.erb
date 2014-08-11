@@ -38,31 +38,33 @@
   </head>
   <body>
 
-    <div class="navbar navbar-<%= layout_type %>-top">
-      <div class="navbar-inner">
-        <div class="<%= container_class %>">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#"><%= app_name %></a>
-          <div class="<%= container_class %> nav-collapse">
-            <ul class="nav">
-              <li><%%= link_to "Link1", "/path1"  %></li>
-              <li><%%= link_to "Link2", "/path2"  %></li>
-              <li><%%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.nav-collapse -->
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><%= app_name %></a>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li><%%= link_to "Link1", "/path1"  %></li>
+            <li><%%= link_to "Link2", "/path2"  %></li>
+            <li><%%= link_to "Link3", "/path3"  %></li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <div class="<%= container_class %>">
-      <%- if layout_type == "fluid" -%>
-      <div class="row-fluid">
-        <div class="span3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <%%= bootstrap_flash %>
+          <%%= yield %>
+        </div>
+        <div class="col-lg-3">
           <div class="well sidebar-nav">
+            <h3>Sidebar</h3>
             <ul class="nav nav-list">
               <li class="nav-header">Sidebar</li>
               <li><%%= link_to "Link1", "/path1"  %></li>
@@ -71,30 +73,7 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
-          <%%= bootstrap_flash %>
-          <%%= yield %>
-        </div>
       </div><!--/row-->
-      <%- else -%>
-        <div class="row">
-          <div class="span9">
-            <%%= bootstrap_flash %>
-            <%%= yield %>
-          </div>
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%%= link_to "Link1", "/path1"  %></li>
-                <li><%%= link_to "Link2", "/path2"  %></li>
-                <li><%%= link_to "Link3", "/path3"  %></li>
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
-        </div><!--/row-->
-      <%- end -%>
 
       <footer>
         <p>&copy; Company <%= Date.today.year %></p>
