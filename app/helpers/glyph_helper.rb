@@ -8,7 +8,8 @@ module GlyphHelper
   # # => <i class="icon-thumbs-up pull-left"></i>
   # glyph(:lock, {tag: :span})
   # # => <span class="icon-lock"></span>
-  def glyph(*names, options)
+  def glyph(*names)
+    options = (names.last.kind_of?(Hash)) ? names.pop : {}
     names.map! { |name| name.to_s.gsub('_','-') }
     names.map! do |name|
       name =~ /pull-(?:left|right)/ ? name : "glyphicon glyphicon-#{name}"
