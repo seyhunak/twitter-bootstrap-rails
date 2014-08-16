@@ -41,7 +41,7 @@ describe ModalHelper, :type => :helper do
 end
 
 BASIC_MODAL = <<-HTML
-<div class=\"bootstrap-modal modal fade\" id=\"modal\"><div class=\"modal-dialog \"><div class=\"modal-content\"><div class=\"modal-header\"><button class=\"close\" data-dismiss=\"true\" aria-hidden=\"true\">&times;</button><h4 class=\"modal-title\"></h4></div><div class=\"modal-body\"></div><div class=\"modal-footer\"></div></div></div></div>
+<div class=\"bootstrap-modal modal fade\" id=\"modal\"><div class=\"modal-dialog \"><div class=\"modal-content\"><div class=\"modal-header\"><button class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button><h4 class=\"modal-title\">Modal header</h4></div><div class=\"modal-body\">This is the body</div><div class=\"modal-footer\"><button class="btn">Save</button></div></div></div></div>
 HTML
 
 MODAL_HEADER_WITHOUT_CLOSE = <<-HTML

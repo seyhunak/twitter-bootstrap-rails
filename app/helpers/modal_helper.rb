@@ -10,9 +10,9 @@ module ModalHelper
     content_tag :div, :id => options[:id], :class => "bootstrap-modal modal fade" do
       content_tag :div, :class => "modal-dialog #{opts['size']}" do
         content_tag :div, :class => "modal-content" do
-          modal_header(opts, &block) +
-          modal_body(opts, &block) +
-          modal_footer(opts, &block) 
+          modal_header(options[:header], &block) +
+          modal_body(options[:body], &block) +
+          modal_footer(options[:footer], &block)
         end
       end
     end
