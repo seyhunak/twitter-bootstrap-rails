@@ -572,7 +572,7 @@ Badge:
 
 Label:
 ```erb
-<%= label('Gut!', :success) %> <span class="badge badge-success">Gut!</span>
+<%= tag_label('Gut!', :success) %> <span class="label label-success">Gut!</span>
 ```
 
 Glyph:
