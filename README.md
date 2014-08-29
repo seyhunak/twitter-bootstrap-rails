@@ -130,23 +130,56 @@ You have to require Bootstrap LESS (bootstrap_and_overrides.css.less) in your ap
 To use individual components from bootstrap, your bootstrap_and_overrides.less could look like this:
 
 ```css
-@import "twitter/bootstrap/reset.less";
+// Core variables and mixins
 @import "twitter/bootstrap/variables.less";
 @import "twitter/bootstrap/mixins.less";
+
+// Reset and dependencies
+@import "twitter/bootstrap/normalize.less";
+@import "twitter/bootstrap/print.less";
+//@import "twitter/bootstrap/glyphicons.less"; // Excludes glyphicons
+
+// Core CSS
 @import "twitter/bootstrap/scaffolding.less";
-@import "twitter/bootstrap/grid.less";
-@import "twitter/bootstrap/layouts.less";
 @import "twitter/bootstrap/type.less";
+@import "twitter/bootstrap/code.less";
+@import "twitter/bootstrap/grid.less";
+@import "twitter/bootstrap/tables.less";
 @import "twitter/bootstrap/forms.less";
-@import "twitter/bootstrap/wells.less";
-@import "twitter/bootstrap/component-animations.less";
 @import "twitter/bootstrap/buttons.less";
-@import "twitter/bootstrap/close.less";
+
+// Components
+@import "twitter/bootstrap/component-animations.less";
+@import "twitter/bootstrap/dropdowns.less";
+@import "twitter/bootstrap/button-groups.less";
+@import "twitter/bootstrap/input-groups.less";
 @import "twitter/bootstrap/navs.less";
 @import "twitter/bootstrap/navbar.less";
-@import "twitter/bootstrap/labels-badges.less";
-@import "twitter/bootstrap/hero-unit.less";
+@import "twitter/bootstrap/breadcrumbs.less";
+@import "twitter/bootstrap/pagination.less";
+@import "twitter/bootstrap/pager.less";
+@import "twitter/bootstrap/labels.less";
+@import "twitter/bootstrap/badges.less";
+@import "twitter/bootstrap/jumbotron.less";
+@import "twitter/bootstrap/thumbnails.less";
+@import "twitter/bootstrap/alerts.less";
+@import "twitter/bootstrap/progress-bars.less";
+@import "twitter/bootstrap/media.less";
+@import "twitter/bootstrap/list-group.less";
+@import "twitter/bootstrap/panels.less";
+@import "twitter/bootstrap/responsive-embed.less";
+@import "twitter/bootstrap/wells.less";
+@import "twitter/bootstrap/close.less";
+
+// Components w/ JavaScript
+@import "twitter/bootstrap/modals.less";
+@import "twitter/bootstrap/tooltip.less";
+@import "twitter/bootstrap/popovers.less";
+@import "twitter/bootstrap/carousel.less";
+
+// Utility classes
 @import "twitter/bootstrap/utilities.less";
+@import "twitter/bootstrap/responsive-utilities.less";
 ```
 
 If you'd like to alter Bootstrap's own variables, or define your LESS

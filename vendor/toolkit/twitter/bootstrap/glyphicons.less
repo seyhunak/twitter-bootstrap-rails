@@ -8,13 +8,14 @@
 // <a href="#"><span class="glyphicon glyphicon-star"></span> Star</a>
 
 // Import the fonts
+
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('@{icon-font-path}@{icon-font-name}.eot');
-  src: url('@{icon-font-path}@{icon-font-name}.eot?#iefix') format('embedded-opentype'),
-       url('@{icon-font-path}@{icon-font-name}.woff') format('woff'),
-       url('@{icon-font-path}@{icon-font-name}.ttf') format('truetype'),
-       url('@{icon-font-path}@{icon-font-name}.svg#@{icon-font-svg-id}') format('svg');
+  src: @glyphiconsEotPath;
+  src: @glyphiconsEotPath_iefix format('embedded-opentype'),
+       @glyphiconsWoffPath format('woff'),
+       @glyphiconsTtfPath format('truetype'),
+       @glyphiconsSvgPath format('svg');
 }
 
 // Catchall baseclass

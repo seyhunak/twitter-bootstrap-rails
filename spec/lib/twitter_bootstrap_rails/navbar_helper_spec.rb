@@ -106,7 +106,7 @@ describe NavbarHelper, :type => :helper do
       expect(menu_item("Home", "/")).to eql('<li class="active"><a href="/">Home</a></li>')
     end
     it "should pass any other options through to the link_to method" do
-      self.stub("uri_state").and_return(:active)
+      allow(self).to receive_message_chain("uri_state").and_return(:active)
       expect(menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete)).to eql('<li class="active"><a class="home_link" data-method="delete" href="/users/sign_out" rel="nofollow">Log out</a></li>')
     end
     it "should pass a block but no name if a block is present" do
