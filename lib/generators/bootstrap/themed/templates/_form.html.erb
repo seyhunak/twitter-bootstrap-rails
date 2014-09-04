@@ -1,6 +1,6 @@
 <%%= form_for @<%= resource_name %>, :html => { :class => "form-horizontal <%= resource_name %>" } do |f| %>
 
-    <%% if @<%= resource_name %>.errors.any? %>
+  <%% if @<%= resource_name %>.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
         <h3 class="panel-title"><%%= pluralize(@<%= resource_name %>.errors.count, "error") %> prohibited this <%= resource_name %> from being saved:</h3>
@@ -16,7 +16,7 @@
   <%% end %>
 
 <%- columns.each do |column| -%>
-  <div class="control-group">
+  <div class="form-group">
     <%%= f.label :<%= column.name %>, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%%= f.<%= column.field_type %> :<%= column.name %>, :class => 'form-control' %>
