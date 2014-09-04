@@ -18,16 +18,19 @@
 <%- columns.each do |column| -%>
   <div class="control-group">
     <%%= f.label :<%= column.name %>, :class => 'control-label' %>
-    <div class="controls">
-      <%%= f.<%= column.field_type %> :<%= column.name %>, :class => 'form-control' %>
+    <div class="col-lg-10">
+      <%%= f.<%= column.field_type %> :<%= column.name %>, :class => 'col-lg-2 form-control' %>
     </div>
     <%%= error_span(@<%= resource_name %>[:<%= column.name %>]) %>
   </div>
   <%- end -%>
 
-
-  <%%= f.submit nil, :class => 'btn btn-primary' %>
-  <%%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            <%= controller_routing_path %>_path, :class => 'btn btn-default' %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">  
+      <%%= f.submit nil, :class => 'btn btn-primary' %>
+      <%%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                <%= controller_routing_path %>_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
 
 <%% end %>
