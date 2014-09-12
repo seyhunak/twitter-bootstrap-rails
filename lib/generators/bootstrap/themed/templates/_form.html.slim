@@ -1,11 +1,13 @@
 = form_for @<%= resource_name %>, html: { class: "form form-horizontal <%= resource_name %>" } do |f|
   <%- columns.each do |column| -%>
   .form-group
-    = f.label :<%= column.name %>, :class => 'control-label'
-    .controls
+    = f.label :<%= column.name %>, :class => 'control-label col-lg-2'
+    .col-lg-10
       = f.<%= column.field_type %> :<%= column.name %>, :class => 'form-control'
     = error_span(@<%= resource_name %>[:<%= column.name %>])
   <%- end -%>
-  = f.submit nil, :class => 'btn btn-primary'
-  '
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), <%= controller_routing_path %>_path, :class => 'btn'
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit nil, :class => 'btn btn-primary'
+      '
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), <%= controller_routing_path %>_path, :class => 'btn'
