@@ -21,12 +21,12 @@
     <div class="col-lg-10">
       <%%= f.<%= column.field_type %> :<%= column.name %>, :class => 'form-control' %>
     </div>
-    <%%= error_span(@<%= resource_name %>[:<%= column.name %>]) %>
+    <%%=f.error_span(:<%= column.name %>) %>
   </div>
   <%- end -%>
 
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">  
+    <div class="col-lg-offset-2 col-lg-10">
       <%%= f.submit nil, :class => 'btn btn-primary' %>
       <%%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 <%= controller_routing_path %>_path, :class => 'btn btn-default' %>
