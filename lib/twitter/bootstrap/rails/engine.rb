@@ -36,6 +36,7 @@ module Twitter
               ActionController::Base.send :helper, h
             end
           end
+          ActionView::Helpers::FormBuilder.send :include, FormErrorsHelper
         end
       end
     end

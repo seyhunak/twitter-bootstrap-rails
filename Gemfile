@@ -19,4 +19,5 @@ group :test do
   gem 'coveralls'
   gem 'rspec'
   gem 'rspec-html-matchers'
+  gem 'rspec-activemodel-mocks'
 end
