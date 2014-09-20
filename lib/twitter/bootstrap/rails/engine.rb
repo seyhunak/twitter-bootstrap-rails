@@ -1,6 +1,7 @@
 require 'rails'
+require 'json'
 
-require_relative 'breadcrumbs.rb'
+require_relative '../../../../app/helpers/breadcrumbs.rb'
 require_relative '../../../../app/helpers/flash_block_helper.rb'
 require_relative '../../../../app/helpers/modal_helper.rb'
 require_relative '../../../../app/helpers/navbar_helper.rb'
@@ -12,17 +13,18 @@ module Twitter
     module Rails
       class Engine < ::Rails::Engine
         initializer 'twitter-bootstrap-rails.setup',
-          :after => 'less-rails.after.load_config_initializers',
           :group => :all do |app|
-            if defined?(Less)
-              app.config.less.paths << File.join(config.root, 'vendor', 'toolkit')
+              bowerrc = File.read('.bowerrc')
+              bowerrc_directory = JSON.parse(bowerrc)
+              app.config.asset.paths << File.join(config.root, bowerrc["directory"])
             end
           end
 
         initializer 'twitter-bootstrap-rails.setup_helpers' do |app|
           app.config.to_prepare do
-            ActionController::Base.send :include, Breadcrumbs
+            ActionController::Base.send :include, Twitter::Bootstrap::Breadcrumbs
           end
+
           [FlashBlockHelper, 
           BootstrapFlashHelper, 
           FormErrorsHelper, 

@@ -6,7 +6,7 @@ module Bootstrap
 
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator installs Bootstrap to Asset Pipeline"
-      argument :stylesheets_type, :type => :string, :default => 'less', :banner => '*less or static'
+      argument :stylesheets_type, :type => :string, :default => 'less', :banner => '*less or static - DEPRECATED'
       class_option :'no-coffeescript', :type => :boolean, :default => false, :desc => 'Skips coffeescript replacement into app generators'
 
       def add_assets
