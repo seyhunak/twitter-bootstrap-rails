@@ -23,16 +23,16 @@ module Twitter
           app.config.to_prepare do
             ActionController::Base.send :include, Breadcrumbs
           end
-          [FlashBlockHelper, 
-          BootstrapFlashHelper, 
-          FormErrorsHelper, 
-          ModalHelper, 
-          NavbarHelper, 
+          [FlashBlockHelper,
+          BootstrapFlashHelper,
+          ModalHelper,
+          NavbarHelper,
           BadgeLabelHelper].each do |h|
             app.config.to_prepare do
               ActionController::Base.send :helper, h
             end
           end
+          ActionView::Helpers::FormBuilder.send :include, FormErrorsHelper
         end
       end
     end

@@ -1,22 +1,22 @@
 module FormErrorsHelper
-
-  attr_reader :template
-  attr_reader :object
+  include ActionView::Helpers::FormTagHelper
 
   def error_span(attribute, options = {})
-    options[:class] ||= 'help-inline'
+    options[:span_class] ||= 'help-block'
+    options[:error_class] ||= 'has-error'
 
-    template.content_tag(
-      :span, self.errors_for(attribute),
-      :class => options[:class]
-    ) if self.errors_on?(attribute)
+    if errors_on?(attribute)
+      @template.content_tag( :div, :class => options[:error_class] )  do
+        content_tag( :span, errors_for(attribute), :class => options[:span_class] )
+      end
+    end
   end
 
   def errors_on?(attribute)
-    self.object.errors[attribute].present? if self.object.respond_to?(:errors)
+    object.errors[attribute].present? if object.respond_to?(:errors)
   end
 
   def errors_for(attribute)
-    self.object.errors[attribute].try(:join, ', ')
+    object.errors[attribute].try(:join, ', ') || object.errors[attribute].try(:to_s)
   end
 end
