@@ -14,11 +14,10 @@ module Twitter
       class Engine < ::Rails::Engine
         initializer 'twitter-bootstrap-rails.setup',
           :group => :all do |app|
-              bowerrc = File.read('.bowerrc')
+              bowerrc = File.read(File.join(config.root, '.bowerrc'))
               bowerrc_directory = JSON.parse(bowerrc)
-              app.config.asset.paths << File.join(config.root, bowerrc["directory"])
+              app.config.assets.paths << File.join(bowerrc["directory"])
             end
-          end
 
         initializer 'twitter-bootstrap-rails.setup_helpers' do |app|
           app.config.to_prepare do
@@ -28,8 +27,10 @@ module Twitter
           [FlashBlockHelper, 
           BootstrapFlashHelper, 
           FormErrorsHelper, 
-          ModalHelper, 
-          NavbarHelper, 
+          ModalHelper,
+          GlyphHelper,
+          IconHelper,
+          NavbarHelper,
           BadgeLabelHelper].each do |h|
             app.config.to_prepare do
               ActionController::Base.send :helper, h

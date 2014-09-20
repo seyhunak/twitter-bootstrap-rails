@@ -6,20 +6,19 @@ module Bootstrap
 
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator installs Bootstrap to Asset Pipeline"
-      argument :stylesheets_type, :type => :string, :default => 'less', :banner => '*less or static - DEPRECATED'
+      argument :stylesheets_type, :type => :string, :default => 'less', :banner => '*less or static'
       class_option :'no-coffeescript', :type => :boolean, :default => false, :desc => 'Skips coffeescript replacement into app generators'
 
       def add_assets
 
         js_manifest = 'app/assets/javascripts/application.js'
+        css_manifest = 'app/assets/stylesheets/application.css'
 
         if File.exist?(js_manifest)
-          insert_into_file js_manifest, "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
+          insert_into_file js_manifest, "//= require bootstrap/dist/js/bootstrap\n", :after => "jquery_ujs\n"
         else
           copy_file "application.js", js_manifest
         end
-
-        css_manifest = 'app/assets/stylesheets/application.css'
 
         if File.exist?(css_manifest)
           # Add our own require:
