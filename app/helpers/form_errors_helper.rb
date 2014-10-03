@@ -1,4 +1,7 @@
 module FormErrorsHelper
+  attr_reader :template
+  attr_reader :object
+
   include ActionView::Helpers::FormTagHelper
 
   def error_span(attribute, options = {})
