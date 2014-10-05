@@ -1,0 +1,31 @@
+{
+  "name": "twitter-bootstrap-rails",
+  "version": "3.2.0",
+  "homepage": "https://github.com/seyhunak/twitter-bootstrap-rails",
+  "authors": [
+    "Todd Baur <todd@toadkicker.com>",
+    "Seyhun Akyurek <seyhunak@gmail.com>"
+  ],
+  "description": "Twitter Bootstrap for Rails 3.x - 4 Asset Pipeline",
+  "keywords": [
+    "bootstrap",
+    "twbs",
+    "fontawesome",
+    "rails",
+    "twitter",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "fontawesome": "~4.2.0"
+  }
+}

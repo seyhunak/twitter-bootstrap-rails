@@ -12,14 +12,13 @@ module Bootstrap
       def add_assets
 
         js_manifest = 'app/assets/javascripts/application.js'
+        css_manifest = 'app/assets/stylesheets/application.css'
 
         if File.exist?(js_manifest)
-          insert_into_file js_manifest, "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
+          insert_into_file js_manifest, "//= require bootstrap/dist/js/bootstrap\n", :after => "jquery_ujs\n"
         else
           copy_file "application.js", js_manifest
         end
-
-        css_manifest = 'app/assets/stylesheets/application.css'
 
         if File.exist?(css_manifest)
           # Add our own require:
