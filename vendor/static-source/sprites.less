@@ -1,6 +1,9 @@
 @import "twitter/bootstrap/variables.less";
 @import "twitter/bootstrap/mixins.less";
 // The ERB code is not executed upon compilation. It's intended to be executed by the asset pipeline of the consumer app.
-@iconSpritePath: url("<%= asset_path 'twitter/bootstrap/glyphicons-halflings.png' %>");
-@iconWhiteSpritePath: url("<%= asset_path 'twitter/bootstrap/glyphicons-halflings-white.png' %>");
+@glyphiconsEotPath: url("<%= asset_path 'glyphicons-halflings-regular.eot' %>");
+@glyphiconsEotPath_iefix: url("<%= asset_path 'glyphicons-halflings-regular.eot#iefix' %>");
+@glyphiconsWoffPath: url("<%= asset_path 'glyphicons-halflings-regular.woff' %>");
+@glyphiconsTtfPath: url("<%= asset_path 'glyphicons-halflings-regular.ttf' %>");
+@glyphiconsSvgPath: url("<%= asset_path 'glyphicons-halflings-regular.svg' %>");
 @import "twitter/bootstrap/glyphicons.less";
