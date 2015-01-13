@@ -1,6 +1,3 @@
-# For future release, updates, and support
-Please use [railsstrap](https://github.com/toadkicker/railsstrap). PR's to this repository will not be merged.
-
 # Twitter Bootstrap 3.2 for Rails 4 Asset Pipeline
 Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
@@ -29,7 +26,6 @@ in this episode continues on the Bootstrap project showing how to display flash 
 
 ## Example Application
 An example application is available at [toadkicker/teststrap](https://github.com/toadkicker/teststrap). You can view it running on heroku [here.](http://teststrap.herokuapp.com/) Contributions welcome.
-
 
 ## Installing the Gem
 
@@ -677,6 +673,7 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Released gem v.2.2.6</li>
   <li>Released gem v.2.2.7 (Fixes)</li>
   <li>Releases gem v.2.2.8</li>
+  <li>Releases gem v.3.2.1</li>
 </ul>
 
 
@@ -701,10 +698,6 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Todd Baur</li>
   <li>Leonid Shevtsov</li>
 </ul>
-
-### Contribute and Earn Bitcoin
-Make commits and get tips for it
-[![tip for next commit](http://tip4commit.com/projects/13.svg)](http://tip4commit.com/projects/13)
 
 
 ## About Me
