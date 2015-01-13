@@ -368,7 +368,7 @@ To render:
 If you want a full-width navbar that scrolls away with the page, pass in the option like this:
 
 ````
-<%= nav_bar :static => :top  %>
+<%= nav_bar static: :top  %>
 ````
 
 To render:
@@ -384,7 +384,7 @@ To render:
 Add the name of your site on the left hand edge of the navbar. By default, it will link to root_url. Passing a brand_link option will set the url to whatever you want.
 
 ````
-<%= nav_bar :brand => "We're sooo web 2.0alizr", :brand_link => account_dashboard_path  %>
+<%= nav_bar brand: "We're sooo web 2.0alizr", brand_link: account_dashboard_path  %>
 ````
 
 Which will render:
@@ -403,7 +403,7 @@ Which will render:
 If you want the responsive version of the navbar to work (One that shrinks down on mobile devices etc.), you need to pass this option:
 
 ````
-<%= nav_bar :responsive => true %>
+<%= nav_bar responsive: true %>
 ````
 Which renders the html quite differently:
 
@@ -578,7 +578,9 @@ You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>
 
 Full example:
 ```ruby
-render_breadcrumbs(" / ", { :class => '', :item_class => '', :divider_class => '', :active_class => 'active' })
+
+render_breadcrumbs(" / ", { class: '', item_class: '', divider_class: '', active_class: 'active' })
+
 ```
 
 ```ruby
@@ -617,10 +619,10 @@ Glyph:
 ```erb
 <%= glyph(:pencil) %> <i class="icon-pencil"></i>
 
-<%= glyph(:pencil, {:tag => :span}) %> <span class="icon-pencil"></span>
+<%= glyph(:pencil, {tag: :span}) %> <span class="icon-pencil"></span>
 ```
 
-###I18n Internationalization Support
+### I18n Internationalization Support
 The installer creates an English translation file for you and copies it to config/locales/en.bootstrap.yml
 
 
