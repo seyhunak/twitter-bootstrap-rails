@@ -1,3 +1,6 @@
+# For future release, updates, and support
+Please use [railsstrap](https://github.com/toadkicker/railsstrap). PR's to this repository will not be merged.
+
 # Twitter Bootstrap 3.2 for Rails 4 Asset Pipeline
 Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
