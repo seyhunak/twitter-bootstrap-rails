@@ -262,13 +262,13 @@ $(function(){
 If you want to customize what is loaded, your application.js would look something like this
 
 ```js
-#= require jquery
-#= require jquery_ujs
-#= require twitter/bootstrap/transition
-#= require twitter/bootstrap/alert
-#= require twitter/bootstrap/modal
-#= require twitter/bootstrap/button
-#= require twitter/bootstrap/collapse
+//= require jquery
+//= require jquery_ujs
+//= require twitter/bootstrap/transition
+//= require twitter/bootstrap/alert
+//= require twitter/bootstrap/modal
+//= require twitter/bootstrap/button
+//= require twitter/bootstrap/collapse
 ```
 
 ...and so on for each bootstrap js component.
