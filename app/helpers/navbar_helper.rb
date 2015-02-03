@@ -97,6 +97,23 @@ module NavbarHelper
       end
     end
   end
+  
+  #return a panel with or without header
+  #Example: Haml code...
+  #  = panel nil,{title: "my title"} do
+  #    = form_for :fld, url: root_path do |f|
+  #      = f.label 'Label:'
+  #      = f.select_tag :fld, options_from_collection_for_select(@myCollection, "id", "fld"), class: 'form-control'
+  #      = f.submit 'Submit', :class => 'button right'
+  def panel(text=nil,options={}, &block)
+    panel_heading = ""
+    title_tag = content_tag :h3, options[:title], class: "panel-title" if options[:title].present?
+    panel_heading = content_tag :div, title_tag, class: "panel-heading" if options[:title].present?
+    panel_body = content_tag :div, class: "panel-body" do
+      text || yield
+    end
+    content_tag :div,panel_heading+panel_body, class: "panel panel-default"
+  end
 
   private
 
