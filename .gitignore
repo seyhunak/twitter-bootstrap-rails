@@ -6,3 +6,8 @@ pkg/*
 *.swp
 *~
 .rvmrc
+coverage/*
+.ruby-version
+.ruby-gemset
+
+.idea/

@@ -1,24 +1,24 @@
 @import "twitter/bootstrap/bootstrap";
-@import "twitter/bootstrap/responsive";
 
-// Set the correct sprite paths
-@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings");
-@iconWhiteSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings-white");
+// Set correct font paths
+@glyphiconsEotPath: font-url("glyphicons-halflings-regular.eot");
+@glyphiconsEotPath_iefix: font-url("glyphicons-halflings-regular.eot?#iefix");
+@glyphiconsWoffPath: font-url("glyphicons-halflings-regular.woff");
+@glyphiconsTtfPath: font-url("glyphicons-halflings-regular.ttf");
+@glyphiconsSvgPath: font-url("glyphicons-halflings-regular.svg#glyphicons_halflingsregular");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-// Note: If you use asset_path() here, your compiled bootstrap_and_overrides.css will not
-//       have the proper paths. So for now we use the absolute path.
-@fontAwesomeEotPath: asset-path("fontawesome-webfont.eot");
-@fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot#iefix");
-@fontAwesomeWoffPath: asset-path("fontawesome-webfont.woff");
-@fontAwesomeTtfPath: asset-path("fontawesome-webfont.ttf");
-@fontAwesomeSvgPath: asset-path("fontawesome-webfont.svg");
+@fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: font-url("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: font-url("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: font-url("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
 
 // Font Awesome
-@import "fontawesome";
+@import "fontawesome/font-awesome";
 
 // Glyphicons
-//@import "twitter/bootstrap/sprites.less";
+//@import "twitter/bootstrap/glyphicons.less";
 
 // Your custom LESS stylesheets goes here
 //
@@ -29,4 +29,4 @@
 // See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
 //
 // Example:
-// @linkColor: #ff0000;
+// @link-color: #ff0000;

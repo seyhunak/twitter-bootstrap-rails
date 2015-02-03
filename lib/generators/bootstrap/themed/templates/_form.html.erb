@@ -1,16 +1,36 @@
-<%%= form_for @<%= resource_name %>, :html => { :class => 'form-horizontal' } do |f| %>
-  <%- columns.each do |column| -%>
-  <div class="control-group">
-    <%%= f.label :<%= column.name %>, :class => 'control-label' %>
-    <div class="controls">
-      <%%= f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>' %>
+<%%= form_for @<%= resource_name %>, :html => { :class => "form-horizontal <%= resource_name %>" } do |f| %>
+
+  <%% if @<%= resource_name %>.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%%= pluralize(@<%= resource_name %>.errors.count, "error") %> prohibited this <%= resource_name %> from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <%% @<%= resource_name %>.errors.full_messages.each do |msg| %>
+          <li><%%= msg %></li>
+        <%% end %>
+        </ul>
+      </div>
     </div>
+  <%% end %>
+
+<%- columns.each do |column| -%>
+  <div class="form-group">
+    <%%= f.label :<%= column.name %>, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%%= f.<%= column.field_type %> :<%= column.name %>, :class => 'form-control' %>
+    </div>
+    <%%=f.error_span(:<%= column.name %>) %>
   </div>
   <%- end -%>
 
-  <div class="form-actions">
-    <%%= f.submit nil, :class => 'btn btn-primary' %>
-    <%%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                <%= controller_routing_path %>_path, :class => 'btn' %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%%= f.submit nil, :class => 'btn btn-primary' %>
+      <%%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                <%= controller_routing_path %>_path, :class => 'btn btn-default' %>
+    </div>
   </div>
+
 <%% end %>

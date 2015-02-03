@@ -1,8 +1,11 @@
 require 'rails'
 
-require File.dirname(__FILE__) + '/twitter-bootstrap-breadcrumbs.rb'
-require File.dirname(__FILE__) + '/../../../../app/helpers/flash_block_helper.rb'
-require File.dirname(__FILE__) + '/../../../../app/helpers/modal_helper.rb'
+require_relative 'breadcrumbs.rb'
+require_relative '../../../../app/helpers/flash_block_helper.rb'
+require_relative '../../../../app/helpers/modal_helper.rb'
+require_relative '../../../../app/helpers/navbar_helper.rb'
+require_relative '../../../../app/helpers/bootstrap_flash_helper.rb'
+require_relative '../../../../app/helpers/form_errors_helper.rb'
 
 module Twitter
   module Bootstrap
@@ -18,11 +21,18 @@ module Twitter
 
         initializer 'twitter-bootstrap-rails.setup_helpers' do |app|
           app.config.to_prepare do
-            ActionController::Base.send :include, BreadCrumbs
-            ActionController::Base.send :helper, FlashBlockHelper
-            ActionController::Base.send :helper, ModalHelper
-            #ActionController::Base.send :helper_method, :render_breadcrumbs
+            ActionController::Base.send :include, Breadcrumbs
           end
+          [FlashBlockHelper,
+          BootstrapFlashHelper,
+          ModalHelper,
+          NavbarHelper,
+          BadgeLabelHelper].each do |h|
+            app.config.to_prepare do
+              ActionController::Base.send :helper, h
+            end
+          end
+          ActionView::Helpers::FormBuilder.send :include, FormErrorsHelper
         end
       end
     end

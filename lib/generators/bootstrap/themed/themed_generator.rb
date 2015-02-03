@@ -31,11 +31,11 @@ module Bootstrap
       end
 
       def controller_routing_path
-        @controller_routing_path
+        ActiveModel::Naming.route_key(@model_name.constantize)
       end
 
       def singular_controller_routing_path
-        @controller_routing_path.singularize
+        ActiveModel::Naming.singular_route_key(@model_name.constantize)
       end
 
       def model_name
@@ -61,7 +61,7 @@ module Bootstrap
       end
 
       def excluded_columns_names
-        %w[id created_at updated_at]
+        %w[_id _type id created_at updated_at]
       end
 
       def excluded_columns_pattern
@@ -82,7 +82,7 @@ module Bootstrap
       end
 
       def retrieve_columns
-        if defined?(ActiveRecord)
+        if defined?(ActiveRecord) == "constant" && ActiveRecord.class == Module 
           rescue_block ActiveRecord::StatementInvalid do
             @model_name.constantize.columns
           end

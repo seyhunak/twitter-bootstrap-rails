@@ -1,5 +1,7 @@
 #!/usr/bin/env rake
 require 'bundler'
+require 'rspec/core/rake_task'
+
 Bundler::GemHelper.install_tasks
 
 desc "Bundle the gem"
@@ -22,7 +24,7 @@ task :build_static_stylesheets do
 
   parser = Less::Parser.new :paths => [toolkit_path]
 
-  target_directory = File.expand_path('vendor/assets/stylesheets/twitter-bootstrap-static')
+  target_directory = File.expand_path('app/assets/stylesheets/twitter-bootstrap-static')
 
   sh "rm -rf #{target_directory}"
   sh "mkdir -p #{target_directory}"
@@ -36,3 +38,7 @@ end
 
 task(:default).clear
 task :default => :bundle
+
+RSpec::Core::RakeTask.new do |task|
+  task.rspec_opts = ['--color', '--format', 'doc']
+end
