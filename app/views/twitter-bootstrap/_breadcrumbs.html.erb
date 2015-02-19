@@ -1,11 +1,9 @@
 <% if @breadcrumbs.present? %>
   <ul class="breadcrumb <%= options[:class] %>">
-    <% separator = divider.html_safe %>
+    <% separator = options[:separator].html_safe %>
+    <% partial = (separator.present?) ? 'crumb_with_sep' : 'crumb' -%>
     <% @breadcrumbs[0..-2].each do |crumb| %>
-      <li class="<%= options[:item_class] %>">
-        <%= link_to crumb[:name], crumb[:url], crumb[:options] %>
-        <span class="divider <%= options[:divider_class] %>"><%= separator %></span>
-      </li>
+      <%= render :partial => "twitter-bootstrap/#{ partial }", :locals => { :crumb => crumb, :separator => separator, :options => options } %>
     <% end %>
     <li class="<%= options[:active_class] %>">
       <%= @breadcrumbs.last[:name] %>

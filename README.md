@@ -568,11 +568,21 @@ Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout g
 You do not need to use these breadcrumb gems since this gem provides the same functionality out of the box without the additional dependency.
 
 Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
-You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>` (default divider is `/`).
+You can also specify a separator for it like this: `<%= render_breadcrumbs separator: '>') %>` (default separater is `/`).
+Since [separator is a part of Bootstrap](http://getbootstrap.com/components/#breadcrumbs]) and they are automatically added this option is redundant.
+You can customize it via `css` through `:before` selector and `content`:
+```css
+.breadcrumb > li + li:before {
+    color: #ccc;
+    content: "/ ";
+    padding: 0 5px;
+}
+```
+Use `separater` option only if you would like to have it as HTML element. Do not forget to clear `content` at css.
 
 Full example:
 ```ruby
-render_breadcrumbs(" / ", { :class => '', :item_class => '', :divider_class => '', :active_class => 'active' })
+render_breadcrumbs :class => '', :item_class => '', :divider_class => '', :active_class => 'active'
 ```
 
 ```ruby
