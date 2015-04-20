@@ -17,8 +17,11 @@ module NavbarHelper
     path = name || path if block_given?
     options = args.extract_options!
     content_tag :li, :class => is_active?(path, options) do
-      name, path = path, options if block_given?
-      link_to name, path, options, &block
+      if block_given?      
+	link_to path, options, &block
+	else
+	link_to name, path, options, &block
+	end 
     end
   end
 
