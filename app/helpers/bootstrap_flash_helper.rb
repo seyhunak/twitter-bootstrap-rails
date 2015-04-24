@@ -1,12 +1,12 @@
 module BootstrapFlashHelper
-  ALERT_TYPES = [:error, :info, :success, :warning]
+  ALERT_TYPES = [:error, :info, :success, :warning] unless const_defined?(:ALERT_TYPES)
 
   def bootstrap_flash
     flash_messages = []
     flash.each do |type, message|
       # Skip empty messages, e.g. for devise messages set to nothing in a locale file.
       next if message.blank?
-      
+
       type = :success if type == :notice
       type = :error   if type == :alert
       next unless ALERT_TYPES.include?(type)
