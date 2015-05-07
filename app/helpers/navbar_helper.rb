@@ -19,9 +19,9 @@ module NavbarHelper
     content_tag :li, :class => is_active?(path, options) do
       if block_given?      
 	link_to path, options, &block
-	else
+      else
 	link_to name, path, options, &block
-	end 
+      end 
     end
   end
 

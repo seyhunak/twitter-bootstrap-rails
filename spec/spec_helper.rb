@@ -15,3 +15,7 @@ require 'abstract_controller'
 require 'action_controller'
 require 'mocha/api'
 require 'pry'
+
+RSpec.configure do |config|
+  config.include RSpecHtmlMatchers
+end
