@@ -17,4 +17,5 @@
   <li>Christian Joudrey</li>
   <li>Todd Baur</li>
   <li>Leonid Shevtsov</li>
+  <li>Christophe Maximin</li>
 </ul>
