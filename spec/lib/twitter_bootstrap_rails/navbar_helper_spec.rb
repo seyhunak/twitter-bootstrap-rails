@@ -82,44 +82,94 @@ describe NavbarHelper, :type => :helper do
 
   describe "menu_group" do
     it "should return a ul with the class 'nav'" do
-      ele = menu_group do
+      element = menu_group do
         menu_item("Home", "/") + menu_item("Products", "/products")
       end
-      expect(ele).to eql '<ul class="nav navbar-nav "><li><a href="/">Home</a></li><li><a href="/products">Products</a></li></ul>'
+
+      expect(element).to have_tag(:ul, with: {class: "nav navbar-nav"}) {
+        with_tag(:li) {
+          with_tag(:a, text: "Home", with: {href: "/"})
+        }
+        with_tag(:li) {
+          with_tag(:a, text: "Products", with: {href: "/products"})
+        }
+      }
     end
 
-    it "should return a ul with class .navbar-left when passed the {:pull => :left} option" do
-      ele = menu_group(:pull => :left) do
+    it "should return a ul with class .navbar-left when passed the {pull: :left} option" do
+      element = menu_group(pull: :left) do
         menu_item("Home", "/")
       end
-      expect(ele).to eql('<ul class="nav navbar-nav navbar-left"><li><a href="/">Home</a></li></ul>')
+
+      expect(element).to have_tag(:ul, with: {class: "nav navbar-nav navbar-left"}) {
+        with_tag(:li) {
+          with_tag(:a, text: "Home", with: {href: "/"})
+        }
+      }
     end
   end
 
   describe "menu_item" do
     it "should return a link within an li tag" do
       allow(self).to receive(:current_page?) { false }
-      expect(menu_item("Home", "/")).to eql('<li><a href="/">Home</a></li>')
+
+      element = menu_item("Home", "/")
+      expect(element).to have_tag(:li) {
+        with_tag(:a, text: "Home", with: { href: "/" })
+      }
     end
+
     it "should return the link with class 'active' if on current page" do
       allow(self).to receive(:uri_state) { :active }
-      expect(menu_item("Home", "/")).to eql('<li class="active"><a href="/">Home</a></li>')
+
+      element = menu_item("Home", "/")
+      expect(element).to have_tag(:li, with: {class: "active"}) {
+        with_tag(:a, text: "Home", with: { href: "/" })
+      }
     end
+
     it "should pass any other options through to the link_to method" do
       allow(self).to receive_message_chain("uri_state").and_return(:active)
-      expect(menu_item("Log out", "/users/sign_out", :class => "home_link", :method => :delete)).to eql('<li class="active"><a class="home_link" rel="nofollow" data-method="delete" href="/users/sign_out">Log out</a></li>')
+
+      element = menu_item("Log out", "/users/sign_out", class: "home_link", method: :delete)
+      expect(element).to have_tag(:li, with: {class: "active"}) {
+        with_tag(:a, text: "Log out", with: {
+          href: "/users/sign_out",
+          class: "home_link",
+          rel: "nofollow",
+          "data-method" => "delete"
+        })
+      }
     end
+
     it "should pass a block but no name if a block is present" do
       allow(self).to receive(:current_page?) { false }
-      expect(menu_item("/"){content_tag("i", "", :class => "icon-home") + " Home"}).to eql('<li><a href="/"><i class="icon-home"></i> Home</a></li>')
+
+      element = menu_item("/"){ content_tag("i", "", :class => "icon-home") + " Home" }
+      expect(element).to have_tag(:li) {
+        with_tag(:i, with: { class: "icon-home"})
+        with_tag(:a, text: " Home", with: { href: "/"})
+      }
     end
+
     it "should work with just a block" do
       allow(self).to receive(:current_page?) { false }
-      expect(menu_item{ content_tag("i", "", :class => "icon-home") + " Home" }).to eql('<li><a href="#"><i class="icon-home"></i> Home</a></li>')
+
+      element = menu_item{ content_tag("i", "", :class => "icon-home") + " Home" }
+      expect(element).to have_tag(:li) {
+        with_tag(:i, with: { class: "icon-home"})
+        with_tag(:a, text: " Home", with: { href: "#"})
+      }
     end
+
     it "should return the link with class 'active' if on current page with a block" do
       allow(self).to receive(:uri_state) { :active }
-      expect(menu_item("/"){ content_tag("i", "", :class => "icon-home") + " Home" }).to eql('<li class="active"><a href="/"><i class="icon-home"></i> Home</a></li>')
+
+      element = menu_item("/"){ content_tag("i", "", :class => "icon-home") + " Home" }
+      expect(element).to have_tag(:li, with: {class: "active"}) {
+        with_tag(:i, with: { class: "icon-home"})
+        with_tag(:a, text: " Home", with: { href: "/"})
+      }
     end
   end
 

@@ -565,7 +565,9 @@ It also takes the :pull option to drag it to the left or right.
 
 ### Flash helper
 
-Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout generator)
+Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout generator).  
+You can pass the attributes you want to add to the main div returned: `<%= bootstrap_flash(class: "extra-class", id: "your-id") %>`
+
 
 ### Breadcrumbs Helpers
 
