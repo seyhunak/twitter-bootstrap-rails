@@ -36,7 +36,7 @@ describe ModalHelper, :type => :helper do
   end
 
   it 'renders a cancel button' do
-    expect(modal_cancel_button("Cancel", :href => "#modal", :data => {:dismiss => 'modal'}).gsub(/\n/, "")).to eql MODAL_CANCEL_BUTTON.gsub(/\n/, "")
+    expect(modal_cancel_button("Cancel", :data => {:dismiss => 'modal'}, :href => "#modal").gsub(/\n/, "")).to eql MODAL_CANCEL_BUTTON.gsub(/\n/, "")
   end
 end
 
