@@ -1,7 +1,7 @@
 = simple_form_for @<%= resource_name %>, :html => { :class => 'form-horizontal' } do |f|
 <%- columns.each do |column| -%>
   = f.input :<%= column.name %>
-  = error_span(@<%= resource_name %>[:<%= column.name %>])
+  = f.error_span :<%= column.name %>
 <%- end -%>
 <%- if ::SimpleForm::FormBuilder.instance_methods.include?(:wrapped_button) -%>
   = f.button :wrapped, :cancel => <%= controller_routing_path %>_path
