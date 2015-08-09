@@ -85,6 +85,44 @@ describe BootstrapFlashHelper, type: :helper do
 
       }
     end
-  end
 
+    it "should escape javascript if not marked as safe by user" do
+      allow(self).to receive(:flash) { {notice: "<script>alert(1)</script>"} }
+
+      element = bootstrap_flash
+
+      expect(element).to have_tag(:div,
+                                  text: "×<script>alert(1)</script>",
+                                  with: {class: "alert fade in alert-success"}) {
+                           with_tag(:button,
+                                    text: "×",
+                                    with: {
+                                        class: "close",
+                                        "data-dismiss" => "alert"
+                                    }
+                           )
+                         }
+    end
+
+    it "should not escape a link if marked as safe by user" do
+      allow(self).to receive(:flash) { {notice: "<a href='example.com'>awesome link!</a>".html_safe} }
+
+      element = bootstrap_flash
+
+      expect(element).to have_tag(:div,
+                                  text: "×awesome link!",
+                                  with: {class: "alert fade in alert-success"}) { [
+                             with_tag(:button,
+                                      text: "×",
+                                      with: {
+                                          class: "close",
+                                          "data-dismiss" => "alert"
+                                      }
+                             ),
+                             with_tag(:a,
+                                      text: 'awesome link!')
+                         ]
+                         }
+    end
+  end
 end
