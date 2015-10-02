@@ -18,7 +18,7 @@ describe Twitter::Bootstrap::Breadcrumbs do
     add_breadcrumb :base_i18n, '/base_i18n'
 
     def breadcrumbs
-      @breadcrumbs
+      @__bs_breadcrumbs
     end
   end
 
