@@ -576,6 +576,7 @@ You do not need to use these breadcrumb gems since this gem provides the same fu
 
 Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
 You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>` (default divider is `/`).
+If you do not need dividers at all you can use `nil`: `<%= render_breadcrumbs(nil) %>`.
 
 Full example:
 ```ruby
