@@ -1,23 +1,39 @@
 module Twitter
   module Bootstrap
+
+    # Keep current method calls as is using aliases
     module Breadcrumbs
-      def self.included(base)
-        base.extend(ClassMethods)
+      extend ActiveSupport::Concern
+      included do
+        # Used to provide compatibility with breadcrumbs-on-rails gem, if detected
+        # breadcrumbs controller methods won't be overridden.
+        if defined?(::BreadcrumbsOnRails)
+          ::Rails.logger.info <<-EOT.squish
+          BreadcrumbsOnRails detected it won't be overridden. To use methods from this gem you need to call them
+          using bootstrap prefix i.e. add_bootstrap_breadcrumb and render_bootstrap_breadcrumbs.
+          EOT
+        else
+          # Provide backward compatibility with existing code
+          alias_method :add_breadcrumb, :add_bootstrap_breadcrumb
+          class << self
+            alias_method :add_breadcrumb, :add_bootstrap_breadcrumb
+          end
+        end
       end
 
       module ClassMethods
-        def add_breadcrumb(name, url = '', options = {})
+        def add_bootstrap_breadcrumb(name, url = '', options = {})
           options.merge! :klass => self.name
           before_filter options do |controller|
-            controller.send :add_breadcrumb, name, url, options
+            controller.send :add_bootstrap_breadcrumb, name, url, options
           end
         end
       end
 
       protected
 
-      def add_breadcrumb(name, url = '', options = {})
-        @breadcrumbs ||= []
+      def add_bootstrap_breadcrumb(name, url = '', options = {})
+        @__bs_breadcrumbs ||= []
 
         class_name = options.delete(:klass) || self.class.name
 
@@ -37,7 +53,7 @@ module Twitter
 
         url = eval(url.to_s) if url.is_a?(Symbol) && url =~ /_path|_url|@/
 
-        @breadcrumbs << {:name => name, :url => url, :options => options}
+        @__bs_breadcrumbs << {:name => name, :url => url, :options => options}
       end
 
       def translate_breadcrumb(name, class_name)
@@ -47,11 +63,6 @@ module Twitter
         scope += namespace
 
         I18n.t name, :scope => scope
-      end
-
-      def render_breadcrumbs(divider = '/')
-        s = render :partial => 'twitter-bootstrap/breadcrumbs', :locals => {:divider => divider}
-        s.first
       end
     end
   end
