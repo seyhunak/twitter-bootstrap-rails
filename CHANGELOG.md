@@ -51,4 +51,5 @@
   <li>Released gem v.2.2.7 (Fixes)</li>
   <li>Releases gem v.2.2.8</li>
   <li>Releases gem v.3.2.1</li>
+  <li>Releases gem v.3.2.2</li>
 </ul>
