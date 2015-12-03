@@ -52,4 +52,5 @@
   <li>Releases gem v.2.2.8</li>
   <li>Releases gem v.3.2.1</li>
   <li>Releases gem v.3.2.2</li>
+  <li>Dropped FontAwesome support, see #889</li>
 </ul>

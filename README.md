@@ -123,7 +123,7 @@ You have to require Bootstrap LESS (bootstrap_and_overrides.css.less) in your ap
 
 To use individual components from bootstrap, your bootstrap_and_overrides.less could look like this:
 
-```css
+```less
 // Core variables and mixins
 @import "twitter/bootstrap/variables.less";
 @import "twitter/bootstrap/mixins.less";
@@ -180,7 +180,7 @@ If you'd like to alter Bootstrap's own variables, or define your LESS
 styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrides.css.less:
 
 
-```css
+```less
 @link-color: #ff0000;
 ```
 
@@ -198,48 +198,26 @@ If this is the case, you **must** use @import instead of `*=` in your manifest f
 
 ### Icons
 
-By default, this gem overrides standard Bootstraps's Glyphicons with Font Awesome (http://fortawesome.github.com/Font-Awesome/).
+By default, this gem (when using less generator) won't enable standard Bootstraps's Glyphicons.
 
-This should appear inside _bootstrap_and_overrides *(based on you twitter-bootstrap-rails version)*
-
-**From 2.2.7**
-
-```css
-// Font Awesome
-@fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
-@fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
-@fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
-@fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
-@fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
-@import "fontawesome/font-awesome";
-```
-
-**Before 2.2.7**
-
-```css
-// Font Awesome
-@fontAwesomeEotPath: "/assets/fontawesome-webfont.eot";
-@fontAwesomeEotPath_iefix: "/assets/fontawesome-webfont.eot?#iefix";
-@fontAwesomeWoffPath: "/assets/fontawesome-webfont.woff";
-@fontAwesomeTtfPath: "/assets/fontawesome-webfont.ttf";
-@fontAwesomeSvgPath: "/assets/fontawesome-webfont.svg#fontawesomeregular";
-@import "fontawesome";
-```
-
-If you would like to restore the default Glyphicons, inside the _bootstrap_and_overrides.css.less_ remove the FontAwesome declaration and uncomment the line:
+If you would like to restore the default Glyphicons, inside the generated `bootstrap_and_overrides.css.less` uncomment these lines:
 
 ```less
-// Font Awesome
-// @fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
-// @fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
-// @fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
-// @fontAwesomeTtfPath: asset-url("fontawesome-webfont.ttf");
-// @fontAwesomeSvgPath: asset-url("fontawesome-webfont.svg#fontawesomeregular");
-// @import "fontawesome/font-awesome";
+// Glyphicons are not required by default, uncomment the following lines to enable them.
+@glyphiconsEotPath: font-url("glyphicons-halflings-regular.eot");
+@glyphiconsEotPath_iefix: font-url("glyphicons-halflings-regular.eot?#iefix");
+@glyphiconsWoffPath: font-url("glyphicons-halflings-regular.woff");
+@glyphiconsTtfPath: font-url("glyphicons-halflings-regular.ttf");
+@glyphiconsSvgPath: font-url("glyphicons-halflings-regular.svg#glyphicons_halflingsregular");
 
-// Glyphicons
 @import "twitter/bootstrap/glyphicons.less";
 ```
+
+This gem was used to bundle the excellent [Font-Awesome](http://fortawesome.github.io/Font-Awesome/) library.
+However that was another maintenance effort that is not worth to do here.
+
+For Rails projects that need it there is the [font-awesome-rails gem](https://github.com/bokmann/font-awesome-rails) that
+provides same functionality that this gems was used to provide and it also have some other interesting features (e.g. view helpers).
 
 ## Using JavaScript
 
@@ -285,7 +263,7 @@ jQuery ->
 You can create modals easily using the following example. The header, body, and footer all accept content_tag or plain html.
 The href of the button to launch the modal must match the id of the modal dialog. It also accepts a block for the header, body, and footer. If you are getting a complaint about the modal_helper unable to merge a hash it is due to this.
 
-````
+```erb
 <%= content_tag :a, "Modal", href: "#modal", class: 'btn', data: {toggle: 'modal'} %>
 
 <%= modal_dialog id: "modal",
@@ -293,13 +271,12 @@ The href of the button to launch the modal must match the id of the modal dialog
          body:   { content: 'This is the body' },
          footer: { content: content_tag(:button, 'Save', class: 'btn') } %>
 
-````
+```
 
 ### Navbar Helper
 It should let you write things like:
 
-````
-
+```erb
 <%= nav_bar fixed: :top, brand: "Fashionable Clicheizr 2.0", responsive: true do %>
     <%= menu_group do %>
         <%= menu_item "Home", root_path %>
@@ -327,101 +304,105 @@ It should let you write things like:
         <% end %>
     <% end %>
 <% end %>
-
-
-````
+```
 
 ### Navbar scaffolding
 
 In your view file (most likely application.html.erb) to get a basic navbar set up you need to do this:
 
-````
+```erb
 <%= nav_bar %>
-````
+```
 
 Which will render:
 
-    <div class="navbar">
-      <div class="container">
-      </div>
-    </div>
-
+```html
+<div class="navbar">
+  <div class="container">
+  </div>
+</div>
+```
 
 ### Fixed navbar
 
 If you want the navbar to stick to the top of the screen, pass in the option like this:
 
-````
+```erb
 <%= nav_bar fixed: :top  %>
-````
+```
 
 To render:
 
-    <div class="navbar navbar-fixed-top">
-      <div class="container">
-      </div>
-    </div>
+```html
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+  </div>
+</div>
+```
 
 ### Static navbar
 
 If you want a full-width navbar that scrolls away with the page, pass in the option like this:
 
-````
+```erb
 <%= nav_bar static: :top  %>
-````
+```
 
 To render:
 
-    <div class="navbar navbar-static-top">
-      <div class="container">
-      </div>
-    </div>
-
+```html
+<div class="navbar navbar-static-top">
+  <div class="container">
+  </div>
+</div>
+```
 
 ### Brand name
 
 Add the name of your site on the left hand edge of the navbar. By default, it will link to root_url. Passing a brand_link option will set the url to whatever you want.
 
-````
+```erb
 <%= nav_bar brand: "We're sooo web 2.0alizr", brand_link: account_dashboard_path  %>
-````
+```
 
 Which will render:
 
-    <div class="navbar">
-      <div class="container">
-          <a class="navbar-brand" href="/accounts/dashboard">
-            We're sooo web 2.0alizr
-          </a>
-      </div>
-    </div>
-
+```html
+<div class="navbar">
+  <div class="container">
+      <a class="navbar-brand" href="/accounts/dashboard">
+        We're sooo web 2.0alizr
+      </a>
+  </div>
+</div>
+```
 
 ### Optional responsive variation
 
 If you want the responsive version of the navbar to work (One that shrinks down on mobile devices etc.), you need to pass this option:
 
-````
+```erb
 <%= nav_bar responsive: true %>
-````
+```
+
 Which renders the html quite differently:
 
-
-    <div class="navbar">
-      <div class="container">
-        <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <!-- Everything in here gets hidden at 940px or less -->
-        <div class="navbar-collapse collapse">
-          <!-- menu items gets rendered here instead -->
-        </div>
-      </div>
+```html
+<div class="navbar">
+  <div class="container">
+    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <!-- Everything in here gets hidden at 940px or less -->
+    <div class="navbar-collapse collapse">
+      <!-- menu items gets rendered here instead -->
     </div>
-
+  </div>
+</div>
+```
 
 ### Nav links
 
@@ -437,8 +418,7 @@ menu_group only takes one argument - :pull - this moves the group left or right 
 
 menu_item generates a link wrapped in an li tag. It takes two arguments and an options hash. The first argument is the name (the text that will appear in the menu), and the path (which defaults to "#" if left blank). The rest of the options are passed straight through to the link_to helper, so that you can add classes, ids, methods or data tags etc.
 
-````
-
+```erb
 <%= nav_bar fixed: :top, brand: "Ninety Ten" do %>
     <%= menu_group do %>
         <%= menu_item "Home", root_path %>
@@ -458,14 +438,13 @@ menu_item generates a link wrapped in an li tag. It takes two arguments and an o
         <% end %>
     <% end %>
 <% end %>
-
-````
+```
 
 ### Dropdown menus
 
 For multi-level list options, where it makes logical sense to group menu items, or simply to save space if you have a lot of pages, you can group menu items into drop down lists like this:
 
-````
+```erb
 <%= nav_bar do %>
     <%= menu_item "Home", root_path %>
 
@@ -479,15 +458,13 @@ For multi-level list options, where it makes logical sense to group menu items, 
     <%= menu_item "About Us", about_us_path %>
     <%= menu_item "Contact", contact_path %>
 <% end %>
-
-````
+```
 
 ### Dividers
 
 Dividers are just vertical bars that visually separate logically disparate groups of menu items
 
-````
-
+```erb
 <%= nav_bar fixed: :bottom do %>
     <%= menu_item "Home", root_path %>
     <%= menu_item "About Us", about_us_path %>
@@ -499,8 +476,7 @@ Dividers are just vertical bars that visually separate logically disparate group
     <%= menu_item "Account Settings", edit_user_account_path(current_user, @account) %>
     <%= menu_item "Log Out", log_out_path %>
 <% end %>
-
-````
+```
 
 ### Forms in navbar
 
@@ -508,23 +484,23 @@ At the moment - this is just a how to...
 
 You need to add this class to the form itself (Different form builders do this in different ways - please check out the relevant docs)
 
-````css
+```css
 .navbar-form
-````
+```
 To pull the form left or right, add either of these classes:
-````css
+```css
 .pull-left
 .pull-right
-````
+```
 
 If you want the Bootstrap search box (I think it just rounds the corners), use:
-````css
+```css
 .navbar-search
-````
+```
 Instead of:
-````css
+```css
 .navbar-form
-````
+```
 
 To change the size of the form fields, use .span2 (or however many span widths you want) to the input itself.
 
@@ -532,7 +508,7 @@ To change the size of the form fields, use .span2 (or however many span widths y
 
 You can shift things to the left or the right across the nav bar. It's easiest to do this on grouped menu items:
 
-````
+```erb
 <%= nav_bar fixed: :bottom do %>
     <% menu_group do %>
         <%= menu_item "Home", root_path %>
@@ -545,23 +521,21 @@ You can shift things to the left or the right across the nav bar. It's easiest t
         <%= menu_item "Log Out", log_out_path %>
     <% end %>
 <% end %>
-
-````
+```
 
 ### Text in the navbar
 
 If you want to put regular plain text in the navbar anywhere, you do it like this:
 
-````
+```erb
 <%= nav_bar brand: "Apple" do %>
     <%= menu_text "We make shiny things" %>
     <%= menu_item "Home", root_path %>
     <%= menu_item "About Us", about_us_path %>
 <% end %>
+```
 
-````
 It also takes the :pull option to drag it to the left or right.
-
 
 ### Flash helper
 
