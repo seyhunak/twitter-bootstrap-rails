@@ -1,7 +1,6 @@
 /*
   =require twitter-bootstrap-static/bootstrap
 
-  Use Font Awesome icons (default)
-  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
-  =require twitter-bootstrap-static/fontawesome
-  */
+  Static version of css will use Glyphicons sprites by default
+  =require twitter-bootstrap-static/sprites
+*/
