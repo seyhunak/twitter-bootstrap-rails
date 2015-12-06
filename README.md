@@ -616,8 +616,8 @@ Please see CONTRIBUTERS.md for contributors list
 
 
 ## About Me
-CTO / Senior Developer / Programmer
-@useful (Usefulideas) Istanbul / Turkey
+Senior Software Developer @INGBank 
+Istanbul / Turkey
 
 
 ### Contact me
