@@ -108,8 +108,9 @@ module NavbarHelper
     position = "static-#{options[:static].to_s}" if options[:static]
     position = "fixed-#{options[:fixed].to_s}" if options[:fixed]
     inverse = (options[:inverse].present? && options[:inverse] == true) ? true : false
+    classes = options[:class]
 
-    content_tag :nav, :class => nav_bar_css_class(position, inverse), :role => "navigation" do
+    content_tag :nav, :class => nav_bar_css_class(position, inverse, classes), :role => "navigation" do
       yield
     end
   end
@@ -144,10 +145,11 @@ module NavbarHelper
     end
   end
 
-  def nav_bar_css_class(position, inverse = false)
+  def nav_bar_css_class(position, inverse = false, classes=nil)
     css_class = ["navbar", "navbar-default"]
     css_class << "navbar-#{position}" if position.present?
     css_class << "navbar-inverse" if inverse
+    css_class << classes
     css_class.join(" ")
   end
 

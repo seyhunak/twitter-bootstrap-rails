@@ -171,6 +171,11 @@ describe NavbarHelper, :type => :helper do
         with_tag(:a, text: " Home", with: { href: "/"})
       }
     end
+
+    it "should add custom class to navbar" do 
+      expect(nav_bar(:class => "custom-class"))
+        .to have_tag(:nav, with: { class: 'custom-class' } )
+    end
   end
 
   describe "drop_down" do
