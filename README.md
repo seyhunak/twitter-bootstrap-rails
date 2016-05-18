@@ -545,7 +545,7 @@ You can pass the attributes you want to add to the main div returned: `<%= boots
 
 ### Breadcrumbs Helpers
 
-*Notice* If your application is using [breadcrumbs-on-rails](https://github.com/weppos/breadcrumbs_on_rails) you will have a namespace collision with the add_breadcrumb method. For this reason if breadcrumbs-on-rails is detected in `Gemfile` gem methods will be accessible using `boostrap` prefix, i.e. `render_bootstrap_breadcrumbs` and `add_bootstrap_breadcrumb`
+*Notice* If your application is using [breadcrumbs-on-rails](https://github.com/weppos/breadcrumbs_on_rails) you will have a namespace collision with the add_breadcrumb method. For this reason if breadcrumbs-on-rails is detected in `Gemfile` gem methods will be accessible using `bootstrap` prefix, i.e. `render_bootstrap_breadcrumbs` and `add_bootstrap_breadcrumb`
 
 Usually you do not need to use these breadcrumb gems since this gem provides the same functionality out of the box without the additional dependency.
 
