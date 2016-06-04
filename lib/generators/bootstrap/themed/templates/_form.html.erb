@@ -1,13 +1,13 @@
-<%%= form_for @<%= resource_name %>, :html => { :class => "form-horizontal <%= resource_name %>" } do |f| %>
+<%%= form_for @<%= instance_resource_name %>, :html => { :class => "form-horizontal <%= instance_resource_name %>" } do |f| %>
 
-  <%% if @<%= resource_name %>.errors.any? %>
+  <%% if @<%= instance_resource_name %>.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%%= pluralize(@<%= resource_name %>.errors.count, "error") %> prohibited this <%= resource_name %> from being saved:</h3>
+        <h3 class="panel-title"><%%= pluralize(@<%= instance_resource_name %>.errors.count, "error") %> prohibited this <%= resource_name %> from being saved:</h3>
       </div>
       <div class="panel-body">
         <ul>
-        <%% @<%= resource_name %>.errors.full_messages.each do |msg| %>
+        <%% @<%= instance_resource_name %>.errors.full_messages.each do |msg| %>
           <li><%%= msg %></li>
         <%% end %>
         </ul>

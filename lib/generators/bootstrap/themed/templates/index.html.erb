@@ -14,20 +14,20 @@
     </tr>
   </thead>
   <tbody>
-    <%% @<%= plural_resource_name %>.each do |<%= resource_name %>| %>
+    <%% @<%= plural_instance_resource_name %>.each do |<%= instance_resource_name %>| %>
       <tr>
-        <td><%%= link_to <%= resource_name %>.id, <%= singular_controller_routing_path %>_path(<%= resource_name %>) %></td>
+        <td><%%= link_to <%= instance_resource_name %>.id, <%= singular_controller_routing_path %>_path(<%= instance_resource_name %>) %></td>
         <%- columns.each do |column| -%>
-        <td><%%= <%= resource_name %>.<%= column.name %> %></td>
+        <td><%%= <%= instance_resource_name %>.<%= column.name %> %></td>
         <%- end -%>
-        <td><%%=l <%= resource_name %>.created_at %></td>
+        <td><%%=l <%= instance_resource_name %>.created_at %></td>
         <td>
           <%%= link_to t('.show', :default => t("helpers.links.show")),
-                      <%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-default btn-xs' %>
+                      <%= singular_controller_routing_path %>_path(<%= instance_resource_name %>), :class => 'btn btn-default btn-xs' %>
           <%%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-default btn-xs' %>
+                      edit_<%= singular_controller_routing_path %>_path(<%= instance_resource_name %>), :class => 'btn btn-default btn-xs' %>
           <%%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      <%= singular_controller_routing_path %>_path(<%= resource_name %>),
+                      <%= singular_controller_routing_path %>_path(<%= instance_resource_name %>),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>

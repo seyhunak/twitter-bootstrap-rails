@@ -1,4 +1,4 @@
-<%%= simple_form_for @<%= resource_name %>, :html => { :class => 'form-horizontal' } do |f| %>
+<%%= simple_form_for @<%= instance_resource_name %>, :html => { :class => 'form-horizontal' } do |f| %>
   <%- columns.each do |column| -%>
   <%%= f.input :<%= column.name %> %>
   <%%= error_span(@<%= resource_name %>[:<%= column.name %>]) %>

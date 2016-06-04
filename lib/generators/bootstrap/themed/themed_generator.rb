@@ -27,7 +27,7 @@ module Bootstrap
         @base_name, @controller_class_path, @controller_file_path, @controller_class_nesting, @controller_class_nesting_depth = extract_modules(controller_path)
         @controller_routing_path = @controller_file_path.gsub(/\//, '_')
         @model_name = @controller_class_nesting + "::#{@base_name.singularize.camelize}" unless @model_name
-        @model_name = @model_name.camelize
+        @model_name = @model_name.camelize.gsub(/^::/, '')
       end
 
       def controller_routing_path
@@ -47,11 +47,19 @@ module Bootstrap
       end
 
       def resource_name
-        @model_name.demodulize.underscore
+        @model_name.underscore
+      end
+
+      def instance_resource_name
+        @model_name.gsub('::', '_').underscore
       end
 
       def plural_resource_name
         resource_name.pluralize
+      end
+
+      def plural_instance_resource_name
+        instance_resource_name.pluralize
       end
 
       def columns
