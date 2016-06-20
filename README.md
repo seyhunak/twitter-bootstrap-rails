@@ -296,7 +296,7 @@ It should let you write things like:
         <% if current_user %>
             <%= menu_item "Log Out", log_out_path %>
         <% else %>
-            <%= form_for @user, url: session_path(:user), html => {class: "navbar-form pull-right"} do |f| -%>
+            <%= form_for :user, url: session_path( :user ), html: {class: "navbar-form pull-right"} do |f| -%>
               <p><%= f.text_field :email %></p>
               <p><%= f.password_field :password %></p>
               <p><%= f.submit "Sign in" %></p>
@@ -616,7 +616,7 @@ Please see CONTRIBUTERS.md for contributors list
 
 
 ## About Me
-Senior Software Developer @INGBank 
+Senior Software Developer @INGBank
 Istanbul / Turkey
 
 
