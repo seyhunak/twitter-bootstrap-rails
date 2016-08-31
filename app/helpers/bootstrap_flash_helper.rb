@@ -15,8 +15,8 @@ module BootstrapFlashHelper
 
       Array(message).each do |msg|
         text = content_tag(:div,
-                            content_tag(:button, raw("&times;"), 
-                                       :class => "close", 
+                            content_tag(:button, raw("&times;"),
+                                       :class => "close",
                                        "data-dismiss" => "alert",
                                        "aria-hidden" => "true",
                                        "type" => "button") +
