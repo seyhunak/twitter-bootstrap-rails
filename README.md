@@ -40,7 +40,7 @@ or
 
 ## Using javascripts
 
-You have to require Bootstrap JS (bootstrap.js) in your application.js
+You have to require Bootstrap JS (twitter/bootstrap.js) in your application.js
 
   //= require bootstrap
 
