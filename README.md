@@ -599,6 +599,8 @@ Glyph:
 <%= glyph(:pencil) %> <i class="icon-pencil"></i>
 
 <%= glyph(:pencil, {tag: :span}) %> <span class="icon-pencil"></span>
+
+<%= glyph(:pencil, {class: 'foo'}) %> <i class="icon-pencil foo"></i>
 ```
 
 ### I18n Internationalization Support
@@ -616,7 +618,7 @@ Please see CONTRIBUTERS.md for contributors list
 
 
 ## About Me
-Senior Software Developer @INGBank 
+Senior Software Developer @INGBank
 Istanbul / Turkey
 
 
