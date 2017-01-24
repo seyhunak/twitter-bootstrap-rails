@@ -24,7 +24,7 @@ module Twitter
       module ClassMethods
         def add_bootstrap_breadcrumb(name, url = '', options = {})
           options.merge! :klass => self.name
-          before_filter options do |controller|
+          before_action options do |controller|
             controller.send :add_bootstrap_breadcrumb, name, url, options
           end
         end
