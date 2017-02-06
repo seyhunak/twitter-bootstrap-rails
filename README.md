@@ -8,6 +8,9 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset
 [![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.svg?travis)](https://gemnasium.com/seyhunak/twitter-bootstrap-rails?travis)
 [![Code Climate](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails/badges/gpa.svg)](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails?branch=master)
 [![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master)](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.png?branch=master)
+[![GitHub stars](https://img.shields.io/github/stars/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/network)
+[![GitHub issues](https://img.shields.io/github/issues/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/issues)
 
 ## Screencasts
 #### Installing twitter-bootstrap-rails, generators, usage and more
