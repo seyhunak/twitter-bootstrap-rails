@@ -53,4 +53,5 @@
   <li>Releases gem v.3.2.1</li>
   <li>Releases gem v.3.2.2</li>
   <li>Dropped FontAwesome support, see #889</li>
+  <li>Releases gem v.4.0.0> (master changes)<li>
 </ul>

@@ -1,5 +1,6 @@
-# Twitter Bootstrap for Rails 4, 3.x Asset Pipeline
-Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
+# Twitter Bootstrap for Rails 5 and Rails 4 Asset Pipeline
+
+Bootstrap is a toolkit from Twitter designed to kickstart development of web apps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 4, 3.x versions are supported)
 
@@ -12,13 +13,13 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset
 #### Installing twitter-bootstrap-rails, generators, usage and more
 <img width="180" height="35" src="http://oi49.tinypic.com/s5wn05.jpg"></img>
 
-Screencasts provided by <a href="http://railscasts.com">Railscasts</a> (Ryan Bates)
+Screencasts provided by <a href="http://railscasts.com">RailsCasts</a> (Ryan Bates)
 
 [Twitter Bootstrap Basics](http://railscasts.com/episodes/328-twitter-bootstrap-basics "Twitter Bootstrap Basics")
 in this episode you will learn how to include Bootstrap into Rails application with the twitter-bootstrap-rails gem.
 
 [More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap")
-in this episode continues on the Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
+in this episode continues on the Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customise layout with variables, and switch to using Sass.
 (Note: This episode is pro episode)
 
 ## Installing the Gem
@@ -27,7 +28,7 @@ The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rai
 
 The plain CSS way is how Bootstrap is provided on [the official website](http://twbs.github.io/bootstrap/).
 
-The [Less](http://lesscss.org/) way provides more customization options, like changing theme colors, and provides useful Less mixins for your code, but requires the
+The [Less](http://lesscss.org/) way provides more customisation options, like changing theme colors and provides useful Less mixins for your code, but requires the
 Less gem and the Ruby Racer Javascript runtime (not available on Microsoft Windows).
 
 ### Installing the Less stylesheets
@@ -615,23 +616,19 @@ Please see CHANGELOG.md for more details
 ## Contributors & Patches & Forks
 Please see CONTRIBUTERS.md for contributors list
 
-
 ## About Me
-Senior Software Developer @INGBank
+Senior Software Developer
 Istanbul / Turkey
-
 
 ### Contact me
 Seyhun Akyürek - seyhunak [at] gmail com
-
 
 ## Thanks
 Bootstrap and all twitter-bootstrap-rails contributors
 http://twbs.github.io/bootstrap
 
-
 ## License
-Copyright (c) 2014 Seyhun Akyürek
+Copyright (c) 2017 (since 2012) by Seyhun Akyürek
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.

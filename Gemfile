@@ -3,7 +3,7 @@ source "http://rubygems.org"
 # Specify your gem's dependencies in twitter-bootstrap-rails.gemspec
 gemspec
 gem 'less-rails', :path => ENV['LESS_RAILS_SOURCE'] if ENV['LESS_RAILS_SOURCE']
-gem 'activesupport', '< 4.0.0' if RUBY_VERSION < '1.9.3'
+gem 'activesupport', '< 5.0.1' if RUBY_VERSION < '2.1.3'
 
 group :development, :test do
   gem 'rb-readline'
