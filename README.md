@@ -12,6 +12,9 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset
 [![GitHub forks](https://img.shields.io/github/forks/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/network)
 [![GitHub issues](https://img.shields.io/github/issues/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/issues)
 
+[![OpenCollective](https://opencollective.com/twitter-bootstrap-rails/backers/badge.svg)](#backers) 
+[![OpenCollective](https://opencollective.com/twitter-bootstrap-rails/sponsors/badge.svg)](#sponsors)
+
 ## Screencasts
 #### Installing twitter-bootstrap-rails, generators, usage and more
 <img width="180" height="35" src="http://oi49.tinypic.com/s5wn05.jpg"></img>
@@ -629,6 +632,74 @@ Seyhun Akyürek - seyhunak [at] gmail com
 ## Thanks
 Bootstrap and all twitter-bootstrap-rails contributors
 http://twbs.github.io/bootstrap
+
+## Backers
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/twitter-bootstrap-rails#backer)]
+
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/0/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/1/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/2/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/3/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/4/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/5/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/6/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/7/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/8/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/9/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/9/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/10/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/10/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/11/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/11/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/12/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/12/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/13/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/13/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/14/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/14/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/15/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/15/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/16/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/16/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/17/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/17/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/18/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/18/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/19/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/19/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/20/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/20/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/21/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/21/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/22/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/22/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/23/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/23/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/24/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/24/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/25/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/25/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/26/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/26/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/27/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/27/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/28/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/28/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/backer/29/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/backer/29/avatar.svg"></a>
+
+## Sponsors
+Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/twitter-bootstrap-rails#sponsor)]
+
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/0/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/1/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/2/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/3/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/4/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/5/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/6/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/7/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/8/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/9/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/9/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/10/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/10/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/11/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/11/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/12/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/12/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/13/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/13/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/14/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/14/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/15/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/15/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/16/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/16/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/17/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/17/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/18/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/18/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/19/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/19/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/20/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/20/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/21/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/21/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/22/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/22/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/23/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/23/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/24/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/24/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/25/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/25/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/26/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/26/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/27/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/27/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/28/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/28/avatar.svg"></a>
+<a href="https://opencollective.com/twitter-bootstrap-rails/sponsor/29/website" target="_blank"><img src="https://opencollective.com/twitter-bootstrap-rails/sponsor/29/avatar.svg"></a>
 
 ## License
 Copyright (c) 2017 (since 2012) by Seyhun Akyürek
