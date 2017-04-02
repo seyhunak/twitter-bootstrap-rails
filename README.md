@@ -44,9 +44,9 @@ To use Less stylesheets, you'll need the [less-rails gem](http://rubygems.org/ge
 Include these lines in the Gemfile to install the gems from [RubyGems.org](http://rubygems.org):
 
 ```ruby
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+gem 'therubyracer'
+gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails'
 ```
 
 or you can install from latest build;
