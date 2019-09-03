@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'railties', '>= 5.0', '<= 7.0'
-  s.add_dependency 'actionpack', '>= 5.0', '>= 7.0'
+  s.add_dependency 'actionpack', '>= 5.0', '<= 7.0'
   s.add_dependency 'less-rails', '~> 3.0', '>= 3.0.0'
 
   s.add_runtime_dependency 'execjs', '~> 2.7'
