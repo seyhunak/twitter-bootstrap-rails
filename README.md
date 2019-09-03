@@ -1,8 +1,8 @@
-# Twitter Bootstrap for Rails 5 and Rails 4 Asset Pipeline
+# Twitter Bootstrap for Rails 6, 5 and 4 Asset Pipeline
 
 Bootstrap is a toolkit from Twitter designed to kickstart development of web apps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
-twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 4, 3.x versions are supported)
+twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 6, Rails 5 and Rails 3.x versions are supported)
 
 [![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.svg)](http://badge.fury.io/rb/twitter-bootstrap-rails)
 [![Dependency Status](https://gemnasium.com/seyhunak/twitter-bootstrap-rails.svg?travis)](https://gemnasium.com/seyhunak/twitter-bootstrap-rails?travis)
