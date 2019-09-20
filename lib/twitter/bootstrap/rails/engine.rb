@@ -6,6 +6,7 @@ require_relative '../../../../app/helpers/modal_helper.rb'
 require_relative '../../../../app/helpers/navbar_helper.rb'
 require_relative '../../../../app/helpers/bootstrap_flash_helper.rb'
 require_relative '../../../../app/helpers/form_errors_helper.rb'
+require_relative '../../../../app/helpers/badge_label_helper.rb'
 
 module Twitter
   module Bootstrap
