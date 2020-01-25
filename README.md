@@ -624,11 +624,12 @@ Please see CHANGELOG.md for more details
 Please see CONTRIBUTERS.md for contributors list
 
 ## About Me
-Senior Software Developer
-Istanbul / Turkey
+Senior Software Developer Istanbul / Turkey
+seyhunak [at] gmail com
 
-### Contact me
-Seyhun Akyürek - seyhunak [at] gmail com
+## Hire Me
+[![Hire Me !](https://img.shields.io/badge/Hire%20Me-for%20your%20Rails%20development-red?s?style=social&logo=ruby&logoColor=red&labelColor=black)](https://seyhunakyurek.com)
+[![Hire Me !](https://img.shields.io/badge/Hire%20Me-for%20your%20IOS%20development-red?s?style=social&logo=ios&logoColor=blue&labelColor=black&color=blue)](https://seyhunakyurek.com)
 
 ## Thanks
 Bootstrap and all twitter-bootstrap-rails contributors
