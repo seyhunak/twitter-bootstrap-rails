@@ -17,7 +17,6 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset
 
 ## Screencasts
 #### Installing twitter-bootstrap-rails, generators, usage and more
-<img width="180" height="35" src="http://oi49.tinypic.com/s5wn05.jpg"></img>
 
 Screencasts provided by <a href="http://railscasts.com">RailsCasts</a> (Ryan Bates)
 
