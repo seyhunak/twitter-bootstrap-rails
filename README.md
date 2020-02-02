@@ -628,8 +628,7 @@ Senior Software Developer Istanbul / Turkey
 seyhunak [at] gmail com
 
 ## Hire Me
-[![Hire Me !](https://img.shields.io/badge/Hire%20Me-for%20your%20Rails%20development-red?s?style=social&logo=ruby&logoColor=red&labelColor=black)](https://seyhunakyurek.com)
-[![Hire Me !](https://img.shields.io/badge/Hire%20Me-for%20your%20IOS%20development-red?s?style=social&logo=ios&logoColor=blue&labelColor=black&color=blue)](https://seyhunakyurek.com)
+[![Hire Me !](https://img.shields.io/badge/Hire%20Me-for%20your%20project%20on%20PPH-red?s?style=social&logo=ios&logoColor=blue&labelColor=black&color=blue)](http://pph.me/seyhunak)
 
 ## Thanks
 Bootstrap and all twitter-bootstrap-rails contributors
