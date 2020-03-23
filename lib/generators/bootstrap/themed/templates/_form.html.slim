@@ -1,4 +1,4 @@
-= form_for @<%= resource_name %>, html: { class: "form form-horizontal <%= resource_name %>" } do |f|
+= form_for @<%= instance_resource_name %>, html: { class: "form form-horizontal <%= instance_resource_name %>" } do |f|
   <%- columns.each do |column| -%>
   .form-group
     = f.label :<%= column.name %>, :class => 'control-label col-lg-2'
