@@ -34,8 +34,7 @@ module ModalHelper
   end
 
   def close_button(dismiss)
-    #It doesn't seem to like content_tag, so we do this instead.
-    raw("<button class=\"close\" data-dismiss=\"#{dismiss}\" aria-hidden=\"true\">&times;</button>")
+    content_tag :button, '&times;'.html_safe, { :class => 'close', "data-dismiss" => dismiss, "aria-hidden" => true }
   end
 
   def modal_toggle(content_or_options = nil, options, &block)
