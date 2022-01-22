@@ -171,6 +171,13 @@ describe NavbarHelper, :type => :helper do
         with_tag(:a, text: " Home", with: { href: "/"})
       }
     end
+
+    it "should return a link with role 'presentation' attribute" do
+      allow(self).to receive(:current_page?) { false }
+
+      element = menu_item("Home", "/")
+      expect(element).to have_tag(:li, with: {role: "presentation"})
+    end
   end
 
   describe "drop_down" do
