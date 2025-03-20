@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.email       = ["seyhunak@gmail.com"]
   s.license     = 'MIT'
   s.homepage    = "https://github.com/seyhunak/twitter-bootstrap-rails"
-  s.summary     = %q{Bootstrap CSS toolkit for Rails 7, 6, 5, 4.x Asset Pipeline}
-  s.description = %q{twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 7, 6, 5, 4.x (also supports) Asset Pipeline}
+  s.summary     = %q{Bootstrap CSS toolkit for Rails 8, 7, 6, 5, 4.x Asset Pipeline}
+  s.description = %q{twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 8, 7, 6, 5, 4.x (also supports) Asset Pipeline}
 
   s.rubyforge_project = "twitter-bootstrap-rails"
   s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + Dir["app/**/*"] + ["Rakefile", "README.md"]
@@ -18,12 +18,12 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency 'railties', '>= 5.0', '< 8.0'
-  s.add_dependency 'actionpack', '>= 5.0', '< 8.0'
+  s.add_dependency 'railties', '>= 5.0', '< 9.0'
+  s.add_dependency 'actionpack', '>= 5.0', '< 9.0'
   s.add_dependency 'less-rails', '>= 3.0', '< 5.0'
 
   s.add_runtime_dependency 'execjs', '~> 2.7'
-  s.add_development_dependency 'rails', '~> 5.0', '>= 5.0.1'
+  s.add_development_dependency 'rails', '>= 5.0.1'
   s.add_development_dependency 'less', '~> 2.6'
   s.add_development_dependency 'therubyracer', '~> 0.12'
 
