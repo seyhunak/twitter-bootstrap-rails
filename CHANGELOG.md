@@ -1,4 +1,6 @@
 <ul>
+  <li>Version 5.1.0 - Added Rails 8 compatibility</li>
+  <li>Version 5.0.0 - Current version</li>
   <li>Version 0.0.5 deprecated</li>
   <li>Asset files updated to latest and removed version numbers</li>
   <li>Implemented Less::Rails Railtie to use with LESS</li>
