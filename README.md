@@ -5,12 +5,12 @@ Bootstrap is a toolkit from Twitter designed to kickstart development of web app
 twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 8, Rails 7, Rails 6, Rails 5 and Rails 4.x versions are supported)
 
 [![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.svg)](http://badge.fury.io/rb/twitter-bootstrap-rails)
-[![Code Climate](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails/badges/gpa.svg)](https://codeclimate.com/github/seyhunak/twitter-bootstrap-rails?branch=master)
 [![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.svg?branch=master)](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.svg?branch=master)
 [![GitHub stars](https://img.shields.io/github/stars/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/network)
 [![GitHub issues](https://img.shields.io/github/issues/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/issues)
 
+## Backers and Sponsors
 [![OpenCollective](https://opencollective.com/twitter-bootstrap-rails/backers/badge.svg)](#backers) 
 [![OpenCollective](https://opencollective.com/twitter-bootstrap-rails/sponsors/badge.svg)](#sponsors)
 
