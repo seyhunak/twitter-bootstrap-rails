@@ -10,10 +10,6 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset
 [![GitHub forks](https://img.shields.io/github/forks/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/network)
 [![GitHub issues](https://img.shields.io/github/issues/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/issues)
 
-## Backers and Sponsors
-[![OpenCollective](https://opencollective.com/twitter-bootstrap-rails/backers/badge.svg)](#backers) 
-[![OpenCollective](https://opencollective.com/twitter-bootstrap-rails/sponsors/badge.svg)](#sponsors)
-
 ## Screencasts
 #### Installing twitter-bootstrap-rails, generators, usage and more
 
@@ -624,9 +620,6 @@ seyhunak [at] gmail com
 ## Thanks
 Bootstrap and all twitter-bootstrap-rails contributors
 http://twbs.github.io/bootstrap
-
-## Backers
-Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/twitter-bootstrap-rails#backer)]
 
 ## License
 Copyright (c) 2025 (since 2011) by Seyhun Akyürek
