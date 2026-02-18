@@ -1,0 +1,87 @@
+2025
+
+"Added Rails 8 compatibility" - 20/03/2025
+
+"Integrated Backers and Sponsors section" - 13/11/2025
+
+2024
+
+"Fixed critical security vulnerabilities" - 01/03/2024
+
+2022
+
+"Maintained Rails 7 compatibility" - 06/01/2022
+
+2021
+
+"Maintained Rails 7 compatibility" - 21/12/2021
+
+2019
+
+"Implemented project funding support" - 19/08/2019
+
+2015
+
+"Updated Bootstrap to version 3.3.6" - 02/12/2015
+
+"Enhanced font asset security" - 03/09/2015
+
+"Fixed modal dialog helper functionality" - 28/07/2015
+
+2014
+
+"Resolved XSS security issues" - 24/03/2014
+
+"Fixed form error display problems" - 11/09/2014
+
+"Updated HTML5 shim support" - 15/11/2014
+
+2013
+
+"Fixed navigation helper security" - 23/06/2013
+
+"Resolved Turbolinks compatibility issues" - 19/07/2013
+
+"Resolved asset precompilation issues" - 02/04/2013
+
+"Fixed breadcrumb helper issues" - 18/10/2013
+
+"Fixed flash message helper vulnerabilities" - 07/02/2013
+
+"Updated Font Awesome integration" - 24/06/2013
+
+"Updated Font Awesome integration" - 13/06/2013
+
+"Updated Font Awesome integration" - 02/12/2013
+
+2012
+
+"Fixed JavaScript runtime dependencies" - 01/05/2012
+
+"Resolved LESS compilation errors" - 04/02/2012
+
+"Resolved responsive layout bugs" - 13/02/2012
+
+"Resolved generator template errors" - 22/04/2012
+
+"Resolved CoffeeScript compilation errors" - 07/02/2012
+
+"Updated localization support" - 08/12/2012
+
+"Maintained Ruby 1.8 compatibility" - 15/03/2012
+
+"Maintained Ruby 1.8 compatibility" - 09/05/2012
+
+"Maintained Ruby 1.8 compatibility" - 19/03/2012
+
+"Updated Font Awesome integration" - 04/01/2013
+
+"Updated Font Awesome integration" - 03/04/2012
+
+2011-2025
+
+"Maintained regular version releases" - Multiple dates between 16/10/2011 - 13/11/2025
+
+"Maintained cross-browser compatibility" - Multiple dates between 2011-2025
+
+"Maintained jQuery compatibility across versions" - Multiple dates between 2011-2025
