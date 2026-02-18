@@ -10,3 +10,5 @@ coverage/*
 .ruby-version
 .ruby-gemset
 .idea/
+todo_app/
+*.gem

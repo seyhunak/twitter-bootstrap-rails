@@ -1,4 +1,5 @@
 require 'rails/generators'
+require 'fileutils'
 
 module Bootstrap
   module Generators
@@ -6,7 +7,7 @@ module Bootstrap
 
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator installs Bootstrap to Asset Pipeline"
-      argument :stylesheets_type, :type => :string, :default => 'less', :banner => '*less or static'
+      argument :stylesheets_type, :type => :string, :default => 'static', :banner => '*less or static'
       class_option :'no-coffeescript', :type => :boolean, :default => false, :desc => 'Skips coffeescript replacement into app generators'
 
       def add_assets
@@ -14,7 +15,7 @@ module Bootstrap
         js_manifest = 'app/assets/javascripts/application.js'
 
         if File.exist?(js_manifest)
-          insert_into_file js_manifest, "//= require twitter/bootstrap\n", :after => "jquery_ujs\n"
+          insert_into_file js_manifest, "//= require twitter/bootstrap\n", :after => "application\n"
         else
           copy_file "application.js", js_manifest
         end
@@ -22,18 +23,39 @@ module Bootstrap
         css_manifest = 'app/assets/stylesheets/application.css'
 
         if File.exist?(css_manifest)
-          # Add our own require:
           content = File.read(css_manifest)
-          if content.match(/require_tree\s+\.\s*$/)
-            # Good enough - that'll include our bootstrap_and_overrides.css.less
-          else
-            style_require_block = " *= require bootstrap_and_overrides\n"
+          unless content.include?('bootstrap')
+            style_require_block = " *= require bootstrap\n"
             insert_into_file css_manifest, style_require_block, :after => "require_self\n"
           end
         else
           copy_file "application.css", "app/assets/stylesheets/application.css"
         end
 
+        copy_bootstrap_assets
+
+      end
+
+      def copy_bootstrap_assets
+        gem_root = File.expand_path("../../../../..", __FILE__)
+        bootstrap_css_src = "#{gem_root}/vendor/assets/stylesheets/twitter/bootstrap"
+        bootstrap_js_src = "#{gem_root}/vendor/assets/javascripts/twitter/bootstrap"
+        
+        css_dest = "app/assets/stylesheets/twitter/bootstrap"
+        js_dest = "app/assets/javascripts/twitter/bootstrap"
+        
+        FileUtils.mkdir_p(css_dest)
+        FileUtils.mkdir_p(js_dest)
+        
+        Dir.glob("#{bootstrap_css_src}/*").each do |src|
+          dest = "#{css_dest}/#{File.basename(src)}"
+          FileUtils.cp(src, dest)
+        end
+        
+        Dir.glob("#{bootstrap_js_src}/*").each do |src|
+          dest = "#{js_dest}/#{File.basename(src)}"
+          FileUtils.cp(src, dest)
+        end
       end
 
       def add_bootstrap
@@ -59,7 +81,6 @@ module Bootstrap
       end
 
       def cleanup_legacy
-        # Remove old requires (if any) that included twitter/bootstrap directly:
         gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap\s*\n|, "")
         if File.exist?('app/assets/stylesheets/bootstrap_override.css.less')
           puts <<-EOM

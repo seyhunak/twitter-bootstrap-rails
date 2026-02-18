@@ -2,7 +2,7 @@
 
 Bootstrap is a toolkit from Twitter designed to kickstart development of web apps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
-twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 8, Rails 7, Rails 6, Rails 5 and Rails 4.x versions are supported)
+twitter-bootstrap-rails project integrates Bootstrap 5 CSS toolkit for Rails Asset Pipeline (Rails 8, Rails 7, Rails 6, Rails 5 and Rails 4.x versions are supported)
 
 [![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.svg)](http://badge.fury.io/rb/twitter-bootstrap-rails)
 [![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.svg?branch=master)](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.svg?branch=master)
@@ -65,9 +65,9 @@ If you need to skip coffeescript replacement into app generators, use:
 
     rails generate bootstrap:install --no-coffeescript
 
-### Installing the CSS stylesheets
+### Installing the CSS stylesheets (Recommended)
 
-If you don't need to customize the stylesheets using Less, the only gem you need is the `twitter-bootstrap-rails` gem:
+This is the recommended way to use Bootstrap. It uses pre-compiled static CSS and JavaScript files.
 
 ```ruby
 gem "twitter-bootstrap-rails"
@@ -79,24 +79,98 @@ After running `bundle install`, run the generator:
 
 If your Rails server is running, make sure to restart it.
 
-## Generating layouts and views
+### Installing the Less stylesheets
 
-You can run following generators to get started with Bootstrap quickly.
+To use Less stylesheets for customization, you'll need the [less-rails gem](http://rubygems.org/gems/less-rails), and one of [JavaScript runtimes supported by CommonJS](https://github.com/cowboyd/commonjs.rb#supported-runtimes).
 
+Include these lines in the Gemfile:
 
-Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)
+```ruby
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
+```
 
+Then run:
 
-Usage:
+    bundle install
+    rails generate bootstrap:install less
 
+## Generators
 
-    rails g bootstrap:layout [LAYOUT_NAME]
+This gem provides several generators:
 
+### bootstrap:install
 
-Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)
+Installs Bootstrap assets to your Rails application.
 
+```bash
+rails generate bootstrap:install static    # Use pre-compiled CSS (recommended)
+rails generate bootstrap:install less     # Use Less stylesheets for customization
+```
 
-Usage:
+Options:
+- `--no-coffeescript` - Skip CoffeeScript replacement
+
+### bootstrap:layout
+
+Generates a Bootstrap-compatible layout with navigation navbar.
+
+```bash
+rails generate bootstrap:layout application
+```
+
+### bootstrap:themed
+
+Generates Bootstrap-themed CRUD views for a resource. Run after creating your scaffold.
+
+```bash
+rails generate scaffold Post title:string body:text
+rails db:migrate
+rails generate bootstrap:themed Posts
+```
+
+### bootstrap:partial
+
+Generates Bootstrap partials (navbar, navbar-devise, carousel).
+
+```bash
+rails generate bootstrap:partial navbar
+```
+
+## Quick Start
+
+```bash
+# Create a new Rails app
+rails new myapp
+cd myapp
+
+# Add to Gemfile
+gem "twitter-bootstrap-rails"
+
+# Install dependencies
+bundle install
+
+# Install Bootstrap assets
+rails generate bootstrap:install static
+
+# Generate a scaffold
+rails generate scaffold Task title:string description:text completed:boolean
+
+# Run migrations
+rails db:migrate
+
+# Apply Bootstrap theming
+rails generate bootstrap:themed Tasks
+
+# Generate layout
+rails generate bootstrap:layout application
+
+# Start server
+rails server
+```
+
+Visit http://localhost:3000/tasks to see your Bootstrap-themed app!
 
 
     rails g bootstrap:themed [RESOURCE_NAME]
@@ -604,7 +678,6 @@ Glyph:
 ### I18n Internationalization Support
 The installer creates an English translation file for you and copies it to config/locales/en.bootstrap.yml
 
-
 NOTE: If you are using Devise in your project, you must have a devise locale file
 for handling flash messages, even if those messages are blank. See https://github.com/plataformatec/devise/wiki/I18n
 
@@ -614,22 +687,12 @@ Please see CHANGELOG.md for more details
 ## Contributors & Patches & Forks
 Please see CONTRIBUTERS.md for contributors list
 
-## About Me
-Senior Software Developer Istanbul / Turkey
-seyhunak [at] gmail com
-
-## Hire Me
-[![Hire Me !](https://img.shields.io/badge/Hire%20Me-for%20your%20project%20on%20PPH-red?s?style=social&logo=ios&logoColor=blue&labelColor=black&color=blue)](http://pph.me/seyhunak)
-
 ## Thanks
 Bootstrap and all twitter-bootstrap-rails contributors
 http://twbs.github.io/bootstrap
 
-## Backers
-Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/twitter-bootstrap-rails#backer)]
-
 ## License
-Copyright (c) 2025 (since 2012) by Seyhun Akyürek
+Copyright (c) 2026 (since 2012) by Seyhun Akyürek
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.

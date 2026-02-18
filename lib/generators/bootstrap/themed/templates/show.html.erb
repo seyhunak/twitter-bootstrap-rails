@@ -3,17 +3,17 @@
   <h1><%%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
+<dl class="row">
 <%- columns.each do |column| -%>
-  <dt><strong><%%= model_class.human_attribute_name(:<%= column.name %>) %>:</strong></dt>
-  <dd><%%= @<%= resource_name %>.<%= column.name %> %></dd>
+  <dt class="col-sm-2"><%%= model_class.human_attribute_name(:<%= column.name %>) %>:</dt>
+  <dd class="col-sm-10"><%%= @<%= resource_name %>.<%= column.name %> %></dd>
 <%- end -%>
 </dl>
 
 <%%= link_to t('.back', :default => t("helpers.links.back")),
-              <%= controller_routing_path %>_path, :class => 'btn btn-default'  %>
+              <%= controller_routing_path %>_path, :class => 'btn btn-secondary' %>
 <%%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_<%= singular_controller_routing_path %>_path(@<%= resource_name %>), :class => 'btn btn-default' %>
+              edit_<%= singular_controller_routing_path %>_path(@<%= resource_name %>), :class => 'btn btn-secondary' %>
 <%%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               <%= singular_controller_routing_path %>_path(@<%= resource_name %>),
               :method => 'delete',
