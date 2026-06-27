@@ -49,6 +49,25 @@ rails generate bootstrap:layout application
 rails server
 ```
 
+## Contributors
+
+Thanks to all contributors who are helping to make better.
+
+<a href="https://github.com/seyhunak/twitter-bootstrap-rails/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=seyhunak/twitter-bootstrap-rails" />
+</a>
+
+### Star History
+
+<a href="https://www.star-history.com/#seyhunak/twitter-bootstrap-rails&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=seyhunak/twitter-bootstrap-rails&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=seyhunak/twitter-bootstrap-rails&type=Date" />
+   <img alt="Star history of seyhunak/twitter-bootstrap-rails over time" src="https://api.star-history.com/svg?repos=seyhunak/twitter-bootstrap-rails&type=Date" />
+ </picture>
+</a>
+
+
 ## License
 
 MIT
