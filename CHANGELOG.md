@@ -1,4 +1,6 @@
 <ul>
+  <li>Version 5.3.1 - Documentation and packaging updates only; no library code changes since 5.3.0</li>
+  <li>Version 5.3.0 - Bootstrap 5.3 assets, new generators, static asset fixes, requires Ruby >= 3.0, less-rails ~> 4.0</li>
   <li>Version 5.1.0 - Added Rails 8 compatibility</li>
   <li>Version 5.0.0 - Current version</li>
   <li>Version 0.0.5 deprecated</li>
