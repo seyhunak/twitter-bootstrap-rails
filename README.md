@@ -49,6 +49,12 @@ rails generate bootstrap:layout application
 rails server
 ```
 
+## Buy me a Coffee
+
+<a href="https://www.buymeacoffee.com/seyhunak">
+<img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=seyhunak&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
+</a>
+
 ## Contributors
 
 Thanks to all contributors who are helping to make better.
