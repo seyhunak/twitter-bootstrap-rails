@@ -50,10 +50,9 @@ rails server
 ```
 
 ## Buy me a Coffee
+## ☕ Support the Project
 
-<a href="https://www.buymeacoffee.com/seyhunak">
-<img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=seyhunak&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />
-</a>
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000)](https://www.buymeacoffee.com/seyhunak)
 
 ## Contributors
 
