@@ -171,6 +171,15 @@ If you are on Rails 8, note that `bootstrap:install static` previously left
 Propshaft apps with no Bootstrap at all — that is fixed here. See the
 [CHANGELOG](CHANGELOG.md) for the full list.
 
+## Sponsor
+
+[![Open Collective](https://img.shields.io/badge/Open%20Collective-back%20this%20project-1F87FF?style=for-the-badge&logo=opencollective&logoColor=white)](https://opencollective.com/twitter-bootstrap-rails)
+[![Patreon](https://img.shields.io/badge/Patreon-become%20a%20patron-FF424D?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/cw/seyhunak)
+
+- [Open Collective](https://opencollective.com/twitter-bootstrap-rails) — back the project with a one-off or monthly contribution
+- [Patreon](https://www.patreon.com/cw/seyhunak) — become a patron
+- [Bootstrap 5 for Rails](https://www.patreon.com/seyhunak/posts/twitter-rails-5-165533952) — release write-up on Patreon
+
 ## Buy me a Coffee
 ## ☕ Support the Project
 
