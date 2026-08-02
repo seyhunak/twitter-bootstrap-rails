@@ -197,4 +197,4 @@ Thanks to all contributors who are helping to make better.
 
 ## License
 
-MIT
+MIT. Copyright (c) 2025 (since 2011) by Seyhun Akyürek
