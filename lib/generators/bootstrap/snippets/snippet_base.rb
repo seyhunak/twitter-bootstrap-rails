@@ -68,6 +68,12 @@ module Bootstrap
           say "The snippet uses Bootstrap Icons; render the sprite once in your layout:"
           say "                 <%= render \"#{icons_render_path}\" %>"
         end
+        if variant[:images]
+          say_status :warn,
+            "This snippet references placeholder images from the Bootstrap docs site " \
+            "(e.g. bootstrap-docs.png). They will 404 until you point them at your own assets.",
+            :yellow
+        end
       end
 
       private

@@ -62,6 +62,8 @@ which Bootstrap ships.
   Each takes a variant name (`rails g bootstrap:header dark_search`), defaults to
   the first variant on the docs page, and supports `--list`, `--as`, `--path`,
   and `--no-icons`. Variant order matches the docs page order.
+- Snippets that reference placeholder images from the Bootstrap docs site (which
+  404 in a generated app) now warn at generate time instead of failing silently.
 - The Bootstrap Icons sprite used by 36 of those snippets ships as
   `_bootstrap_icons.html.erb`, installed automatically alongside any snippet that
   needs it. Render it once in your layout.
