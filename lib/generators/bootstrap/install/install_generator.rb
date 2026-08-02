@@ -1,104 +1,163 @@
 require 'rails/generators'
 require 'fileutils'
+require 'twitter/bootstrap/rails/version'
 
 module Bootstrap
   module Generators
     class InstallGenerator < ::Rails::Generators::Base
 
+      # Raised when a dist file that should ship with the gem is missing, rather
+      # than silently installing nothing.
+      class MissingAssetError < StandardError; end
+
       source_root File.expand_path("../templates", __FILE__)
-      desc "This generator installs Bootstrap to Asset Pipeline"
-      argument :stylesheets_type, :type => :string, :default => 'static', :banner => '*less or static'
-      class_option :'no-coffeescript', :type => :boolean, :default => false, :desc => 'Skips coffeescript replacement into app generators'
+      desc "This generator installs Bootstrap #{Twitter::Bootstrap::Rails::BOOTSTRAP_VERSION} to the Asset Pipeline"
+      argument :asset_mode, :type => :string, :default => 'static',
+               :banner => 'static or cdn',
+               :desc => 'static vendors Bootstrap into the app; cdn links to jsDelivr instead'
+
+      VENDORED_ASSETS = [
+        ['vendor/assets/stylesheets/twitter/bootstrap/bootstrap.min.css',
+         'app/assets/stylesheets/twitter/bootstrap/bootstrap.min.css'],
+        ['vendor/assets/javascripts/twitter/bootstrap/bootstrap.bundle.min.js',
+         'app/assets/javascripts/twitter/bootstrap/bootstrap.bundle.min.js']
+      ].freeze
+
+      def validate_asset_mode
+        return if %w[static cdn].include?(asset_mode)
+
+        raise ::Rails::Generators::Error,
+          "Unknown asset mode #{asset_mode.inspect}. Expected 'static' or 'cdn'."
+      end
 
       def add_assets
+        return if cdn?
+        # Propshaft has no require directives to add; bootstrap:layout links the
+        # vendored files explicitly instead.
+        return if propshaft?
 
         js_manifest = 'app/assets/javascripts/application.js'
 
-        if File.exist?(js_manifest)
-          insert_into_file js_manifest, "//= require twitter/bootstrap\n", :after => "application\n"
+        if exists_in_app?(js_manifest)
+          add_require(js_manifest,
+                      "//= require twitter/bootstrap/bootstrap.bundle.min\n",
+                      "application\n",
+                      'twitter/bootstrap')
         else
           copy_file "application.js", js_manifest
         end
 
         css_manifest = 'app/assets/stylesheets/application.css'
 
-        if File.exist?(css_manifest)
-          content = File.read(css_manifest)
-          unless content.include?('bootstrap')
-            style_require_block = " *= require bootstrap\n"
-            insert_into_file css_manifest, style_require_block, :after => "require_self\n"
-          end
+        if exists_in_app?(css_manifest)
+          add_require(css_manifest,
+                      " *= require bootstrap_and_overrides\n",
+                      "require_self\n",
+                      'bootstrap')
         else
-          copy_file "application.css", "app/assets/stylesheets/application.css"
+          copy_file "application.css", css_manifest
         end
-
-        copy_bootstrap_assets
-
       end
 
       def copy_bootstrap_assets
-        gem_root = File.expand_path("../../../../..", __FILE__)
-        bootstrap_css_src = "#{gem_root}/vendor/assets/stylesheets/twitter/bootstrap"
-        bootstrap_js_src = "#{gem_root}/vendor/assets/javascripts/twitter/bootstrap"
-        
-        css_dest = "app/assets/stylesheets/twitter/bootstrap"
-        js_dest = "app/assets/javascripts/twitter/bootstrap"
-        
-        FileUtils.mkdir_p(css_dest)
-        FileUtils.mkdir_p(js_dest)
-        
-        Dir.glob("#{bootstrap_css_src}/*").each do |src|
-          dest = "#{css_dest}/#{File.basename(src)}"
-          FileUtils.cp(src, dest)
-        end
-        
-        Dir.glob("#{bootstrap_js_src}/*").each do |src|
-          dest = "#{js_dest}/#{File.basename(src)}"
-          FileUtils.cp(src, dest)
+        return if cdn?
+
+        VENDORED_ASSETS.each do |relative_source, destination|
+          source = File.join(gem_root, relative_source)
+
+          unless File.file?(source)
+            raise MissingAssetError,
+              "Bootstrap #{Twitter::Bootstrap::Rails::BOOTSTRAP_VERSION} asset missing from the gem: " \
+              "#{relative_source}. The gem install looks incomplete; reinstall twitter-bootstrap-rails."
+          end
+
+          create_file destination, File.binread(source)
         end
       end
 
       def add_bootstrap
-        if use_coffeescript?
-          copy_file "bootstrap.coffee", "app/assets/javascripts/bootstrap.js.coffee"
-        else
-          copy_file "bootstrap.js", "app/assets/javascripts/bootstrap.js"
-        end
-        if use_less?
-          copy_file "bootstrap_and_overrides.less", "app/assets/stylesheets/bootstrap_and_overrides.css.less"
-        else
-          copy_file "bootstrap_and_overrides.css", "app/assets/stylesheets/bootstrap_and_overrides.css"
-        end
+        return if cdn?
+        return if propshaft?
+
+        copy_file "bootstrap.js", "app/assets/javascripts/bootstrap.js"
+        copy_file "bootstrap_and_overrides.css", "app/assets/stylesheets/bootstrap_and_overrides.css"
+      end
+
+      def add_cdn_initializer
+        return unless cdn?
+
+        create_file "config/initializers/bootstrap.rb", <<~RUBY
+          # Bootstrap's CSS and JS are loaded from jsDelivr rather than vendored into
+          # this app. `rails g bootstrap:layout` reads this to emit CDN tags by default.
+          Twitter::Bootstrap::Rails.asset_mode = :cdn
+        RUBY
       end
 
       def add_locale
-        if File.exist?("config/locales/en.bootstrap.yml")
-          localez = File.read("config/locales/en.bootstrap.yml")
-          insert_into_file "config/locales/en.bootstrap.yml", localez, :after => "en\n"
-        else
-          copy_file "en.bootstrap.yml", "config/locales/en.bootstrap.yml"
-        end
+        return if exists_in_app?("config/locales/en.bootstrap.yml")
+
+        copy_file "en.bootstrap.yml", "config/locales/en.bootstrap.yml"
       end
 
       def cleanup_legacy
-        gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap\s*\n|, "")
-        if File.exist?('app/assets/stylesheets/bootstrap_override.css.less')
-          puts <<-EOM
-          Warning:
-            app/assets/stylesheets/bootstrap_override.css.less exists
-            It should be removed, as it has been superceded by app/assets/stylesheets/bootstrap_and_overrides.css.less
-          EOM
+        return unless exists_in_app?('app/assets/stylesheets/application.css')
+
+        gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*twitter/bootstrap\s*\n|, "", :verbose => false)
+      end
+
+      def report
+        version = Twitter::Bootstrap::Rails::BOOTSTRAP_VERSION
+
+        if cdn?
+          say "Bootstrap #{version} will be loaded from jsDelivr. " \
+              "Run `rails g bootstrap:layout` to generate a layout with the CDN tags."
+        elsif propshaft?
+          say "Bootstrap #{version} vendored for Propshaft. " \
+              "Run `rails g bootstrap:layout` to generate a layout that links it."
+        else
+          say "Bootstrap #{version} vendored into the asset pipeline."
         end
       end
 
-    private
-      def use_less?
-        (defined?(Less) && (stylesheets_type!='static') ) || (stylesheets_type=='less')
+      private
+
+      def cdn?
+        asset_mode == 'cdn'
       end
 
-      def use_coffeescript?
-        return false if options[:'no-coffeescript']
-        ::Rails.configuration.app_generators.rails[:javascript_engine] == :coffee
+      def propshaft?
+        Twitter::Bootstrap::Rails.propshaft?
+      end
+
+      def gem_root
+        File.expand_path("../../../../..", __FILE__)
+      end
+
+      # Adds a Sprockets require to an existing manifest. Apps on Propshaft (the
+      # Rails 8 default) have no Sprockets directives to anchor to, so rather than
+      # letting the insert quietly fail, say what to add by hand.
+      def add_require(manifest, directive, anchor, marker)
+        content = read_from_app(manifest)
+        return if content.include?(marker)
+
+        if content.include?(anchor)
+          insert_into_file manifest, directive, :after => anchor
+        else
+          say_status :warn,
+            "#{manifest} has no `#{anchor.strip}` directive to anchor to — it is probably not a " \
+            "Sprockets manifest. Add this line yourself: #{directive.strip}",
+            :yellow
+        end
+      end
+
+      # Paths in a generator are relative to the destination root, not the
+      # working directory, so they have to be resolved before touching the disk.
+      def exists_in_app?(relative)
+        File.exist?(File.join(destination_root, relative))
+      end
+
+      def read_from_app(relative)
+        File.read(File.join(destination_root, relative))
       end
     end
   end

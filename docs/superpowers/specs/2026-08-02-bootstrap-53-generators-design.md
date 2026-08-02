@@ -15,11 +15,25 @@ The gem is currently inconsistent and partly broken:
 
 - `app/assets/stylesheets/twitter-bootstrap-static/bootstrap.css` vendors Bootstrap
   **5.3.3**; the generated layout CDN-pins **5.3.3** separately. Two places to bump.
-- `InstallGenerator#copy_bootstrap_assets` globs
+- ~~`InstallGenerator#copy_bootstrap_assets` globs
   `vendor/assets/stylesheets/twitter/bootstrap` and
   `vendor/assets/javascripts/twitter/bootstrap`. **Neither path exists.** `Dir.glob`
   returns `[]`, so the method creates two empty directories in the host app and
-  copies nothing, silently.
+  copies nothing, silently.~~
+
+  **Correction (verified during implementation):** both paths exist and are
+  git-tracked, holding Bootstrap 5.3.3. The glob works. The real defects in this
+  area turned out to be:
+
+  - `vendor/assets/stylesheets/twitter-bootstrap-static/bootstrap.css.erb` is
+    **Bootstrap 3.1.1** and occupies the same logical asset path as the Bootstrap 5
+    `app/assets/stylesheets/twitter-bootstrap-static/bootstrap.css` that
+    `bootstrap_and_overrides.css` requires. Whichever the pipeline resolves first wins.
+  - `add_assets` calls `File.exist?` on paths relative to the working directory
+    rather than the destination root, so an existing `application.js` /
+    `application.css` is never detected and gets overwritten by the gem's template.
+  - On Propshaft apps there is no `require_self` anchor, so the require insertion
+    silently does nothing.
 - `vendor/toolkit/**/*.less` and `vendor/static-source/*.less` are the Bootstrap **3**
   Less source. Bootstrap 5 has no Less build. The gemspec still hard-depends on
   `less-rails ~> 4.0` and `execjs ~> 2.7`, and ships a `post_install_message` telling

@@ -1,5 +1,5 @@
 /*
- *= require twitter-bootstrap-static/bootstrap
+ *= require twitter/bootstrap/bootstrap.min
 
-   Bootstrap 5 no longer includes Glyphicons
+   Bootstrap 5 no longer ships Glyphicons. Add your own overrides below.
 */

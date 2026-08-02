@@ -20,17 +20,4 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'railties', '>= 5.0', '< 9.0'
   s.add_dependency 'actionpack', '>= 5.0', '< 9.0'
-  s.add_dependency 'less-rails', '~> 4.0'
-
-  s.add_runtime_dependency 'execjs', '~> 2.7'
-
-  s.post_install_message = "Important: You may need to add a javascript runtime to your Gemfile in order for bootstrap's LESS files to compile to CSS. \n\n" \
-  "**********************************************\n\n" \
-  "ExecJS supports these runtimes:\n\n" \
-  "therubyracer - Google V8 embedded within Ruby\n\n" \
-  "therubyrhino - Mozilla Rhino embedded within JRuby\n\n" \
-  "Node.js\n\n" \
-  "Apple JavaScriptCore - Included with Mac OS X\n\n" \
-  "Microsoft Windows Script Host (JScript)\n\n" \
-  "**********************************************\n"
 end
