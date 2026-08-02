@@ -164,6 +164,11 @@ If you are on Rails 8, note that `bootstrap:install static` previously left
 Propshaft apps with no Bootstrap at all — that is fixed here. See the
 [CHANGELOG](CHANGELOG.md) for the full list.
 
+## Buy me a Coffee
+## ☕ Support the Project
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000)](https://www.buymeacoffee.com/seyhunak)
+
 ## Contributors
 
 Thanks to all contributors who are helping to make better.
