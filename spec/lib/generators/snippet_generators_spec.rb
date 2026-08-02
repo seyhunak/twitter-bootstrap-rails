@@ -45,6 +45,19 @@ describe "Bootstrap snippet generators" do
       end
     end
 
+    it "flags exactly the variants that reference docs-site placeholder images" do
+      placeholders = ["bootstrap-docs.png", "bootstrap-themes.png",
+                      "/docs/5.3/assets/", "unsplash-photo-"]
+
+      Catalog::VARIANTS.each do |category, variants|
+        variants.each do |v|
+          markup = File.read(File.join(TEMPLATE_ROOT, category, "#{v[:name]}.html.erb"))
+          expect(placeholders.any? { |p| markup.include?(p) }).to eq(!!v[:images]),
+            "#{category}/#{v[:name]} :images flag is #{v[:images]} but markup says otherwise"
+        end
+      end
+    end
+
     it "gives every variant a unique name within its category" do
       Catalog::VARIANTS.each do |category, variants|
         names = variants.map { |v| v[:name] }

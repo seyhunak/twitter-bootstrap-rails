@@ -119,6 +119,13 @@ rails g bootstrap:footer columns --as=site_footer --path=app/views/layouts
 # -> app/views/layouts/_site_footer.html.erb
 ```
 
+### Placeholder images
+
+Five snippets (`hero centered`, `hero centered_screenshot`, `hero with_image`,
+`hero cropped_image`, `features custom_cards`) reference placeholder images that
+only exist on Bootstrap's docs site, so they 404 until you point them at your own
+assets. The generator warns you when you pick one.
+
 ### Icons
 
 36 of the 62 snippets use Bootstrap Icons through an SVG sprite. Those commands
