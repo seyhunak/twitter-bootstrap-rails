@@ -1,630 +1,200 @@
 # twitter-bootstrap-rails
 
-Bootstrap is a toolkit from Twitter designed to kickstart development of web apps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
-
-twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 8, Rails 7, Rails 6, Rails 5 and Rails 4.x versions are supported)
-
 [![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.svg)](http://badge.fury.io/rb/twitter-bootstrap-rails)
-[![Coverage Status](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.svg?branch=master)](https://coveralls.io/repos/seyhunak/twitter-bootstrap-rails/badge.svg?branch=master)
 [![GitHub stars](https://img.shields.io/github/stars/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/network)
 [![GitHub issues](https://img.shields.io/github/issues/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/issues)
 
-## Screencasts
-#### Installing twitter-bootstrap-rails, generators, usage and more
+Integrates Bootstrap 5.3.8 into Rails Asset Pipeline. Supports Rails 8, 7, 6, 5.
 
-Screencasts provided by <a href="http://railscasts.com">RailsCasts</a> (Ryan Bates)
-
-[Twitter Bootstrap Basics](http://railscasts.com/episodes/328-twitter-bootstrap-basics "Twitter Bootstrap Basics")
-in this episode you will learn how to include Bootstrap into Rails application with the twitter-bootstrap-rails gem.
-
-[More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap")
-in this episode continues on the Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customise layout with variables, and switch to using Sass.
-(Note: This episode is pro episode)
-
-## Installing the Gem
-
-The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) can provide the Bootstrap stylesheets in two ways.
-
-The plain CSS way is how Bootstrap is provided on [the official website](http://twbs.github.io/bootstrap/).
-
-The [Less](http://lesscss.org/) way provides more customisation options, like changing theme colors and provides useful Less mixins for your code, but requires the
-Less gem and the Ruby Racer Javascript runtime (not available on Microsoft Windows).
-
-### Installing the Less stylesheets
-
-To use Less stylesheets, you'll need the [less-rails gem](http://rubygems.org/gems/less-rails), and one of [JavaScript runtimes supported by CommonJS](https://github.com/cowboyd/commonjs.rb#supported-runtimes).
-
-Include these lines in the Gemfile to install the gems from [RubyGems.org](http://rubygems.org):
+## Install
 
 ```ruby
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+# Gemfile
 gem "twitter-bootstrap-rails"
 ```
 
-or you can install from latest build;
-
-```ruby
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+```bash
+bundle install
+rails generate bootstrap:install static
 ```
 
-Then run `bundle install` from the command line:
+## Generators
 
-    bundle install
+Every code snippet on the
+[Bootstrap 5.3 Introduction page](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+is reproducible from a command:
 
-Then run the bootstrap generator to add Bootstrap includes into your assets:
+| Docs snippet | Command |
+|---|---|
+| Starter template | `rails g bootstrap:starter` |
+| CDN CSS `<link>` | `rails g bootstrap:cdn --css` |
+| CDN JS bundle `<script>` | `rails g bootstrap:cdn --js` |
+| Popper + `bootstrap.js` separately | `rails g bootstrap:cdn --separate-popper` |
+| Important globals (doctype, `lang`, viewport) | baked into every generated layout and the starter template |
 
-    rails generate bootstrap:install less
+```bash
+# Install Bootstrap assets into the asset pipeline
+rails g bootstrap:install static
 
-If you need to skip coffeescript replacement into app generators, use:
+# ...or load Bootstrap from the jsDelivr CDN instead
+rails g bootstrap:install cdn
 
-    rails generate bootstrap:install --no-coffeescript
+# Generate a Bootstrap layout
+rails g bootstrap:layout application
 
-### Installing the CSS stylesheets
+# ...linking Bootstrap from the CDN, with Subresource Integrity
+rails g bootstrap:layout application --cdn
 
-If you don't need to customize the stylesheets using Less, the only gem you need is the `twitter-bootstrap-rails` gem:
+# ...using Popper and bootstrap.js separately rather than the bundle
+rails g bootstrap:layout application --cdn --separate-popper
 
-```ruby
-gem "twitter-bootstrap-rails"
+# Write the starter template from the Bootstrap docs
+rails g bootstrap:starter                    # -> public/bootstrap-starter.html
+rails g bootstrap:starter --path=public/demo.html
+
+# Print CDN tags to paste into a layout you already own (writes nothing)
+rails g bootstrap:cdn
+
+# Generate themed views for scaffold
+rails g scaffold Task title:string done:boolean
+rails db:migrate
+rails g bootstrap:themed Tasks
 ```
 
-After running `bundle install`, run the generator:
+`bootstrap:install cdn` records the choice in `config/initializers/bootstrap.rb`,
+so `bootstrap:layout` emits CDN tags by default afterwards. Pass `--cdn` or
+`--no-cdn` to override it per run.
 
-    rails generate bootstrap:install static
+Both asset pipelines are supported. On **Sprockets**, `static` adds `require`
+directives to your manifests. On **Propshaft** (the Rails 8 default) there are no
+directives to add, so the generated layout links the vendored files directly —
+run `rails g bootstrap:layout` after `bootstrap:install static` either way.
 
-If your Rails server is running, make sure to restart it.
+The Bootstrap version and its CDN URLs and integrity hashes live in one place,
+`Twitter::Bootstrap::Rails::BOOTSTRAP_CDN`. No template hardcodes them.
 
-## Generating layouts and views
+## Snippets
 
-You can run following generators to get started with Bootstrap quickly.
+Every snippet published at
+[getbootstrap.com/docs/5.3/examples](https://getbootstrap.com/docs/5.3/examples/)
+— 62 of them across 12 categories — is a command. Each writes an `.html.erb`
+partial into `app/views/shared/`:
 
-
-Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)
-
-
-Usage:
-
-
-    rails g bootstrap:layout [LAYOUT_NAME]
-
-
-Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)
-
-
-Usage:
-
-
-    rails g bootstrap:themed [RESOURCE_NAME]
-
-
-Example:
-
-
-    rails g scaffold Post title:string description:text
-    rake db:migrate
-    rails g bootstrap:themed Posts
-
-Notice the plural usage of the resource to generate bootstrap:themed.
-
-## Using with Less
-
-Bootstrap was built with Preboot, an open-source pack of mixins and variables to be used in conjunction with Less, a CSS preprocessor for faster and easier web development.
-
-## Using stylesheets with Less
-
-You have to require Bootstrap LESS (bootstrap_and_overrides.css.less) in your application.css
-
-```css
-/*
- *= require bootstrap_and_overrides
- */
-
-/* Your stylesheets goes here... */
+```bash
+rails g bootstrap:header               # the first variant, "centered"
+rails g bootstrap:header dark_search   # a specific variant
+rails g bootstrap:header --list        # what's available, with descriptions
 ```
 
-To use individual components from bootstrap, your bootstrap_and_overrides.less could look like this:
+| Command | Variants |
+|---|---|
+| `rails g bootstrap:header` | `centered`, `nav_pills`, `with_auth_buttons`, `dark_search`, `light_search`, `grid_dropdown`, `double`, `dark_double` |
+| `rails g bootstrap:hero` | `centered`, `centered_screenshot`, `with_image`, `signup_form`, `cropped_image`, `dark` |
+| `rails g bootstrap:features` | `columns_with_icons`, `hanging_icons`, `custom_cards`, `icon_grid`, `with_title` |
+| `rails g bootstrap:sidebar` | `dark`, `light`, `icon_only`, `collapsible`, `list_group` |
+| `rails g bootstrap:footer` | `simple`, `with_brand`, `with_nav`, `columns`, `with_newsletter` |
+| `rails g bootstrap:dropdown` | `simple`, `with_search`, `with_icons`, `calendar`, `mega_menu` |
+| `rails g bootstrap:list_group` | `with_avatars`, `checkboxes`, `checkboxes_expanded`, `checkable`, `radios` |
+| `rails g bootstrap:modal` | `sheet`, `confirm`, `whats_new`, `signup` |
+| `rails g bootstrap:badge` | `pills`, `subtle`, `subtle_bordered`, `with_avatar`, `with_icons`, `with_avatar_divider` |
+| `rails g bootstrap:breadcrumb` | `basic`, `with_icons`, `chevron`, `custom` |
+| `rails g bootstrap:button` | `pills`, `grid`, `with_icons`, `loading`, `circle` |
+| `rails g bootstrap:jumbotron` | `with_icon`, `placeholder`, `full_width`, `basic` |
 
-```less
-// Core variables and mixins
-@import "twitter/bootstrap/variables.less";
-@import "twitter/bootstrap/mixins.less";
+Variants are listed in the order they appear on the docs page, so the first one
+in each row is the first example Bootstrap shows.
 
-// Reset and dependencies
-@import "twitter/bootstrap/normalize.less";
-@import "twitter/bootstrap/print.less";
-//@import "twitter/bootstrap/glyphicons.less"; // Excludes glyphicons
+Options, on every snippet command:
 
-// Core CSS
-@import "twitter/bootstrap/scaffolding.less";
-@import "twitter/bootstrap/type.less";
-@import "twitter/bootstrap/code.less";
-@import "twitter/bootstrap/grid.less";
-@import "twitter/bootstrap/tables.less";
-@import "twitter/bootstrap/forms.less";
-@import "twitter/bootstrap/buttons.less";
+| Option | Effect |
+|---|---|
+| `--list` | Print the variants with descriptions and exit, writing nothing |
+| `--as=NAME` | Partial name to write (default: the generator name) |
+| `--path=DIR` | Where to write it (default: `app/views/shared`) |
+| `--no-icons` | Skip installing the shared icon sprite |
 
-// Components
-@import "twitter/bootstrap/component-animations.less";
-@import "twitter/bootstrap/dropdowns.less";
-@import "twitter/bootstrap/button-groups.less";
-@import "twitter/bootstrap/input-groups.less";
-@import "twitter/bootstrap/navs.less";
-@import "twitter/bootstrap/navbar.less";
-@import "twitter/bootstrap/breadcrumbs.less";
-@import "twitter/bootstrap/pagination.less";
-@import "twitter/bootstrap/pager.less";
-@import "twitter/bootstrap/labels.less";
-@import "twitter/bootstrap/badges.less";
-@import "twitter/bootstrap/jumbotron.less";
-@import "twitter/bootstrap/thumbnails.less";
-@import "twitter/bootstrap/alerts.less";
-@import "twitter/bootstrap/progress-bars.less";
-@import "twitter/bootstrap/media.less";
-@import "twitter/bootstrap/list-group.less";
-@import "twitter/bootstrap/panels.less";
-@import "twitter/bootstrap/responsive-embed.less";
-@import "twitter/bootstrap/wells.less";
-@import "twitter/bootstrap/close.less";
-
-// Components w/ JavaScript
-@import "twitter/bootstrap/modals.less";
-@import "twitter/bootstrap/tooltip.less";
-@import "twitter/bootstrap/popovers.less";
-@import "twitter/bootstrap/carousel.less";
-
-// Utility classes
-@import "twitter/bootstrap/utilities.less";
-@import "twitter/bootstrap/responsive-utilities.less";
+```bash
+rails g bootstrap:footer columns --as=site_footer --path=app/views/layouts
+# -> app/views/layouts/_site_footer.html.erb
 ```
 
-If you'd like to alter Bootstrap's own variables, or define your LESS
-styles inheriting Bootstrap's mixins, you can do so inside bootstrap_and_overrides.css.less:
+### Placeholder images
 
-
-```less
-@link-color: #ff0000;
-```
-
-### SASS
-
-If you are using SASS to compile your application.css (e.g. your manifest file is application.css.sass or application.css.scss) you may get this:
-
-```
-Invalid CSS after "*": expected "{", was "= require twitt..."
-(in app/assets/stylesheets/application.css)
-(sass)
-```
-
-If this is the case, you **must** use @import instead of `*=` in your manifest file, or don't compile your manifest with SASS.
+Five snippets (`hero centered`, `hero centered_screenshot`, `hero with_image`,
+`hero cropped_image`, `features custom_cards`) reference placeholder images that
+only exist on Bootstrap's docs site, so they 404 until you point them at your own
+assets. The generator warns you when you pick one.
 
 ### Icons
 
-By default, this gem (when using less generator) won't enable standard Bootstraps's Glyphicons.
-
-If you would like to restore the default Glyphicons, inside the generated `bootstrap_and_overrides.css.less` uncomment these lines:
-
-```less
-// Glyphicons are not required by default, uncomment the following lines to enable them.
-@glyphiconsEotPath: font-url("glyphicons-halflings-regular.eot");
-@glyphiconsEotPath_iefix: font-url("glyphicons-halflings-regular.eot?#iefix");
-@glyphiconsWoffPath: font-url("glyphicons-halflings-regular.woff");
-@glyphiconsTtfPath: font-url("glyphicons-halflings-regular.ttf");
-@glyphiconsSvgPath: font-url("glyphicons-halflings-regular.svg#glyphicons_halflingsregular");
-
-@import "twitter/bootstrap/glyphicons.less";
-```
-
-This gem was used to bundle the excellent [Font-Awesome](http://fortawesome.github.io/Font-Awesome/) library.
-However that was another maintenance effort that is not worth to do here.
-
-For Rails projects that need it there is the [font-awesome-rails gem](https://github.com/bokmann/font-awesome-rails) that
-provides same functionality that this gems was used to provide and it also have some other interesting features (e.g. view helpers).
-
-## Using JavaScript
-
-Require Bootstrap JS (bootstrap.js) in your application.js
-
-```js
-//= require twitter/bootstrap
-
-$(function(){
-  /* Your JavaScript goes here... */
-});
-```
-
-If you want to customize what is loaded, your application.js would look something like this
-
-```js
-#= require jquery
-#= require jquery_ujs
-#= require twitter/bootstrap/transition
-#= require twitter/bootstrap/alert
-#= require twitter/bootstrap/modal
-#= require twitter/bootstrap/button
-#= require twitter/bootstrap/collapse
-```
-
-...and so on for each bootstrap js component.
-
-## Using CoffeeScript (optionally)
-
-Using Bootstrap with the CoffeeScript is easy.
-twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
-to /app/assets/javascripts/ folder.
-
-```coffee
-jQuery ->
-  $("a[rel~=popover], .has-popover").popover()
-  $("a[rel~=tooltip], .has-tooltip").tooltip()
-```
-
-## Using Helpers
-
-### Modal Helper
-You can create modals easily using the following example. The header, body, and footer all accept content_tag or plain html.
-The href of the button to launch the modal must match the id of the modal dialog. It also accepts a block for the header, body, and footer. If you are getting a complaint about the modal_helper unable to merge a hash it is due to this.
+36 of the 62 snippets use Bootstrap Icons through an SVG sprite. Those commands
+also write `_bootstrap_icons.html.erb` next to the partial. Render it **once**,
+near the top of `<body>` in your layout, or those icons come out as empty boxes:
 
 ```erb
-<%= content_tag :a, "Modal", href: "#modal", class: 'btn', data: {toggle: 'modal'} %>
-<%= modal_dialog id: "modal",
-         header: { show_close: true, dismiss: 'modal', title: 'Modal header' },
-         body:   { content: 'This is the body' },
-         footer: { content: content_tag(:button, 'Save', class: 'btn') } %>
+<%= render "shared/bootstrap_icons" %>
 ```
 
-### Navbar Helper
-It should let you write things like:
+## Quick Start
 
-```erb
-<%= nav_bar fixed: :top, brand: "Fashionable Clicheizr 2.0", responsive: true do %>
-    <%= menu_group do %>
-        <%= menu_item "Home", root_path %>
-        <%= menu_divider %>
-        <%= drop_down "Products" do %>
-            <%= menu_item "Things you can't afford", expensive_products_path %>
-            <%= menu_item "Things that won't suit you anyway", harem_pants_path %>
-            <%= menu_item "Things you're not even cool enough to buy anyway", hipster_products_path %>
-            <% if current_user.lives_in_hackney? %>
-                <%= menu_item "Bikes", fixed_wheel_bikes_path %>
-            <% end %>
-        <% end %>
-        <%= menu_item "About Us", about_us_path %>
-        <%= menu_item "Contact", contact_path %>
-    <% end %>
-    <%= menu_group pull: :right do %>
-        <% if current_user %>
-            <%= menu_item "Log Out", log_out_path %>
-        <% else %>
-            <%= form_for @user, url: session_path(:user), html => {class: "navbar-form pull-right"} do |f| -%>
-              <p><%= f.text_field :email %></p>
-              <p><%= f.password_field :password %></p>
-              <p><%= f.submit "Sign in" %></p>
-            <% end -%>
-        <% end %>
-    <% end %>
-<% end %>
+```bash
+rails new myapp
+cd myapp
+echo 'gem "twitter-bootstrap-rails"' >> Gemfile
+bundle install
+rails generate bootstrap:install static
+rails generate scaffold Task title:string description:text completed:boolean
+rails db:migrate
+rails generate bootstrap:themed Tasks
+rails generate bootstrap:layout application
+rails server
 ```
 
-### Navbar scaffolding
+Run `bootstrap:layout` even if you already have a layout — that step is what puts
+Bootstrap's CSS and JS on the page.
 
-In your view file (most likely application.html.erb) to get a basic navbar set up you need to do this:
+## Upgrading to 5.4.0
 
-```erb
-<%= nav_bar %>
-```
+5.4.0 is a breaking release:
 
-Which will render:
+- **Less is gone.** `rails g bootstrap:install less` no longer exists; the
+  argument is now `static` (default) or `cdn`. Bootstrap 5 has no Less build, and
+  the `less-rails` and `execjs` dependencies have been dropped.
+- **Glyphicons are gone**, including the `glyph` helper. Bootstrap dropped them in
+  v4. The snippet generators ship Bootstrap Icons instead.
+- **CoffeeScript support is gone**, along with `--no-coffeescript`.
+- The gem version no longer tracks the Bootstrap version.
+  `Twitter::Bootstrap::Rails::BOOTSTRAP_VERSION` says which Bootstrap ships.
 
-```html
-<div class="navbar">
-  <div class="container">
-  </div>
-</div>
-```
+If you are on Rails 8, note that `bootstrap:install static` previously left
+Propshaft apps with no Bootstrap at all — that is fixed here. See the
+[CHANGELOG](CHANGELOG.md) for the full list.
 
-### Fixed navbar
+## Buy me a Coffee
+## ☕ Support the Project
 
-If you want the navbar to stick to the top of the screen, pass in the option like this:
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000)](https://www.buymeacoffee.com/seyhunak)
 
-```erb
-<%= nav_bar fixed: :top  %>
-```
+## Contributors
 
-To render:
+Thanks to all contributors who are helping to make better.
 
-```html
-<div class="navbar navbar-fixed-top">
-  <div class="container">
-  </div>
-</div>
-```
+<a href="https://github.com/seyhunak/twitter-bootstrap-rails/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=seyhunak/twitter-bootstrap-rails" />
+</a>
 
-### Static navbar
+### Star History
 
-If you want a full-width navbar that scrolls away with the page, pass in the option like this:
+<a href="https://www.star-history.com/#seyhunak/twitter-bootstrap-rails&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=seyhunak/twitter-bootstrap-rails&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=seyhunak/twitter-bootstrap-rails&type=Date" />
+   <img alt="Star history of seyhunak/twitter-bootstrap-rails over time" src="https://api.star-history.com/svg?repos=seyhunak/twitter-bootstrap-rails&type=Date" />
+ </picture>
+</a>
 
-```erb
-<%= nav_bar static: :top  %>
-```
-
-To render:
-
-```html
-<div class="navbar navbar-static-top">
-  <div class="container">
-  </div>
-</div>
-```
-
-### Brand name
-
-Add the name of your site on the left hand edge of the navbar. By default, it will link to root_url. Passing a brand_link option will set the url to whatever you want.
-
-```erb
-<%= nav_bar brand: "We're sooo web 2.0alizr", brand_link: account_dashboard_path  %>
-```
-
-Which will render:
-
-```html
-<div class="navbar">
-  <div class="container">
-      <a class="navbar-brand" href="/accounts/dashboard">
-        We're sooo web 2.0alizr
-      </a>
-  </div>
-</div>
-```
-
-### Optional responsive variation
-
-If you want the responsive version of the navbar to work (One that shrinks down on mobile devices etc.), you need to pass this option:
-
-```erb
-<%= nav_bar responsive: true %>
-```
-
-Which renders the html quite differently:
-
-```html
-<div class="navbar">
-  <div class="container">
-    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <!-- Everything in here gets hidden at 940px or less -->
-    <div class="navbar-collapse collapse">
-      <!-- menu items gets rendered here instead -->
-    </div>
-  </div>
-</div>
-```
-
-### Nav links
-
-This is the 'meat' of the code where you define your menu items.
-
-You can group menu items in theoretical boxes which you can apply logic to - e.g. show different collections for logged in users/logged out users, or simply right align a group.
-
-The active menu item will be inferred from the link for now.
-
-The important methods here are menu_group and menu_item.
-
-menu_group only takes one argument - :pull - this moves the group left or right when passed :left or :right.
-
-menu_item generates a link wrapped in an li tag. It takes two arguments and an options hash. The first argument is the name (the text that will appear in the menu), and the path (which defaults to "#" if left blank). The rest of the options are passed straight through to the link_to helper, so that you can add classes, ids, methods or data tags etc.
-
-```erb
-<%= nav_bar fixed: :top, brand: "Ninety Ten" do %>
-    <%= menu_group do %>
-        <%= menu_item "Home", root_path %>
-        <%= menu_item "About Us", about_us_path %>
-        <%= menu_item "Contact", contact_path %>
-    <% end %>
-    <% if current_user %>
-        <%= menu_item "Log Out", log_out_path %>
-    <% else %>
-        <%= menu_group pull: :right do %>
-            <%= menu_item "Sign Up", registration_path %>
-            <%= form_for @user, url: session_path(:user) do |f| -%>
-              <p><%= f.text_field :email %></p>
-              <p><%= f.password_field :password %></p>
-              <p><%= f.submit "Sign in" %></p>
-            <% end -%>
-        <% end %>
-    <% end %>
-<% end %>
-```
-
-### Dropdown menus
-
-For multi-level list options, where it makes logical sense to group menu items, or simply to save space if you have a lot of pages, you can group menu items into drop down lists like this:
-
-```erb
-<%= nav_bar do %>
-    <%= menu_item "Home", root_path %>
-    <%= drop_down "Products" do %>
-        <%= menu_item "Latest", latest_products_path %>
-        <%= menu_item "Top Sellers", popular_products_path %>
-        <%= drop_down_divider %>
-        <%= menu_item "Discount Items", discounted_products_path %>
-    <% end %>
-    <%= menu_item "About Us", about_us_path %>
-    <%= menu_item "Contact", contact_path %>
-<% end %>
-```
-
-### Dividers
-
-Dividers are just vertical bars that visually separate logically disparate groups of menu items
-
-```erb
-<%= nav_bar fixed: :bottom do %>
-    <%= menu_item "Home", root_path %>
-    <%= menu_item "About Us", about_us_path %>
-    <%= menu_item "Contact", contact_path %>
-    <%= menu_divider %>
-    <%= menu_item "Edit Profile", edit_user_path(current_user) %>
-    <%= menu_item "Account Settings", edit_user_account_path(current_user, @account) %>
-    <%= menu_item "Log Out", log_out_path %>
-<% end %>
-```
-
-### Forms in navbar
-
-At the moment - this is just a how to...
-
-You need to add this class to the form itself (Different form builders do this in different ways - please check out the relevant docs)
-
-```css
-.navbar-form
-```
-To pull the form left or right, add either of these classes:
-```css
-.pull-left
-.pull-right
-```
-
-If you want the Bootstrap search box (I think it just rounds the corners), use:
-```css
-.navbar-search
-```
-Instead of:
-```css
-.navbar-form
-```
-
-To change the size of the form fields, use .span2 (or however many span widths you want) to the input itself.
-
-### Component alignment
-
-You can shift things to the left or the right across the nav bar. It's easiest to do this on grouped menu items:
-
-```erb
-<%= nav_bar fixed: :bottom do %>
-    <% menu_group do %>
-        <%= menu_item "Home", root_path %>
-        <%= menu_item "About Us", about_us_path %>
-        <%= menu_item "Contact", contact_path %>
-    <% end %>
-    <% menu_group pull: :right do %>
-        <%= menu_item "Edit Profile", edit_user_path(current_user) %>
-        <%= menu_item "Account Settings", edit_user_account_path(current_user, @account) %>
-        <%= menu_item "Log Out", log_out_path %>
-    <% end %>
-<% end %>
-```
-
-### Text in the navbar
-
-If you want to put regular plain text in the navbar anywhere, you do it like this:
-
-```erb
-<%= nav_bar brand: "Apple" do %>
-    <%= menu_text "We make shiny things" %>
-    <%= menu_item "Home", root_path %>
-    <%= menu_item "About Us", about_us_path %>
-<% end %>
-```
-
-It also takes the :pull option to drag it to the left or right.
-
-### Flash helper
-
-Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout generator).
-You can pass the attributes you want to add to the main div returned: `<%= bootstrap_flash(class: "extra-class", id: "your-id") %>`
-
-
-### Breadcrumbs Helpers
-
-*Notice* If your application is using [breadcrumbs-on-rails](https://github.com/weppos/breadcrumbs_on_rails) you will have a namespace collision with the add_breadcrumb method. For this reason if breadcrumbs-on-rails is detected in `Gemfile` gem methods will be accessible using `boostrap` prefix, i.e. `render_bootstrap_breadcrumbs` and `add_bootstrap_breadcrumb`
-
-Usually you do not need to use these breadcrumb gems since this gem provides the same functionality out of the box without the additional dependency.
-
-However if there are some `breadcrumbs-on-rails` features you need to keep you can still use them and use this gem with the prefixes explained above.
-
-Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
-You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>` (default divider is `/`).
-If you do not need dividers at all you can use `nil`: `<%= render_breadcrumbs(nil) %>`.
-
-Full example:
-```ruby
-
-render_breadcrumbs(" / ", { class: '', item_class: '', divider_class: '', active_class: 'active' })
-
-```
-
-```ruby
-class ApplicationController
-  add_breadcrumb :root # 'root_path' will be used as url
-end
-```
-
-```ruby
-class ExamplesController < ApplicationController
-  add_breadcrumb :index, :examples_path
-
-  def edit
-    @example = Example.find params[:id]
-    add_breadcrumb @example # @example.to_s as name, example_path(@example) as url
-    add_breadcrumb :edit, edit_example_path(@example)
-  end
-end
-```
-All symbolic names translated with I18n. See [I18n Internationalization Support](#i18n-internationalization-support)
-section.
-
-### Element utility helpers
-
-Badge:
-```erb
-<%= badge(12, :warning) %> <span class="badge badge-warning">12</span>
-```
-
-Label:
-```erb
-<%= tag_label('Good!', :success) %> <span class="label label-success">Good!</span>
-```
-
-Glyph:
-```erb
-<%= glyph(:pencil) %> <i class="icon-pencil"></i>
-<%= glyph(:pencil, {tag: :span}) %> <span class="icon-pencil"></span>
-<%= glyph(:pencil, {class: 'foo'}) %> <i class="icon-pencil foo"></i>
-```
-
-### I18n Internationalization Support
-The installer creates an English translation file for you and copies it to config/locales/en.bootstrap.yml
-
-
-NOTE: If you are using Devise in your project, you must have a devise locale file
-for handling flash messages, even if those messages are blank. See https://github.com/plataformatec/devise/wiki/I18n
-
-## Changelog
-Please see CHANGELOG.md for more details
-
-## Contributors & Patches & Forks
-Please see CONTRIBUTERS.md for contributors list
-
-## About Me
-Senior Software Developer Istanbul / Turkey
-seyhunak [at] gmail com
-
-## Hire Me
-[![Hire Me !](https://img.shields.io/badge/Hire%20Me-for%20your%20project%20on%20PPH-red?s?style=social&logo=ios&logoColor=blue&labelColor=black&color=blue)](http://pph.me/seyhunak)
-
-## Thanks
-Bootstrap and all twitter-bootstrap-rails contributors
-http://twbs.github.io/bootstrap
 
 ## License
-Copyright (c) 2025 (since 2011) by Seyhun Akyürek
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+MIT. Copyright (c) 2025 (since 2011) by Seyhun Akyürek

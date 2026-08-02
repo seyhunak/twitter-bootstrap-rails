@@ -3,12 +3,9 @@
   <%%= f.input :<%= column.name %> %>
   <%%= error_span(@<%= resource_name %>[:<%= column.name %>]) %>
   <%- end -%>
-  <%- if ::SimpleForm::FormBuilder.instance_methods.include?(:wrapped_button) -%>
-  <%%= f.button :wrapped, :cancel => <%= controller_routing_path %>_path %>
-  <%- else -%>
-
-  <%%= f.button :submit, :class => 'btn-primary' %>
-  <%%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                <%= controller_routing_path %>_path, :class => 'btn btn-default' %>
-  <%- end -%>
+  <div class="mb-3">
+    <%%= f.button :submit, :class => 'btn-primary' %>
+    <%%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+              <%= controller_routing_path %>_path, :class => 'btn btn-secondary' %>
+  </div>
 <%% end %>

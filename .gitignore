@@ -10,3 +10,8 @@ coverage/*
 .ruby-version
 .ruby-gemset
 .idea/
+todo_app/
+blog_app/
+vendor/bundle/
+.playwright-mcp/
+*.gem

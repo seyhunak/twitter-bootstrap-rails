@@ -16,6 +16,11 @@ require 'action_controller'
 require 'mocha/api'
 require 'pry'
 
+require 'twitter/bootstrap/rails/version'
+require 'twitter/bootstrap/rails/config'
+
+Dir[File.expand_path("support/**/*.rb", __dir__)].sort.each { |f| require f }
+
 RSpec.configure do |config|
   config.include RSpecHtmlMatchers
 end

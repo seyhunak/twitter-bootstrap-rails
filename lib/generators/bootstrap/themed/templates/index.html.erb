@@ -1,9 +1,13 @@
 <%%- model_class = <%= resource_name.classify %> -%>
-<div class="page-header">
+<div class="d-flex justify-content-between align-items-center mb-4">
   <h1><%%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <%%= link_to t('.new', :default => t("helpers.links.new")),
+              new_<%= singular_controller_routing_path %>_path,
+              :class => 'btn btn-primary' %>
 </div>
-<table class="table table-striped">
-  <thead>
+
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
     <tr>
       <th><%%= model_class.human_attribute_name(:id) %></th>
       <%- columns.each do |column| -%>
@@ -23,20 +27,16 @@
         <td><%%=l <%= resource_name %>.created_at %></td>
         <td>
           <%%= link_to t('.show', :default => t("helpers.links.show")),
-                      <%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-default btn-xs' %>
+                      <%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-sm btn-outline-secondary' %>
           <%%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-default btn-xs' %>
+                      edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-sm btn-outline-primary' %>
           <%%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       <%= singular_controller_routing_path %>_path(<%= resource_name %>),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
+                      :class => 'btn btn-sm btn-outline-danger' %>
         </td>
       </tr>
     <%% end %>
   </tbody>
 </table>
-
-<%%= link_to t('.new', :default => t("helpers.links.new")),
-            new_<%= singular_controller_routing_path %>_path,
-            :class => 'btn btn-primary' %>
