@@ -13,7 +13,11 @@ Gem::Specification.new do |s|
   s.description = %q{twitter-bootstrap-rails project integrates Bootstrap 5 CSS toolkit for Rails 8, 7, 6, 5 (also supports) Asset Pipeline}
   s.required_ruby_version = '>= 3.0'
 
-  s.files = Dir["lib/**/*"] + Dir["vendor/**/*"] + Dir["app/**/*"] + ["Rakefile", "README.md", "CHANGELOG.md"]
+  # Only vendor/assets ships. Globbing vendor/**/* would sweep in vendor/bundle
+  # on any machine that has run `bundle install --path vendor/bundle`, which
+  # silently packages the whole bundle into the gem.
+  s.files = Dir["lib/**/*"] + Dir["vendor/assets/**/*"] + Dir["app/**/*"] +
+            ["Rakefile", "README.md", "CHANGELOG.md"]
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
