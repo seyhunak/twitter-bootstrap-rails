@@ -195,14 +195,13 @@ Thanks to all contributors who are helping to make better.
 
 ### Star History
 
-<a href="https://www.star-history.com/#seyhunak/twitter-bootstrap-rails&Date">
+<a href="https://star-history.dera.page/#seyhunak/twitter-bootstrap-rails&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=seyhunak/twitter-bootstrap-rails&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=seyhunak/twitter-bootstrap-rails&type=Date" />
-   <img alt="Star history of seyhunak/twitter-bootstrap-rails over time" src="https://api.star-history.com/svg?repos=seyhunak/twitter-bootstrap-rails&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=seyhunak/twitter-bootstrap-rails&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=seyhunak/twitter-bootstrap-rails&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=seyhunak/twitter-bootstrap-rails&type=date&legend=top-left" />
  </picture>
 </a>
-
 
 ## License
 
