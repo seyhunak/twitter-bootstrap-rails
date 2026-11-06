@@ -5,6 +5,59 @@ Release notes for twitter-bootstrap-rails. For the terse per-change log, see
 
 ---
 
+## 5.5.0 — 6 November 2026
+
+**Bootstrap 5.3.8** · Tested on Rails 8.1.4.1 and 8.0.5.2 · Ruby >= 3.0
+
+This release lets coding agents work with the gem directly, and moves the view
+helpers from Bootstrap 3 to Bootstrap 5 markup.
+
+> **This is a breaking release for apps using the view helpers.** Their HTML has
+> changed, so custom CSS or tests built on the old output will need updating. See
+> [CHANGELOG.md](CHANGELOG.md) for each change.
+
+### Added
+
+- `rails g bootstrap:doctor` checks how Bootstrap is set up in an app and lists older
+  markup with file, line and replacement. `--json` prints a report, and it exits 1 if
+  a check reports an error.
+- `rails g bootstrap:agent` writes a guide tailored to the app: a Claude skill and a
+  section in `AGENTS.md`.
+- `--json` on every snippet generator lists its variants.
+
+### Changed
+
+- The view helpers, breadcrumbs partial, Haml and Slim themed templates, simple_form
+  templates and Devise login partial now produce Bootstrap 5 markup. Before this,
+  helper toggles, dropdowns and close buttons did nothing on the Bootstrap 5 this gem
+  ships.
+
+### Fixed
+
+- `modal_cancel_button` raised `NoMethodError` on Rails 8.1.
+- `close_button` didn't escape its dismiss target.
+- Smaller fixes to `modal_dialog`, `bootstrap_flash`, `flash_block` and
+  `render_breadcrumbs`, listed in the changelog.
+
+### Rails security
+
+[Rails 8.1.4.1 and 8.0.5.2](https://rubyonrails.org/2026/11/4/Rails-8.0.5.2-and-8.1.4.1-have-been-released)
+fix 21 security issues. This gem's dependency range still allows older Rails, so run
+`bundle update rails` in your app.
+
+### Verification
+
+- The suite passes on Rails 8.1.4.1 and 8.0.5.2: 216 examples, 0 failures.
+- The built gem was installed into a new Rails 8.1.4.1 Propshaft app. `bootstrap:themed`
+  pages returned 200 in ERB, Haml and Slim with no older markup.
+- In a browser on an unpackaged checkout of the same code, the helpers' dropdown, modal
+  and flash alert all worked, with no console errors.
+
+Not exercised in a real app: Sprockets, `bootstrap:install cdn`, and Rails 7 or older.
+The `bootstrap:agent` guide hasn't been tried with a real coding agent.
+
+---
+
 ## 5.4.0 — 2 August 2026
 
 **Bootstrap 5.3.8** · Rails 8, 7, 6, 5 · Sprockets and Propshaft · Ruby >= 3.0

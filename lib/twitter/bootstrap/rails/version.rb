@@ -1,7 +1,7 @@
 module Twitter
   module Bootstrap
     module Rails
-      VERSION = "5.4.0"
+      VERSION = "5.5.0"
 
       # The Bootstrap release this gem vendors and links to. The gem version no
       # longer tracks it; this constant is the authoritative statement.
