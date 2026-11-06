@@ -44,6 +44,12 @@ describe Twitter::Bootstrap::Breadcrumbs do
     def test_models_path
       '/test_model'
     end
+
+    # polymorphic_path looks up custom mappings here before calling the named
+    # route helper above. A bare AbstractController has no route set of its own.
+    def _routes
+      @_routes ||= ActionDispatch::Routing::RouteSet.new
+    end
   end
 
   describe 'Breadcrumbs generation' do
@@ -51,12 +57,12 @@ describe Twitter::Bootstrap::Breadcrumbs do
     before do
       options = { :scope => [:breadcrumbs, 'test'] }
       [:class_i18n, :instance_i18n, :show, :symbolized].each do |name|
-        I18n.expects(:t).with(name, options).returns(name.to_s)
+        expect(I18n).to receive(:t).with(name, **options).and_return(name.to_s)
       end
 
       name = :base_i18n
       options = { :scope => [:breadcrumbs, 'base_test'] }
-      I18n.expects(:t).with(name, options).returns(name)
+      expect(I18n).to receive(:t).with(name, **options).and_return(name)
 
       @controller = TestController.new
       @controller.process(:show)

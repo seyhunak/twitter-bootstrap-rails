@@ -13,7 +13,6 @@ require 'rspec-html-matchers'
 require 'twitter-bootstrap-rails'
 require 'abstract_controller'
 require 'action_controller'
-require 'mocha/api'
 require 'pry'
 
 require 'twitter/bootstrap/rails/version'

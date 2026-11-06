@@ -53,7 +53,7 @@ module ModalHelper
   def modal_cancel_button(content, options)
     default_opts = { :class => "btn bootstrap-modal-cancel-button" }
 
-    content_tag_string "a", content, default_opts.merge(options)
+    content_tag :a, content, default_opts.merge(options)
   end
 
 end
