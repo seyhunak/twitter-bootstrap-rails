@@ -119,6 +119,7 @@ Options, on every snippet command:
 | Option | Effect |
 |---|---|
 | `--list` | Print the variants with descriptions and exit, writing nothing |
+| `--json` | Print the variants as JSON and exit, writing nothing |
 | `--as=NAME` | Partial name to write (default: the generator name) |
 | `--path=DIR` | Where to write it (default: `app/views/shared`) |
 | `--no-icons` | Skip installing the shared icon sprite |
@@ -195,6 +196,24 @@ rails server
 
 Run `bootstrap:layout` even if you already have a layout — that step is what puts
 Bootstrap's CSS and JS on the page.
+
+## Upgrading from 5.4.0
+
+The next release changes the HTML that the view helpers produce. They were still
+writing Bootstrap 3 markup, so toggles, dropdowns and close buttons did nothing on
+Bootstrap 5. If you have custom CSS or tests built on the old output, you'll need to
+update them:
+
+- `nav_bar` and the menu helpers use `navbar-expand`, `nav-item` and `nav-link`, and
+  `menu_item` puts `active` on the link rather than the `li`.
+- `drop_down_submenu` renders a labelled group, because Bootstrap 5 has no nested
+  dropdowns.
+- `badge` and `tag_label` render `badge text-bg-*`.
+- `render_breadcrumbs` renders `nav > ol.breadcrumb`, and `:divider_class` no longer
+  applies.
+
+See the [CHANGELOG](CHANGELOG.md) for the full list. `rails g bootstrap:doctor` finds
+older Bootstrap markup in your own views and helpers.
 
 ## Upgrading to 5.4.0
 
