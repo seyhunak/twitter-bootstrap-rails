@@ -4,8 +4,17 @@
 [![GitHub stars](https://img.shields.io/github/stars/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/network)
 [![GitHub issues](https://img.shields.io/github/issues/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/issues)
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?logo=claude&logoColor=white)](https://claude.com/claude-code)
 
 Integrates Bootstrap 5.3.8 into Rails Asset Pipeline. Supports Rails 8, 7, 6, 5.
+Tested against Rails 8.1.4.1 and 8.0.5.2.
+
+> **Upgrade Rails.** [Rails 8.1.4.1 and 8.0.5.2](https://rubyonrails.org/2026/11/4/Rails-8.0.5.2-and-8.1.4.1-have-been-released)
+> fix 21 security issues, and the Rails team strongly recommends upgrading as soon
+> as possible. This gem's dependency range still allows older Rails versions, so
+> installing it won't upgrade Rails for you. Run `bundle update rails` in your app.
+> Security support for Rails 8.0 ends on 7 November 2026, and older series are
+> already unsupported.
 
 ## Install
 
