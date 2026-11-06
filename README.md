@@ -197,9 +197,9 @@ rails server
 Run `bootstrap:layout` even if you already have a layout — that step is what puts
 Bootstrap's CSS and JS on the page.
 
-## Upgrading from 5.4.0
+## Upgrading to 5.5.0
 
-The next release changes the HTML that the view helpers produce. They were still
+5.5.0 changes the HTML that the view helpers produce. They were still
 writing Bootstrap 3 markup, so toggles, dropdowns and close buttons did nothing on
 Bootstrap 5. If you have custom CSS or tests built on the old output, you'll need to
 update them:
