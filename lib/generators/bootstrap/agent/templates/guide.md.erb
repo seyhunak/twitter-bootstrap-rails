@@ -1,0 +1,61 @@
+# Bootstrap in this app
+
+This app uses Bootstrap <%= facts[:bootstrap_version] %> through the twitter-bootstrap-rails gem (<%= facts[:gem_version] %>). Prefer the gem's generators and helpers over writing Bootstrap markup from memory, which is often out of date.
+
+This guide is generated. Run `rails g bootstrap:agent` again after upgrading the gem or changing the asset setup.
+
+## This app
+
+- Asset pipeline: <%= pipeline_note %>
+- Bootstrap assets: <%= facts[:asset_mode] %>
+- Template engine: <%= facts[:template_engine] %>
+
+## Workflow
+
+1. Run `rails g bootstrap:doctor --json` to see the app's current state. It writes nothing, and it exits 1 if a check reports an error.
+2. Find a snippet with `rails g bootstrap:<name> --json`, which lists the variants and what each one needs.
+3. Preview with `--pretend`, then run `rails g bootstrap:<name> <variant>`. Use `--as=NAME` and `--path=DIR` to choose where the partial goes.
+4. Add the `render` call the generator prints. If it mentions the icon sprite, render that once, near the top of `<body>` in the layout.
+5. If the generator warns about placeholder images, replace them with the app's own.
+6. Run `rails g bootstrap:doctor --json` again and fix any errors.
+
+Generators stop and ask before overwriting a file. Pass `--force` to overwrite or `--skip` to keep the existing file.
+
+Snippets are always written as ERB partials. They render from any template engine.
+
+## Snippets
+
+| Generator | Variants (the first is the default) |
+|---|---|
+<% catalog::GENERATORS.each do |generator, category| -%>
+| `bootstrap:<%= generator %>` | <%= catalog.variant_names(category).join(", ") %> |
+<% end -%>
+
+## Other generators
+
+- `bootstrap:install static` or `bootstrap:install cdn`: sets up Bootstrap's assets.
+- `bootstrap:layout [NAME]`: writes a layout that loads Bootstrap. Don't overwrite an existing layout without checking its contents first.
+- `bootstrap:themed RESOURCE`: writes Bootstrap views for a scaffold.
+- `bootstrap:cdn`: prints the CDN tags and writes nothing.
+
+## View helpers
+
+- Navigation: `nav_bar`, `menu_group`, `menu_item`, `menu_text`, `menu_divider`, `drop_down`, `drop_down_divider`, `drop_down_header`
+- Messages: `bootstrap_flash`, `flash_block`
+- Modals: `modal_dialog`, `modal_toggle`, `modal_cancel_button`
+- Other: `badge`, `tag_label`, `render_breadcrumbs`, `add_breadcrumb`, and `error_span` on form builders
+
+## Markup to avoid
+
+These come from older Bootstrap versions and do nothing on this one. `bootstrap:doctor` reports them, with file and line, under `legacy_markup`. Plain names like `close` or `well` may be the app's own CSS classes, so check those before changing them.
+
+Data attributes: <%= legacy::DATA_ATTRIBUTES.map { |name| "`data-#{name}`" }.join(", ") %> become `data-bs-*`.
+
+| Old class | Use instead |
+|---|---|
+<% legacy::CLASSES.each do |old, replacement| -%>
+| `<%= old %>` | <%= replacement %> |
+<% end -%>
+<% legacy::CLASS_PATTERNS.each do |_pattern, _replacement, example| -%>
+| <%= example.split(" become").first %> | <%= example.split(/ becomes? /).last %> |
+<% end -%>

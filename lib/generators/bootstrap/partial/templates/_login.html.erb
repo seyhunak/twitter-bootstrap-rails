@@ -1,27 +1,23 @@
 <h2>Sign in</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.email_field :email %>
-    </div>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="mb-3">
+    <%= f.label :email, :class => 'form-label' %>
+    <%= f.email_field :email, :class => 'form-control' %>
   </div>
-  <div class="control-group">
-      <%= f.label :password, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.password_field :password %>
-      </div>
+  <div class="mb-3">
+    <%= f.label :password, :class => 'form-label' %>
+    <%= f.password_field :password, :class => 'form-control' %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div class='control-group' >
-      <%= f.label :remember_me, :class => 'control-label' %>
-      <%= f.check_box :remember_me %> 
+    <div class="mb-3 form-check">
+      <%= f.check_box :remember_me, :class => 'form-check-input' %>
+      <%= f.label :remember_me, :class => 'form-check-label' %>
     </div>
   <% end -%>
 
-  <%= f.submit "Sign in", :class => 'btn btn-default' %>
+  <%= f.submit "Sign in", :class => 'btn btn-primary' %>
 
 <% end %>
 

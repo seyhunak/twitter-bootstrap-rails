@@ -3,6 +3,9 @@ module BootstrapFlashHelper
 
   def bootstrap_flash(options = {})
     flash_messages = []
+    tag_class = options[:class]
+    tag_attributes = options.except(:class)
+
     flash.each do |type, message|
       # Skip empty messages, e.g. for devise messages set to nothing in a locale file.
       next if message.blank?
@@ -13,15 +16,17 @@ module BootstrapFlashHelper
       type = :danger  if type == :error
       next unless ALERT_TYPES.include?(type)
 
-      tag_class = options.extract!(:class)[:class]
       tag_options = {
-        class: "alert fade in alert-#{type} #{tag_class}"
-      }.merge(options)
+        class: ["alert", "alert-#{type}", "alert-dismissible", "fade", "show", tag_class].compact.join(" "),
+        role: "alert"
+      }.merge(tag_attributes)
 
-      close_button = content_tag(:button, raw("&times;"), type: "button", class: "close", "data-dismiss" => "alert")
+      close_button = content_tag(:button, "", type: "button", class: "btn-close", "data-bs-dismiss" => "alert", "aria-label" => "Close")
 
       Array(message).each do |msg|
-        text = content_tag(:div, close_button + msg, tag_options)
+        # safe_join, not +: the message comes first now, and String + SafeBuffer
+        # would skip escaping it.
+        text = content_tag(:div, safe_join([msg, close_button]), tag_options)
         flash_messages << text if msg
       end
     end

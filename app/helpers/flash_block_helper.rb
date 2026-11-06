@@ -1,4 +1,6 @@
 module FlashBlockHelper
+  ALERT_CONTEXTS = { :notice => :success, :alert => :danger, :error => :danger }.freeze unless const_defined?(:ALERT_CONTEXTS)
+
   def flash_block
     output = ''
     flash.each do |type, message|
@@ -9,9 +11,9 @@ module FlashBlockHelper
   end
 
   def flash_container(type, message)
-    raw(content_tag(:div, :class => "alert alert-#{type}") do
-      content_tag(:a, raw("&times;"),:class => 'close', :data => {:dismiss => 'alert'}) +
-      message
-    end)
+    context = ALERT_CONTEXTS.fetch(type.to_sym, type)
+    close = content_tag(:button, "", :type => "button", :class => "btn-close", "data-bs-dismiss" => "alert", "aria-label" => "Close")
+
+    content_tag(:div, safe_join([message, close]), :class => "alert alert-#{context} alert-dismissible fade show", :role => "alert")
   end
 end

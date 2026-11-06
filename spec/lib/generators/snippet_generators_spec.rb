@@ -171,6 +171,29 @@ describe "Bootstrap snippet generators" do
     end
   end
 
+  describe "--json" do
+    let(:listing) { JSON.parse(run_generator(generator_for("hero"), %w[--json])) }
+
+    it "describes the generator and its default variant" do
+      expect(listing).to include("generator" => "bootstrap:hero", "category" => "heroes", "default" => "centered")
+    end
+
+    it "lists every variant with what it needs" do
+      expect(listing["variants"].map { |v| v["name"] }).to eq(Catalog.variant_names("heroes"))
+      expect(listing["variants"].first).to include("description" => a_kind_of(String), "icons" => false, "images" => true)
+    end
+
+    it "gives the command that generates each variant" do
+      expect(listing["variants"].last["command"]).to eq("rails g bootstrap:hero dark")
+    end
+
+    it "writes nothing" do
+      listing
+
+      expect(Dir[destination_path("**/*")]).to be_empty
+    end
+  end
+
   describe "--list" do
     it "prints each variant with its description and writes nothing" do
       output = run_generator(generator_for("sidebar"), %w[--list])

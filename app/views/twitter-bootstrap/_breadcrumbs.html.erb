@@ -1,14 +1,14 @@
 <% if @__bs_breadcrumbs.present? %>
-  <ul class="breadcrumb <%= options[:class] %>">
-    <% separator = divider.html_safe if divider %>
-    <% @__bs_breadcrumbs[0..-2].each do |crumb| %>
-      <li class="<%= options[:item_class] %>">
-        <%= link_to crumb[:name], crumb[:url], crumb[:options] %>
-        <span class="divider <%= options[:divider_class] %>"><%= separator if separator %></span>
+  <nav aria-label="breadcrumb"<% if divider %> style="--bs-breadcrumb-divider: '<%= divider %>';"<% end %>>
+    <ol class="breadcrumb <%= options[:class] %>">
+      <% @__bs_breadcrumbs[0..-2].each do |crumb| %>
+        <li class="breadcrumb-item <%= options[:item_class] %>">
+          <%= link_to crumb[:name], crumb[:url], crumb[:options] %>
+        </li>
+      <% end %>
+      <li class="breadcrumb-item <%= options[:active_class] %>" aria-current="page">
+        <%= @__bs_breadcrumbs.last[:name] %>
       </li>
-    <% end %>
-    <li class="<%= options[:active_class] %>">
-      <%= @__bs_breadcrumbs.last[:name] %>
-    </li>
-  </ul>
+    </ol>
+  </nav>
 <% end %>

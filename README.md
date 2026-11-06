@@ -4,8 +4,17 @@
 [![GitHub stars](https://img.shields.io/github/stars/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/network)
 [![GitHub issues](https://img.shields.io/github/issues/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/issues)
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?logo=claude&logoColor=white)](https://claude.com/claude-code)
 
 Integrates Bootstrap 5.3.8 into Rails Asset Pipeline. Supports Rails 8, 7, 6, 5.
+Tested against Rails 8.1.4.1 and 8.0.5.2.
+
+> **Upgrade Rails.** [Rails 8.1.4.1 and 8.0.5.2](https://rubyonrails.org/2026/11/4/Rails-8.0.5.2-and-8.1.4.1-have-been-released)
+> fix 21 security issues, and the Rails team strongly recommends upgrading as soon
+> as possible. This gem's dependency range still allows older Rails versions, so
+> installing it won't upgrade Rails for you. Run `bundle update rails` in your app.
+> Security support for Rails 8.0 ends on 7 November 2026, and older series are
+> already unsupported.
 
 ## Install
 
@@ -110,6 +119,7 @@ Options, on every snippet command:
 | Option | Effect |
 |---|---|
 | `--list` | Print the variants with descriptions and exit, writing nothing |
+| `--json` | Print the variants as JSON and exit, writing nothing |
 | `--as=NAME` | Partial name to write (default: the generator name) |
 | `--path=DIR` | Where to write it (default: `app/views/shared`) |
 | `--no-icons` | Skip installing the shared icon sprite |
@@ -136,6 +146,39 @@ near the top of `<body>` in your layout, or those icons come out as empty boxes:
 <%= render "shared/bootstrap_icons" %>
 ```
 
+## Coding agents
+
+Agents like Claude Code, Cursor and Codex often write outdated Bootstrap from memory
+or guess at an app's asset setup. These commands let them use what this gem already
+knows instead. The gem doesn't call any AI service and needs no API key.
+
+```bash
+rails g bootstrap:agent          # write a guide tailored to this app
+rails g bootstrap:doctor         # check how Bootstrap is set up
+rails g bootstrap:doctor --json  # the same report, for agents and CI
+rails g bootstrap:header --json  # list a snippet's variants as JSON
+```
+
+`bootstrap:agent` writes `.claude/skills/bootstrap-rails/SKILL.md` and a section in
+`AGENTS.md`, keeping anything else in that file. Run it again after upgrading the gem
+or changing your asset setup. Use `--no-claude` or `--no-agents` to skip either one.
+
+`bootstrap:doctor` writes nothing and exits 1 if a check reports an error, so it also
+works as a CI step. It checks:
+
+| Check | Looks for |
+|---|---|
+| `bootstrap_css`, `bootstrap_js` | Whether your layouts actually load Bootstrap, on Propshaft, Sprockets or the CDN |
+| `bootstrap_version` | CDN tags or vendored files on a different version from the one this gem ships |
+| `icon_sprite` | The sprite being installed but never rendered, or rendered more than once |
+| `placeholder_images` | Docs-site images left in your views |
+| `legacy_markup` | Markup from older Bootstrap versions in `app/views`, `app/helpers` and `app/components`, with file, line and replacement |
+
+In an existing app, `legacy_markup` works as a migration to-do list. Plain names like
+`close` or `well` may be your own CSS classes, so check those before changing them.
+If Bootstrap comes from `package.json` or your importmap, the doctor warns that it
+can't verify it rather than reporting an error.
+
 ## Quick Start
 
 ```bash
@@ -153,6 +196,24 @@ rails server
 
 Run `bootstrap:layout` even if you already have a layout — that step is what puts
 Bootstrap's CSS and JS on the page.
+
+## Upgrading from 5.4.0
+
+The next release changes the HTML that the view helpers produce. They were still
+writing Bootstrap 3 markup, so toggles, dropdowns and close buttons did nothing on
+Bootstrap 5. If you have custom CSS or tests built on the old output, you'll need to
+update them:
+
+- `nav_bar` and the menu helpers use `navbar-expand`, `nav-item` and `nav-link`, and
+  `menu_item` puts `active` on the link rather than the `li`.
+- `drop_down_submenu` renders a labelled group, because Bootstrap 5 has no nested
+  dropdowns.
+- `badge` and `tag_label` render `badge text-bg-*`.
+- `render_breadcrumbs` renders `nav > ol.breadcrumb`, and `:divider_class` no longer
+  applies.
+
+See the [CHANGELOG](CHANGELOG.md) for the full list. `rails g bootstrap:doctor` finds
+older Bootstrap markup in your own views and helpers.
 
 ## Upgrading to 5.4.0
 
@@ -183,6 +244,7 @@ Propshaft apps with no Bootstrap at all — that is fixed here. See the
 ## Buy me a Coffee
 ## ☕ Support the Project
 
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S1B528UND3)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000)](https://www.buymeacoffee.com/seyhunak)
 
 ## Contributors

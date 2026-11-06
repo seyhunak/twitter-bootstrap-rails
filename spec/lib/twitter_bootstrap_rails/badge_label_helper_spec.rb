@@ -19,12 +19,16 @@ describe BadgeLabelHelper, :type => :helper do
       .to eql(BADGE_WITH_CLASS.gsub(/\s/, '').downcase)
   end
 
+  it "should render tag_label as a badge, since Bootstrap 5 has no labels" do
+    expect(tag_label('Beta', :info)).to eql %{<span class="badge text-bg-info">Beta</span>}
+  end
+
   it "should take a Number as its first parameter" do
   	expect(badge(12).gsub(/\s/, '').downcase)
   	.to eql(BADGE_WITH_NUMBER_PARAM.gsub(/\s/, '').downcase)
   end
 end
 
-BASIC_BADGE = %{<span class="badge">New!</span>}
-BADGE_WITH_CLASS = %{<span class="badge badge-warning">2</span>}
-BADGE_WITH_NUMBER_PARAM = %{<span class="badge">12</span>}
+BASIC_BADGE = %{<span class="badge text-bg-secondary">New!</span>}
+BADGE_WITH_CLASS = %{<span class="badge text-bg-warning">2</span>}
+BADGE_WITH_NUMBER_PARAM = %{<span class="badge text-bg-secondary">12</span>}

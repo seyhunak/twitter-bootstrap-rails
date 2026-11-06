@@ -1,3 +1,4 @@
+require 'json'
 require 'rails/generators'
 require 'twitter/bootstrap/rails/version'
 require 'generators/bootstrap/snippets/snippet_catalog'
@@ -19,6 +20,8 @@ module Bootstrap
                    :desc => 'Directory to write the partial into'
       class_option :list, :type => :boolean, :default => false,
                    :desc => 'List the available variants and exit'
+      class_option :json, :type => :boolean, :default => false,
+                   :desc => 'List the available variants as JSON and exit'
       class_option :icons, :type => :boolean, :default => true,
                    :desc => 'Also install the shared Bootstrap Icons sprite when the snippet needs it'
 
@@ -37,7 +40,8 @@ module Bootstrap
       end
 
       def list_variants
-        return unless options[:list]
+        return unless listing?
+        return say(JSON.pretty_generate(catalog_listing)) if options[:json]
 
         say "#{category} variants:\n\n"
         SnippetCatalog.variants(category).each do |v|
@@ -47,13 +51,13 @@ module Bootstrap
       end
 
       def copy_snippet
-        return if options[:list]
+        return if listing?
 
         copy_file "#{category}/#{variant_name}.html.erb", partial_path
       end
 
       def copy_icons
-        return if options[:list]
+        return if listing?
         return unless variant[:icons] && options[:icons]
 
         copy_file "icons/_#{ICONS_PARTIAL}.html.erb",
@@ -61,7 +65,7 @@ module Bootstrap
       end
 
       def report
-        return if options[:list]
+        return if listing?
 
         say "\nRender it with:  <%= render \"#{render_path}\" %>"
         if variant[:icons] && options[:icons]
@@ -77,6 +81,21 @@ module Bootstrap
       end
 
       private
+
+      def listing?
+        options[:list] || options[:json]
+      end
+
+      def catalog_listing
+        {
+          :generator => self.class.namespace,
+          :category => category,
+          :default => SnippetCatalog.default_variant(category),
+          :variants => SnippetCatalog.variants(category).map do |v|
+            v.merge(:command => "rails g #{self.class.namespace} #{v[:name]}")
+          end
+        }
+      end
 
       def category
         self.class.snippet_category
