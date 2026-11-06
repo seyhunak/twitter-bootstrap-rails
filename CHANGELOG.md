@@ -1,3 +1,48 @@
+## Unreleased
+
+### Added
+
+- **`rails g bootstrap:doctor`** checks how Bootstrap is set up in an app: whether
+  layouts load its CSS and JS, stale versions, an unrendered icon sprite, leftover
+  placeholder images, and markup from older Bootstrap versions with file and line.
+  `--json` prints a machine-readable report. It writes nothing and exits 1 if a
+  check reports an error.
+- **`rails g bootstrap:agent`** writes a guide for coding agents, tailored to the
+  app: a Claude skill and a section in `AGENTS.md`. It keeps the rest of `AGENTS.md`
+  and replaces its own section when run again.
+- **`--json`** on every snippet generator lists the variants as JSON.
+
+### Changed
+
+- **View helpers now produce Bootstrap 5 markup.** They were still producing
+  Bootstrap 3 markup, so toggles, dropdowns and close buttons did nothing on the
+  Bootstrap 5 this gem ships. This changes their HTML, so custom CSS or tests that
+  rely on the old output need updating:
+  - `nav_bar` and the menu helpers use `navbar-expand`, `nav-item` and `nav-link`.
+    `:inverse` uses `data-bs-theme="dark"`, and `:static` no longer adds a class.
+  - `menu_item` puts `active` on the link rather than the `li`.
+  - `drop_down_submenu` renders a labelled group, because Bootstrap 5 has no nested
+    dropdowns.
+  - `menu_text` renders a `span`.
+  - `badge` and `tag_label` render `badge text-bg-*`, defaulting to `secondary`.
+  - `modal_toggle` and `modal_cancel_button` use `btn-secondary`, and the modal title
+    is an `h5`.
+  - `error_span` defaults to `invalid-feedback d-block` inside `has-validation`.
+  - `render_breadcrumbs` renders `nav > ol.breadcrumb`. The divider is set through
+    `--bs-breadcrumb-divider`, so `:divider_class` no longer applies.
+- The Haml and Slim themed templates, the simple_form templates and the Devise login
+  partial now use Bootstrap 5 markup too.
+
+### Fixed
+
+- `modal_cancel_button` raised `NoMethodError` on Rails 8.1.
+- `modal_dialog` ignored `:size`.
+- `close_button` didn't escape its dismiss target.
+- `bootstrap_flash` dropped the `:class` option after the first message.
+- `flash_block` used `alert-notice` and `alert-alert`, which don't exist.
+- `render_breadcrumbs` ignored its default options, so the last crumb wasn't styled
+  as active.
+
 ## 5.4.0
 
 Bootstrap **5.3.8**. The gem version no longer tracks the Bootstrap version;

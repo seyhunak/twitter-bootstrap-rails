@@ -63,6 +63,16 @@ These two settings combine, and `install` and `layout` have to agree on them:
 
 `snippet_generators_spec.rb` keeps the catalog and templates in sync. The `:icons` and `:images` flags must match the markup (`xlink:href="#"`, docs-site image names), every referenced icon must exist in `icons/_bootstrap_icons.html.erb`, and docs-page chrome such as `b-example-divider` must be stripped.
 
+### Agent support
+
+These commands read the same sources as the rest of the gem, so nothing is duplicated:
+
+- `LegacyMarkup` (`lib/twitter/bootstrap/rails/legacy_markup.rb`) holds the tables of old Bootstrap markup and the scanner. `legacy_markup_spec.rb` fails if any shipped template, view or helper contains an entry, so new markup has to be Bootstrap 5.
+- `Doctor` (`lib/twitter/bootstrap/rails/doctor.rb`) reads a host app's files and returns a report. `bootstrap:doctor` is a generator rather than a rake task because rake rejects flags like `--json`. It exits 1 on any `error` check, so reserve `error` for things that are certainly broken.
+- `bootstrap:agent` renders `agent/templates/guide.md.erb` from `Doctor#facts`, `SnippetCatalog` and `LegacyMarkup`. It must never prompt: an agent running it would hang. The guide lists old markup through the tables, not as literals, because the scan covers that template too.
+
+`--json` output must stay parseable on its own, so don't print anything else on that path.
+
 ### Helpers
 
 `engine.rb` loads helpers by explicit `require_relative` and registers them from a hardcoded list, so a new helper in `app/helpers/` must be added there. `FormErrorsHelper` is included into `FormBuilder` and `Breadcrumbs` into `ActionController::Base`. Breadcrumbs only aliases the unprefixed `add_breadcrumb` when `BreadcrumbsOnRails` is absent, and the `add_bootstrap_breadcrumb` name always works.

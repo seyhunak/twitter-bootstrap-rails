@@ -29,16 +29,10 @@ describe BootstrapFlashHelper, type: :helper do
       element = bootstrap_flash
 
       expect(element).to have_tag(:div,
-        text: "×Hello",
-        with: {class: "alert fade in alert-success"}) {
+        text: "Hello",
+        with: {class: "alert alert-success alert-dismissible fade show"}) {
 
-        with_tag(:button,
-          text: "×",
-          with: {
-            class: "close",
-            "data-dismiss" => "alert"
-          }
-        )
+        with_tag(:button, with: {class: "btn-close", "data-bs-dismiss" => "alert", type: "button", "aria-label" => "Close"})
 
       }
     end
@@ -49,16 +43,10 @@ describe BootstrapFlashHelper, type: :helper do
       element = bootstrap_flash(class: "extra-class")
 
       expect(element).to have_tag(:div,
-        text: "×Hello",
-        with: {class: "alert fade in alert-success extra-class"}) {
+        text: "Hello",
+        with: {class: "alert alert-success alert-dismissible fade show extra-class"}) {
 
-        with_tag(:button,
-          text: "×",
-          with: {
-            class: "close",
-            "data-dismiss" => "alert"
-          }
-        )
+        with_tag(:button, with: {class: "btn-close", "data-bs-dismiss" => "alert", type: "button", "aria-label" => "Close"})
 
       }
     end
@@ -69,19 +57,13 @@ describe BootstrapFlashHelper, type: :helper do
       element = bootstrap_flash(class: "extra-class", "data-no-transition-cache" => true)
 
       expect(element).to have_tag(:div,
-        text: "×Hello",
+        text: "Hello",
         with: {
-          class: "alert fade in alert-success extra-class",
+          class: "alert alert-success alert-dismissible fade show extra-class",
           "data-no-transition-cache" => true
         }) {
 
-        with_tag(:button,
-          text: "×",
-          with: {
-            class: "close",
-            "data-dismiss" => "alert"
-          }
-        )
+        with_tag(:button, with: {class: "btn-close", "data-bs-dismiss" => "alert", type: "button", "aria-label" => "Close"})
 
       }
     end
@@ -92,16 +74,18 @@ describe BootstrapFlashHelper, type: :helper do
       element = bootstrap_flash
 
       expect(element).to have_tag(:div,
-                                  text: "×<script>alert(1)</script>",
-                                  with: {class: "alert fade in alert-success"}) {
-                           with_tag(:button,
-                                    text: "×",
-                                    with: {
-                                        class: "close",
-                                        "data-dismiss" => "alert"
-                                    }
-                           )
+                                  text: "<script>alert(1)</script>",
+                                  with: {class: "alert alert-success alert-dismissible fade show"}) {
+                           with_tag(:button, with: {class: "btn-close", "data-bs-dismiss" => "alert", type: "button", "aria-label" => "Close"})
                          }
+    end
+
+    it "should keep the extra class on every message" do
+      allow(self).to receive(:flash) { {notice: ["One", "Two"]} }
+
+      element = bootstrap_flash(class: "extra-class")
+
+      expect(element).to have_tag("div.extra-class", count: 2)
     end
 
     it "should not escape a link if marked as safe by user" do
@@ -110,15 +94,9 @@ describe BootstrapFlashHelper, type: :helper do
       element = bootstrap_flash
 
       expect(element).to have_tag(:div,
-                                  text: "×awesome link!",
-                                  with: {class: "alert fade in alert-success"}) { [
-                             with_tag(:button,
-                                      text: "×",
-                                      with: {
-                                          class: "close",
-                                          "data-dismiss" => "alert"
-                                      }
-                             ),
+                                  text: "awesome link!",
+                                  with: {class: "alert alert-success alert-dismissible fade show"}) { [
+                             with_tag(:button, with: {class: "btn-close", "data-bs-dismiss" => "alert", type: "button", "aria-label" => "Close"}),
                              with_tag(:a,
                                       text: 'awesome link!')
                          ]

@@ -145,6 +145,39 @@ near the top of `<body>` in your layout, or those icons come out as empty boxes:
 <%= render "shared/bootstrap_icons" %>
 ```
 
+## Coding agents
+
+Agents like Claude Code, Cursor and Codex often write outdated Bootstrap from memory
+or guess at an app's asset setup. These commands let them use what this gem already
+knows instead. The gem doesn't call any AI service and needs no API key.
+
+```bash
+rails g bootstrap:agent          # write a guide tailored to this app
+rails g bootstrap:doctor         # check how Bootstrap is set up
+rails g bootstrap:doctor --json  # the same report, for agents and CI
+rails g bootstrap:header --json  # list a snippet's variants as JSON
+```
+
+`bootstrap:agent` writes `.claude/skills/bootstrap-rails/SKILL.md` and a section in
+`AGENTS.md`, keeping anything else in that file. Run it again after upgrading the gem
+or changing your asset setup. Use `--no-claude` or `--no-agents` to skip either one.
+
+`bootstrap:doctor` writes nothing and exits 1 if a check reports an error, so it also
+works as a CI step. It checks:
+
+| Check | Looks for |
+|---|---|
+| `bootstrap_css`, `bootstrap_js` | Whether your layouts actually load Bootstrap, on Propshaft, Sprockets or the CDN |
+| `bootstrap_version` | CDN tags or vendored files on a different version from the one this gem ships |
+| `icon_sprite` | The sprite being installed but never rendered, or rendered more than once |
+| `placeholder_images` | Docs-site images left in your views |
+| `legacy_markup` | Markup from older Bootstrap versions in `app/views`, `app/helpers` and `app/components`, with file, line and replacement |
+
+In an existing app, `legacy_markup` works as a migration to-do list. Plain names like
+`close` or `well` may be your own CSS classes, so check those before changing them.
+If Bootstrap comes from `package.json` or your importmap, the doctor warns that it
+can't verify it rather than reporting an error.
+
 ## Quick Start
 
 ```bash

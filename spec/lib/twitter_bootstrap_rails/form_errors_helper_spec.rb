@@ -27,8 +27,8 @@ describe FormErrorsHelper, :type => :helper do
     allow(self).to receive_messages(:protect_against_forgery? => false)
     allow(self).to receive_messages(:polymorphic_path => '')
 
-    @default_class = 'help-block'
-    @default_error_class = 'has-error'
+    @default_class = 'invalid-feedback'
+    @default_error_class = 'has-validation'
   end
 
 

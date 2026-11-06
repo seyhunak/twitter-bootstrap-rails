@@ -2,8 +2,9 @@ module FormErrorsHelper
   include ActionView::Helpers::FormTagHelper
 
   def error_span(attribute, options = {})
-    options[:span_class] ||= 'help-block'
-    options[:error_class] ||= 'has-error'
+    # d-block: .invalid-feedback is hidden unless it follows an .is-invalid input.
+    options[:span_class] ||= 'invalid-feedback d-block'
+    options[:error_class] ||= 'has-validation'
 
     if errors_on?(attribute)
       @template.content_tag( :div, :class => options[:error_class] )  do
