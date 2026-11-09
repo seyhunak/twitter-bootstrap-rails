@@ -5,6 +5,30 @@ Release notes for twitter-bootstrap-rails. For the terse per-change log, see
 
 ---
 
+## 5.5.1 — 9 November 2026
+
+**Bootstrap 5.3.8** · Tested on Rails 8.1.4.1 · Ruby >= 3.0
+
+This release helps apps prepare for Bootstrap 6, using the migration skill the
+Bootstrap team publishes. It changes no markup and is safe to take from 5.5.0.
+
+### Added
+
+- `rails g bootstrap:doctor --v6` adds a `v6_migration` check and list: Bootstrap 5
+  classes, data attributes, Sass `@import`s and JavaScript calls that change in
+  Bootstrap 6, with file, line and replacement. It follows the upstream
+  `bootstrap-v5-v6-migration` skill, skips the Bootstrap files this gem vendored, and
+  only warns. It is off unless you pass `--v6`.
+- The `bootstrap:agent` guide has a Bootstrap 6 section. It keeps agents on Bootstrap 5
+  markup and gives the steps to migrate, starting with
+  `npx skills add twbs/bootstrap --skill bootstrap-v5-v6-migration`.
+
+### Changed
+
+- `bootstrap:doctor` prints a heading above each list of findings.
+
+---
+
 ## 5.5.0 — 6 November 2026
 
 **Bootstrap 5.3.8** · Tested on Rails 8.1.4.1 and 8.0.5.2 · Ruby >= 3.0
