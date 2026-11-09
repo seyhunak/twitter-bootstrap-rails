@@ -1,6 +1,7 @@
 require 'twitter/bootstrap/rails/version'
 require 'twitter/bootstrap/rails/config'
 require 'twitter/bootstrap/rails/legacy_markup'
+require 'twitter/bootstrap/rails/v6_migration'
 
 module Twitter
   module Bootstrap
@@ -14,19 +15,27 @@ module Twitter
         SCANNED_EXTENSIONS = %w[.erb .haml .slim .rb].freeze
         PLACEHOLDER_IMAGES = ["bootstrap-docs.png", "bootstrap-themes.png", "/docs/5.3/assets/", "unsplash-photo-"].freeze
         SEVERITY = %w[ok warn error].freeze
+        # What `--v6` scans on top of views and helpers. The gem's own vendored
+        # Bootstrap files are skipped: replacing them is the first migration step.
+        V6_EXTRA_FILES = "app/{javascript,assets/javascripts,assets/stylesheets}/**/*".freeze
+        V6_EXTENSIONS = %w[.js .mjs .ts .css .scss .sass].freeze
+        VENDORED_DIR = %r{/twitter/bootstrap/}
 
         def initialize(root)
           @root = root
         end
 
-        def report
+        # v6: true adds a v6_migration check and list for apps moving to Bootstrap 6.
+        def report(v6: false)
           checks = [css_check, js_check, version_check, sprite_check, placeholder_check, legacy_check]
+          checks << v6_check if v6
 
-          facts.merge(
+          result = facts.merge(
             :status => checks.map { |c| c[:status] }.max_by { |s| SEVERITY.index(s) },
             :checks => checks,
             :legacy_markup => legacy_markup
           )
+          v6 ? result.merge(:v6_migration => v6_migration) : result
         end
 
         def facts
@@ -169,6 +178,28 @@ module Twitter
           end
         end
 
+        def v6_check
+          count = v6_migration.size
+          return check("v6_migration", "ok", "Nothing found that changes in Bootstrap 6.") if count.zero?
+
+          check("v6_migration", "warn",
+                "#{count} use(s) of Bootstrap 5 markup, Sass or JavaScript that change in Bootstrap 6, listed in v6_migration. " \
+                "This gem still ships Bootstrap #{BOOTSTRAP_VERSION}, so only change them as part of moving the app to Bootstrap 6.",
+                "Install the upstream migration skill (`#{V6Migration::SKILL_COMMAND}`) and follow it, " \
+                "or read #{V6Migration::GUIDE_URL}. Switch the Bootstrap assets first.")
+        end
+
+        def v6_migration
+          @v6_migration ||= v6_files.flat_map do |file|
+            V6Migration.scan(read(file), File.extname(file)).map { |finding| { :file => file }.merge(finding) }
+          end
+        end
+
+        def v6_files
+          extra = relative_files(V6_EXTRA_FILES, V6_EXTENSIONS).reject { |file| file.match?(VENDORED_DIR) }
+          (scanned_files + extra).uniq.sort
+        end
+
         def check(id, status, message, fix = nil)
           result = { :id => id, :status => status, :message => message }
           result[:fix] = fix if fix
@@ -187,9 +218,9 @@ module Twitter
           relative_files("app/{views,helpers,components}/**/*")
         end
 
-        def relative_files(pattern)
+        def relative_files(pattern, extensions = SCANNED_EXTENSIONS)
           Dir[File.join(@root, pattern)]
-            .select { |file| File.file?(file) && SCANNED_EXTENSIONS.include?(File.extname(file)) }
+            .select { |file| File.file?(file) && extensions.include?(File.extname(file)) }
             .map { |file| file.delete_prefix("#{@root}/") }
             .sort
         end

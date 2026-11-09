@@ -1,3 +1,26 @@
+## Unreleased
+
+### Added
+
+- **Bootstrap 6 migration support.** `rails g bootstrap:doctor --v6` adds a
+  `v6_migration` check and list: Bootstrap 5 classes, data attributes, Sass
+  `@import`s and JavaScript calls that change in Bootstrap 6, with file, line and
+  replacement. It follows the upstream `bootstrap-v5-v6-migration` skill from
+  `twbs/bootstrap`, scans views, helpers, components, `app/javascript` and
+  stylesheets, skips the Bootstrap files this gem vendored, and only warns.
+- The `bootstrap:agent` guide has a Bootstrap 6 section. It tells agents not to write
+  Bootstrap 6 markup on the Bootstrap 5 this gem ships, and gives the steps to migrate:
+  install the upstream skill with
+  `npx skills add twbs/bootstrap --skill bootstrap-v5-v6-migration`, run
+  `bootstrap:doctor --v6 --json`, and switch assets before markup.
+- The upstream migration skill is installed in this repository
+  (`.claude/skills/bootstrap-v5-v6-migration`, pinned in `skills-lock.json`) for work
+  on the gem itself. It is not packaged into the gem.
+
+### Changed
+
+- `bootstrap:doctor` prints a heading above each list of findings.
+
 ## 5.5.0
 
 ### Added

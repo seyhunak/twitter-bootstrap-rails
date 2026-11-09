@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "skills": {
+    "bootstrap-v5-v6-migration": {
+      "source": "twbs/bootstrap",
+      "sourceType": "github",
+      "skillPath": "skills/bootstrap-v5-v6-migration/SKILL.md",
+      "computedHash": "fb9d69d442570d30c5843a5de6154044681f6b7fb438a690cb68bd3d04369a84",
+      "installMode": "copy"
+    }
+  }
+}

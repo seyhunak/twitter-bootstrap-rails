@@ -71,7 +71,11 @@ These commands read the same sources as the rest of the gem, so nothing is dupli
 - `Doctor` (`lib/twitter/bootstrap/rails/doctor.rb`) reads a host app's files and returns a report. `bootstrap:doctor` is a generator rather than a rake task because rake rejects flags like `--json`. It exits 1 on any `error` check, so reserve `error` for things that are certainly broken.
 - `bootstrap:agent` renders `agent/templates/guide.md.erb` from `Doctor#facts`, `SnippetCatalog` and `LegacyMarkup`. It must never prompt: an agent running it would hang. The guide lists old markup through the tables, not as literals, because the scan covers that template too.
 
+- `V6Migration` (`lib/twitter/bootstrap/rails/v6_migration.rb`) holds the Bootstrap 5 to 6 rename tables, mirroring the upstream `bootstrap-v5-v6-migration` skill. It reuses `LegacyMarkup.class_names` for tokenizing. Unlike `LegacyMarkup` it is not enforced on the gem's templates: the gem ships Bootstrap 5, so its own markup is meant to match. `bootstrap:doctor --v6` uses it, and its `v6_migration` check only ever warns.
+
 `--json` output must stay parseable on its own, so don't print anything else on that path.
+
+The upstream skill is installed at `.claude/skills/bootstrap-v5-v6-migration` and pinned in `skills-lock.json`. Use it when the gem itself moves to Bootstrap 6, and update `V6Migration` when it changes (`npx skills update`). It is outside the gemspec globs, so it isn't packaged.
 
 ### Helpers
 

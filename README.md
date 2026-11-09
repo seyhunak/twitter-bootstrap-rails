@@ -156,6 +156,7 @@ knows instead. The gem doesn't call any AI service and needs no API key.
 rails g bootstrap:agent          # write a guide tailored to this app
 rails g bootstrap:doctor         # check how Bootstrap is set up
 rails g bootstrap:doctor --json  # the same report, for agents and CI
+rails g bootstrap:doctor --v6    # also list what changes in Bootstrap 6
 rails g bootstrap:header --json  # list a snippet's variants as JSON
 ```
 
@@ -178,6 +179,37 @@ In an existing app, `legacy_markup` works as a migration to-do list. Plain names
 `close` or `well` may be your own CSS classes, so check those before changing them.
 If Bootstrap comes from `package.json` or your importmap, the doctor warns that it
 can't verify it rather than reporting an error.
+
+### Preparing for Bootstrap 6
+
+This gem ships Bootstrap 5.3.8. Bootstrap 6 is in alpha (`6.0.0-alpha.1` on npm),
+and the Bootstrap team publishes an agent skill for the move from 5 to 6. Install it
+into your app alongside the gem's own guide:
+
+```bash
+npx skills add twbs/bootstrap --skill bootstrap-v5-v6-migration
+rails g bootstrap:agent             # the guide tells agents to stay on Bootstrap 5 markup until you migrate
+rails g bootstrap:doctor --v6       # the migration worklist
+rails g bootstrap:doctor --v6 --json
+```
+
+`--v6` adds a `v6_migration` check and list: every Bootstrap 5 class, data attribute,
+Sass `@import` and JavaScript call that changes in Bootstrap 6, with file, line and
+replacement. For example `modal-body` becomes `dialog-body`, `col-md-6` becomes
+`md:col-6`, `btn-primary` becomes `btn-solid theme-primary`, and
+`data-bs-toggle="dropdown"` becomes `data-bs-toggle="menu"`. It scans `app/views`,
+`app/helpers`, `app/components`, `app/javascript` and your stylesheets, and skips the
+Bootstrap files this gem vendored. It reports a warning, never an error, and is off
+unless you ask for it.
+
+Things the scan can't do for you:
+
+- The vendored assets, `bootstrap:install` and every generator are still Bootstrap 5.
+  Switch the assets to Bootstrap 6 before changing markup, and don't re-run the
+  generators afterwards.
+- The view helpers (`nav_bar`, `modal_dialog`, `badge` and the rest) render Bootstrap 5
+  markup at runtime, so their output isn't scanned.
+- Bootstrap 6 changes the spacing scale, so check `p-*`/`m-*` utilities by eye.
 
 ## Quick Start
 

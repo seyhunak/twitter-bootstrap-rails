@@ -107,5 +107,14 @@ describe Bootstrap::Generators::AgentGenerator do
 
       expect(skill).to include("rails g bootstrap:doctor --json")
     end
+
+    it "keeps agents on the shipped Bootstrap and points them at the upstream skill for Bootstrap 6" do
+      run_generator(described_class)
+      section = skill[/^## Bootstrap 6\n.*?(?=^## |\z)/m]
+
+      expect(section).to include("Don't write Bootstrap 6 markup")
+      expect(section).to include(Twitter::Bootstrap::Rails::V6Migration::SKILL_COMMAND)
+      expect(section).to include("rails g bootstrap:doctor --v6 --json")
+    end
   end
 end

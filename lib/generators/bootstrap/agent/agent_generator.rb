@@ -1,6 +1,7 @@
 require 'erb'
 require 'rails/generators'
 require 'twitter/bootstrap/rails/doctor'
+require 'twitter/bootstrap/rails/v6_migration'
 require 'generators/bootstrap/snippets/snippet_catalog'
 
 module Bootstrap
@@ -64,6 +65,10 @@ module Bootstrap
 
       def legacy
         Twitter::Bootstrap::Rails::LegacyMarkup
+      end
+
+      def v6
+        Twitter::Bootstrap::Rails::V6Migration
       end
 
       def pipeline_note

@@ -166,6 +166,55 @@ describe Bootstrap::Generators::DoctorGenerator do
     end
   end
 
+  describe "Bootstrap 6 migration" do
+    def v6_report
+      rails_mod::Doctor.new(destination_root).report(:v6 => true)
+    end
+
+    it "is left out unless asked for" do
+      write_destination("app/views/tasks/index.html.erb", %{<div class="modal-body"></div>})
+
+      expect(report).not_to have_key(:v6_migration)
+      expect(report[:checks].map { |c| c[:id] }).not_to include("v6_migration")
+    end
+
+    it "lists what changes in Bootstrap 6, with the location" do
+      write_destination("app/views/tasks/index.html.erb", %{<p>ok</p>\n<button data-bs-toggle="modal" class="btn btn-primary">x</button>})
+
+      expect(v6_report[:v6_migration]).to contain_exactly(
+        a_hash_including(:file => "app/views/tasks/index.html.erb", :line => 2, :found => "btn-primary"),
+        a_hash_including(:file => "app/views/tasks/index.html.erb", :line => 2, :found => %{data-bs-toggle="modal"})
+      )
+      check = v6_report[:checks].find { |c| c[:id] == "v6_migration" }
+      expect(check).to include(:status => "warn", :fix => a_string_including("bootstrap-v5-v6-migration"))
+    end
+
+    it "scans the app's JavaScript and stylesheets" do
+      write_destination("app/javascript/controllers/menu_controller.js", "new bootstrap.Dropdown(this.element)")
+      write_destination("app/assets/stylesheets/custom.scss", %{@import "bootstrap/scss/functions";})
+
+      expect(v6_report[:v6_migration].map { |f| f[:file] })
+        .to eq(%w[app/assets/stylesheets/custom.scss app/javascript/controllers/menu_controller.js])
+    end
+
+    it "skips the Bootstrap files the gem vendored" do
+      install_static_on_propshaft
+      layout_findings = v6_report[:v6_migration].reject { |f| f[:file].start_with?("app/views/") }
+
+      expect(layout_findings).to be_empty
+    end
+
+    it "finds the Bootstrap 5 markup in a layout the generators wrote" do
+      install_static_on_propshaft
+
+      expect(v6_report[:v6_migration].map { |f| f[:found] }).to include("navbar-expand-lg")
+    end
+
+    it "is happy when nothing needs to change" do
+      expect(v6_report[:checks].find { |c| c[:id] == "v6_migration" }[:status]).to eq("ok")
+    end
+  end
+
   describe "facts" do
     it "states the versions and template engine" do
       expect(report).to include(
@@ -205,6 +254,13 @@ describe Bootstrap::Generators::DoctorGenerator do
 
       expect { run_generator(described_class, %w[--json]) }
         .to raise_error(SystemExit) { |e| expect(e.status).to eq(1) }
+    end
+
+    it "adds the Bootstrap 6 worklist with --v6" do
+      parsed = JSON.parse(run_generator(described_class, %w[--v6 --json]))
+
+      expect(parsed["v6_migration"]).to include(a_hash_including("found" => "navbar-expand-lg", "replacement" => "lg:navbar-expand"))
+      expect(run_generator(described_class, %w[--v6])).to match(%r{\[warn\]\s+v6_migration.*\n(.*\n)*\s+app/views/layouts/application\.html\.erb:\d+\s+navbar-expand-lg -> lg:navbar-expand})
     end
 
     it "exits normally on warnings" do

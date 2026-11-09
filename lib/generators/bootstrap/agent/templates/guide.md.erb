@@ -45,6 +45,18 @@ Snippets are always written as ERB partials. They render from any template engin
 - Modals: `modal_dialog`, `modal_toggle`, `modal_cancel_button`
 - Other: `badge`, `tag_label`, `render_breadcrumbs`, `add_breadcrumb`, and `error_span` on form builders
 
+## Bootstrap 6
+
+This app runs Bootstrap <%= facts[:bootstrap_version] %>. Don't write Bootstrap 6 markup (`dialog`, `drawer`, `menu`, `md:col-6`, `btn-solid theme-primary`) unless the app is being moved to Bootstrap 6: none of it works on <%= facts[:bootstrap_version] %>. The gem's generators and helpers produce Bootstrap 5 markup.
+
+To move the app to Bootstrap 6:
+
+1. Install the upstream migration skill: `<%= v6::SKILL_COMMAND %>`. Follow it alongside this guide.
+2. Run `rails g bootstrap:doctor --v6 --json`. It lists every Bootstrap 5 class, data attribute, Sass import and JavaScript call that changes, with file, line and replacement, under `v6_migration`.
+3. Switch the Bootstrap assets before changing markup, because the vendored files and `bootstrap:install` are Bootstrap 5. Re-running `bootstrap:layout`, `bootstrap:themed` or a snippet generator writes Bootstrap 5 markup again.
+4. The helpers in "View helpers" render Bootstrap 5 markup at runtime, so the scan can't see their output. Replace them with Bootstrap 6 markup in the views that use them.
+5. v6 changes the spacing scale (`p-3` is smaller), so check spacing utilities by eye; the scan doesn't flag them.
+
 ## Markup to avoid
 
 These come from older Bootstrap versions and do nothing on this one. `bootstrap:doctor` reports them, with file and line, under `legacy_markup`. Plain names like `close` or `well` may be the app's own CSS classes, so check those before changing them.
