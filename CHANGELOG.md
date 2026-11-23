@@ -1,3 +1,13 @@
+## Unreleased
+
+### Changed
+
+- **Bootstrap 5.3.9.** Re-vendored the stylesheet, bundle and ES module build, and
+  updated the CDN tags and SRI hashes (`layout`, `starter`, `cdn`). Popper stays at
+  2.11.8. 5.3.9 adds `.modal-xxl`, which works through
+  `modal_dialog(:size => "modal-xxl")`, and keeps tooltip and popover text from data
+  attributes as literal text.
+
 ## 5.6.0
 
 ### Added
