@@ -19,8 +19,9 @@ This release updates the vendored Bootstrap to 5.3.9. It has no other changes.
 - Bootstrap 5.3.9 itself:
   - adds a `.modal-xxl` size, which you can use through
     `modal_dialog(:size => "modal-xxl")`;
-  - keeps tooltip and popover text from data attributes as literal text instead of
-    HTML;
+  - keeps `data-bs-title` and `data-bs-content` text exactly as written, so `9.90`
+    no longer shows as `9.9` and an empty title no longer stops a tooltip from
+    setting up;
   - respects `prefers-reduced-motion` in placeholder animations;
   - fixes carousel touch and indicator behaviour and ScrollSpy smooth scrolling.
 
