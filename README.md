@@ -6,7 +6,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/issues)
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?logo=claude&logoColor=white)](https://claude.com/claude-code)
 
-Integrates Bootstrap 5.3.8 into Rails on Propshaft, Sprockets, importmap or the CDN.
+Integrates Bootstrap 5.3.9 into Rails on Propshaft, Sprockets, importmap or the CDN.
 Supports Rails 8 and 7.1+. Tested against Rails 8.1.4.1 and 8.0.5.2.
 Apps still on Bootstrap 4 can use [HeroDevs Bootstrap NES 4.6](#bootstrap-nes-46-herodevs).
 
@@ -249,7 +249,7 @@ can't verify it rather than reporting an error.
 
 ### Preparing for Bootstrap 6
 
-This gem ships Bootstrap 5.3.8. Bootstrap 6 is in alpha (`6.0.0-alpha.1` on npm),
+This gem ships Bootstrap 5.3.9. Bootstrap 6 is in alpha (`6.0.0-alpha.1` on npm),
 and the Bootstrap team publishes an agent skill for the move from 5 to 6. Install it
 into your app alongside the gem's own guide:
 
