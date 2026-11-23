@@ -5,6 +5,38 @@ Release notes for twitter-bootstrap-rails. For the terse per-change log, see
 
 ---
 
+## 5.6.1 — 23 November 2026
+
+**Bootstrap 5.3.9** · Tested on Rails 8.1.4.1 · **Rails >= 7.1** · Ruby >= 3.0
+
+This release updates the vendored Bootstrap to 5.3.9. It has no other changes.
+
+### Changed
+
+- The stylesheet, bundle and ES module build are Bootstrap 5.3.9, and the CDN tags
+  from `bootstrap:layout`, `bootstrap:starter` and `bootstrap:cdn` link 5.3.9 with
+  the SRI hashes published in Bootstrap's docs. Popper stays at 2.11.8.
+- Bootstrap 5.3.9 itself:
+  - adds a `.modal-xxl` size, which you can use through
+    `modal_dialog(:size => "modal-xxl")`;
+  - keeps tooltip and popover text from data attributes as literal text instead of
+    HTML;
+  - respects `prefers-reduced-motion` in placeholder animations;
+  - fixes carousel touch and indicator behaviour and ScrollSpy smooth scrolling.
+
+### Upgrading
+
+Run `bundle update twitter-bootstrap-rails`, then re-run the generator for your asset
+mode so the app's copies are replaced:
+
+- `rails g bootstrap:install static --force` (or `importmap --force`) for vendored
+  assets;
+- `rails g bootstrap:layout --force`, after checking the diff, for CDN layouts.
+
+`rails g bootstrap:doctor` reports any file still on 5.3.8.
+
+---
+
 ## 5.6.0 — 23 November 2026
 
 **Bootstrap 5.3.8** · Tested on Rails 8.1.4.1 · **Rails >= 7.1** · Ruby >= 3.0
