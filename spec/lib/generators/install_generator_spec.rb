@@ -140,9 +140,59 @@ describe Bootstrap::Generators::InstallGenerator do
     end
   end
 
+  describe "importmap" do
+    let(:esm) { "vendor/javascript/twitter/bootstrap/bootstrap.esm.min.js" }
+    let(:popper) { "vendor/javascript/twitter/bootstrap/popper.esm.js" }
+
+    before do
+      Twitter::Bootstrap::Rails.asset_pipeline = :propshaft
+      write_destination("config/importmap.rb", %{pin "application"\n})
+      write_destination("app/javascript/application.js", %{import "@hotwired/turbo-rails"\n})
+    end
+
+    it "vendors the ES module builds of Bootstrap and Popper, and the stylesheet" do
+      run_generator(described_class, %w[importmap])
+
+      expect(read_destination(esm)).to start_with("/*!\n  * Bootstrap v#{Twitter::Bootstrap::Rails::BOOTSTRAP_VERSION} ")
+      expect(read_destination(popper)).to include("@popperjs/core v#{Twitter::Bootstrap::Rails::POPPER_VERSION}")
+      expect(destination_exist?("app/assets/stylesheets/twitter/bootstrap/bootstrap.min.css")).to be true
+      expect(destination_exist?("app/assets/javascripts/twitter/bootstrap/bootstrap.bundle.min.js")).to be false
+    end
+
+    it "pins both modules and imports Bootstrap from application.js" do
+      run_generator(described_class, %w[importmap])
+
+      expect(read_destination("config/importmap.rb"))
+        .to include(%{pin "bootstrap", to: "twitter/bootstrap/bootstrap.esm.min.js"})
+        .and include(%{pin "@popperjs/core", to: "twitter/bootstrap/popper.esm.js"})
+      expect(read_destination("app/javascript/application.js")).to include(%{import "bootstrap"})
+    end
+
+    it "does not pin or import twice when run again" do
+      run_generator(described_class, %w[importmap])
+      run_generator(described_class, %w[importmap --force])
+
+      expect(read_destination("config/importmap.rb").scan(/pin "bootstrap"/).size).to eq(1)
+      expect(read_destination("app/javascript/application.js").scan(/import "bootstrap"/).size).to eq(1)
+    end
+
+    it "writes an initializer selecting importmap mode" do
+      run_generator(described_class, %w[importmap])
+
+      expect(read_destination("config/initializers/bootstrap.rb")).to include("asset_mode = :importmap")
+    end
+
+    it "refuses an app without importmap" do
+      FileUtils.rm(destination_path("config/importmap.rb"))
+
+      expect { run_generator(described_class, %w[importmap]) }
+        .to raise_error(Rails::Generators::Error, /config\/importmap\.rb/)
+    end
+  end
+
   it "rejects an unknown mode" do
     expect {
       run_generator(described_class, %w[less])
-    }.to raise_error(Rails::Generators::Error, /Expected 'static' or 'cdn'/)
+    }.to raise_error(Rails::Generators::Error, /Expected one of static, cdn, importmap/)
   end
 end

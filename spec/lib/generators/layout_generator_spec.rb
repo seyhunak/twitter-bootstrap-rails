@@ -121,4 +121,28 @@ describe Bootstrap::Generators::LayoutGenerator do
     expect(layout).to include('stylesheet_link_tag "application"')
     expect(layout).not_to include("cdn.jsdelivr.net")
   end
+  describe "on an importmap app" do
+    before do
+      Twitter::Bootstrap::Rails.asset_pipeline = :propshaft
+      write_destination("config/importmap.rb", %{pin "application"\n})
+    end
+
+    [:erb, :haml, :slim].each do |engine|
+      it "keeps javascript_importmap_tags in #{engine}, so the app's own JavaScript still loads" do
+        expect(generate_layout([], :engine => engine)).to include("javascript_importmap_tags")
+      end
+
+      it "leaves Bootstrap's JavaScript to the importmap in importmap mode, in #{engine}" do
+        Twitter::Bootstrap::Rails.asset_mode = :importmap
+        layout = generate_layout([], :engine => engine)
+
+        expect(layout).to include('stylesheet_link_tag "twitter/bootstrap/bootstrap.min", "application"')
+        expect(layout).not_to include("bootstrap.bundle")
+      end
+    end
+  end
+
+  it "adds no importmap tags to an app without importmap" do
+    expect(generate_layout).not_to include("javascript_importmap_tags")
+  end
 end

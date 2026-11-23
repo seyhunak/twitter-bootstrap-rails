@@ -2,6 +2,7 @@ require 'json'
 require 'rails/generators'
 require 'twitter/bootstrap/rails/version'
 require 'generators/bootstrap/snippets/snippet_catalog'
+require 'generators/bootstrap/bootstrap5_markup'
 
 module Bootstrap
   module Generators
@@ -9,6 +10,8 @@ module Bootstrap
     # bootstrap:hero, ...). Each subclass only declares which docs category it
     # serves; everything else lives here.
     class SnippetBase < ::Rails::Generators::Base
+      include Bootstrap5Markup
+
       ICONS_PARTIAL = 'bootstrap_icons'.freeze
 
       argument :requested_variant, :type => :string, :required => false,
@@ -53,6 +56,7 @@ module Bootstrap
       def copy_snippet
         return if listing?
 
+        warn_if_nes
         copy_file "#{category}/#{variant_name}.html.erb", partial_path
       end
 

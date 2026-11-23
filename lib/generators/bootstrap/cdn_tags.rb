@@ -23,6 +23,17 @@ module Bootstrap
         script_tag(:popper)
       end
 
+      # Bootstrap 6 ships only ES modules, so its bundle needs type="module".
+      def next_css_tag
+        entry = Twitter::Bootstrap::Rails::BOOTSTRAP_NEXT_CDN.fetch(:css)
+        %{<link href="#{entry[:url]}" rel="stylesheet" integrity="#{entry[:integrity]}" crossorigin="anonymous">}
+      end
+
+      def next_bundle_tag
+        entry = Twitter::Bootstrap::Rails::BOOTSTRAP_NEXT_CDN.fetch(:bundle)
+        %{<script type="module" src="#{entry[:url]}" integrity="#{entry[:integrity]}" crossorigin="anonymous"></script>}
+      end
+
       # Popper and bootstrap.js as the separate pair, in the docs' order.
       def separate_popper_tags
         [popper_tag, js_tag].join("\n")

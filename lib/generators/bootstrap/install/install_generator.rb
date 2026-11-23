@@ -12,22 +12,43 @@ module Bootstrap
 
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator installs Bootstrap #{Twitter::Bootstrap::Rails::BOOTSTRAP_VERSION} to the Asset Pipeline"
-      argument :asset_mode, :type => :string, :default => 'static',
-               :banner => 'static or cdn',
-               :desc => 'static vendors Bootstrap into the app; cdn links to jsDelivr instead'
+      MODES = %w[static cdn importmap].freeze
 
-      VENDORED_ASSETS = [
-        ['vendor/assets/stylesheets/twitter/bootstrap/bootstrap.min.css',
-         'app/assets/stylesheets/twitter/bootstrap/bootstrap.min.css'],
-        ['vendor/assets/javascripts/twitter/bootstrap/bootstrap.bundle.min.js',
-         'app/assets/javascripts/twitter/bootstrap/bootstrap.bundle.min.js']
+      argument :asset_mode, :type => :string, :default => 'static',
+               :banner => MODES.join(' | '),
+               :desc => 'static vendors Bootstrap into the asset pipeline; cdn links to jsDelivr; ' \
+                        'importmap vendors the stylesheet and pins Bootstrap as an ES module'
+
+      STYLESHEET = ['vendor/assets/stylesheets/twitter/bootstrap/bootstrap.min.css',
+                    'app/assets/stylesheets/twitter/bootstrap/bootstrap.min.css'].freeze
+      BUNDLE = ['vendor/assets/javascripts/twitter/bootstrap/bootstrap.bundle.min.js',
+                'app/assets/javascripts/twitter/bootstrap/bootstrap.bundle.min.js'].freeze
+      # importmap-rails serves vendor/javascript, and these paths are what the pins name.
+      ES_MODULES = [
+        ['vendor/assets/javascripts/twitter/bootstrap/bootstrap.esm.min.js',
+         'vendor/javascript/twitter/bootstrap/bootstrap.esm.min.js'],
+        ['vendor/assets/javascripts/twitter/bootstrap/popper.esm.js',
+         'vendor/javascript/twitter/bootstrap/popper.esm.js']
       ].freeze
+      PINS = {
+        "bootstrap" => ["twitter/bootstrap/bootstrap.esm.min.js", "Bootstrap #{Twitter::Bootstrap::Rails::BOOTSTRAP_VERSION}"],
+        "@popperjs/core" => ["twitter/bootstrap/popper.esm.js", "Popper #{Twitter::Bootstrap::Rails::POPPER_VERSION}"]
+      }.freeze
+      IMPORTMAP = "config/importmap.rb".freeze
+      APPLICATION_JS = "app/javascript/application.js".freeze
 
       def validate_asset_mode
-        return if %w[static cdn].include?(asset_mode)
+        unless MODES.include?(asset_mode)
+          raise ::Rails::Generators::Error,
+            "Unknown asset mode #{asset_mode.inspect}. Expected one of #{MODES.join(', ')}. " \
+            "For HeroDevs Bootstrap NES 4.6, run `rails g bootstrap:nes`."
+        end
+
+        return unless importmap? && !exists_in_app?(IMPORTMAP)
 
         raise ::Rails::Generators::Error,
-          "Unknown asset mode #{asset_mode.inspect}. Expected 'static' or 'cdn'."
+          "importmap mode needs importmap-rails, but #{IMPORTMAP} does not exist. " \
+          "Run `bin/rails importmap:install` first, or use `bootstrap:install static`."
       end
 
       def add_assets
@@ -38,7 +59,9 @@ module Bootstrap
 
         js_manifest = 'app/assets/javascripts/application.js'
 
-        if exists_in_app?(js_manifest)
+        if importmap?
+          # Bootstrap's JavaScript comes from the importmap, not the manifest.
+        elsif exists_in_app?(js_manifest)
           add_require(js_manifest,
                       "//= require twitter/bootstrap/bootstrap.bundle.min\n",
                       "application\n",
@@ -62,7 +85,8 @@ module Bootstrap
       def copy_bootstrap_assets
         return if cdn?
 
-        VENDORED_ASSETS.each do |relative_source, destination|
+        vendored = [STYLESHEET] + (importmap? ? ES_MODULES : [BUNDLE])
+        vendored.each do |relative_source, destination|
           source = File.join(gem_root, relative_source)
 
           unless File.file?(source)
@@ -75,22 +99,46 @@ module Bootstrap
         end
       end
 
+      def pin_modules
+        return unless importmap?
+
+        existing = read_from_app(IMPORTMAP)
+        pins = PINS.reject { |name, _| existing.match?(/^\s*pin\s+["']#{Regexp.escape(name)}["']/) }
+                   .map { |name, (path, label)| %{pin "#{name}", to: "#{path}" # #{label} via twitter-bootstrap-rails\n} }
+        append_to_file IMPORTMAP, "\n" + pins.join unless pins.empty?
+
+        if exists_in_app?(APPLICATION_JS)
+          unless read_from_app(APPLICATION_JS).match?(/^\s*import\s+(?:\*\s+as\s+\w+\s+from\s+)?["']bootstrap["']/)
+            append_to_file APPLICATION_JS, %{import "bootstrap"\n}
+          end
+        else
+          say_status :warn, "#{APPLICATION_JS} not found. Add `import \"bootstrap\"` to your JavaScript entry point.", :yellow
+        end
+      end
+
       def add_bootstrap
         return if cdn?
         return if propshaft?
 
-        copy_file "bootstrap.js", "app/assets/javascripts/bootstrap.js"
+        copy_file "bootstrap.js", "app/assets/javascripts/bootstrap.js" unless importmap?
         copy_file "bootstrap_and_overrides.css", "app/assets/stylesheets/bootstrap_and_overrides.css"
       end
 
-      def add_cdn_initializer
-        return unless cdn?
-
-        create_file "config/initializers/bootstrap.rb", <<~RUBY
-          # Bootstrap's CSS and JS are loaded from jsDelivr rather than vendored into
-          # this app. `rails g bootstrap:layout` reads this to emit CDN tags by default.
-          Twitter::Bootstrap::Rails.asset_mode = :cdn
-        RUBY
+      def add_mode_initializer
+        if cdn?
+          create_file "config/initializers/bootstrap.rb", <<~RUBY
+            # Bootstrap's CSS and JS are loaded from jsDelivr rather than vendored into
+            # this app. `rails g bootstrap:layout` reads this to emit CDN tags by default.
+            Twitter::Bootstrap::Rails.asset_mode = :cdn
+          RUBY
+        elsif importmap?
+          create_file "config/initializers/bootstrap.rb", <<~RUBY
+            # Bootstrap's stylesheet is vendored into the asset pipeline and its JavaScript
+            # is pinned in config/importmap.rb. `rails g bootstrap:layout` reads this to
+            # leave Bootstrap's JavaScript to the importmap.
+            Twitter::Bootstrap::Rails.asset_mode = :importmap
+          RUBY
+        end
       end
 
       def add_locale
@@ -111,6 +159,10 @@ module Bootstrap
         if cdn?
           say "Bootstrap #{version} will be loaded from jsDelivr. " \
               "Run `rails g bootstrap:layout` to generate a layout with the CDN tags."
+        elsif importmap?
+          say "Bootstrap #{version} pinned in #{IMPORTMAP} and imported from #{APPLICATION_JS}. " \
+              "Use `import { Tooltip } from \"bootstrap\"` in your own modules. " \
+              "Run `rails g bootstrap:layout` if your layout doesn't link the stylesheet yet."
         elsif propshaft?
           say "Bootstrap #{version} vendored for Propshaft. " \
               "Run `rails g bootstrap:layout` to generate a layout that links it."
@@ -123,6 +175,10 @@ module Bootstrap
 
       def cdn?
         asset_mode == 'cdn'
+      end
+
+      def importmap?
+        asset_mode == 'importmap'
       end
 
       def propshaft?

@@ -35,7 +35,9 @@ Two namespaces:
 
 `BOOTSTRAP_CDN` in `version.rb` holds every CDN URL and SRI hash. `CdnTags` (`lib/generators/bootstrap/cdn_tags.rb`) renders them for the `layout`, `starter`, and `cdn` generators. `no_hardcoded_versions_spec.rb` fails if any template contains `bootstrap@` or `sha384-`.
 
-To bump Bootstrap, edit `version.rb` and re-vendor all four dist files. The same spec checks each file's banner against `BOOTSTRAP_VERSION`:
+`BOOTSTRAP_NEXT_CDN` holds the Bootstrap 6 prerelease tags for `bootstrap:cdn --bootstrap=6`. Its SRI hashes are sha384 of the files jsDelivr serves.
+
+To bump Bootstrap, edit `version.rb` and re-vendor the dist files, including `bootstrap.esm.min.js`. The same spec checks each file's banner against `BOOTSTRAP_VERSION` (and `popper.esm.js` against `POPPER_VERSION`):
 
 - `vendor/assets/stylesheets/twitter/bootstrap/bootstrap.min.css`
 - `vendor/assets/javascripts/twitter/bootstrap/bootstrap.bundle.min.js`
@@ -46,7 +48,10 @@ To bump Bootstrap, edit `version.rb` and re-vendor all four dist files. The same
 
 These two settings combine, and `install` and `layout` have to agree on them:
 
-- **Mode (`static` or `cdn`):** `bootstrap:install cdn` writes an initializer setting `Twitter::Bootstrap::Rails.asset_mode = :cdn`. `bootstrap:layout` reads that as its default, and `--cdn` / `--no-cdn` override it.
+- **Mode (`static`, `cdn`, `importmap` or `nes`):** `bootstrap:install cdn|importmap` and `bootstrap:nes` write an initializer setting `Twitter::Bootstrap::Rails.asset_mode`. `bootstrap:layout` reads it as its default, and `--cdn` / `--no-cdn` override it. The doctor reads the recorded mode from that initializer.
+  - `importmap` vendors the stylesheet and copies `vendor/assets/javascripts/twitter/bootstrap/{bootstrap.esm.min.js,popper.esm.js}` into the app's `vendor/javascript/twitter/bootstrap/`, then pins them. `popper.esm.js` is Popper's official UMD build plus ES module exports, because Popper has no single-file ES module. Rebuild it the same way when bumping Popper. Don't execute downloaded code to find its exports: read them from the package's `dist/esm` source.
+  - `nes` is HeroDevs Bootstrap NES 4.6 (`BOOTSTRAP_NES` in `version.rb`). It is paid and only on a private npm registry, so nothing is vendored: `bootstrap:nes` edits `package.json` and `.npmrc` (token from `${HERODEVS_NES_TOKEN}`, never a literal). In NES mode the doctor swaps the asset checks for `nes_package` / `nes_registry`, skips `legacy_markup` (Bootstrap 4 markup is correct there), and generators that include `Bootstrap5Markup` warn. Never print the `.npmrc` token value.
+- **Layouts on importmap apps:** whenever `config/importmap.rb` exists, the layout templates must emit `javascript_importmap_tags`, or regenerating a layout drops Turbo and Stimulus.
 - **Pipeline (`config.rb`):** detected at generate time from `defined?(::Propshaft)` / `defined?(::Sprockets)`. Under Sprockets, `install` adds `require` directives to the manifests. Propshaft has no directives, so `install` only copies the files and the `layout` template must link them by name (`stylesheet_arguments`, `javascript_arguments`).
 
 ### Two kinds of template
@@ -71,7 +76,13 @@ These commands read the same sources as the rest of the gem, so nothing is dupli
 - `Doctor` (`lib/twitter/bootstrap/rails/doctor.rb`) reads a host app's files and returns a report. `bootstrap:doctor` is a generator rather than a rake task because rake rejects flags like `--json`. It exits 1 on any `error` check, so reserve `error` for things that are certainly broken.
 - `bootstrap:agent` renders `agent/templates/guide.md.erb` from `Doctor#facts`, `SnippetCatalog` and `LegacyMarkup`. It must never prompt: an agent running it would hang. The guide lists old markup through the tables, not as literals, because the scan covers that template too.
 
+- `V6Migration` (`lib/twitter/bootstrap/rails/v6_migration.rb`) holds the Bootstrap 5 to 6 rename tables, mirroring the upstream `bootstrap-v5-v6-migration` skill. It reuses `LegacyMarkup.class_names` for tokenizing. Unlike `LegacyMarkup` it is not enforced on the gem's templates: the gem ships Bootstrap 5, so its own markup is meant to match. `bootstrap:doctor --v6` uses it, and its `v6_migration` check only ever warns.
+
 `--json` output must stay parseable on its own, so don't print anything else on that path.
+
+The upstream skills `bootstrap-v5-v6-migration` and `bootstrap-v4-v6-migration` are installed under `.claude/skills/` and pinned in `skills-lock.json`. Use them when the gem itself moves to Bootstrap 6, and update `V6Migration` when the v5-v6 skill's renames change. They are outside the gemspec globs, so they aren't packaged. The other `twbs/bootstrap` skills (install, bundlers, component authoring) all target Bootstrap 6 and would mislead work on this Bootstrap 5 gem, so they are deliberately not installed.
+
+To refresh them, re-run `npx skills add twbs/bootstrap --skill <name> --agent claude-code --copy -y`. Don't use `npx skills update -p -y`: it ignores `--agent` and copies each skill into a dot-directory for every agent it knows (about 50 of them) in the repo root.
 
 ### Helpers
 
@@ -93,10 +104,5 @@ Specs mock with rspec-mocks (`allow`, `expect(...).to receive`). `I18n.t` takes 
 ## Packaging
 
 The gemspec globs only `vendor/assets/**/*`, on purpose: `vendor/**/*` would package `vendor/bundle` into the gem.
-
-## Outdated files
-
-- `WARP.md` predates 5.4.0. It describes Less, Glyphicons, CoffeeScript, `vendor/toolkit`, and `glyph_helper`, all of which are gone. Trust the code and `RELEASES.md` over it.
-- `.travis.yml` targets Ruby 2.7 and 3.0, but the gemspec requires Ruby >= 3.0 and `.tool-versions` pins 3.3.5.
 
 `CHANGELOG.md` is the terse per-change log and `RELEASES.md` holds the long release notes. `CONTRIBUTING.md` requires feature requests to come with a patch that includes tests.

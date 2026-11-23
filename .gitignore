@@ -15,3 +15,4 @@ blog_app/
 vendor/bundle/
 .playwright-mcp/
 *.gem
+.claude/settings.local.json

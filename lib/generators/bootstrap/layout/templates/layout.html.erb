@@ -12,6 +12,9 @@
 
     <%%= stylesheet_link_tag <%= stylesheet_arguments %>, :media => "all" %>
 <% end -%>
+<% if importmap_app? -%>
+    <%%= javascript_importmap_tags %>
+<% end -%>
   </head>
   <body>
 
@@ -40,7 +43,7 @@
 
 <% if cdn? -%>
 <%= indent_tags(script_tags, "    ") %>
-<% else -%>
+<% elsif bootstrap_script? -%>
     <%%= javascript_include_tag <%= javascript_arguments %> %>
 <% end -%>
   </body>

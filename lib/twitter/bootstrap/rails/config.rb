@@ -4,10 +4,15 @@ module Twitter
   module Bootstrap
     module Rails
       # How the host app loads Bootstrap's assets. `rails g bootstrap:install cdn`
-      # writes an initializer setting this to :cdn; `bootstrap:layout` reads it to
-      # pick its default. Defaults to :static so the layout generator works whether
-      # or not that initializer exists.
-      VALID_ASSET_MODES = [:static, :cdn].freeze
+      # (or importmap) and `rails g bootstrap:nes` write an initializer setting
+      # this; `bootstrap:layout` reads it to pick its default. Defaults to :static
+      # so the layout generator works whether or not that initializer exists.
+      #
+      # :static    vendored files, linked through the asset pipeline
+      # :cdn       jsDelivr tags with Subresource Integrity
+      # :importmap vendored stylesheet, ES modules pinned in config/importmap.rb
+      # :nes       HeroDevs Bootstrap NES 4.6 from its private npm registry
+      VALID_ASSET_MODES = [:static, :cdn, :importmap, :nes].freeze
 
       @asset_mode = :static
 
@@ -25,6 +30,14 @@ module Twitter
 
         def cdn?
           asset_mode == :cdn
+        end
+
+        def importmap?
+          asset_mode == :importmap
+        end
+
+        def nes?
+          asset_mode == :nes
         end
 
         # Which asset pipeline the host app runs. Propshaft (the Rails 8 default)

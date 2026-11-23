@@ -1,6 +1,7 @@
 require 'erb'
 require 'rails/generators'
 require 'twitter/bootstrap/rails/doctor'
+require 'twitter/bootstrap/rails/v6_migration'
 require 'generators/bootstrap/snippets/snippet_catalog'
 
 module Bootstrap
@@ -64,6 +65,22 @@ module Bootstrap
 
       def legacy
         Twitter::Bootstrap::Rails::LegacyMarkup
+      end
+
+      def v6
+        Twitter::Bootstrap::Rails::V6Migration
+      end
+
+      def nes?
+        facts[:asset_mode] == "nes"
+      end
+
+      def nes
+        Twitter::Bootstrap::Rails::BOOTSTRAP_NES
+      end
+
+      def v4_skill_command
+        "npx skills add twbs/bootstrap --skill bootstrap-v4-v6-migration"
       end
 
       def pipeline_note

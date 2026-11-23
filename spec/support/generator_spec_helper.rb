@@ -10,6 +10,8 @@ require 'generators/bootstrap/starter/starter_generator'
 require 'generators/bootstrap/cdn/cdn_generator'
 require 'generators/bootstrap/doctor/doctor_generator'
 require 'generators/bootstrap/agent/agent_generator'
+require 'generators/bootstrap/stimulus/stimulus_generator'
+require 'generators/bootstrap/nes/nes_generator'
 require 'generators/bootstrap/snippets/snippet_catalog'
 
 Bootstrap::Generators::SnippetCatalog::GENERATORS.each_key do |name|
