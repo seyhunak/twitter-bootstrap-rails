@@ -297,6 +297,21 @@ rails server
 Run `bootstrap:layout` even if you already have a layout — that step is what puts
 Bootstrap's CSS and JS on the page.
 
+## Upgrading to 5.6.1
+
+5.6.1 ships Bootstrap 5.3.9. After `bundle update twitter-bootstrap-rails`, re-run
+the generator for your setup so the app's own copies move to 5.3.9:
+
+- `rails g bootstrap:install static --force` or `rails g bootstrap:install importmap --force`
+  for vendored assets.
+- `rails g bootstrap:layout --force` for CDN layouts. Check the diff first if you've
+  edited the layout.
+
+`rails g bootstrap:doctor` reports any file still on 5.3.8. Bootstrap 5.3.9 also
+keeps `data-bs-title` and `data-bs-content` exactly as written. Before, a value like
+`9.90` was read as a number and shown as `9.9`, and an empty title stopped the tooltip
+from setting up.
+
 ## Upgrading to 5.6.0
 
 5.6.0 requires **Rails 7.1 or later**. Apps on older Rails should pin

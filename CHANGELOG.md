@@ -1,3 +1,13 @@
+## Unreleased
+
+### Documentation
+
+- README: "Upgrading to 5.6.1" explains how to move an app's copies to Bootstrap
+  5.3.9 and the change to tooltip and popover titles from data attributes.
+- `.gitignore` lists `*.gem` once instead of twice.
+- Corrected the 5.6.1 notes, which described Bootstrap 5.3.9's tooltip and popover
+  fix as escaping HTML. It stops numeric-looking text from being converted.
+
 ## 5.6.1
 
 ### Changed
@@ -5,8 +15,8 @@
 - **Bootstrap 5.3.9.** Re-vendored the stylesheet, bundle and ES module build, and
   updated the CDN tags and SRI hashes (`layout`, `starter`, `cdn`). Popper stays at
   2.11.8. 5.3.9 adds `.modal-xxl`, which works through
-  `modal_dialog(:size => "modal-xxl")`, and keeps tooltip and popover text from data
-  attributes as literal text.
+  `modal_dialog(:size => "modal-xxl")`, and keeps `data-bs-title` and
+  `data-bs-content` text as written (`9.90` no longer becomes `9.9`).
 
 ## 5.6.0
 
