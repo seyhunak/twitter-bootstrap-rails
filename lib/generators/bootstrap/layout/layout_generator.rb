@@ -2,11 +2,13 @@ require 'rails/generators'
 require 'twitter/bootstrap/rails/version'
 require 'twitter/bootstrap/rails/config'
 require 'generators/bootstrap/cdn_tags'
+require 'generators/bootstrap/bootstrap5_markup'
 
 module Bootstrap
   module Generators
     class LayoutGenerator < ::Rails::Generators::Base
       include CdnTags
+      include Bootstrap5Markup
 
       source_root File.expand_path("../templates", __FILE__)
       desc "This generator generates a Bootstrap #{Twitter::Bootstrap::Rails::BOOTSTRAP_VERSION} layout file with navigation."
@@ -29,6 +31,7 @@ module Bootstrap
       end
 
       def generate_layout
+        warn_if_nes
         app = ::Rails.application
         @app_name = app.class.to_s.split("::").first
         ext = app.config.generators.options[:rails][:template_engine] || :erb
@@ -41,6 +44,18 @@ module Bootstrap
         return options[:cdn] unless options[:cdn].nil?
 
         Twitter::Bootstrap::Rails.cdn?
+      end
+
+      # Rails 7+ apps load their own JavaScript (Turbo, Stimulus) through the
+      # importmap. A layout without these tags silently drops all of it.
+      def importmap_app?
+        File.exist?(File.join(destination_root, "config/importmap.rb"))
+      end
+
+      # In importmap mode Bootstrap's JavaScript is imported from application.js,
+      # so the layout links no script of its own for it.
+      def bootstrap_script?
+        cdn? || !Twitter::Bootstrap::Rails.importmap?
       end
 
       def separate_popper?

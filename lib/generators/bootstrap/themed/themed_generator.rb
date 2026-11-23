@@ -1,9 +1,12 @@
 require 'rails/generators'
 require 'rails/generators/generated_attribute'
+require 'generators/bootstrap/bootstrap5_markup'
 
 module Bootstrap
   module Generators
     class ThemedGenerator < ::Rails::Generators::Base
+      include Bootstrap5Markup
+
       source_root File.expand_path('../templates', __FILE__)
       argument :controller_path,    :type => :string
       argument :model_name,         :type => :string, :required => false
@@ -18,6 +21,7 @@ module Bootstrap
       end
 
       def copy_views
+        warn_if_nes
         generate_views
       end
 

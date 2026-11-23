@@ -34,7 +34,9 @@ describe "generator templates" do
       "vendor/assets/stylesheets/twitter/bootstrap/bootstrap.min.css" => "Bootstrap  v#{version}",
       "vendor/assets/javascripts/twitter/bootstrap/bootstrap.bundle.min.js" => "Bootstrap v#{version}",
       "app/assets/stylesheets/twitter-bootstrap-static/bootstrap.css" => "Bootstrap  v#{version}",
-      "app/assets/javascripts/twitter/bootstrap/bootstrap.min.js" => "Bootstrap v#{version}"
+      "app/assets/javascripts/twitter/bootstrap/bootstrap.min.js" => "Bootstrap v#{version}",
+      "vendor/assets/javascripts/twitter/bootstrap/bootstrap.esm.min.js" => "Bootstrap v#{version}",
+      "vendor/assets/javascripts/twitter/bootstrap/popper.esm.js" => "@popperjs/core v#{Twitter::Bootstrap::Rails::POPPER_VERSION}"
     }.each do |path, banner|
       full = File.join(gem_root, path)
       expect(File.exist?(full)).to be(true), "missing vendored asset #{path}"

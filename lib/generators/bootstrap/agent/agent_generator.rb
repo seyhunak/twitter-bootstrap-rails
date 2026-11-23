@@ -71,6 +71,18 @@ module Bootstrap
         Twitter::Bootstrap::Rails::V6Migration
       end
 
+      def nes?
+        facts[:asset_mode] == "nes"
+      end
+
+      def nes
+        Twitter::Bootstrap::Rails::BOOTSTRAP_NES
+      end
+
+      def v4_skill_command
+        "npx skills add twbs/bootstrap --skill bootstrap-v4-v6-migration"
+      end
+
       def pipeline_note
         case facts[:asset_pipeline]
         when "propshaft"

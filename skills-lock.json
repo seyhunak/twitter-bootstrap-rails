@@ -1,12 +1,21 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
+    "bootstrap-v4-v6-migration": {
+      "source": "twbs/bootstrap",
+      "commit": "9a5445c131775d085c629e58f4fb9086c3df60d3",
+      "sourceType": "github",
+      "skillPath": "skills/bootstrap-v4-v6-migration/SKILL.md",
+      "computedHash": "3e10f27c3696293115056830e43d51890f7989f31e500007fc59ee403f056bd5",
+      "installMode": "copy"
+    },
     "bootstrap-v5-v6-migration": {
       "source": "twbs/bootstrap",
       "sourceType": "github",
       "skillPath": "skills/bootstrap-v5-v6-migration/SKILL.md",
-      "computedHash": "fb9d69d442570d30c5843a5de6154044681f6b7fb438a690cb68bd3d04369a84",
-      "installMode": "copy"
+      "computedHash": "4b4216eeb6fab056219bf4c2cbaa89a94102c04277d58c5cec3bf520e5223c6c",
+      "installMode": "copy",
+      "commit": "9a5445c131775d085c629e58f4fb9086c3df60d3"
     }
   }
 }

@@ -6,13 +6,15 @@
 [![GitHub issues](https://img.shields.io/github/issues/seyhunak/twitter-bootstrap-rails.svg)](https://github.com/seyhunak/twitter-bootstrap-rails/issues)
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-D97757?logo=claude&logoColor=white)](https://claude.com/claude-code)
 
-Integrates Bootstrap 5.3.8 into Rails Asset Pipeline. Supports Rails 8, 7, 6, 5.
-Tested against Rails 8.1.4.1 and 8.0.5.2.
+Integrates Bootstrap 5.3.8 into Rails on Propshaft, Sprockets, importmap or the CDN.
+Supports Rails 8 and 7.1+. Tested against Rails 8.1.4.1 and 8.0.5.2.
+Apps still on Bootstrap 4 can use [HeroDevs Bootstrap NES 4.6](#bootstrap-nes-46-herodevs).
 
 > **Upgrade Rails.** [Rails 8.1.4.1 and 8.0.5.2](https://rubyonrails.org/2026/11/4/Rails-8.0.5.2-and-8.1.4.1-have-been-released)
 > fix 21 security issues, and the Rails team strongly recommends upgrading as soon
-> as possible. This gem's dependency range still allows older Rails versions, so
-> installing it won't upgrade Rails for you. Run `bundle update rails` in your app.
+> as possible. This gem requires Rails 7.1 or later but allows unpatched releases
+> within that range, so installing it won't upgrade Rails for you. Run
+> `bundle update rails` in your app.
 > Security support for Rails 8.0 ends on 7 November 2026, and older series are
 > already unsupported.
 
@@ -40,6 +42,7 @@ is reproducible from a command:
 | CDN CSS `<link>` | `rails g bootstrap:cdn --css` |
 | CDN JS bundle `<script>` | `rails g bootstrap:cdn --js` |
 | Popper + `bootstrap.js` separately | `rails g bootstrap:cdn --separate-popper` |
+| Bootstrap 6 prerelease tags | `rails g bootstrap:cdn --bootstrap=6` |
 | Important globals (doctype, `lang`, viewport) | baked into every generated layout and the starter template |
 
 ```bash
@@ -48,6 +51,9 @@ rails g bootstrap:install static
 
 # ...or load Bootstrap from the jsDelivr CDN instead
 rails g bootstrap:install cdn
+
+# ...or pin Bootstrap as an ES module in config/importmap.rb
+rails g bootstrap:install importmap
 
 # Generate a Bootstrap layout
 rails g bootstrap:layout application
@@ -69,6 +75,9 @@ rails g bootstrap:cdn
 rails g scaffold Task title:string done:boolean
 rails db:migrate
 rails g bootstrap:themed Tasks
+
+# Keep tooltips, popovers and modals working with Turbo (needs Stimulus)
+rails g bootstrap:stimulus
 ```
 
 `bootstrap:install cdn` records the choice in `config/initializers/bootstrap.rb`,
@@ -82,6 +91,64 @@ run `rails g bootstrap:layout` after `bootstrap:install static` either way.
 
 The Bootstrap version and its CDN URLs and integrity hashes live in one place,
 `Twitter::Bootstrap::Rails::BOOTSTRAP_CDN`. No template hardcodes them.
+
+### Importmap
+
+`rails g bootstrap:install importmap` is for apps on importmap-rails (the Rails 7 and
+8 default). It vendors the stylesheet, copies Bootstrap's ES module build and Popper
+into `vendor/javascript/twitter/bootstrap/`, pins both in `config/importmap.rb`, and
+adds `import "bootstrap"` to `app/javascript/application.js`. Your own modules can
+then `import { Tooltip } from "bootstrap"`. Nothing is fetched from a CDN at runtime.
+
+Popper ships no single-file ES module build, so the gem wraps Popper's official
+UMD build with ES module exports.
+
+`bootstrap:layout` now keeps `<%= javascript_importmap_tags %>` in the layout on any
+app with `config/importmap.rb`. Earlier versions dropped it, so regenerating
+`application` silently turned off Turbo and Stimulus. The doctor warns
+(`importmap_tags`) if no layout loads the importmap.
+
+### Turbo and Stimulus
+
+Bootstrap's data attributes (`data-bs-toggle="modal"`, `"dropdown"`, `"collapse"`)
+work with Turbo on their own. Tooltips and popovers are opt-in JavaScript, and an
+open modal can be cached by Turbo and come back with its backdrop stuck. Run
+`rails g bootstrap:stimulus` and add `data-controller="bootstrap"` to `<body>`. The
+controller sets up tooltips and popovers on every render, disposes of them
+afterwards, and closes modals, offcanvases and dropdowns before Turbo caches a page.
+On importmap apps it imports Bootstrap, and elsewhere it uses the bundle's global.
+
+### Bootstrap NES 4.6 (HeroDevs)
+
+Apps that can't leave Bootstrap 4 yet can run
+[HeroDevs Bootstrap NES 4.6](https://docs.herodevs.com/bootstrap/bootstrap-4-6), a
+security-patched Bootstrap 4.6 (currently 4.6.5). It is a **paid** product served
+from HeroDevs' private npm registry, so the gem can't vendor it. It sets your app
+up to install it:
+
+```bash
+rails g bootstrap:nes                              # package.json + .npmrc + initializer
+export HERODEVS_NES_TOKEN=...                      # your HeroDevs access token
+npm install
+rails g bootstrap:doctor                           # checks the NES setup
+```
+
+- It needs npm, so use jsbundling-rails or cssbundling-rails. importmap can't
+  install from an authenticated registry.
+- `package.json` gets
+  `"bootstrap": "npm:@neverendingsupport/bootstrap@4.6.2-bootstrap-4.6.5"` plus a
+  matching `overrides` entry, so packages that depend on Bootstrap get NES too.
+- `.npmrc` gets the registry and
+  `_authToken=${HERODEVS_NES_TOKEN}`, so the token stays in the environment and out
+  of git. Use `--token-env=NAME` for another variable name.
+- Bootstrap 4's JavaScript needs jQuery.
+- The doctor checks the package, the override, the registry and the token line. It
+  warns if a token is written into `.npmrc` or the NES release is older than the one
+  the gem knows, and it doesn't flag Bootstrap 4 markup as legacy.
+- The gem's layout, themed and snippet generators and its view helpers write
+  Bootstrap 5 markup, so they warn on an NES app. `bootstrap:agent` tells coding
+  agents to write Bootstrap 4 markup and points them at the upstream
+  `bootstrap-v4-v6-migration` skill.
 
 ## Snippets
 
@@ -189,6 +256,7 @@ into your app alongside the gem's own guide:
 ```bash
 npx skills add twbs/bootstrap --skill bootstrap-v5-v6-migration
 rails g bootstrap:agent             # the guide tells agents to stay on Bootstrap 5 markup until you migrate
+rails g bootstrap:cdn --bootstrap=6 # prerelease CDN tags, to try Bootstrap 6 out
 rails g bootstrap:doctor --v6       # the migration worklist
 rails g bootstrap:doctor --v6 --json
 ```

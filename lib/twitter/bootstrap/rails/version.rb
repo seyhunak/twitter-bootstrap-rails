@@ -29,6 +29,38 @@ module Twitter
           :integrity => "sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         }
       }.freeze
+
+      # The Bootstrap 6 prerelease that `rails g bootstrap:cdn --bootstrap=6` prints.
+      # The gem's generators and helpers still write Bootstrap 5 markup, so this is
+      # only for trying 6 out or migrating to it. Its bundle is an ES module and
+      # includes Floating UI, so there is no separate Popper pair. The integrity
+      # hashes are sha384 of the files jsDelivr serves for this version.
+      BOOTSTRAP_NEXT_VERSION = "6.0.0-alpha.1"
+      BOOTSTRAP_NEXT_CDN = {
+        :css => {
+          :url => "https://cdn.jsdelivr.net/npm/bootstrap@#{BOOTSTRAP_NEXT_VERSION}/dist/css/bootstrap.min.css",
+          :integrity => "sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe"
+        },
+        :bundle => {
+          :url => "https://cdn.jsdelivr.net/npm/bootstrap@#{BOOTSTRAP_NEXT_VERSION}/dist/js/bootstrap.bundle.min.js",
+          :integrity => "sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL"
+        }
+      }.freeze
+
+      # HeroDevs Bootstrap NES (Never-Ending Support): security-patched Bootstrap 4.6
+      # for apps that can't move to 5 yet. It is a paid product served only from
+      # HeroDevs' private npm registry, so the gem can't vendor it; `rails g
+      # bootstrap:nes` points an app's package.json and .npmrc at it instead.
+      # Source: https://docs.herodevs.com/bootstrap/bootstrap-4-6 and its release notes.
+      BOOTSTRAP_NES = {
+        :name => "HeroDevs Bootstrap NES",
+        :package => "@neverendingsupport/bootstrap",
+        :version => "4.6.2-bootstrap-4.6.5",
+        :bootstrap_version => "4.6.5",
+        :registry => "https://registry.nes.herodevs.com/npm/pkg/",
+        :token_env => "HERODEVS_NES_TOKEN",
+        :docs => "https://docs.herodevs.com/bootstrap/bootstrap-4-6"
+      }.freeze
     end
   end
 end

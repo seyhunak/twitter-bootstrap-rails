@@ -74,6 +74,50 @@ describe Bootstrap::Generators::DoctorGenerator do
       expect(check("bootstrap_js")[:status]).to eq("warn")
     end
 
+    describe "on importmap" do
+      def install_importmap
+        rails_mod.asset_pipeline = :propshaft
+        write_destination("config/importmap.rb", %{pin "application"\n})
+        write_destination("app/javascript/application.js", %{import "@hotwired/turbo-rails"\n})
+        run_generator(Bootstrap::Generators::InstallGenerator, %w[importmap])
+        rails_mod.asset_mode = :importmap
+        run_generator(Bootstrap::Generators::LayoutGenerator)
+      end
+
+      it "is happy with an app set up by the generators" do
+        install_importmap
+
+        expect(report).to include(:status => "ok", :asset_mode => "importmap")
+        expect(check("bootstrap_js")[:message]).to include("importmap")
+      end
+
+      it "reports an error when Bootstrap is not pinned" do
+        install_importmap
+        write_destination("config/importmap.rb", %{pin "application"\n})
+
+        expect(check("bootstrap_js")).to include(:status => "error", :fix => a_string_including("bootstrap:install importmap"))
+      end
+
+      it "reports an error when nothing imports Bootstrap" do
+        install_importmap
+        write_destination("app/javascript/application.js", %{import "@hotwired/turbo-rails"\n})
+
+        expect(check("bootstrap_js")).to include(:status => "error", :message => a_string_including("imports"))
+      end
+
+      it "warns when no layout loads the importmap, which drops the app's own JavaScript" do
+        install_importmap
+        write_destination("app/views/layouts/application.html.erb",
+                          %{<%= stylesheet_link_tag "twitter/bootstrap/bootstrap.min" %>})
+
+        expect(check("importmap_tags")).to include(:status => "warn", :fix => a_string_including("javascript_importmap_tags"))
+      end
+    end
+
+    it "has nothing to say about importmap tags in an app without importmap" do
+      expect(check("importmap_tags")[:status]).to eq("ok")
+    end
+
     it "reads the mode from the layout if the initializer is missing" do
       write_destination("app/views/layouts/application.html.erb",
                         %{<link href="https://cdn.jsdelivr.net/npm/bootstrap@#{version}/dist/css/bootstrap.min.css">})
@@ -97,6 +141,14 @@ describe Bootstrap::Generators::DoctorGenerator do
       write_destination("app/assets/stylesheets/twitter/bootstrap/bootstrap.min.css", "/*! Bootstrap  v5.3.3 */")
 
       expect(check("bootstrap_version")).to include(:status => "warn", :message => a_string_including("5.3.3"))
+    end
+
+    it "names a Bootstrap 6 prerelease and points at the migration worklist" do
+      write_destination("app/views/layouts/application.html.erb",
+                        %{<link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css">})
+
+      expect(check("bootstrap_version")).to include(:status => "warn", :message => a_string_including("6.0.0-alpha.1"),
+                                                    :fix => a_string_including("--v6"))
     end
 
     it "accepts what the generators installed" do

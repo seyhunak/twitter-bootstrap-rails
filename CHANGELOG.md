@@ -1,3 +1,44 @@
+## Unreleased
+
+### Added
+
+- **`rails g bootstrap:install importmap`.** Vendors the stylesheet and Bootstrap's ES
+  module build, pins `bootstrap` and `@popperjs/core` in `config/importmap.rb`, and
+  imports Bootstrap from `app/javascript/application.js`. Popper's official UMD build
+  is wrapped with ES module exports, because Popper ships no single-file ES module.
+- **`rails g bootstrap:stimulus`** writes a Stimulus controller that sets up tooltips
+  and popovers on each Turbo render, disposes of them afterwards, and closes modals,
+  offcanvases and dropdowns before Turbo caches a page.
+- **`rails g bootstrap:nes`** sets up HeroDevs Bootstrap NES 4.6.5 (paid,
+  security-patched Bootstrap 4.6) through npm. It adds the aliased package and an
+  override to `package.json`, and the registry to `.npmrc` with the token read from
+  `${HERODEVS_NES_TOKEN}`. The doctor gets `nes_package` and `nes_registry` checks
+  and skips the legacy-markup scan. The agent guide tells agents to write Bootstrap 4
+  markup, and the Bootstrap 5 generators warn.
+- **`rails g bootstrap:cdn --bootstrap=6`** prints the Bootstrap 6.0.0-alpha.1 tags,
+  with the bundle as an ES module. The doctor names a Bootstrap 6 prerelease and
+  points at `--v6`.
+- The doctor has an `importmap_tags` check.
+- The upstream `bootstrap-v4-v6-migration` skill is installed in this repository
+  next to `bootstrap-v5-v6-migration`.
+- Gemspec metadata (changelog, source, bug tracker, documentation, funding), and
+  `rubygems_mfa_required`.
+- A feature-request issue template and Dependabot for Bundler.
+
+### Changed
+
+- **Requires Rails 7.1 or later** (was 5.0). Older lines get no security fixes and
+  weren't tested.
+- `bootstrap:layout` keeps `javascript_importmap_tags` on apps with
+  `config/importmap.rb`. Regenerating the application layout used to drop it, which
+  turned off Turbo and Stimulus.
+- `CONTRIBUTERS.md` is now `CONTRIBUTORS.md`.
+
+### Removed
+
+- `WARP.md` and `.travis.yml`, which described the pre-5.4 toolchain.
+- The unused `minitest`, `mocha`, `turn` and `coveralls` development gems.
+
 ## 5.5.1
 
 ### Added

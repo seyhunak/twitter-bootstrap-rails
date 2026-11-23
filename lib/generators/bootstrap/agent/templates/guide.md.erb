@@ -1,6 +1,12 @@
 # Bootstrap in this app
 
+<% if nes? -%>
+This app uses Bootstrap <%= facts[:bootstrap_version] %> from <%= nes[:name] %>: security-patched Bootstrap 4.6, installed with npm from HeroDevs' private registry and set up by the twitter-bootstrap-rails gem (<%= facts[:gem_version] %>).
+
+**Write Bootstrap 4 markup.** Bootstrap 4 uses <%= legacy::DATA_ATTRIBUTES.first(3).map { |name| "`data-#{name}`" }.join(", ") %> and so on, not `data-bs-*`, and Bootstrap 4 classes. The gem's layout, themed and snippet generators and its view helpers write Bootstrap 5 markup, which doesn't work here, so don't use them in this app.
+<% else -%>
 This app uses Bootstrap <%= facts[:bootstrap_version] %> through the twitter-bootstrap-rails gem (<%= facts[:gem_version] %>). Prefer the gem's generators and helpers over writing Bootstrap markup from memory, which is often out of date.
+<% end -%>
 
 This guide is generated. Run `rails g bootstrap:agent` again after upgrading the gem or changing the asset setup.
 
@@ -9,6 +15,18 @@ This guide is generated. Run `rails g bootstrap:agent` again after upgrading the
 - Asset pipeline: <%= pipeline_note %>
 - Bootstrap assets: <%= facts[:asset_mode] %>
 - Template engine: <%= facts[:template_engine] %>
+<% if nes? -%>
+
+## Workflow
+
+1. Run `rails g bootstrap:doctor --json` to check the NES setup: the package in `package.json`, and the registry and token in `.npmrc`. It writes nothing, and it exits 1 if a check reports an error.
+2. npm reads the access token from the `<%= nes[:token_env] %>` environment variable (or the name in `.npmrc`). Never write the token into a file.
+3. Bootstrap 4's JavaScript needs jQuery, imported before Bootstrap.
+
+## Moving off Bootstrap 4
+
+NES keeps Bootstrap 4.6 patched, but the gem's tooling targets Bootstrap 5. To migrate, install the upstream skill with `<%= v4_skill_command %>` and follow it. To stop at Bootstrap 5, switch `package.json` back to the public `bootstrap` package, run `rails g bootstrap:install`, then use `rails g bootstrap:doctor` to find the Bootstrap 4 markup that needs changing.
+<% else -%>
 
 ## Workflow
 
@@ -33,9 +51,10 @@ Snippets are always written as ERB partials. They render from any template engin
 
 ## Other generators
 
-- `bootstrap:install static` or `bootstrap:install cdn`: sets up Bootstrap's assets.
-- `bootstrap:layout [NAME]`: writes a layout that loads Bootstrap. Don't overwrite an existing layout without checking its contents first.
+- `bootstrap:install static`, `bootstrap:install cdn` or `bootstrap:install importmap`: sets up Bootstrap's assets. `importmap` pins Bootstrap as an ES module, so `import { Tooltip } from "bootstrap"` works.
+- `bootstrap:layout [NAME]`: writes a layout that loads Bootstrap, and keeps `javascript_importmap_tags` on importmap apps. Don't overwrite an existing layout without checking its contents first.
 - `bootstrap:themed RESOURCE`: writes Bootstrap views for a scaffold.
+- `bootstrap:stimulus`: writes a Stimulus controller that sets up tooltips and popovers on each Turbo render and closes modals before Turbo caches a page. Attach it with `data-controller="bootstrap"` on `<body>`.
 - `bootstrap:cdn`: prints the CDN tags and writes nothing.
 
 ## View helpers
@@ -53,7 +72,7 @@ To move the app to Bootstrap 6:
 
 1. Install the upstream migration skill: `<%= v6::SKILL_COMMAND %>`. Follow it alongside this guide.
 2. Run `rails g bootstrap:doctor --v6 --json`. It lists every Bootstrap 5 class, data attribute, Sass import and JavaScript call that changes, with file, line and replacement, under `v6_migration`.
-3. Switch the Bootstrap assets before changing markup, because the vendored files and `bootstrap:install` are Bootstrap 5. Re-running `bootstrap:layout`, `bootstrap:themed` or a snippet generator writes Bootstrap 5 markup again.
+3. Switch the Bootstrap assets before changing markup, because the vendored files and `bootstrap:install` are Bootstrap 5. `rails g bootstrap:cdn --bootstrap=6` prints the prerelease CDN tags. Re-running `bootstrap:layout`, `bootstrap:themed` or a snippet generator writes Bootstrap 5 markup again.
 4. The helpers in "View helpers" render Bootstrap 5 markup at runtime, so the scan can't see their output. Replace them with Bootstrap 6 markup in the views that use them.
 5. v6 changes the spacing scale (`p-3` is smaller), so check spacing utilities by eye; the scan doesn't flag them.
 
@@ -70,4 +89,5 @@ Data attributes: <%= legacy::DATA_ATTRIBUTES.map { |name| "`data-#{name}`" }.joi
 <% end -%>
 <% legacy::CLASS_PATTERNS.each do |_pattern, _replacement, example| -%>
 | <%= example.split(" become").first %> | <%= example.split(/ becomes? /).last %> |
+<% end -%>
 <% end -%>

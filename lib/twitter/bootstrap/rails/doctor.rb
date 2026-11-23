@@ -1,3 +1,4 @@
+require 'json'
 require 'twitter/bootstrap/rails/version'
 require 'twitter/bootstrap/rails/config'
 require 'twitter/bootstrap/rails/legacy_markup'
@@ -15,6 +16,8 @@ module Twitter
         SCANNED_EXTENSIONS = %w[.erb .haml .slim .rb].freeze
         PLACEHOLDER_IMAGES = ["bootstrap-docs.png", "bootstrap-themes.png", "/docs/5.3/assets/", "unsplash-photo-"].freeze
         SEVERITY = %w[ok warn error].freeze
+        IMPORTMAP = "config/importmap.rb".freeze
+        APPLICATION_JS = "app/javascript/application.js".freeze
         # What `--v6` scans on top of views and helpers. The gem's own vendored
         # Bootstrap files are skipped: replacing them is the first migration step.
         V6_EXTRA_FILES = "app/{javascript,assets/javascripts,assets/stylesheets}/**/*".freeze
@@ -27,7 +30,12 @@ module Twitter
 
         # v6: true adds a v6_migration check and list for apps moving to Bootstrap 6.
         def report(v6: false)
-          checks = [css_check, js_check, version_check, sprite_check, placeholder_check, legacy_check]
+          checks = if nes?
+                     [nes_package_check, nes_registry_check, importmap_tags_check]
+                   else
+                     [css_check, js_check, importmap_tags_check, version_check]
+                   end
+          checks += [sprite_check, placeholder_check, legacy_check]
           checks << v6_check if v6
 
           result = facts.merge(
@@ -40,7 +48,8 @@ module Twitter
 
         def facts
           {
-            :bootstrap_version => BOOTSTRAP_VERSION,
+            :bootstrap_version => nes? ? BOOTSTRAP_NES[:bootstrap_version] : BOOTSTRAP_VERSION,
+            :bootstrap_distribution => nes? ? BOOTSTRAP_NES[:name] : "Bootstrap",
             :gem_version => VERSION,
             :rails_version => ::Rails.version,
             :asset_pipeline => pipeline.to_s,
@@ -51,14 +60,19 @@ module Twitter
 
         private
 
+        def nes?
+          asset_mode == "nes"
+        end
+
         def pipeline
           Twitter::Bootstrap::Rails.asset_pipeline
         end
 
         def asset_mode
-          initializer = read("config/initializers/bootstrap.rb")
-          cdn = initializer.match?(/asset_mode\s*=\s*:cdn/) || layouts.match?(%r{cdn\.jsdelivr\.net/npm/bootstrap@})
-          cdn ? "cdn" : "static"
+          @asset_mode ||= begin
+            recorded = read("config/initializers/bootstrap.rb")[/asset_mode\s*=\s*:(\w+)/, 1]
+            recorded || (layouts.match?(%r{cdn\.jsdelivr\.net/npm/bootstrap@}) ? "cdn" : "static")
+          end
         end
 
         def template_engine
@@ -77,6 +91,8 @@ module Twitter
         end
 
         def js_check
+          return importmap_js_check if asset_mode == "importmap"
+
           asset_check("bootstrap_js", "JavaScript",
                       :cdn => %r{bootstrap@[\d.]+/dist/js/bootstrap},
                       :vendored_name => "twitter/bootstrap/bootstrap.bundle.min",
@@ -105,6 +121,96 @@ module Twitter
                 "or link it from your own layout (`rails g bootstrap:cdn` prints the tags).")
         end
 
+        def importmap_js_check
+          pinned = read(IMPORTMAP).match?(/^\s*pin\s+["']bootstrap["']/)
+          unless pinned
+            return check("bootstrap_js", "error", "#{IMPORTMAP} does not pin \"bootstrap\", so `import \"bootstrap\"` fails in the browser.",
+                         "Run `rails g bootstrap:install importmap`.")
+          end
+
+          vendored = read(IMPORTMAP)[/^\s*pin\s+["']bootstrap["']\s*,\s*to:\s*["']([^"']+)["']/, 1]
+          if vendored && !vendored.start_with?("http") && !exist?(File.join("vendor/javascript", vendored))
+            return check("bootstrap_js", "error", "#{IMPORTMAP} pins bootstrap to vendor/javascript/#{vendored}, which does not exist.",
+                         "Run `rails g bootstrap:install importmap`.")
+          end
+
+          unless javascript_sources.match?(/^\s*import\s+(?:\*\s+as\s+\w+\s+from\s+|\{[^}]*\}\s+from\s+)?["']bootstrap["']/)
+            return check("bootstrap_js", "error", "Bootstrap is pinned, but nothing in app/javascript imports it, so it never runs.",
+                         "Add `import \"bootstrap\"` to #{APPLICATION_JS}.")
+          end
+
+          check("bootstrap_js", "ok", "Bootstrap JavaScript is pinned in the importmap and imported.")
+        end
+
+        def nes_package_check
+          json = package_json
+          spec = json.dig("dependencies", "bootstrap").to_s
+          prefix = "npm:#{BOOTSTRAP_NES[:package]}@"
+
+          unless spec.start_with?(prefix)
+            return check("nes_package", "error",
+                         "This app is set to NES mode, but package.json's bootstrap dependency is #{spec.empty? ? 'missing' : spec.inspect}, not the NES package.",
+                         "Run `rails g bootstrap:nes`.")
+          end
+
+          version = spec.delete_prefix(prefix)
+          if version != BOOTSTRAP_NES[:version]
+            return check("nes_package", "warn",
+                         "package.json uses #{BOOTSTRAP_NES[:name]} #{version}; the latest this gem knows is #{BOOTSTRAP_NES[:version]}.",
+                         "Run `rails g bootstrap:nes`, then `npm install`.")
+          end
+
+          unless json.dig("overrides", "bootstrap")
+            return check("nes_package", "warn", "package.json has no override for bootstrap, so a dependency could still pull in an unpatched Bootstrap.",
+                         "Run `rails g bootstrap:nes`.")
+          end
+
+          check("nes_package", "ok", "package.json uses #{BOOTSTRAP_NES[:name]} #{version}, with an override.")
+        end
+
+        def nes_registry_check
+          npmrc = read(".npmrc")
+          registry = BOOTSTRAP_NES[:registry]
+          unless npmrc.include?("@neverendingsupport:registry=#{registry}")
+            return check("nes_registry", "error", ".npmrc doesn't point @neverendingsupport at #{registry}, so npm can't find the NES package.",
+                         "Run `rails g bootstrap:nes`.")
+          end
+
+          auth = npmrc[/^#{Regexp.escape(registry.sub(/\Ahttps?:/, ''))}:_authToken=(.*)$/, 1]
+          if auth.nil?
+            return check("nes_registry", "error", ".npmrc has no access token line for the NES registry.",
+                         "Run `rails g bootstrap:nes`, then export #{BOOTSTRAP_NES[:token_env]}.")
+          end
+
+          unless auth.strip.match?(/\A\$\{\w+\}\z/)
+            # Never echo the value: it is a credential.
+            return check("nes_registry", "warn", ".npmrc contains the NES access token itself, which leaks it if the file is committed.",
+                         "Replace it with ${#{BOOTSTRAP_NES[:token_env]}} and set that environment variable instead.")
+          end
+
+          check("nes_registry", "ok", ".npmrc reads the NES access token from #{auth.strip}.")
+        end
+
+        def package_json
+          JSON.parse(read("package.json"))
+        rescue JSON::ParserError
+          {}
+        end
+
+        def importmap_tags_check
+          return check("importmap_tags", "ok", "The app does not use importmap.") unless exist?(IMPORTMAP)
+          return check("importmap_tags", "ok", "A layout loads the importmap.") if layouts.include?("javascript_importmap_tags")
+
+          check("importmap_tags", "warn",
+                "#{IMPORTMAP} exists, but no layout calls javascript_importmap_tags, so the app's own JavaScript " \
+                "(Turbo, Stimulus, an imported Bootstrap) never loads.",
+                "Add <%= javascript_importmap_tags %> to the <head> of your layout, or re-run `rails g bootstrap:layout`.")
+        end
+
+        def javascript_sources
+          relative_files("app/javascript/**/*", %w[.js .mjs]).map { |file| read(file) }.join("\n")
+        end
+
         def linked_through_pipeline?(source)
           propshaft_link = layouts.include?(source[:vendored_name])
           sprockets_link = layouts.match?(source[:layout_tag]) && read(source[:manifest]).match?(source[:manifest_entry])
@@ -121,13 +227,19 @@ module Twitter
         end
 
         def version_check
-          found = layouts.scan(/bootstrap@(\d+\.\d+\.\d+)/).flatten
+          found = layouts.scan(/bootstrap@(\d+\.\d+\.\d+(?:-[\w.]+)?)/).flatten
           [VENDORED_CSS, VENDORED_JS].each do |file|
             found.concat(read(file)[0, 400].to_s.scan(/Bootstrap\s+v(\d+\.\d+\.\d+)/).flatten)
           end
           stale = found.uniq - [BOOTSTRAP_VERSION]
 
           return check("bootstrap_version", "ok", "No Bootstrap version other than #{BOOTSTRAP_VERSION} found.") if stale.empty?
+
+          if stale.any? { |version| version.start_with?("6.") }
+            return check("bootstrap_version", "warn",
+                         "Found Bootstrap #{stale.join(', ')}. This gem ships #{BOOTSTRAP_VERSION}, and its generators and helpers write Bootstrap 5 markup.",
+                         "Run `rails g bootstrap:doctor --v6` for the Bootstrap 5 markup to migrate.")
+          end
 
           check("bootstrap_version", "warn",
                 "Found Bootstrap #{stale.join(', ')}, but this gem ships #{BOOTSTRAP_VERSION}.",
@@ -165,6 +277,11 @@ module Twitter
         end
 
         def legacy_check
+          if nes?
+            return check("legacy_markup", "ok",
+                         "Skipped: this app runs Bootstrap #{BOOTSTRAP_NES[:bootstrap_version]} (NES), where Bootstrap 4 markup is correct.")
+          end
+
           count = legacy_markup.size
           return check("legacy_markup", "ok", "No older Bootstrap markup found.") if count.zero?
 
@@ -173,6 +290,8 @@ module Twitter
         end
 
         def legacy_markup
+          return [] if nes?
+
           @legacy_markup ||= scanned_files.flat_map do |file|
             LegacyMarkup.scan(read(file), File.extname(file)).map { |finding| { :file => file }.merge(finding) }
           end
