@@ -1,4 +1,4 @@
-## Unreleased
+## 5.6.0
 
 ### Added
 

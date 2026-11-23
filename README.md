@@ -297,6 +297,17 @@ rails server
 Run `bootstrap:layout` even if you already have a layout — that step is what puts
 Bootstrap's CSS and JS on the page.
 
+## Upgrading to 5.6.0
+
+5.6.0 requires **Rails 7.1 or later**. Apps on older Rails should pin
+`gem "twitter-bootstrap-rails", "~> 5.5.1"`.
+
+If your app uses importmap and you generated its layout with an earlier version,
+re-run `rails g bootstrap:layout` or add `<%= javascript_importmap_tags %>` to its
+`<head>`: earlier layouts left it out. `rails g bootstrap:doctor` reports this as
+`importmap_tags`. To load Bootstrap's JavaScript through the importmap instead of the
+bundle, run `rails g bootstrap:install importmap`.
+
 ## Upgrading to 5.5.0
 
 5.5.0 changes the HTML that the view helpers produce. They were still
